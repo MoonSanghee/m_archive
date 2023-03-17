@@ -1,6 +1,6 @@
 # ABC_FRONT
 
-##Getting Started
+## Getting Started
 First Clone the Project:
 ```
 git clone https://github.com/MoonSanghee/ABC_FRONT.git
