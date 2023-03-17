@@ -26,7 +26,7 @@ cd m-archive
 yarn install 
 yarn start
 
-``
+```
 
 ## Tasktypes:
 When committing new Features, create a new branch first, like
