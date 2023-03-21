@@ -1,0 +1,41 @@
+@use '../../../styles/constants/' as c;
+
+.label{
+  .labelText {
+    font-size: 20px;
+    color: c.$C_BLACK;
+  }
+
+  .errorText {
+    font-size: 16px;
+    color: c.$C_RED;
+  }
+
+  &.error {
+    .input {
+      border-bottom: 4px solid c.$C_RED;
+    }
+  }
+}
+
+.input {
+  border: none;
+  font-size: 20px;
+  background-color: c.$C_GRAY;
+  width: 520px;
+  height: 60px;
+  display: flex;
+  align-items : center;
+  padding: 12px;
+  margin: 8px 0px;
+  font-family: KIMM_Light;
+}
+
+.search{
+  background-color: c.$C_GRAY;
+  display: flex;
+  justify-items: center;
+  height: 40px;
+  font-size: 16px;
+  padding-left: 32px;
+}
