@@ -3,10 +3,10 @@ import { Outlet } from "react-router-dom";
 
 const Layout = () => {
   return (
-    <div className={styles.app}>
+    <div>
       <main>
-        <Sidebar />
-        <section className={styles.features}>
+        {/* <Sidebar /> */}
+        <section>
           <Outlet />
         </section>
       </main>

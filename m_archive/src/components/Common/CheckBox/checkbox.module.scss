@@ -1,0 +1,42 @@
+@use "../../../styles/constants/colors" as c;
+
+.wrapper {
+    position: relative;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    background-color: c.$C_WHITE;
+    border: 1px solid c.$C_BLACK;
+    margin-left: 5px;
+
+    > input:not(:checked) + svg {
+        display: none;
+    }
+
+    &.wrapper2 {
+        position: relative;
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        background-color: c.$C_WHITE;
+        border: 1px solid c.$C_BLACK;
+        margin-left: 5px;
+        }
+}
+
+// .wrapper2 {
+//     position: relative;
+//     display: inline-block;
+//     width: 16px;
+//     height: 16px;
+//     cursor: pointer;
+//     background-color: c.$C_SECONDARY;
+//     border: 1px solid c.$C_WHITE;
+//     margin-left: 5px;
+
+//     > input:not(:checked) + svg {
+//         display: none;
+//     }
+// }
