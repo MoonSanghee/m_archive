@@ -1,11 +1,10 @@
 import React from "react";
 import cx from "classnames";
-import { ProfileIcon,MyPageIcon, LikeIcon, ReviewWriteIcon, FAQIcon, LogoutIcon } from "../../../assets/icon";
 import styles from "./profileDropdown.module.scss";
 import { useState } from "react";
-import {useNavigate} from "react-router-dom";
 import { useRef } from "react";
 import { useEffect } from "react";
+import { ProfileIcon } from "../../../../assets/icon";
 
 //MEMO:
 /*
@@ -14,59 +13,16 @@ li를 클릭하면 페이지를 이동하게 하는 드랍다운인데,
 질문 : 다른 드랍다운처럼 props로 받아와야 할 것이 있을까요? 
 
 */
-const ProfileDropdown = () =>{
+const ProfileDropdown = ({items,onClick}) =>{
     const ref = useRef(null);
     const [isOpen, setIsOpen] = useState(false);
-    const navigate = useNavigate();
+
 
     const onClickIcon = () =>{
         setIsOpen(!isOpen);
     }
-    const onClick = (item) =>{
-           return ()=>{
-                navigate(item.path);
-           }           
-        }
-
-    const dropdownItems = [
-        {
-            id:1,
-            name:"마이페이지",
-            value:"MyPage",
-            path:"/myPage/Profile",
-            icon:<MyPageIcon />
-        },
-        {
-            id:2,
-            name:"좋아요",
-            value:"Like",
-            path:"/myPage/Like",
-            icon:<LikeIcon />
-        },
-        {
-            id:3,
-            name:"리뷰",
-            value:"Review",
-            path:"/myPage/Review",
-            icon:<ReviewWriteIcon/>
-        },
-        {
-            id:4,
-            name:"FAQ",
-            value:"FAQ",
-            path:"/myPage/FAQ",
-            icon:<FAQIcon/>
-
-        },
-        {
-            id:5,
-            name:"로그아웃",
-            value:"Logout",
-            path:"/auth/Logout",
-            icon:<LogoutIcon/>
-        },
+   
     
-        ]
     useEffect(()=>{
             if(!isOpen){
                 return;
@@ -92,7 +48,7 @@ const ProfileDropdown = () =>{
                  />
             </div>
             <menu className={cx(styles.itemWrapper,{ [styles.isOpen]: isOpen })}>
-                {dropdownItems.map((item) => {
+                {items.map((item) => {
                     return (
                         <li className={styles.item} onClick={onClick(item)}>
                         {item.icon}{item.name}

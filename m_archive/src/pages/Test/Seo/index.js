@@ -1,6 +1,7 @@
 import React from "react"
-import { TypeDropdown,SortDropdown,ProfileDropdown,Dropdown } from "../../../components/Common";
-import styles from "./styles.module.scss";
+import { Dropdown } from "../../../components/Common";
+import Header from "../../../components/Layout/Header";
+import styles from "./seo.module.scss";
 import { useCallback } from "react";
 import { useState } from "react";
 
@@ -53,7 +54,8 @@ const Seo = () =>{
         };
       }, []);
     return(
-        <main>
+        <main className={styles.wrapper}>
+            <Header/>
             {//<h1>서진주 테스트페이지</h1>
             }
             <Dropdown 
@@ -69,7 +71,6 @@ const Seo = () =>{
             onClick={onClickTypeDropdown}
             color="secondary"
             />
-            <ProfileDropdown/>
         </main>
     )
 }

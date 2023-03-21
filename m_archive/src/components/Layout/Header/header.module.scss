@@ -1,0 +1,38 @@
+@use "../../../styles/constants/" as c;
+@use "../../../styles/mixins/" as m;
+
+.wrapper{
+    @include m.flex(space-between,flex-start,row);
+    width: 100%;
+    height: 108px;
+    background-color: c.$C_SECONDARY;
+    .logo{
+        width: 280px;
+        height: 100%;
+        @include m.flex(center,center,column);
+        > h1{
+            margin-left: 20px;
+            font-size: 40px;
+            color:c.$C_PRIMARY;
+        }
+        
+    }
+
+    .navWrapper{
+        @include m.flex();
+        height: 100%;
+        column-gap: 16px;
+        .movieButton{
+            font-size:32px;
+            color:c.$C_WHITE;
+        }
+        .searchBox{
+            width: 200px;
+        }
+        .profileIcon{
+            //width: 56px;
+        }
+    }
+
+
+}
