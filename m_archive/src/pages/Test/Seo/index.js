@@ -54,24 +54,31 @@ const Seo = () =>{
         };
       }, []);
     return(
-        <main className={styles.wrapper}>
-            <Header/>
-            {//<h1>서진주 테스트페이지</h1>
-            }
-            <Dropdown 
-            items={dropdownSortItems} 
-            valueKey="name" 
-            value={selectedSort?.name}
-            onClick={onClickSortDropdown}
-            />
-            <Dropdown 
-            items={dropdownBOItems} 
-            valueKey="name" 
-            value={selectedType?.name}
-            onClick={onClickTypeDropdown}
-            color="secondary"
-            />
-        </main>
+     
+ 
+
+            <div className={styles.layout}>
+                 <Header/>
+                 <main className={styles.main}>
+                    <section className={styles.sectionWrapper}>
+                        <Dropdown 
+                        items={dropdownSortItems} 
+                        valueKey="name" 
+                        value={selectedSort?.name}
+                        onClick={onClickSortDropdown}
+                        />
+                        <Dropdown 
+                        items={dropdownBOItems} 
+                        valueKey="name" 
+                        value={selectedType?.name}
+                        onClick={onClickTypeDropdown}
+                        color="secondary"
+                        />
+                   
+                    </section>
+              
+                </main>
+            </div>
     )
 }
 

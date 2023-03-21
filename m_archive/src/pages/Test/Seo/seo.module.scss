@@ -1,6 +1,17 @@
 @use "../../../styles/mixins/" as m;
-.wrapper{
-    @include m.flex(center,flex-start,column);
-    row-gap: 140px;
-    //background-color: #ccc;
+
+.layout{
+    padding-top: 108px; 
+    //overflow:scroll;
+}
+.main{
+    min-height: calc(100vh - 180px);
+    
+}
+.sectionWrapper{
+    
+    //@include m.flex(center,flex-start,column);
+    //row-gap: 140px;
+    height:300%;
+    width: 100%;
 }
