@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Button from "./Button";
+import Button from "../.././../components/Common/Button";
 // import styles from "./Button/button.module.scss";
-import Footer from "./Footer";
+import Footer from "../../../components/Layout/Footer";
 import styles from "./style.module.scss";
 const Im = () => {
   //
