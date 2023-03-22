@@ -42,9 +42,9 @@ const ProfileDropdown = ({items,onClick}) =>{
     return(
         
         <div className={styles.dropdownWrapper}>
-            <div ref={ref} className={styles.dropdownInfo} onClick={onClickIcon}>
+            <div className={styles.dropdownInfo}>
                 <ProfileIcon
-                    className={cx(styles.icon,{[styles.isOpen]:isOpen})}
+                     ref={ref}  onClick={onClickIcon}  className={cx(styles.icon,{[styles.isOpen]:isOpen})}
                  />
             </div>
             <menu className={cx(styles.itemWrapper,{ [styles.isOpen]: isOpen })}>
