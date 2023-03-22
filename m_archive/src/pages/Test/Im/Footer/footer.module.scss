@@ -1,33 +1,34 @@
 @use "../../../../styles/constants/colors" as c;
 
-footer {
-  // display: flex;
+.footer {
   width: 100%;
   height: 200px; //180
   background: c.$C_SECONDARY;
+  position: fixed;
+  bottom: 0px;
 
-  p {
+  .logo {
     padding: 8px 0 8px 0;
     margin: 8px;
     height: 20%;
     color: c.$C_PRIMARY;
-    font-size: 24px;//20
+    font-size: 24px; //20
     border-bottom: 1px solid c.$C_WHITE;
   }
 
-  ul{
+  .ul {
     width: 100vw;
     margin: 8px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
 
-    li{
+    .li {
       color: c.$C_PRIMARY;
       font-size: 12px; //8
       padding-top: 10px;
-    
-      a{
+
+      .link {
         font-size: 8px; //6
         text-decoration: none;
         color: c.$C_PRIMARY;
