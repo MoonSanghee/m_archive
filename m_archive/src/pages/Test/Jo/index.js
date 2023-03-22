@@ -16,11 +16,11 @@ const Jo = () =>{
                     <h2>조상우 테스트페이지</h2>
                     <Toggle checked={isToggle} onChange={onChangeToggle}></Toggle>
                     <h2>체크박스</h2>
-                    <CheckBox/>
+                    <CheckBox check={"check"}/>
                     <h2>체크박스01</h2>
                     <CheckBox/>
-                    <h2>체크박스2</h2>
-                    <CheckBox2/>
+                    {/* <h2>체크박스2</h2>
+                    <CheckBox2/> */}
             </section>
         </main>
     )

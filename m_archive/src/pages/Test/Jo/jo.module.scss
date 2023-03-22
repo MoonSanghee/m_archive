@@ -1,3 +1,9 @@
+@use "../../../styles/constants/colors" as c;
+
 .wrapper {
     padding: 72pxs;
+
+    > h2 {
+        color: c.$C_PRIMARY;
+    }
 }
