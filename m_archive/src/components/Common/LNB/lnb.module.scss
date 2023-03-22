@@ -1,0 +1,28 @@
+@use '../../../styles/constants/' as c;
+
+.lnb {
+  width: 20vw;
+  background-color: c.$C_SECONDARY;
+  color: c.$C_WHITE;
+  height: 100%;
+}
+
+
+.menu {
+  position: relative;
+  top: 60px;
+  .example {
+    display: flex;
+    width: 100%;
+    // justify-content: center;
+    padding: 40px;
+    color: c.$C_WHITE;
+    > span {
+      cursor: pointer;
+      &:hover {
+        transform: scale(1.5);
+        transition: transform .3s;
+      }
+    }
+  }
+}
