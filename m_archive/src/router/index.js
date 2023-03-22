@@ -1,6 +1,7 @@
 import {createBrowserRouter, 
   createRoutesFromElements, 
   Route, } from 'react-router-dom';
+import Layout from '../components/Layout';
 import { TestIm,TestJo,TestMoon,TestKim,TestSeo } from '../pages/Test';
 //import {TestSeo } from '../pages/Test';
 
@@ -19,17 +20,23 @@ const router = (
       {/*
       <Route path="login" element={<LoginPage/>}/>
       <Route path="register" element={<RegisterPage/>}/>
-
-      <Route path="home" element={<MovieHome/>}>
-        <Route path=":id" element={<MovieDetailPage/>}/>
+*/}
+      <Route path="home" element={<Layout/>}>
+          {/*
+        <Route index element={<MovieHome/>}>
+          <Route path=":id" element={<MovieDetailPage/>}/>
+        </Route>
+      
+        <Route path="mypage" >
+          <Route index element={<ProfilePage/>}/>
+          <Route path="like" element={<LikePage/>}/>
+          <Route path="review" element={<ReviewPage/>}/>
+          <Route path="faq" element={<FAQ/>}/>
+          <Route path=":id" element={<UserPage/>}/>
+        </Route>
+      */}
       </Route>
-      <Route path="mypage" >
-        <Route index element={<ProfilePage/>}/>
-        <Route path="like" element={<LikePage/>}/>
-        <Route path="review" element={<ReviewPage/>}/>
-        <Route path="faq" element={<FAQ/>}/>
-        <Route path=":id" element={<UserPage/>}/>
-      </Route>
+      {/*
       <Route path="admin">
         <Route index element={<ManageMoviesPage/>}>
           <Route path="addMovie" element={<AddMoviePage/>}>
