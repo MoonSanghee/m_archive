@@ -53,7 +53,7 @@ const Seo = () =>{
         };
       }, []);
     return(
-        <main>
+        <main className={styles.wrapper}>
             {//<h1>서진주 테스트페이지</h1>
             }
             <Dropdown 

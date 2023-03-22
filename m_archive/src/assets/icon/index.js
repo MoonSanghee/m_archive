@@ -7,3 +7,4 @@ export { ReactComponent as ReviewWriteIcon } from "./write-review-icon.svg";
 export { ReactComponent as SettingIcon } from "./setting-icon.svg";
 export { ReactComponent as LogoutIcon } from "./logout-icon.svg";
 export { ReactComponent as FAQIcon } from "./FAQ-icon.svg";
+export { ReactComponent as SearchIcon } from "./search-icon.svg";
