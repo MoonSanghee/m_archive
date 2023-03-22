@@ -1,0 +1,81 @@
+@use "../../../../styles/constants/colors" as c;
+
+
+
+.button {
+  box-sizing: border-box;
+  background-color: c.$C_PRIMARY;
+  color: c.$C_WHITE;
+  border: none;
+  width: 100px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 4px;
+  margin-right: 20px; //Test 간격
+  transition: 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(1.1);
+    box-shadow: rgba(255, 255, 255, 0.4) 0px 0px 50px 0px;
+  }
+
+  &.border {
+    box-sizing: border-box;
+    border: 3px solid c.$C_PRIMARY;
+    color: c.$C_PRIMARY;
+    background: none;
+
+    width: 100px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  &.border_white {
+    border: 2px solid c.$C_WHITE !important;
+    color: c.$C_WHITE;
+    background: none;
+  }
+
+  &.gray {
+    background: #9e9e9e; //색 추가해야함
+  }
+
+  &.secondary {
+    background: c.$C_SECONDARY;
+  }
+
+  &.big {
+    width: 160px;
+    height: 60px;
+    font-size: 24px;
+    border-radius: 120px;
+    border-width: 2px;
+  }
+
+  &.middle {
+    width: 140px;
+    height: 55px;
+    border-radius: 120px;
+  }
+
+  &.small {
+    border-radius: 120px;
+    font-size: 16px;
+  }
+
+  &.long {
+    width: 152.97px;
+    height: 50.99px;
+    font-size: 24px;
+  }
+  //   &.genre{
+
+  //  }
+
+  &.active {
+    background-color: c.$C_PRIMARY;
+    color: c.$C_WHITE;
+    border: none;
+  }
+}
