@@ -1,7 +1,7 @@
 import React from "react";
 import ProfileDropdown from "./ProfileDropdown";
 import dropdownItems from "./menu";
-import {Input} from "../../Common";
+import {SearchBox} from "../../Common";
 import styles from "./header.module.scss";
 import { useNavigate } from "react-router-dom";
 
@@ -23,7 +23,7 @@ const Header = () =>{
             </div>
             <nav className={styles.navWrapper}>
                 {/*<span className={styles.movieButton}>영화</span>*/}
-                <span className={styles.searchBox}><Input className={styles.search} placeholder="제목, 배우, 감독"/></span>
+                <span className={styles.searchBox}><SearchBox className={styles.search} placeholder="제목, 배우, 감독" /></span>
                 <span className={styles.profileIcon}><ProfileDropdown items={dropdownItems} onClick={onClick} /></span>
             </nav>
         </header>
