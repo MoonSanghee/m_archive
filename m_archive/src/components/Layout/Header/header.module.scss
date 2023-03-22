@@ -31,13 +31,15 @@
         @include m.flex();
         height: 100%;
         column-gap: 20px;
-        padding: 20px;
+        //padding: 20px;
         .movieButton{
             font-size:28px;
             color:c.$C_WHITE;
         }
         .searchBox{
-            width: 304px;
+            width: 400px;
+            margin-bottom: 10px;
+            
         }
         .profileIcon{
             //width: 140px;
@@ -49,8 +51,9 @@
 }
 
 .search{
+    width: 200px;
     > input {
         height: 48px;
-        width: 300px;
+        width: 100px;
     };
 }

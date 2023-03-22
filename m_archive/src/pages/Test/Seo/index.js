@@ -103,29 +103,6 @@ const Seo = () =>{
         };
       }, []);
     return(
-<<<<<<< HEAD
-        <main className={styles.wrapper}>
-            {//<h1>서진주 테스트페이지</h1>
-            }
-            <Dropdown 
-            items={dropdownSortItems} 
-            valueKey="name" 
-            value={selectedSort?.name}
-            onClick={onClickSortDropdown}
-            />
-            <Dropdown 
-            items={dropdownBOItems} 
-            valueKey="name" 
-            value={selectedType?.name}
-            onClick={onClickTypeDropdown}
-            color="secondary"
-            />
-            <ProfileDropdown/>
-        </main>
-=======
-     
- 
-
             <div className={styles.layout}>
                  <Header/>
                  <main className={styles.main}>
@@ -158,14 +135,14 @@ const Seo = () =>{
 
                     <h1>### 별점 입력 컴포넌트</h1>
                     <StarRateButton/>
-                    <p>이미 별점을 입력했을때</p>
+                    <p>이미 별점을 입력했을때 -3.5점</p>
                     <StarRateButton myRate="3.5"/>
                    </div>
                     </section>
               
                 </main>
             </div>
->>>>>>> cdb0a31a6b2027181762afce7a1829324e544484
+
     )
 }
 
