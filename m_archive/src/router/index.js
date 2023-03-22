@@ -4,12 +4,13 @@ import {createBrowserRouter,
 import Layout from '../components/Layout';
 import { TestIm,TestJo,TestMoon,TestKim,TestSeo } from '../pages/Test';
 //import {TestSeo } from '../pages/Test';
+import { StartPage } from '../pages/Auth';
 
 const router = (
     <Route path="/">
-      {/*
+      {
       <Route index element = {<StartPage/>}/>
-*/}
+}
       <Route path='test'>
          <Route path='im' element={<TestIm/>}/>
           <Route path='moon' element={<TestMoon/>}/>
