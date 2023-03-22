@@ -1,17 +1,17 @@
 import { Outlet } from "react-router-dom";
-
+import Footer from "./Footer";
 
 const Layout = () => {
   return (
-    {/*<div className={styles.app}>
+    
       <main>
-        <Sidebar />
-        <section className={styles.features}>
+
+        <section >
           <Outlet />
         </section>
-
+        <Footer/>
       </main>
-  </div>*/}
+  
   );
 };
 
