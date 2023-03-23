@@ -15,7 +15,7 @@
 
   &:hover {
     filter: brightness(1.1);
-    box-shadow:c.$SHADOW_50;
+    box-shadow:rgba(255, 255, 255, 0.5) 0px 0px 50px 0px;
   }
 
   &.border {
