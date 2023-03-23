@@ -1,20 +1,15 @@
 import React, { useEffect } from "react";
-import { useState } from "react";
+import { useState ,memo} from "react";
 import styles from "./starRateButton.module.scss";
 import { HalfStarIcon } from "../../../../assets/icon";
 import cx from "classnames";
+
 const StarRateButton = ({myRate}) => {
-  
     const [hoveredStarIndex, setHoveredStarIndex] = useState(0);
     const [clickedStarIndex, setClickedStarIndex] = useState(0);
 
     const rates = [0.5,1,1.5,2,2.5,3,3.5,4,4.5,5];
 
-    useEffect(()=>{
-        if(!!myRate){
-            setClickedStarIndex(myRate);
-        }
-    },[])
     const fillStarOfIndex = (num, event) => {
         if (event === 'enter' && hoveredStarIndex >= num) {
             return '#FCE22A';
@@ -24,8 +19,13 @@ const StarRateButton = ({myRate}) => {
         }
         return '#ccc';
     };
- 
 
+
+    useEffect(()=>{
+        if(!!myRate){
+            setClickedStarIndex(myRate);
+        }
+    },[]);
     return(
         <div>
             {rates.map((item,idx)=>(
@@ -40,24 +40,18 @@ const StarRateButton = ({myRate}) => {
                     ///onClick}
                     }}
                 >
-                {(idx % 2 )=== 0 ?
-                (<HalfStarIcon 
-                className={cx(styles.halfStar)}
-                key={"halfStar"+idx}
-                fill={fillStarOfIndex(item, hoveredStarIndex === 0 ? 'leave' : 'enter')}
-                //className={styles.starIcon} 
-                />):
-                ((idx % 2) !== 0 &&
+                
                 <HalfStarIcon 
-                className={cx(styles.halfStar,styles.rightStar)}
+                className={cx(styles.halfStar, {[styles.rightStar]: idx% 2 !==0,} )}
                 key={"halfStar"+idx}
                 fill={fillStarOfIndex(item, hoveredStarIndex === 0 ? 'leave' : 'enter')}
                 //className={styles.starIcon} 
-                />)}
+                />
+          
                 </button>
             
             ))} 
     </div>
     )
 }
-export default StarRateButton;
+export default memo(StarRateButton);
