@@ -1,0 +1,13 @@
+@use "../../../styles/mixins" as m;
+.wrapper{
+  
+   
+}
+
+.star_icon {
+  display: inline-flex;
+  margin-right: 5px;
+  &:hover{
+    cursor: pointer;
+  }
+}
