@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import {Toggle, CheckBox, CheckBox2} from "../../../components";
+import {Toggle, CheckBox} from "../../../components";
 import styles from "./jo.module.scss";
 
 const Jo = () =>{
@@ -16,11 +16,9 @@ const Jo = () =>{
                     <h2>조상우 테스트페이지</h2>
                     <Toggle checked={isToggle} onChange={onChangeToggle}></Toggle>
                     <h2>체크박스</h2>
-                    <CheckBox check={"check"}/>
+                    <CheckBox iconColor={"white"}/>
                     <h2>체크박스01</h2>
                     <CheckBox/>
-                    {/* <h2>체크박스2</h2>
-                    <CheckBox2/> */}
             </section>
         </main>
     )
