@@ -1,24 +1,21 @@
-import { React, useState } from "react";
-import { FAQIcon } from "../../../assets/icon";
-import styles from "./accordion.module.scss";
+import { useState } from "react";
+import "./accordion.scss";
+import {MypageArrow} from "../../../assets/icon";
 
-function Accordion(props) {
-  const [open, setOpen] = useState(false);
-  //toggle accordion function
-  let toggleHandler = (e) => {
-    //switch state
-    setOpen(!open);
-  };
+const Accordion = (props) => {
+  const [active, setActive] = useState(false);
+
   return (
-    <div className="accordion__item" >
-      <div className="accordion__header" onClick={toggleHandler}>
-        <h4 >{props.title}</h4>
-        <i>
-          <FAQIcon />
-        </i>
+    <div className={`accordion ${active ? "active" : ""}`}>
+      <div className="accordion__title" onClick={() => setActive(!active)}>
+        <span>{props.title}</span>
+        <div className="accordion__icon">
+          <MypageArrow />
+        </div>
       </div>
-      <p className="accordion__content">{props.text}</p>
+      <div className="accordion__content">{props.content}</div>
     </div>
   );
-}
+};
+
 export default Accordion;
