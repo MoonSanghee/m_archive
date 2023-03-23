@@ -1,23 +1,17 @@
 import React from "react";
 import cx from "classnames";
-import styles from "./button.module.scss";
+import styles from "./tag.module.scss";
 
-const Button = ({
-  className,
-  children,
-  width,
-  border,
-  color,
-  isGenre,
-  ...props
-}) => {
+
+const Tag = ({ className, children, width, border, color,isGenre, ...props }) => {
+
+
   return (
     <button
       className={cx(
-        styles.button,
+        styles.tag,
         styles[width],
         styles[border],
-        styles[color]
       )}
       type="button"
       {...props}
@@ -27,4 +21,4 @@ const Button = ({
   );
 };
 
-export default Button;
+export default Tag;

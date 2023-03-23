@@ -90,7 +90,7 @@ const LoginPage = () => {
           </p>
           <Button
             width={"big"}
-            border={"border_white"}
+            border={"borderwhite"}
             type="submit"
             form="loginForm"
           >
