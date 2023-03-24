@@ -16,36 +16,32 @@ import { CloseIcon } from "../../../assets/icon";
     const [modalOption, setModalOption] = useState(OPTION)
  */
 
-
-const Modal = ({modalOption, modalSize}) =>{
-  return(
+const Modal = ({ modalOption, modalSize }) => {
+  return (
     <main>
-        {
-            modalOption?.show && (
-                <section className={cx(styles.wrapper)}>
-                    <div className={cx(styles.overlay)} onClick={() => modalOption.onClose()}/> 
-                    
-                    <div className={cx(styles.modalWrapper, styles[modalSize])}>
-                        <div className={styles.closeButtonWrapper}>
-                            <CloseIcon onClick={() => modalOption.onClose()}/>
-                        </div>
-                        
-                        <div className={styles.contentWrapper}>
-                           
-                            {modalOption?.element}                        
-                   
-                        </div>                   
-                    </div>
-                </section>
-            )
-        }     
+      {modalOption?.show && (
+        <section className={cx(styles.wrapper)}>
+          <div
+            className={cx(styles.overlay)}
+            onClick={() => modalOption.onClose()}
+          />
+
+          <div className={cx(styles.modalWrapper, styles[modalSize])}>
+            <div className={styles.closeButtonWrapper}>
+              <CloseIcon onClick={() => modalOption.onClose()} />
+            </div>
+
+            <div className={styles.contentWrapper}>{modalOption?.element}</div>
+          </div>
+        </section>
+      )}
     </main>
   );
-}
+};
 export default Modal;
 
-
-         {/**
+{
+  /**
                              *  <h2>{modalOption?.title}</h2>
                             <div>
                                 <button onClick={() => modalOption.onSubmit()}>확인</button>                         
@@ -53,4 +49,5 @@ export default Modal;
                             </div>
                              
                     
-                             */}
+                             */
+}

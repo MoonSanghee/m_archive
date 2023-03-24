@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "../.././../components/Common/Button";
 import Footer from "../../../components/Layout/Footer";
-import {Tag} from "../../../components/Common";
+import { Tag } from "../../../components/Common";
 import styles from "./style.module.scss";
 import { Card } from "../../../components/Common";
 
@@ -57,18 +57,18 @@ const Im = () => {
       <가디언즈 오브 갤럭시> 제작진이 선보이는
       매력만점 롤플레잉 액션 어드벤처 무비가 온다!`,
       genres: "액션/모험/판타지",
-    }
+    },
   ];
 
   return (
     <div className={styles.main}>
       <h2 className={styles.text}>카드</h2>
-      <div style={{display:'flex'}}> {/* flex 임시 */}
-      {movieListTest.length>0&&movieListTest.map((item)=>{
-        return(
-          <Card key={item.id} item={item}/>
-        )
-      })}
+      <div style={{ display: "flex" }}>
+        {/* flex 임시 */}
+        {movieListTest.length > 0 &&
+          movieListTest.map((item) => {
+            return <Card key={item.id} item={item} />;
+          })}
       </div>
       <div>
         <h2 className={styles.text}>로그인,회원가입</h2>
