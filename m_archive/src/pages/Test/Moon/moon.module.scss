@@ -1,4 +1,6 @@
 @use '../../../styles/constants/' as c;
+@use '../../../styles/mixins/' as m;
+
 
 
 .search {
@@ -31,4 +33,13 @@
     height: 52px;
     font-size: 16px;
   }
+}
+
+.login {
+  @include m.flex(center,center,column);
+}
+
+.wrapper {
+  display: flex;
+  height: 100vh;
 }
