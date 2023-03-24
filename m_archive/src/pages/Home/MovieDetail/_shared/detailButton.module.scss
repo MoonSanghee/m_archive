@@ -1,0 +1,16 @@
+@use "../../../../styles/mixins/" as m;
+@use "../../../../styles/constants/" as c;
+.button{
+   @include m.flex();
+   column-gap: 4px;
+   background: none;
+   border: none;
+   font-size: 16px;
+   color:c.$C_WHITE;
+   > svg {
+    width: 20px;
+    height:20px;
+   }
+   cursor: pointer;
+   
+}

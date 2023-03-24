@@ -1,97 +1,26 @@
-import React from "react"
-import { Dropdown } from "../../../components/Common";
+import React, {useState,useCallback} from "react"
 import Header from "../../../components/Layout/Header";
 import styles from "./seo.module.scss";
-import { useCallback } from "react";
-import { useState } from "react";
-import {  HalfStarIcon, StarIconWhite, StarIconYellow } from "../../../assets/icon";
-import {StarRate} from "../../../components/Common/";
+import {StarRate, Dropdown,Modal} from "../../../components/Common/";
 import cx from "classnames";
 import StarRateButton from "../../Home/MovieDetail/StarRateButton";
-
+import  {sortItems, typeItems,starRates} from "./testItems/";
+import useModal from "../../../components/Common/Modal/useModal";
+import ReviewModal from "../../Home/MovieDetail/ReviewModal";
+import DetailButton from "../../../pages/Home/MovieDetail/_shared/DetailButton";
+import { ReviewWriteIcon } from "../../../assets/icon";
 
 const Seo = () =>{
- 
-   
     const [selectedSort, setSelectedSort] = useState(null);
     const [selectedType, setSelectedType] = useState(null);
-   
-    const starRates=[
-        {
-            id:1,
-            name:"star-rate",
-            rate:3.3,
-        },
-        {
-            id:2,
-            name:"star-rate",
-            rate:5,
-        },
-    ]
+  
+    const [modalOption,showModal] = useModal();
+  
 
-    const dropdownSortItems = [
-        {
-            id:1,
-            name:"최신순",
-            value:"sort-date",
-        },
-        {
-            id:2,
-            name:"가나다순",
-            value:"sort-name",
-        },
-        {
-            id:3,
-            name:"좋아요순",
-            value:"sort-like",
-        },
-    ]
-    const dropdownBOItems = [
-        {
-            id:1,
-            name:"건의하기",
-            value:"proposal",
-        },
-        {
-            id:2,
-            name:"신고하기",
-            value:"report",
-        },
-        {
-            id:3,
-            name:"질문하기",
-            value:"question",
-        },
-    ];
+    const starRatesItems=starRates ;
+    const dropdownSortItems = sortItems;
+    const dropdownBOItems = typeItems;
 
-    const starItems = [
-        {
-            id:1,
-            name:"star",
-            value:1,
-        },
-        {
-            id:2,
-            name:"star",
-            value:2,
-        },
-        {
-            id:3,
-            name:"star",
-            value:3,
-        },
-        {
-            id:4,
-            name:"star",
-            value:4,
-        },
-        {
-            id:5,
-            name:"star",
-            value:5,
-        }
-    ]
-    
     const onClickSortDropdown = useCallback((item) => {
         return () => {
           setSelectedSort((prev) => (prev?.id === item.id ? null : item));
@@ -102,6 +31,20 @@ const Seo = () =>{
           setSelectedType((prev) => (prev?.id === item.id ? null : item));
         };
       }, []);
+
+
+    const onClickOpenModal = useCallback(() => {
+        showModal(
+          true, 
+          "", 
+          () => console.log("모달 on"),
+          null,
+          <ReviewModal title="스즈메의 문단속" content="리뷰썻음" onClose={()=>{modalOption.onClose();} } />
+        );
+      }, [modalOption]);
+
+
+
     return(
             <div className={styles.layout}>
                  <Header/>
@@ -123,21 +66,27 @@ const Seo = () =>{
     
                     
                     <div className={styles.starRateWrapper}>
-                    {/*starRates.map((item,idx)=>(
-                        
-                        <StarRate key={"starRate-"+idx} item={item}/>
-                    ))*/}
-                    <h1>### 저장된 별점 보여주는 컴포넌트 - 리뷰Card etc.</h1>
-                    <p>별점 : {starRates[0].rate}</p>
-                    <StarRate key={"starRate-"+starRates[0].id} item={starRates[0]}/>
-                    <p>별점 : {starRates[1].rate}</p>
-                    <StarRate key={"starRate-"+starRates[1].id} item={starRates[1]}/>
 
-                    <h1>### 별점 입력 컴포넌트</h1>
-                    <StarRateButton/>
-                    <p>이미 별점을 입력했을때 -3.5점</p>
-                    <StarRateButton myRate="3.5"/>
+                      <h1>### 저장된 별점 보여주는 컴포넌트 - 리뷰Card etc.</h1>
+                      {starRatesItems.map((itm,idx)=>{
+                          return(
+                          <StarRate key={`starRate-${idx}`} id={`${itm.name}-${itm.id}`} item={itm} />
+                          )
+                          })}
+                      
+                      <h1>### 별점 입력 컴포넌트</h1>
+                      <StarRateButton/>
+                      <p>이미 별점을 입력했을때 -3.5점</p>
+                      <StarRateButton myRate="3.5"/>
                    </div>
+                      
+
+                  <DetailButton onClick={onClickOpenModal}>
+                    <ReviewWriteIcon/>
+                  리뷰 수정
+                  </DetailButton>
+                  <Modal modalOption={modalOption} modalSize="small" />    
+        
                     </section>
               
                 </main>

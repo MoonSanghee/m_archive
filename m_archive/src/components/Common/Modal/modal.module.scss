@@ -1,0 +1,60 @@
+@use "../../../styles/constants/" as c;
+@use "../../../styles/mixins/" as m;
+
+.wrapper{
+    position: fixed;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+
+    .overlay{
+        position: absolute;
+        left:0;
+        top:0;
+        z-index: -1;
+        width: 100vw;
+        height: 100vh;
+        background-color: c.$C_BLACK_MODAL;
+    }
+
+    
+
+    .modalWrapper{
+        @include m.flex(center,center,column);
+      
+        padding: 24px;
+        background-color: c.$C_WHITE;
+        border-radius: 12px;
+      
+        .closeButtonWrapper{
+            width: 100%;
+            height: 4%;
+            @include m.flex(flex-end);
+            cursor: pointer;
+        
+        }
+        .contentWrapper{
+            width: 100%;
+            height: 96%
+            //padding: ;
+        }
+       
+
+    }
+}
+
+.big{
+    width: 1080px;
+    height: 720px;
+}
+.small{
+    width: 500px;
+    height: 500px;
+}
+//modalSize  - small, Big 
