@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.scss";
 import Accordion from "../../../components/Common/Accordion/index";
+import { ProfileIcon } from "../../../assets/icon";
 
 const data = [
   {
@@ -27,6 +28,7 @@ const data = [
 
 function Kim() {
   return (
+    <main>
     <div style={{ width: "600px", paddingTop: "100px" }}>
       <h1
         style={{
@@ -36,6 +38,7 @@ function Kim() {
         }}
       >
         React Accordion
+        {/* FAQ 제목 작성 테스트중  */}
       </h1>
       {data.map((item, index) => (
         <div key={index} style={{ marginBottom: "5px" }}>
@@ -43,6 +46,35 @@ function Kim() {
         </div>
       ))}
     </div>
+
+
+
+    {/* 밑에는 카드 리뷰카드 테스트 부분  */}
+    <section id="testimonials">
+    <div class="testimonial-box-container">
+      <div class="testimonial-box">
+        <div class="box-top">
+          <div class="profile">
+            <div class="profile-img">
+              <div><ProfileIcon /></div>
+            </div>
+            <div class="name-user">
+              <strong>요것은 닉네임</strong>
+              <span>요것은 칭호?</span>
+            </div>
+          </div>
+          <div class="review">
+            {/* 별점 */}
+            여기가 별점 위치?
+          </div>
+        </div>
+        <div class="client-comment">
+          <p>요것은 테스트여 </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
   );
 }
 
