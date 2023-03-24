@@ -1,9 +1,6 @@
 @use '../../../styles/constants/' as c;
 
-.wrapper {
-  display: flex;
-  height: 100vh;
-}
+
 .search {
   > input{
     border: none;
@@ -15,6 +12,7 @@
     padding: 12px;
     margin: 8px 0px;
     font-family: KIMM_Light;
+    height: 52px;
     font-size: 16px;
   }
 }
@@ -28,41 +26,9 @@
     font-family: KIMM_Light;
     margin: 8px 0px;
     padding: 12px;
-    padding-left: 40px;
     border: 1px solid ;
     background-color: c.$C_WHITE;
+    height: 52px;
     font-size: 16px;
-  }
-}
-
-
-.boSearchBox {
-  display: flex;
-  align-items: center;
-  .icon {
-    position:absolute;
-    height: 20px;
-    width: 20px;
-    margin: 12px;
-  }
-}
-
-.searchBox {
-  display: flex;
-  align-items: center;
-  .bo {
-    > input{
-      background-color: c.$C_GRAY;
-      color: c.$C_BLACK;
-      border: none;
-    }
-    border: none;
-  }
-
-  .icon {
-    position: absolute;
-    height: 20px;
-    width: 20px;
-    margin: 12px;
   }
 }
