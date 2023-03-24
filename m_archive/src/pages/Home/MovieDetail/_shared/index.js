@@ -1,0 +1,1 @@
+//export {default as DetailButton} from "./DetailButton.js";

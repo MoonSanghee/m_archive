@@ -12,7 +12,12 @@ export {ReactComponent as IconCheck} from "./check.svg";
 export {ReactComponent as IconCheck2} from "./checkcheck.svg";
 export {ReactComponent as HalfStarIcon } from "./star-half-icon.svg";
 export {ReactComponent as StarIcon } from "./star-icon.svg";
+export {ReactComponent as CloseIcon} from "./close-icon.svg";
+export {ReactComponent as ReviewWriteIcon} from "./review-write-icon.svg";
+export {ReactComponent as ReviewModifyIcon} from "./review-modify-icon.svg";
+export {ReactComponent as ShareIcon} from "./share-icon.svg";
 export {ReactComponent as MypageArrow} from "./Mypage-arrow.svg";
 export {ReactComponent as LikeRedIcon} from "./like-red.svg";
 export {ReactComponent as LikeBlackIcon} from "./like-black.svg";
 export {ReactComponent as BlockIcon} from "./block.svg";
+

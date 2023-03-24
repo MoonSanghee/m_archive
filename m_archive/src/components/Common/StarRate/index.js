@@ -7,6 +7,7 @@ const STAR_WIDTH = 40;
 const StarRate = ({item}) =>  {
     const RATE = item.rate;
     const ID= item.name+item.id;
+    console.log(item);
     
     const STAR_IDX_ARR = ['first', 'second', 'third', 'fourth', 'last'];
     const [ratesResArr, setRatesResArr] = useState([0, 0, 0, 0, 0]);
@@ -29,7 +30,7 @@ const StarRate = ({item}) =>  {
     }, []);
 
     return (
-        <div className={styles.wrapper} id={item.name+item.id}>
+        <div className={styles.wrapper} id={`StarsWrapper-${ID}`}>
             {STAR_IDX_ARR.map((itm, idx) => {
                 return (
                 <Star key={item.name+itm.id+idx} ID={ID} item={itm} idx={idx}  ratesResArr={ratesResArr}/>     
