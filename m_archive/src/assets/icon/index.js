@@ -13,3 +13,4 @@ export {ReactComponent as IconCheck2} from "./checkcheck.svg";
 export {ReactComponent as HalfStarIcon } from "./star-half-icon.svg";
 export {ReactComponent as StarIcon } from "./star-icon.svg";
 export {ReactComponent as MypageArrow} from "./Mypage-arrow.svg";
+export {ReactComponent as LikeIcon2} from "./like.svg";

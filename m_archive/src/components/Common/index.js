@@ -10,3 +10,5 @@ export {default as CheckBox} from "./CheckBox";
 export {default as Button} from "./Button";
 export {default as StarRate} from './StarRate';
 export {default as Tag} from './Tag';
+export {default as LikeButton} from "./LikeButton";
+export {default as ShareButton} from "./ShareButton";
