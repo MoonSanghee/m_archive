@@ -1,0 +1,93 @@
+@use "../../../styles/constants/colors" as c;
+
+.cardWrapper {
+  width: 255px;
+  height: 363px;
+  border-radius: 5px;
+  color: c.$C_WHITE;
+  border-radius: 5px;
+  overflow: hidden;
+
+  // 호버 시 뒤집기
+  &:hover .card_inner {
+    transform: rotateY(180deg);
+  }
+}
+
+.card_inner {
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  .card_front,
+  .card_back {
+    background: c.$C_CARD_BG;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; //뒷모습 숨겨둠
+  }
+
+  .card_front {
+    > img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  // 뒷면은 미리 뒤집기
+  .card_back {
+    transform: rotateY(180deg);
+    padding: 12px;
+    position: relative;
+
+    > h2 {
+      font-size: 20px;
+      padding: 10px 0;
+      line-height: 1.2;
+    }
+    > h3 {
+      font-size: 12px;
+      color: c.$C_PRIMARY_80;
+      // opacity: 0.8;
+      padding-bottom: 12px;
+    }
+    > p {
+      font-size: 12px;
+      color: c.$C_PRIMARY_80;
+      // opacity: 0.8;
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+      white-space: normal;
+      line-height: 1.6; //한 줄 높이
+      height: 9.6em; //line-height*-webkit-line-clamp
+      text-align: left;
+      word-wrap: break-word;
+      display: -webkit-box;
+      -webkit-line-clamp: 6; //줄 수
+      -webkit-box-orient: vertical;
+    }
+
+    .menu {
+      z-index: 3;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      background: c.$C_CARD_MENU;
+      height: 50px;
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+
+      .icon {
+        width: 32px;
+        padding-left: 12px;
+      }
+    }
+  }
+}
