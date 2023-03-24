@@ -50,7 +50,7 @@ const ProfileDropdown = ({items,onClick}) =>{
             <menu className={cx(styles.itemWrapper,{ [styles.isOpen]: isOpen })}>
                 {items.map((item) => {
                     return (
-                        <li className={styles.item} onClick={onClick(item)}>
+                        <li key={item.id+item.name}className={styles.item} onClick={onClick(item)}>
                         {item.icon}{item.name}
                         </li>
                 );

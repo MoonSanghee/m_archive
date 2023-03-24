@@ -10,3 +10,6 @@ export { ReactComponent as FAQIcon } from "./FAQ-icon.svg";
 export { ReactComponent as SearchIcon } from "./search-icon.svg";
 export {ReactComponent as IconCheck} from "./check.svg";
 export {ReactComponent as IconCheck2} from "./checkcheck.svg";
+export {ReactComponent as HalfStarIcon } from "./star-half-icon.svg";
+export {ReactComponent as StarIcon } from "./star-icon.svg";
+export {ReactComponent as MypageArrow} from "./Mypage-arrow.svg";

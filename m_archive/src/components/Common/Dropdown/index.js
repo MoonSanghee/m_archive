@@ -58,7 +58,7 @@ const Dropdown = ({className,items, valueKey,value,onClick,color}) =>{
 
                     {items.map((item) => {
                         return (
-                            <li className={cx(styles.item,styles[color])} onClick={onClick(item)}>
+                            <li key={item.id+item.name}className={cx(styles.item,styles[color])} onClick={onClick(item)}>
                             {item[valueKey]}
                             </li>
                         );

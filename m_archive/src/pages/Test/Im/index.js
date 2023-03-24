@@ -1,36 +1,31 @@
 import { useState } from "react";
 import Button from "../.././../components/Common/Button";
-// import styles from "./Button/button.module.scss";
 import Footer from "../../../components/Layout/Footer";
+import Tag from "../../../components/Common/Tag";
 import styles from "./style.module.scss";
+
 const Im = () => {
-  //
-  let data = [
-    "로맨스",
-    "드라마",
-    "코미디",
-    "액션",
-    "스릴러",
-    "미스터리",
-    "SF",
-    "공포",
+  //장르 선택시 토글
+  const genre = [
+    { id: 1, genre: "로맨스" },
+    { id: 2, genre: "드라마" },
+    { id: 3, genre: "코미디" },
+    { id: 4, genre: "액션" },
+    { id: 5, genre: "스릴러" },
+    { id: 6, genre: "미스터리" },
+    { id: 7, genre: "SF" },
+    { id: 8, genre: "공포" },
   ];
 
-  let [btnActive, setBtnActive] = useState("");
-
-  const toggleActive = (e) => {
-    setBtnActive((prev) => {
-      return e.target.value;
-    });
-  };
-
+  const [pick, setPick] = useState(genre);
+  const [select, setSelect] = useState([]); //선택한 tag 배열
   //
 
   return (
     <div className={styles.main}>
       <div>
         <h2 className={styles.text}>로그인,회원가입</h2>
-        <Button width={"big"} border={"border_white"}>
+        <Button width={"big"} border={"borderwhite"}>
           로그인
         </Button>
         <Button width={"big"}>회원가입</Button>
@@ -40,46 +35,50 @@ const Im = () => {
       </div>
 
       <div>
-        <h2 className={styles.text}>장르버튼</h2>
-        <Button width={"middle"}>로맨스</Button>
-        <Button width={"small"}>로맨스</Button>
-        <Button width={"middle"} border={"border"}>
-          스릴러
-        </Button>
-        <Button border={"border"} width={"small"}>
-          액션
-        </Button>
-      </div>
-      <div>
-        <h2 className={styles.text}>
-          장르 하나 선택 장르 (다중 선택 - 우짬...🫠)
-        </h2>
-        {data.map((item, idx) => {
-          return (
-            <Button
-              key={idx}
-              value={idx}
-              width={"small"}
-              color={"border" + (idx == btnActive ? " active" : "")}
-              onClick={toggleActive}
-            >
-              {item}
-            </Button>
-          );
-        })}
-      </div>
-      <div>
         <h2 className={styles.text}>확인,건너뛰기</h2>
         <Button width={"long"}>확인</Button>
         <Button width={"long"} border={"border"}>
           건너뛰기
         </Button>
       </div>
+
       <div>
         <h2 className={styles.text}>확인, 삭제 저장</h2>
         <Button>확인</Button>
         <Button color={"gray"}>삭제</Button>
         <Button color={"secondary"}>저장</Button>
+      </div>
+
+      <div>
+        <h2 className={styles.text}>Tag 장르 스타일 미리보기</h2>
+        <Tag width={"middle"}>로맨스</Tag>
+        <Tag>로맨스</Tag>
+        <Tag width={"middle"} border={"border"}>
+          스릴러
+        </Tag>
+        <Tag border={"border"}>액션</Tag>
+      </div>
+
+      <div>
+        <h2 className={styles.text}>Tag 장르 다중 선택</h2>
+        {pick.map((item) => {
+          const onClickBtn = () => {
+            !select.includes(item)
+              ? setSelect((select) => [...select, item])
+              : setSelect(select.filter((button) => button !== item));
+            console.log(select);
+          };
+          return (
+            <Tag
+              key={item.id}
+              // width={"middle"}
+              border={"border" + (select.includes(item) ? " active" : "")}
+              onClick={onClickBtn}
+            >
+              {item.genre}
+            </Tag>
+          );
+        })}
       </div>
 
       {/* <h2>확인</h2>

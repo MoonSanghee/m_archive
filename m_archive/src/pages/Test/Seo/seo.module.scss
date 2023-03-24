@@ -1,7 +1,8 @@
 @use "../../../styles/mixins/" as m;
+@use "../../../styles/constants/" as c;
 
 .layout{
-    padding-top: 108px; 
+    padding-top: 100px; 
     //overflow:scroll;
 }
 .main{
@@ -10,8 +11,32 @@
 }
 .sectionWrapper{
     
-    //@include m.flex(center,flex-start,column);
-    //row-gap: 140px;
+    @include m.flex(center,flex-start,column);
+    row-gap: 80px;
     height:300%;
     width: 100%;
+    .starRateWrapper{
+  
+        >  h1{
+            font-size: 20px;
+            margin:20px 0px ;
+        }
+        >p{
+            margin:10px 0px ;
+        }
+    }
+}
+
+
+.starsButton{
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+    
+
+}
+
+.rightStar{
+    transform: scaleX(-1);
+    margin-right: 5px;
 }

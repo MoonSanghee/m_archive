@@ -1,13 +1,18 @@
+@use "../../styles/constants/" as c;
 .main{
     height: 100vh;
     margin-top: 80px;
-    
+    background-color: c.$C_BLACK;
+    color:c.$C_WHITE;
     //overflow: scroll;
+    overflow-y: auto;
 }
 .sectionWrapper{
-    overflow: scroll;
+    //overflow-y: auto;
+    
 }
 .div{
+    
     height: 2000px;
     font-size: 200px;
 }
