@@ -86,8 +86,9 @@ const Seo = () =>{
                     <ReviewWriteIcon/>
                   리뷰 수정
                   </DetailButton>
+                  
                   <Modal modalOption={modalOption} modalSize="small" />    
-        
+                  <DetailButton></DetailButton>
                     </section>
               
                 </main>

@@ -4,28 +4,33 @@
 .layout{
     padding-top: 100px; 
     //overflow:scroll;
-}
-.main{
-    min-height: calc(100vh - 180px);
+   
+    .main{
+        padding: 20px;
+        min-height: calc(100vh - 180px);
+        background-color: c.$C_BLACK;
+        .sectionWrapper{
     
-}
-.sectionWrapper{
-    
-    @include m.flex(center,flex-start,column);
-    row-gap: 80px;
-    height:300%;
-    width: 100%;
-    .starRateWrapper{
-  
-        >  h1{
-            font-size: 20px;
-            margin:20px 0px ;
+            @include m.flex(center,flex-start,column);
+            row-gap: 80px;
+            height:300%;
+            width: 100%;
+            .starRateWrapper{
+          
+                >  h1{
+                    font-size: 20px;
+                    margin:20px 0px ;
+                }
+                >p{
+                    margin:10px 0px ;
+                }
+            }
         }
-        >p{
-            margin:10px 0px ;
-        }
+        
     }
 }
+
+
 
 
 .starsButton{

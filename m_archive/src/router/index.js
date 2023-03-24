@@ -6,6 +6,7 @@ import LoginPage from '../pages/Auth/Login';
 import { TestIm,TestJo,TestMoon,TestKim,TestSeo } from '../pages/Test';
 //import {TestSeo } from '../pages/Test';
 import { StartPage } from '../pages/Auth';
+import Feedback from '../pages/Test/Feedback';
 
 const router = (
     <Route path="/">
@@ -18,10 +19,14 @@ const router = (
           <Route path='kim' element={<TestKim/>}/>
           <Route path='jo' element={<TestJo/>}/>
           <Route path='seo' element={<TestSeo/>}/>
+          <Route path="feedback" element={<Feedback/>}/>
+         
       </Route>
       
       <Route path="login" element={<LoginPage/>}/>
-      {/* <Route path="register" element={<RegisterPage/>}/> */}
+      {/* 
+       <Route path="feedback" element={<Feedback/>}/>
+      <Route path="register" element={<RegisterPage/>}/> */}
 
       <Route path="home" element={<Layout/>}>
           {/*

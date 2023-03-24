@@ -8,7 +8,6 @@ export {default as Button} from "./Button";
 export {default as StarRate} from './StarRate';
 export {default as Modal} from "./Modal";
 export { default as LNB2 } from './LNB2';
-export {default as StarRate} from './StarRate';
 export {default as Tag} from './Tag';
 export {default as Card} from './Card';
 

@@ -41,7 +41,20 @@
         .searchBox{
             width: 400px;
             margin-bottom: 10px;
-            
+            .search{
+                @include m.flex();
+                width: 100%;
+                > input {
+                    height: 48px;
+                    width: 100%;
+                }
+                > button {
+                    width: 60px ;
+                    height: 48px;
+                }
+                
+             }
+
         }
         .profileIcon{
             //width: 140px;
@@ -52,10 +65,3 @@
 
 }
 
-.search{
-    width: 200px;
-    > input {
-        height: 48px;
-        width: 100px;
-    };
-}

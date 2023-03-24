@@ -2,7 +2,7 @@ import React, { useState } from "react";
 // import cx from "classnames";
 import styles from "./searchbox.module.scss";
 import { SearchIcon } from '../../../assets/icon';
-import axios from 'axios';
+//import axios from 'axios';
 
 const SearchBox = ({placeholder, ...props}) => {
   const [state, setState] = useState({ keyword: '', results: [] });
