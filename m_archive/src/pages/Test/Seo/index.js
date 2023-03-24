@@ -46,6 +46,7 @@ const Seo = () =>{
 
 
     return(
+
             <div className={styles.layout}>
                  <Header/>
                  <main className={styles.main}>
@@ -91,7 +92,6 @@ const Seo = () =>{
               
                 </main>
             </div>
-
     )
 }
 

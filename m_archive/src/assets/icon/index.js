@@ -3,7 +3,7 @@ export { ReactComponent as ChevronArrow } from "./chevron-arrow.svg";
 export { ReactComponent as ProfileIcon } from "./profile-icon.svg";
 export { ReactComponent as MyPageIcon } from "./mypage-icon.svg";
 export { ReactComponent as LikeIcon } from "./like-icon.svg";
-//export { ReactComponent as ReviewWriteIcon } from "./write-review-icon.svg";
+export { ReactComponent as ReviewWriteIcon } from "./write-review-icon.svg";
 export { ReactComponent as SettingIcon } from "./setting-icon.svg";
 export { ReactComponent as LogoutIcon } from "./logout-icon.svg";
 export { ReactComponent as FAQIcon } from "./FAQ-icon.svg";
@@ -16,3 +16,8 @@ export {ReactComponent as CloseIcon} from "./close-icon.svg";
 export {ReactComponent as ReviewWriteIcon} from "./review-write-icon.svg";
 export {ReactComponent as ReviewModifyIcon} from "./review-modify-icon.svg";
 export {ReactComponent as ShareIcon} from "./share-icon.svg";
+export {ReactComponent as MypageArrow} from "./Mypage-arrow.svg";
+export {ReactComponent as LikeRedIcon} from "./like-red.svg";
+export {ReactComponent as LikeBlackIcon} from "./like-black.svg";
+export {ReactComponent as BlockIcon} from "./block.svg";
+
