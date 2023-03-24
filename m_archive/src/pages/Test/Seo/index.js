@@ -54,26 +54,6 @@ const Seo = () =>{
         };
       }, []);
     return(
-<<<<<<< HEAD
-        <main className={styles.wrapper}>
-            {//<h1>서진주 테스트페이지</h1>
-            }
-            <Dropdown 
-            items={dropdownSortItems} 
-            valueKey="name" 
-            value={selectedSort?.name}
-            onClick={onClickSortDropdown}
-            />
-            <Dropdown 
-            items={dropdownBOItems} 
-            valueKey="name" 
-            value={selectedType?.name}
-            onClick={onClickTypeDropdown}
-            color="secondary"
-            />
-            <ProfileDropdown/>
-        </main>
-=======
      
  
 
@@ -99,7 +79,6 @@ const Seo = () =>{
               
                 </main>
             </div>
->>>>>>> cdb0a31a6b2027181762afce7a1829324e544484
     )
 }
 
