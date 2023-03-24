@@ -1,0 +1,84 @@
+@use "../../../styles/constants/colors" as c;
+@use "../../../styles/mixins/" as m;
+.dropdownWrapper {
+    width: 142px;
+    height: 48px;
+    position: relative;
+    //margin-top: 12px;
+    border: 1px solid c.$C_PRIMARY;
+    color: c.$C_PRIMARY;;
+    border-radius: 2px;
+    font-size: 20px;
+    cursor: pointer;
+    user-select: none;
+    &.secondary {
+        border: 1px solid c.$C_SECONDARY;
+        color:c.$C_SECONDARY;
+    }
+    .icon {
+      transform: rotate(0);
+      transition: transform 0.3s ease-in-out;
+  
+      &.isOpen {
+        transform: rotate(180deg);
+      }
+    }
+  
+    .dropdownInfo {
+    @include m.flex(space-between);
+      align-items: center;
+      padding: 12px;
+     
+    }
+  
+    .itemWrapper {
+      position: absolute;
+      top: 105%;
+      left: 0;
+      z-index: 10;
+      width: 100%;
+      background-color: none;
+      border-radius: 2px;
+      visibility: hidden;
+      overflow-y: scroll;
+      transform: scale(0);
+      transform-origin: left top;
+      // transition-duration: 1s;
+      // transition-property: max-height, visibility;
+      // transition-timing-function: ease-in-out;
+  
+      transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  
+      &.isOpen {
+        max-height: 144px;
+        visibility: visible;
+        transform: scale(1);
+      
+      }
+  
+      .item {
+        @include m.flex(flex-start);
+        text-align: right;
+        padding: 12px;
+        background-color:c.$C_PRIMARY; ;
+        border-left: 1px solid c.$C_WHITE;
+        border-right: 1px solid c.$C_WHITE;
+        border-bottom: 1px solid c.$C_WHITE;
+        color:c.$C_WHITE;
+        &:hover {
+          background-color: c.$C_WHITE;
+          color:c.$C_PRIMARY;
+        }
+        &.secondary{
+            background-color:c.$C_WHITE; ;
+            border-left: 1px solid c.$C_SECONDARY;
+            border-right: 1px solid c.$C_SECONDARY;
+            border-bottom: 1px solid c.$C_SECONDARY;
+            color:c.$C_SECONDARY;
+            &:hover{
+                background-color: c.$C_GRAY;
+            }
+        }
+      }
+    }
+  }

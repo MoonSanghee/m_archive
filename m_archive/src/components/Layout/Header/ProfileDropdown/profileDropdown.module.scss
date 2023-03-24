@@ -1,0 +1,67 @@
+@use "../../../../styles/constants/colors" as c;
+@use "../../../../styles/mixins" as m;
+.dropdownWrapper {
+    width: 60px;
+    position: relative;
+    border-radius: 4px;
+    font-size: 20px;
+
+    user-select: none;
+    
+    .icon {
+      cursor: pointer;
+      transform: rotate(0);
+      transition: transform 0.3s ease-in-out;
+      &.isOpen{
+        circle {
+          stroke: c.$C_GRAY;
+          stroke-width: 1px;
+        }
+    }
+  }
+    
+  
+    .dropdownInfo {
+      @include m.flex(space-between,flex-end,column);
+      
+    }
+  
+    .itemWrapper {
+      position: absolute;
+      top: 101%;
+      left: -140px;
+      width: 200px;
+      //border-radius: 8px;
+      background-color: none;
+      visibility: hidden;
+      transform: scale(0);
+      transform-origin: top right;  
+      transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  
+      &.isOpen {
+        visibility: visible;
+        transform: scale(1);
+      }
+  
+      .item {
+        @include m.flex(space-between,flex-start,row);
+        text-align: right;
+        padding: 12px;
+        cursor: pointer;
+        background-color:c.$C_PRIMARY; ;
+        border-left: 1px solid c.$C_WHITE;
+        border-right: 1px solid c.$C_WHITE;
+        border-bottom: 1px solid c.$C_WHITE;
+        color:c.$C_WHITE;
+        &:hover {
+          background-color: c.$C_WHITE;
+          color:c.$C_PRIMARY; 
+          svg > path {
+            fill:c.$C_PRIMARY; 
+          }
+        }
+      }
+
+
+    }
+  }
