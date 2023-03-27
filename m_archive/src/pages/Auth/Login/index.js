@@ -16,8 +16,6 @@ const LoginPage = () => {
     const { name, value } = e.currentTarget;
     setForm({ ...form, [name]: value });
     console.log(e.currentTarget.value); //확인용
-    isPassedEmail();
-    isPassedPassword();
   };
 
   const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i; //제일 많이 보임
@@ -27,7 +25,7 @@ const LoginPage = () => {
     if (userEmail === "") { //입력 0
       return setEmailStatus("입력하세요.");
     } else if (emailRegEx.test(userEmail)) { //성공
-      return setEmailStatus("성공");
+      return setEmailStatus("");
     } else { //땡
       return setEmailStatus("정확한 이메일 주소를 입력하세요.");
     }
@@ -39,19 +37,21 @@ const LoginPage = () => {
     } else if (password.match(passwordRegEx)===null) { //성공
       return setPasswordStatus("땡");
     } else { //땡
-      return setPasswordStatus("성공");
+      return setPasswordStatus("");
     }
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
+    isPassedEmail();
+    isPassedPassword();
     return console.log(form); //확인용
   };
 
   return (
     <main className={styles.wrapper}>
       <section>
-        <div className={styles.left}>
+        <div className={styles.formContainer}>
           <h1>M-archive</h1>
           <form id="loginForm" className={styles.loginForm} onSubmit={onSubmit}>
             <Input
@@ -71,13 +71,12 @@ const LoginPage = () => {
               onChange={onChange}
               errorText={passwordStatus}
             />
-
-            <Button width={"big"} type="submit" form="loginForm">
+          </form>
+          <Button width={"big"} type="submit" form="loginForm">
               로그인
             </Button>
-          </form>
         </div>
-        <div className={styles.right}>
+        <div className={styles.overlayContainer}>
           <h1>
             Hello,
             <br />
