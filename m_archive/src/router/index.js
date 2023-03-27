@@ -7,6 +7,10 @@ import { TestIm,TestJo,TestMoon,TestKim,TestSeo } from '../pages/Test';
 //import {TestSeo } from '../pages/Test';
 import { StartPage } from '../pages/Auth';
 import Feedback from '../pages/Test/Feedback';
+import MyPageLayout from "../components/Layout/MyPageLayout";
+//import {ProfilePage} from '../pages/MyPage/';
+import Profile from '../pages/MyPage/Profile';
+
 
 const router = (
     <Route path="/">
@@ -33,15 +37,17 @@ const router = (
         <Route index element={<MovieHome/>}>
           <Route path=":id" element={<MovieDetailPage/>}/>
         </Route>
-      
-        <Route path="mypage" >
-          <Route index element={<ProfilePage/>}/>
+    */}
+        <Route path="mypage" element={<MyPageLayout/>}>
+          
+          <Route path="profile" element={<Profile/>}/>
+          {/*
           <Route path="like" element={<LikePage/>}/>
           <Route path="review" element={<ReviewPage/>}/>
           <Route path="faq" element={<FAQ/>}/>
-          <Route path=":id" element={<UserPage/>}/>
+  <Route path=":id" element={<UserPage/>}/>*/}
         </Route>
-      */}
+      
       </Route>
       {/*
       <Route path="admin">

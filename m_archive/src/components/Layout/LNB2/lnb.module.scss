@@ -2,20 +2,24 @@
 @use '../../../styles/mixins' as m;
 
 .lnb {
-  position: relative;
+  position: sticky;
   left: 140px;
+  top: 0;
   width: 280px;
   background-color: c.$C_PRIMARYLIGHT;
   color: c.$C_WHITE;
-  height: 100%;
+  height:calc(100vh - 80px);
+  
+  //overflow: hidden;
   .menu {
-    position: relative;
-    top: 60px;
+    //overflow: hidden; 
     @include m.flex(center, end, column);
-    right: 40px;
+    position: sticky;
+    top: 0;
+    padding: 40px;
     row-gap: 40px;
     font-size: 24px;
-  
+    height: 100%;
     .pageInfo {
       font-size: 32px;
       cursor: pointer;
@@ -38,8 +42,10 @@
   }
 
   .logout {
-    position: fixed;
-    bottom: 40px;
+    //position: fixed;
+    //bottom: 40px;
+    margin-top: 200px;
+    height: 30px;
     cursor: pointer;
     color: c.$C_BLACK;
   }

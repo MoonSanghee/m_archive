@@ -1,0 +1,17 @@
+@use "../../../styles/constants/" as c;
+@use "../../../styles/mixins/" as m;
+.main{
+    @include m.flex(center,flex-start,row);
+    //column-gap: 100px;
+    background-color: c.$C_BLACK;
+    color:c.$C_WHITE;
+    column-gap: 100px;
+    .sectionWrapper{
+        //overflow-y: auto;
+        width: 70%; 
+        height: calc((100vh - 80px)*2);
+    }
+    
+    
+}
+
