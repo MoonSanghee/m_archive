@@ -22,7 +22,7 @@ const myPageExamples = [
     id: 4,
     name: '고객센터',
     value: 'cs',
-    path: 'cs',
+    path: '/cs',
   },
 ]
 

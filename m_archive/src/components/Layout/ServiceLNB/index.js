@@ -5,8 +5,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import myPageExamples from "./myPageExamples";
 
-//NOTE:  MyPageLNB / ServiceLNB
-const LNB2 = () => {
+const ServiceLNB = () => {
+
   const navigate = useNavigate();
 
   const onClick = (item) => {
@@ -34,4 +34,4 @@ const LNB2 = () => {
   );
 };
 
-export default LNB2;
+export default ServiceLNB;

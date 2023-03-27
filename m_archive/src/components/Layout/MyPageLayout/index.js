@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
 import styles from "./myPageLayout.module.scss";
-import LNB2 from "../LNB2";
+import ServiceLNB from "../ServiceLNB";
 
 const MyPageLayout = () => {
   return (
     <main className={styles.main}>
-        <LNB2/>
+        <ServiceLNB/>
         <section className={styles.sectionWrapper}>
             <Outlet />      
         </section>
