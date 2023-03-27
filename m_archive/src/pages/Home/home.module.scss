@@ -1,0 +1,32 @@
+@use "../../styles/constants/" as c;
+@use "../../styles/mixins/" as m;
+
+.wrapper{
+    @include m.flex(flex-start,center,column);
+    width: 100%;
+    //height: 100%;
+    padding: 48px;
+    row-gap: 20px;
+    overflow-y: auto;
+    .top10Wrapper{
+        @include m.flex(flex-start,flex-start,column);
+        width: 100%;
+        height: 460px;
+        //padding:10px 0;
+    }
+    .rcmdWrapper{
+        @include m.flex(flex-start,flex-start,column);
+        width: 100%;
+        height: 460px;
+        //padding:10px 0;
+    }
+    .genreWrapper{
+        @include m.flex(flex-start,flex-start,column);
+        width: 100%;
+        min-height: 460px;
+        //height: 800
+    }
+    .header{
+        font-size:40px;
+    }
+}
