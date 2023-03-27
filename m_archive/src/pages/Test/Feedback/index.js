@@ -1,5 +1,5 @@
 import React from "react";
-import { LNB, LNB2 } from "../../../components";
+// import { LNB, LNB2 } from "../../../components";
 import styles from "./feedback.module.scss";
 import DetailButton from "../../Home/MovieDetail/_shared/DetailButton";
 import useModal from "../../../components/Common/Modal/useModal";
@@ -11,7 +11,7 @@ import { Modal } from "../../../components/Common";
 const Feedback = () => {
   return (
     <main className={styles.wrapper}>
-      <LNB2></LNB2>
+      {/* <LNB2></LNB2> */}
     </main>
   );
 };
