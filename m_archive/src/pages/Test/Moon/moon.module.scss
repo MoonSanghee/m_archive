@@ -9,3 +9,11 @@
   display: flex;
   height: 100vh;
 }
+
+.table {
+  display: flex;
+  flex-direction: column;
+  margin: 72px 60px;
+  width: 100%;
+  row-gap: 20px;
+}

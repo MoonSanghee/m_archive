@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState }  from "react";
 import cx from 'classnames';
 import styles from './lnb.module.scss';
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import boExamples from './boExamples';
 
-const LNB = () => {
+const AdminLNB = ({useplace, ...props}) => {
   const navigate = useNavigate();
 
   const onClick = (item) => {
@@ -31,4 +30,4 @@ const LNB = () => {
   )
 };
 
-export default LNB;
+export default AdminLNB;

@@ -1,0 +1,23 @@
+@use '../../../styles/constants/' as c;
+@use '../../../styles/mixins' as m;
+
+
+.header {
+  width: 100%;
+  @include m.flex(start, center, row);
+  column-gap: 40px;
+  background-color: c.$C_SECONDARY;
+  height: 48px;
+  color: c.$C_WHITE;
+  .check {
+    margin: 12px;
+    border-radius: 4px;
+  }
+  
+  .item {
+    width: 100px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 12px;
+  }
+}
