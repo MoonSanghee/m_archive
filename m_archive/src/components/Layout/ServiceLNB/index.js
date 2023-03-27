@@ -1,16 +1,17 @@
 import React from "react";
-import cx from 'classnames';
-import styles from './lnb.module.scss';
+import cx from "classnames";
+import styles from "./lnb.module.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import myPageExamples from './myPageExamples';
+import myPageExamples from "./myPageExamples";
 
 const ServiceLNB = () => {
+
   const navigate = useNavigate();
 
   const onClick = (item) => {
     return () => {
-      navigate(item.path)
+      navigate(item.path);
     };
   };
 
@@ -22,17 +23,15 @@ const ServiceLNB = () => {
           {myPageExamples.map((item) => {
             return (
               <li className={styles.example} onClick={onClick(item)}>
-                <span>
-                {item.name}
-                </span>
+                <span>{item.name}</span>
               </li>
-            )
+            );
           })}
         </section>
         <div className={styles.logout}>로그아웃</div>
       </menu>
     </section>
-  )
+  );
 };
 
 export default ServiceLNB;

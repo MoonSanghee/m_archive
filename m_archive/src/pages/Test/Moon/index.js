@@ -2,13 +2,12 @@ import React, { useState } from "react"
 import { Input, SearchBox, TableMenu, TableElements, ServiceLNB, AdminLNB } from '../../../components';
 import styles from "./moon.module.scss"
 
-const Moon = () =>{
+const Moon = () => {
     const [isError, setIsError] = useState(false);
-    
+  
     const onClickButton = () => {
-        setIsError(!isError);
+      setIsError(!isError);
     };
-
     return(
         <main className={styles.wrapper}>
             <AdminLNB className={styles.left}/>

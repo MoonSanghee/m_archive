@@ -1,0 +1,15 @@
+1. /test/kim - styles.module 적용안되는오류 + 아이콘이 이상하게 돌아감
+
+2. /test/im  - 영화카드 - 하트 여러번 누르면(더블클릭?) 다른 영역 선택이 되는 이상한 오류
+
+3. /test/moon -  /test/feedback - LNB2 추가하였습니다. (/test/moon LNB 랑 LNB2 형태는 비슷한데, LNB2에 1이랑 공통되지 않은 부분이 들어가서 
+분리하였는데 분리안하고 할 수 있는지? )
+
+4. /test/seo - 모달추가하였습니다. (modalSize-big,small)
+- contents(리뷰) props로 넣으면 수정/삭제버튼이나오고 안넣으면 저장버튼이나옵니다.
+- 현재는 리뷰작성 기능만 넣어놔서 size를 big으로 하면 안에 레이아웃이 안맞습니다
+- big 사이즈는 다른곳에 이용됨
+
+5. 병합, 파일삭제 문제로 , devlop브랜치를  git reset --hard 2de8fc5 위치로 되돌려놓은 상태인데,
+devlop에 2de8fc5 이후에 커밋된사항(충돌부분)은 폐기하고싶은데 어떻게해야할지? 모르겠습니다. 
+
