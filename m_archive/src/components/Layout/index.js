@@ -8,15 +8,8 @@ const Layout = () => {
     <main className={styles.main}>
       <Header />
       <section className={styles.sectionWrapper}>
-        <Outlet />
-        <div className={styles.div}>
-          <p>그냥</p>
-          <p>내용</p>
-          <p>아무</p>
-          <p>거나</p>
-          <p>집어</p>
-          <p>넣음</p>
-        </div>
+   
+        <Outlet />  
       </section>
       <Footer />
     </main>

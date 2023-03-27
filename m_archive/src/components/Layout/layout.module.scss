@@ -1,18 +1,25 @@
 @use "../../styles/constants/" as c;
+@use "../../styles/mixins/" as m;
 .main{
+    //@include m.flex();
     height: 100vh;
     margin-top: 80px;
     background-color: c.$C_BLACK;
-    color:c.$C_WHITE;
-    //overflow: scroll;
+    color:c.$C_WHITE;      
     overflow-y: auto;
-}
-.sectionWrapper{
-    //overflow-y: auto;
+
+    //overflow: scroll;
+
+    .sectionWrapper{
+        
+        //overflow-y: aut    
+        overflow-y: scroll;
+        height: calc(100vh - 80px);
+        .div{
     
+            font-size: 200px;
+        }
+        
+    }
 }
-.div{
-    
-    height: 2000px;
-    font-size: 200px;
-}
+
