@@ -1,0 +1,29 @@
+@use "../../../styles/constants/" as c;
+@use "../../../styles/mixins/" as m;
+.wrapper{
+    @include m.flex();
+    column-gap: 8px;
+    padding:28px 0;
+    .ulWrapper{
+        @include m.flex(flex-start);
+        column-gap: 40px;   
+        width: 1712px;
+        
+    }
+    > svg{
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        > path {
+            fill:c.$C_WHITE;;
+        }
+        z-index:c.$Z_CAROUSELARROW;
+    }
+    .prevBtn{
+        transform: rotate(90deg);
+    }
+    .nextBtn{
+        transform: rotate(270deg);
+    }
+  
+}

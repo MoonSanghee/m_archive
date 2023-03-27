@@ -7,7 +7,7 @@ const STAR_WIDTH = 40;
 const StarRate = ({item}) =>  {
     const RATE = item.rate;
     const ID= item.name+item.id;
-    console.log(item);
+    //console.log(item);
     
     const STAR_IDX_ARR = ['first', 'second', 'third', 'fourth', 'last'];
     const [ratesResArr, setRatesResArr] = useState([0, 0, 0, 0, 0]);

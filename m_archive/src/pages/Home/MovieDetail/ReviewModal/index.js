@@ -6,6 +6,7 @@ import cx from "classnames";
 const ReviewModal = ({ title, content, onClose }) => {
   const [review, setReview] = useState("");
   const [isModified, setIsModified] = useState(false);
+  //const [isDeleted, setIsDeleted] = useState(false);
 
   const onSubmit = async (e) => {
     /**
@@ -15,11 +16,18 @@ const ReviewModal = ({ title, content, onClose }) => {
      *    review:form.review;
      * });
      *  */
+    //e.preventDefalut();
+    const btn_type = e.currentTarget.id;
+    if(btn_type ==="save"){
+      if (isModified) {
+        alert("리뷰가 수정되었습니다.");
+      } else {
+        alert("리뷰가 작성되었습니다.");
+      }
+    }
+    else{
+      alert("리뷰가 삭제되었습니다.");
 
-    if (isModified) {
-      alert("리뷰가 수정되었습니다.");
-    } else {
-      alert("리뷰가 작성되었습니다.");
     }
     onClose();
   };
@@ -29,19 +37,26 @@ const ReviewModal = ({ title, content, onClose }) => {
      *  api생기면 구현예정
      */
     alert("리뷰가 삭제되었습니다.");
-    onClose();
+    //setIsDeleted(true);
+    //return()=>{onClose();}
+    
   };
 
   const onChange = (e) => {
     const { value } = e.currentTarget;
     setReview(value);
   };
+
   useEffect(() => {
     if (!!content) {
       setReview(content);
       setIsModified(true);
     }
   }, []);
+  /*
+  useEffect(()=>{
+    return()=>{ onClose();}
+  },[isDeleted]);*/
 
   return (
     <section className={styles.wrapper}>
@@ -60,12 +75,12 @@ const ReviewModal = ({ title, content, onClose }) => {
         {/* //NOTE: position fixed */}
         <div className={styles.btnWrapper}>
           {isModified && (
-            <Button color={"gray"} type="button" onClick={onClickDelete}>
+            <Button id="delete" color={"gray"} type="submit"  form="reviewForm">
               삭제
             </Button>
           )}
 
-          <Button color={"secondary"} type="submit" form="reviewForm">
+          <Button  id="save" color={"secondary"} type="submit" form="reviewForm" >
             {!isModified ? "저장" : "수정"}
           </Button>
         </div>

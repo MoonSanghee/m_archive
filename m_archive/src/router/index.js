@@ -10,6 +10,7 @@ import Feedback from '../pages/Test/Feedback';
 import MyPageLayout from "../components/Layout/MyPageLayout";
 //import {ProfilePage} from '../pages/MyPage/';
 import Profile from '../pages/MyPage/Profile';
+import { HomePage } from '../pages';
 
 
 const router = (
@@ -33,11 +34,12 @@ const router = (
       <Route path="register" element={<RegisterPage/>}/> */}
 
       <Route path="home" element={<Layout/>}>
-          {/*
-        <Route index element={<MovieHome/>}>
-          <Route path=":id" element={<MovieDetailPage/>}/>
+          
+        <Route path="movies" element={<HomePage/>}>
+         {/*<Route path=":id" element={<MovieDetailPage/>}/>
+         */} 
         </Route>
-    */}
+    
         <Route path="mypage" element={<MyPageLayout/>}>
           
           <Route path="profile" element={<Profile/>}/>
