@@ -2,12 +2,12 @@
 @use "../../../styles/constants/" as c;
 
 .layout{
-    padding-top: 100px; 
+    padding-top: 80px; 
     //overflow:scroll;
    
     .main{
         padding: 20px;
-        min-height: calc(100vh - 180px);
+        min-height: calc(100vh - 80px);
         background-color: c.$C_BLACK;
         .sectionWrapper{
     

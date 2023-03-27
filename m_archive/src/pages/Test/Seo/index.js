@@ -15,7 +15,7 @@ const Seo = () => {
   const [selectedType, setSelectedType] = useState(null);
 
   const [modalOption, showModal] = useModal();
-
+  const [isOpen, setIsOpen] = useState(true);
   const starRatesItems = starRates;
   const dropdownSortItems = sortItems;
   const dropdownBOItems = typeItems;
@@ -33,10 +33,11 @@ const Seo = () => {
 
   const onClickOpenModal = useCallback(() => {
     showModal(
-      true,
+      isOpen,
       "",
       () => console.log("모달 on"),
-      null,
+      //null,
+      setIsOpen(false),
       <ReviewModal
         title="스즈메의 문단속"
         content="리뷰썻음"
@@ -89,8 +90,7 @@ const Seo = () => {
             리뷰 수정
           </DetailButton>
 
-          <Modal modalOption={modalOption} modalSize="big" />
-          <DetailButton></DetailButton>
+          <Modal modalOption={modalOption} modalSize="small" />
         </section>
       </main>
     </div>
