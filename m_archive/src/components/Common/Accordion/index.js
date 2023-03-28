@@ -1,6 +1,6 @@
 import { useState } from "react";
 //TODO: module scss로 사용
-import "./accordion.scss";
+import styles from "./accordion.module.scss";
 import { MypageArrow } from "../../../assets/icon";
 
 //NOTE: 언더바를 사용해서 className를 만드는 방식 -> scss가 좋아하지 않음
@@ -12,11 +12,11 @@ const Accordion = (props) => {
 
   return (
     <div className={`accordion ${active ? "active" : ""}`}>
-      <div className="accordion__title" onClick={() => setActive(!active)}>
+      <div className={styles.accordionTitle} onClick={() => setActive(!active)}>
         <span>{props.title}</span>
-        <MypageArrow className="accordion__icon" />
+        <MypageArrow className={styles.accordionIcon} />
       </div>
-      <div className="accordion__content">{props.content}</div>
+      <div className={styles.accordionContent}>{props.content}</div>
     </div>
   );
 };

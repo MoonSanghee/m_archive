@@ -1,9 +1,10 @@
 @use "../../../styles/constants/colors" as c;
 
 .accordion {
-  background-color: #263959;
+  background-color: hsl(218, 40%, 25%);
   position: relative;
-  &__title {
+
+  .Title {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -14,22 +15,22 @@
     color: #fff;
   }
 
-  &__icon {
+  .Icon {
     position: absolute;
     top: 16px;
     right: 8px;
     width: 24px;
     height: 24px;
-    // transform: rotate(0);
+    transform: rotate(0);
     transition: transform 0.3s ease-in-out;
     flex-shrink: 0;
   }
 
-  &.active &__icon {
+  &.active &Icon {
     transform: rotate(180deg);
   }
 
-  &__content {
+  .Content {
     padding: 0 8px;
     max-height: 0;
     overflow: hidden;
@@ -37,7 +38,7 @@
     background-color: #fff;
   }
 
-  &.active &__content {
+  &.active &Content {
     padding: 24px 8px;
     max-height: 9em;
   }
