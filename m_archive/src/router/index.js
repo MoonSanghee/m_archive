@@ -39,12 +39,11 @@ const router = (
     {/* 
        <Route path="feedback" element={<Feedback/>}/>
       <Route path="register" element={<RegisterPage/>}/> */}
-    <Route path="home" element={<Layout />}>
-      {/* //NOTE: /home/movies -> /home or /movies  */}
-      <Route path="movies" element={<HomePage />}>
+    <Route path="movies" element={<Layout />}>
+      <Route index element={<HomePage />}/>
         {/*<Route path="movie:id" element={<MovieDetailPage/>}/>
          */}
-      </Route>
+      
 
       <Route path="mypage" element={<MyPageLayout />}>
         <Route path="profile" element={<Profile />} />

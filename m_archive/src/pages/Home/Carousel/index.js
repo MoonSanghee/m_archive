@@ -23,7 +23,7 @@ const Carousel = ({ movies, type }) => {
   const onNavigateDetail = (id) => {
     return () => {
       //MEMO: navigate를 할 때는 /가 있어야 함
-      navigate(`/home/detail/${id}`);
+      navigate(`/movies/detail/${id}`);
     };
   };
   const toPrev = () => {
