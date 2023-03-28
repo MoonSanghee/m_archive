@@ -124,11 +124,11 @@ const Register = () => {
       //입력 0
       return setPasswordStatus("입력하세요.");
     } else if (enteredPassword.match(passwordRegEx) === null) {
-      //성공
-      return setPasswordStatus("");
-    } else {
       //땡
       return setPasswordStatus("비밀번호는 8~16자 이내로 입력해주세요.");
+    } else {
+      //성공
+      return setPasswordStatus("");
     }
   };
 
