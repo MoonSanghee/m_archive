@@ -10,6 +10,9 @@ export const getMovie = (id) => {
   return apiClient.get(`/movies/${id}/detail`);
 };
 
+export const getTop10Movies = () =>{
+  return apiClient.get("/movies/top");
+}
 /*
 export const searchProduct = (params) => {
   return apiClient.get("/products/search", {

@@ -36,8 +36,8 @@ const router = (
 
       <Route path="home" element={<Layout/>}>
           
-        <Route path="movies" element={<HomePage/>}>
-         {/*<Route path=":id" element={<MovieDetailPage/>}/>
+        <Route index element={<HomePage/>}>
+         {/*<Route path="movie:id" element={<MovieDetailPage/>}/>
          */} 
         </Route>
     
