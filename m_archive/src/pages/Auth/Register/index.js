@@ -263,6 +263,6 @@ const Register = () => {
       </section>
     </main>
   );
-};
+};  
 
 export default Register;
