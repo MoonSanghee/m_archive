@@ -1,17 +1,22 @@
 @use "../../../../styles/constants/" as c;
-.movie{
-    float:left;
-    &.top10{
-        margin-left:50px;
-        position: relative;
-        .rankingWrapper{
-          position: absolute;
-          z-index: 10;
-          margin-top: 130px;
-          font-size: 260px;
-          color: c.$C_WHITE_50;
-          //text-shadow: -1px 0 c.$C_GRAY, 0 1px c.$C_GRAY , 1px 0 c.$C_GRAY, 0 -1px c.$C_GRAY;
-          cursor:none;
-        }
-      }
+.movie {
+  float: left;
+  &.top10 {
+    margin-left: 50px;
+    position: relative;
+    .rankingWrapper {
+      position: absolute;
+      z-index: 10;
+
+      //TODO: top left 이용
+      top: 130px;
+      left: -70px;
+      font-size: 260px;
+      color: c.$C_WHITE_50;
+      //text-shadow: -1px 0 c.$C_GRAY, 0 1px c.$C_GRAY , 1px 0 c.$C_GRAY, 0 -1px c.$C_GRAY;
+
+      // cursor: none;
+      pointer-events: none;
+    }
+  }
 }

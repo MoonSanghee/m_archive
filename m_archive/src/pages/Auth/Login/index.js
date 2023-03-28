@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styles from "./login.module.scss";
 import { Button, Input } from "../../../components";
 import { useNavigate } from "react-router-dom";
+import { emailRegEx, passwordRegEx } from "../../../utils/regex";
+import { validateEmail } from "./utils";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -21,37 +23,35 @@ const LoginPage = () => {
     console.log(e.currentTarget.value); //확인용
   };
 
-  const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i; //제일 많이 보임
-  const passwordRegEx = /^[A-Za-z0-9]{8,20}$/; //대문자,소문자,숫자 8~20자리수
-  
-  const isPassedEmail = () => {
-    if (userEmail === "") { //입력 0
-      return setEmailStatus("입력하세요.");
-    } else if (emailRegEx.test(userEmail)) { //성공
-      return setEmailStatus("");
-    } else { //땡
-      return setEmailStatus("정확한 이메일 주소를 입력하세요.");
-    }
-  };
-
-  const isPassedPassword = () => {
-    if (password === "") { //입력 0
+  //NOTE: 유효성 검사
+  const validatePassword = () => {
+    if (password === "") {
+      //입력 0
       return setPasswordStatus("입력하세요.");
-    } else if (password.match(passwordRegEx)===null) { //성공
+    } else if (password.match(passwordRegEx) === null) {
+      //성공
       return setPasswordStatus("올바른 비밀번호를 입력하세요.");
-    } else { //땡
+    } else {
+      //땡
       return setPasswordStatus("");
     }
   };
+
   const onClickedRegister = () => {
     navigate("/register");
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    isPassedEmail();
-    isPassedPassword();
-    return console.log(form); //확인용
+    const validatedEmail = validateEmail(form.userEmail);
+
+    if (typeof validatedEmail === "string") {
+      setEmailStatus(validatedEmail);
+      return;
+    }
+
+    validatePassword();
+    console.log(form); //확인용
   };
 
   return (
@@ -79,8 +79,8 @@ const LoginPage = () => {
             />
           </form>
           <Button width={"big"} type="submit" form="loginForm">
-              로그인
-            </Button>
+            로그인
+          </Button>
         </div>
         <div className={styles.overlayContainer}>
           <h1>

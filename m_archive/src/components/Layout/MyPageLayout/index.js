@@ -5,10 +5,10 @@ import ServiceLNB from "../ServiceLNB";
 const MyPageLayout = () => {
   return (
     <main className={styles.main}>
-        <ServiceLNB/>
-        <section className={styles.sectionWrapper}>
-            <Outlet />      
-        </section>
+      <ServiceLNB />
+      <section className={styles.sectionWrapper}>
+        <Outlet />
+      </section>
     </main>
   );
 };

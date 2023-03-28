@@ -2,15 +2,35 @@ import React, { useState } from "react";
 import styles from "./register.module.scss";
 import { Button, Input } from "../../../components";
 import { useNavigate } from "react-router-dom";
+import { validateForm } from "./utils";
 
 const Register = () => {
-  // const [form, setForm] = useState({
-  //   name: "",
-  //   nickname: "",
-  //   email: "",
-  //   password: "",
-  // });
   const navigate = useNavigate();
+
+  //NOTE: state를 많이 사용하는 것보다 객체로 관리하는 것이 편합니다~
+  const [name, setName] = useState({
+    entered: "",
+    touched: false,
+    status: null,
+  });
+
+  //NOTE: 기능마다 state 분리
+  const [form, setForm] = useState({
+    name: "",
+    nickname: "",
+    email: "",
+    password: "",
+  });
+  const [touched, setTouched] = useState({
+    name: false,
+    nickname: false,
+    email: false,
+    password: false,
+  });
+  const [status, setStatus] = useState({
+    name: null,
+    nickname: null,
+  });
 
   const [enteredName, setEnteredName] = useState("");
   const [enteredNameTouched, setEnteredNameTouched] = useState(false);
@@ -23,6 +43,8 @@ const Register = () => {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
   const [emailStatus, setEmailStatus] = useState("null");
+
+  //TODO: 정규식은 분리
   const emailRegEx =
     /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i; //제일 많이 보임
 
@@ -52,14 +74,23 @@ const Register = () => {
   //name
   const nameInputChangeHandler = (event) => {
     setEnteredNameTouched(false);
+    console.log(event.target.value);
     setEnteredName(event.target.value);
   };
 
+  //NOTE: nameInputBlurHandler -> 올드한 네이밍 => onBlurNameInput
   const nameInputBlurHandler = (event) => {
     setEnteredNameTouched(true);
     isPassedName();
   };
 
+  //NOTE: 함수를 하나로 합치기
+  const onBlur = (e) => {
+    const { name } = e.target;
+    setTouched({ ...touched, [name]: true });
+  };
+
+  //NOTE: 유효성 검사는 파일을 생성해서 따로 분리해서 관리
   const isPassedName = () => {
     if (enteredName.trim() === "") {
       return setNameStatus("이름을 입력하세요.");
@@ -163,19 +194,21 @@ const Register = () => {
     console.log(`이메일: ${enteredEmail}`);
     console.log(`비번: ${enteredPassword}`);
     console.log(formIsValid);
-    if (formIsValid !== true) {
-      return;
-    }
+    validateForm();
+    // if (formIsValid !== true) {
+    //   return;
+    // }
     //navigate('/'); 장르선택화면으로 넘어갈 예정
-    
-    // setForm({
-    //   ...form,
-    //   name: enteredName,
-    //   nickname: enteredNickname,
-    //   email: enteredEmail,
-    //   password: enteredPassword,
-    // });
+
+    setForm({
+      ...form,
+      name: enteredName,
+      nickname: enteredNickname,
+      email: enteredEmail,
+      password: enteredPassword,
+    });
   };
+  console.log({ form });
 
   return (
     <main className={styles.wrapper}>
@@ -263,6 +296,6 @@ const Register = () => {
       </section>
     </main>
   );
-};  
+};
 
 export default Register;
