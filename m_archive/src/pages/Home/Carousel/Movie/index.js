@@ -14,7 +14,7 @@ const Movie = ({ movie, slide, onClick, type, idx }) => {
         transition: "0.5s ease",
       }}
     >
-      {type === "top10" && <p className={styles.rankingWrapper}>{idx + 1}</p>}
+      {type === "top10" && <p className={cx(styles.rankingWrapper, {[styles.first]:idx===0})}>{idx + 1}</p>}
       <Card
         id={`Card-${id}`}
         item={movie}
