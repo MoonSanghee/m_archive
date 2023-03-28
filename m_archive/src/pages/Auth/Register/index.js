@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./register.module.scss";
 import { Button, Input } from "../../../components";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   // const [form, setForm] = useState({
@@ -9,6 +10,7 @@ const Register = () => {
   //   email: "",
   //   password: "",
   // });
+  const navigate = useNavigate();
 
   const [enteredName, setEnteredName] = useState("");
   const [enteredNameTouched, setEnteredNameTouched] = useState(false);
@@ -27,7 +29,7 @@ const Register = () => {
   const [enteredPassword, setEnteredPassword] = useState("");
   const [enteredPasswordTouched, setEnteredPasswordTouched] = useState(false);
   const [passwordStatus, setPasswordStatus] = useState("");
-  const passwordRegEx = /^[A-Za-z0-9]{8,20}$/; //대문자,소문자,숫자 8~20자리수
+  const passwordRegEx = /^[A-Za-z0-9]{8,16}$/; //대문자,소문자,숫자 8~16자리수
 
   const [enteredCheckpassword, setEnteredCheckpassword] = useState("");
   const [enteredCheckpasswordTouched, setEnteredCheckpasswordTouched] =
@@ -42,7 +44,7 @@ const Register = () => {
     nicknameStatus === "" &&
     emailStatus === "" &&
     passwordStatus === "" &&
-    enteredPassword ===enteredCheckpassword
+    enteredPassword === enteredCheckpassword
   ) {
     formIsValid = true;
   }
@@ -60,7 +62,7 @@ const Register = () => {
 
   const isPassedName = () => {
     if (enteredName.trim() === "") {
-      return setNameStatus("입력하세요.");
+      return setNameStatus("이름을 입력하세요.");
     } else {
       return setNameStatus("");
     }
@@ -79,7 +81,7 @@ const Register = () => {
 
   const isPassedNickname = () => {
     if (enteredNickname.trim() === "") {
-      return setNicknameStatus("입력하세요.");
+      return setNicknameStatus("사용할 닉네임을 입력하세요.");
     } else {
       return setNicknameStatus("");
     }
@@ -123,10 +125,10 @@ const Register = () => {
       return setPasswordStatus("입력하세요.");
     } else if (enteredPassword.match(passwordRegEx) === null) {
       //성공
-      return setPasswordStatus("땡");
+      return setPasswordStatus("");
     } else {
       //땡
-      return setPasswordStatus("");
+      return setPasswordStatus("비밀번호는 8~16자 이내로 입력해주세요.");
     }
   };
 
@@ -149,6 +151,9 @@ const Register = () => {
       return setCheckpasswordStatus("입력하신 비밀번호가 일치하지 않습니다.");
     }
   };
+  const onClickedLogin = () => {
+    navigate("/login");
+  };
 
   //회원가입버튼
   const onSubmit = (e) => {
@@ -157,7 +162,12 @@ const Register = () => {
     console.log(`닉네임: ${enteredNickname}`);
     console.log(`이메일: ${enteredEmail}`);
     console.log(`비번: ${enteredPassword}`);
-    // console.log(form);
+    console.log(formIsValid);
+    if (formIsValid !== true) {
+      return;
+    }
+    //navigate('/'); 장르선택화면으로 넘어갈 예정
+    
     // setForm({
     //   ...form,
     //   name: enteredName,
@@ -186,6 +196,7 @@ const Register = () => {
             border={"borderwhite"}
             type="submit"
             form="loginForm"
+            onClick={onClickedLogin}
           >
             로그인
           </Button>
@@ -247,7 +258,7 @@ const Register = () => {
           <Button width={"big"} type="submit" form="loginForm">
             회원가입
           </Button>
-          {formIsValid ? "(확인용-성공)" : "(확인용-실패)"}
+          {/* {formIsValid ? "(확인용-성공)" : "(확인용-실패)"} */}
         </div>
       </section>
     </main>
