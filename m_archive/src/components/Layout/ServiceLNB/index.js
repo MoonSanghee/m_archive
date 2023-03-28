@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import myPageExamples from "./myPageExamples";
 
 const ServiceLNB = () => {
-
   const navigate = useNavigate();
 
   const onClick = (item) => {

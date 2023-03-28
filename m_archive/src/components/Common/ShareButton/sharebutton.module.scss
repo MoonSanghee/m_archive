@@ -1,7 +1,13 @@
 @use "../../../styles/constants/colors" as c;
 
 .wrapper {
-    width: 28px;
-    cursor: pointer;
+  width: 28px;
+  cursor: pointer;
+}
 
+//NOTE: 팝업창 className
+.popup {
+  height: 200px;
+  bottom: 40px;
+  left: 40px;
 }

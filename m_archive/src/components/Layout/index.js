@@ -8,8 +8,7 @@ const Layout = () => {
     <main className={styles.main}>
       <Header />
       <section className={styles.sectionWrapper}>
-   
-        <Outlet />  
+        <Outlet />
       </section>
       <Footer />
     </main>
