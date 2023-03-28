@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 import Layout from "../components/Layout";
 import LoginPage from "../pages/Auth/Login";
-import { TestIm, TestJo, TestMoon, TestKim, TestSeo } from "../pages/Test";
+import { TestIm, TestJo, TestMoon, TestKim, TestSeo, TestKim2 } from "../pages/Test";
 //import {TestSeo } from '../pages/Test';
 import { StartPage } from "../pages/Auth";
 import Feedback from "../pages/Test/Feedback";
@@ -23,6 +23,7 @@ const router = (
       <Route path="im" element={<TestIm />} />
       <Route path="moon" element={<TestMoon />} />
       <Route path="kim" element={<TestKim />} />
+      <Route path="kim2" element={<TestKim2 />} />
       <Route path="jo" element={<TestJo />} />
       <Route path="seo" element={<TestSeo />} />
       <Route path="feedback" element={<Feedback />} />

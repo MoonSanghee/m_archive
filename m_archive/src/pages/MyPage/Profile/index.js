@@ -3,7 +3,7 @@ import styles from "./profile.module.scss";
 const Profile = () =>{
     return(
         <main>
-            프로필페이지!!!!
+            
             <div className={styles.div}>
                 <p>그냥</p>
                 <p>내용</p>
