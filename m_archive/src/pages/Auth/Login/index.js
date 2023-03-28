@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import styles from "./login.module.scss";
 import { Button, Input } from "../../../components";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     userEmail: "",
     password: "",
@@ -35,10 +38,13 @@ const LoginPage = () => {
     if (password === "") { //입력 0
       return setPasswordStatus("입력하세요.");
     } else if (password.match(passwordRegEx)===null) { //성공
-      return setPasswordStatus("땡");
+      return setPasswordStatus("올바른 비밀번호를 입력하세요.");
     } else { //땡
       return setPasswordStatus("");
     }
+  };
+  const onClickedRegister = () => {
+    navigate("/register");
   };
 
   const onSubmit = (e) => {
@@ -92,6 +98,7 @@ const LoginPage = () => {
             border={"borderwhite"}
             type="submit"
             form="loginForm"
+            onClick={onClickedRegister}
           >
             회원가입
           </Button>
