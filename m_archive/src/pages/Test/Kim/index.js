@@ -1,7 +1,7 @@
 import React from "react";
-import Accordion from "../../../components/Common/Accordion/index";
-import { ProfileIcon } from "../../../assets/icon";
+import Accordion from "../../../components/Common/Accordion";
 import styles from "./test.module.scss";
+import ReviewCard from "../../../components/Common/ReviewCard";
 
 const data = [
   {
@@ -50,31 +50,7 @@ function Kim() {
           ))}
         </ul>
       </div>
-      {/* 밑에는 카드 리뷰카드 테스트 부분  */}
-      <section id="testimonials">
-        <div className={styles["testimonial-box-container"]}>
-          <div className={styles["testimonial-box"]}>
-            {/* //NOTE: 1) 시멘틱 요소를 사용하면 좋다. */}
-            {/* //NOTE: 2) div를 사용한 depth가 너무 깊다. */}
-            <div className={styles["box-top"]}>
-              <div className={styles["profile"]}>
-                <div className={styles["profile-img"]}>
-                  <ProfileIcon />
-                </div>
-                <div className={styles["name-user"]}>
-                  <strong>요것은 닉네임</strong>
-                  <span>요것은 칭호?</span>
-                </div>
-              </div>
-              <p className={styles["review"]}>
-                {/* 별점 */}
-                여기가 별점 위치?
-              </p>
-            </div>
-            <p className={styles["client-comment"]}>요것은 테스트여</p>
-          </div>
-        </div>
-      </section>
+            <ReviewCard />
     </main>
   );
 }
