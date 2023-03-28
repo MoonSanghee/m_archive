@@ -14,3 +14,5 @@ export { default as AdminLNB } from '../Layout/AdminLNB';
 export { default as ServiceLNB } from '../Layout/ServiceLNB';
 export { default as Modal } from "./Modal";
 export { default as Card } from "./Card";
+export {default as LikeButton} from "./LikeButton";
+export {default as ShareButton} from "./ShareButton";
