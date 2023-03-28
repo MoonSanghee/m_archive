@@ -37,7 +37,7 @@ const router = (
 
       <Route path="home" element={<Layout/>}>
           
-        <Route index element={<HomePage/>}>
+        <Route path="movies" element={<HomePage/>}>
          {/*<Route path="movie:id" element={<MovieDetailPage/>}/>
          */} 
         </Route>
@@ -50,9 +50,9 @@ const router = (
           <Route path="like" element={<LikePage/>}/>
           <Route path="review" element={<ReviewPage/>}/>
           <Route path="faq" element={<FAQ/>}/>
-  <Route path=":id" element={<UserPage/>}/>*/}
+          <Route path=":id" element={<UserPage/>}/>*/}
+          </Route>
       </Route>
-    </Route>
     {/*
       <Route path="admin">
         <Route index element={<ManageMoviesPage/>}>
