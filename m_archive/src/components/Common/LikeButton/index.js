@@ -12,7 +12,7 @@ const LikeButton = () => {
     return (
         <label className={styles.wrapper}>
             <span className={styles.click} onClick={onLikeBtn}>
-                {like ? <LikeIcon2 fill="red"/> : <LikeIcon fill="gray"/>}
+                {like ? <LikeRedIcon className={styles.icon2}/> : <LikeIcon className={styles.icon}/>}
             </span>
         </label>
     )
