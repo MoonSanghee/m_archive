@@ -3,12 +3,12 @@ import Header from "../../../components/Layout/Header";
 import styles from "./seo.module.scss";
 import { StarRate, Dropdown, Modal } from "../../../components/Common/";
 import cx from "classnames";
-import StarRateButton from "../../Home/MovieDetail/StarRateButton";
 import { sortItems, typeItems, starRates } from "./testItems/";
 import useModal from "../../../components/Common/Modal/useModal";
 import ReviewModal from "../../Home/MovieDetail/ReviewModal";
-import DetailButton from "../../../pages/Home/MovieDetail/_shared/DetailButton";
+//import {ReviewButton,StarRateButton}from "../../Home/MovieDetail/_shared/";
 import { ReviewWriteIcon } from "../../../assets/icon";
+import ReviewCarousel from "../../Home/MovieDetail/ReviewCarousel";
 
 const Seo = () => {
   const [selectedSort, setSelectedSort] = useState(null);
@@ -79,18 +79,17 @@ const Seo = () => {
               );
             })}
 
+            {/*
             <h1>### 별점 입력 컴포넌트</h1>
             <StarRateButton />
             <p>이미 별점을 입력했을때 -3.5점</p>
-            <StarRateButton myRate="3.5" />
+          <StarRateButton myRate="3.5" />*/}
           </div>
 
-          <DetailButton onClick={onClickOpenModal}>
-            <ReviewWriteIcon />
-            리뷰 수정
-          </DetailButton>
+          {/*<ReviewButton onClick={onClickOpenModal} btnName="리뷰 수정"/>*/}
 
           <Modal modalOption={modalOption} modalSize="small" />
+          <ReviewCarousel/>
         </section>
       </main>
     </div>

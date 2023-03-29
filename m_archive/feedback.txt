@@ -1,8 +1,0 @@
-1. /home/movies 캐러셀-카드뒤로 숫자옮기고(z-index 쓰면될것같은데),  왼쪽으로 옮기는 방법은  모르겠습니당.
-
-2. /home/movies, /home/mypage에서 보여야 할 Footer가 자꾸 사라집니다. 
-Layout/index.js - (개발자 모드 켜보면 항상 <div></div>로 나옵니다. )
-
-3./test/jo - 공유하기 아이콘 누르면 생기는  alert 창 높이 조절 
-
-4. 페이지 개발을 시작해서, 폴더구조나 router 페이지 봐주셨으면 좋겠습니다.

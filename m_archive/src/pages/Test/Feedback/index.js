@@ -1,7 +1,7 @@
 import React from "react";
 // import { LNB, LNB2 } from "../../../components";
 import styles from "./feedback.module.scss";
-import DetailButton from "../../Home/MovieDetail/_shared/DetailButton";
+import DetailButton from "../../Home/MovieDetail/_shared/ReviewButton";
 import useModal from "../../../components/Common/Modal/useModal";
 import ReviewModal from "../../Home/MovieDetail/ReviewModal";
 import { useCallback } from "react";

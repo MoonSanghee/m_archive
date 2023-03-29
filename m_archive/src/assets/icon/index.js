@@ -32,4 +32,5 @@ export {ReactComponent as LikeIcon2} from "./like-icon2.svg";
 export {ReactComponent as LikeRedIcon} from "./like-red.svg";
 export {ReactComponent as LikeBlackIcon} from "./like-black.svg";
 export {ReactComponent as BlockIcon} from "./block.svg";
-
+//ReviewCardCarousel - slider 원 아이콘
+export {ReactComponent as EclipseIcon} from "./eclipse-icon.svg";

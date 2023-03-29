@@ -1,5 +1,5 @@
-@use "../../../../styles/mixins/" as m;
-@use "../../../../styles/constants/" as c;
+@use "../../../../../styles/mixins/" as m;
+@use "../../../../../styles/constants/" as c;
 .button{
    @include m.flex();
    column-gap: 4px;
@@ -10,6 +10,11 @@
    > svg {
     width: 20px;
     height:20px;
+   }
+   .label{
+      font-size: 16px;
+      color:c.$C_WHITE;
+      letter-spacing: 1px;
    }
    cursor: pointer;
    
