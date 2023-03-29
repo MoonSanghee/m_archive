@@ -1,13 +1,29 @@
 @use "../../../styles/constants/colors" as c;
+@use "../../../styles/mixins/" as m;
+
 
 .wrapper {
-  width: 28px;
+  @include m.flex();
+  width: 68px;
   cursor: pointer;
+  column-gap: 8px;
+
+
+  .label {
+    color: c.$C_WHITE;
+    font-size: 16px;
+    letter-spacing: 1px;
+    // 좋아요도 똑같이
+  }
 }
 
 //NOTE: 팝업창 className
 .popup {
-  height: 200px;
-  bottom: 40px;
-  left: 40px;
+  height: 52px;
+  // width: 360px;
+  background-color: c.$C_GRAY;
+  
+  > div {
+    font-size: 16px;
+  }
 }
