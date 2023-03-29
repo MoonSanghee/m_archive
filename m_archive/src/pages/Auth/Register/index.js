@@ -53,10 +53,28 @@ const Register = () => {
     setTouched({ ...touched, [name]: true });
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     console.log(form);
     console.log(validatedForm); //true면 api 보내기
+    if(!validatedForm){
+      //false면리턴
+      return;
+    }
+    let body = {
+      email:form.email,
+      name:form.name,
+      nickname:form.nickname,
+      password:form.password,
+    };
+    
+    const response = await register(body);
+    if(response.status===200){
+      const data = reponse.data;
+      saveTokens(data);
+      //navigate("/movies");
+    }
+
   };
 
   //메시지
