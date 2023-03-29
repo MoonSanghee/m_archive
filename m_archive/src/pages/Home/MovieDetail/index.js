@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { getMovie } from "../../../api/Movies";
-import StarRateButton from "./StarRateButton";
+import { StarRateButton } from "./_shared";
 import styles from "./moviedetail.module.scss";
 import { ReviewCard, ShareButton, LikeButton } from "../../../components/Common";
 
