@@ -1,0 +1,76 @@
+@use "../../../styles/constants/" as c;
+@use "../../../styles/mixins/" as m;
+
+.back {
+  width: 100vw;
+  height: 40vh;
+  > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(5px);
+
+  }
+}
+.base {
+  position: relative;
+  z-index:5;
+  top: -180px;
+  display: flex;
+  padding: 0px 100px;
+  height: 100vh;
+  .poster {
+    >img {
+      flex-grow: 1;
+      width: 280px;
+      height: 400px;
+    }
+  }
+
+  .info {
+    padding-top: 200px;
+    @include m.flex(start, start, column);
+    flex-grow: 4;
+    row-gap: 12px;
+    margin-left: 20px;
+    max-width: 55vw;
+
+    >h2 {
+      font-size: 32px;
+    }
+    .buttons {
+      display: flex;
+      width: 60%;
+      justify-content: space-between;
+      margin-bottom: 32px;
+
+      .buttonPlace {
+        @include m.flex(center, center)
+      }
+    }
+    >p {
+      margin: 4px 0px;
+      >span {
+        margin: 8px;
+      }
+      .head {
+        margin: 0px;
+        font-size: 20px;
+      }
+    }
+
+    .story {
+      margin: 32px 0px;
+    }
+
+    .divide {
+      font-size: 20px;
+      margin-top: 32px;
+      width: 100%;
+      @include m.flex(space-between)
+    }
+    .reviews {
+      display: flex;
+    }
+  }
+}
