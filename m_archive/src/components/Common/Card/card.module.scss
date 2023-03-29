@@ -12,6 +12,11 @@
   &:hover .card_inner {
     transform: rotateY(180deg);
   }
+  &.top10First{
+    width: 300px;
+    height: 400px;
+  }
+ 
 }
 
 .card_inner {

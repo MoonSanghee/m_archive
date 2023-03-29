@@ -1,3 +1,25 @@
-.movie{
-    float:left;
+@use "../../../../styles/constants/" as c;
+.movie {
+  float: left;
+  &.top10 {
+    margin-left: 50px;
+    position: relative;
+    .rankingWrapper {
+      position: absolute;
+      z-index: 10;
+      top: 176px;
+      left: -70px;
+      font-size: 212px;
+      color: c.$C_WHITE_50;
+      //text-shadow: -1px 0 c.$C_GRAY, 0 1px c.$C_GRAY , 1px 0 c.$C_GRAY, 0 -1px c.$C_GRAY;
+      pointer-events: none;
+    
+    }
+    .first{
+      top: 180px;
+      left: -70px;
+      font-size: 260px;
+    }
+  }
+ 
 }

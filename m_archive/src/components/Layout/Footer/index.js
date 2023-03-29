@@ -6,6 +6,7 @@ const Footer = () => {
     <footer className={styles.footer}>
       <p className={styles.logo}>M-archive</p>
       <ul className={styles.ul}>
+        {/* //NOTE: 시간이 남으면 dl dt dd or display:grid */}
         <li className={styles.li}>
           김희환 | 깃헙주소 https://github.com/BlankCodeStack | 트위터 :
           @blankcodestack | 활동시간 09:00 ~ 03 : 00 | 주말 공휴일 휴무 |
@@ -24,14 +25,14 @@ const Footer = () => {
           성우인생굳
         </li>
         <li className={styles.li}>
-          서진주 | 깃헙주소 https://github.com/jinjuseo | 인생은 즐겁게…
-          아침형 인간으로 바뀌는 중 입니다.
+          서진주 | 깃헙주소 https://github.com/jinjuseo | 인생은 즐겁게… 아침형
+          인간으로 바뀌는 중 입니다.
         </li>
         <li className={styles.li}>
           <a
             href="https://www.flaticon.com/kr/free-icons/"
             title="캐릭터 아이콘"
-            className= {styles.link}
+            className={styles.link}
           >
             캐릭터 아이콘 제작자: Vitaly Gorbachev - Flaticon
           </a>

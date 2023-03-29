@@ -1,51 +1,48 @@
-import React, { useState } from "react";
-import styles from "./login.module.scss";
-import { Button, Input } from "../../../components";
+import React, { useState } from 'react';
+import styles from './login.module.scss';
+import { Button, Input } from '../../../components';
+import { useNavigate } from 'react-router-dom';
+import { validateEmail, validatePassword } from './utils';
 
 const LoginPage = () => {
-  const [form, setForm] = useState({
-    userEmail: "",
-    password: "",
-  });
-  const { userEmail, password } = form;
+  const navigate = useNavigate();
 
-  const [emailStatus, setEmailStatus] = useState("");
-  const [passwordStatus, setPasswordStatus] = useState("");
+  const [form, setForm] = useState({
+    userEmail: '',
+    password: '',
+  });
+
+  const [emailStatus, setEmailStatus] = useState('');
+  const [passwordStatus, setPasswordStatus] = useState('');
 
   const onChange = (e) => {
     const { name, value } = e.currentTarget;
     setForm({ ...form, [name]: value });
-    console.log(e.currentTarget.value); //확인용
   };
 
-  const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i; //제일 많이 보임
-  const passwordRegEx = /^[A-Za-z0-9]{8,20}$/; //대문자,소문자,숫자 8~20자리수
-  
-  const isPassedEmail = () => {
-    if (userEmail === "") { //입력 0
-      return setEmailStatus("입력하세요.");
-    } else if (emailRegEx.test(userEmail)) { //성공
-      return setEmailStatus("");
-    } else { //땡
-      return setEmailStatus("정확한 이메일 주소를 입력하세요.");
-    }
-  };
-
-  const isPassedPassword = () => {
-    if (password === "") { //입력 0
-      return setPasswordStatus("입력하세요.");
-    } else if (password.match(passwordRegEx)===null) { //성공
-      return setPasswordStatus("땡");
-    } else { //땡
-      return setPasswordStatus("");
-    }
+  const onClickedRegister = () => {
+    navigate('/register');
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    isPassedEmail();
-    isPassedPassword();
-    return console.log(form); //확인용
+
+    const validatedEmail = validateEmail(form.userEmail);
+    const validatedPassword = validatePassword(form.password);
+
+    //submit 눌렀을때 오류메시지 수정
+    if (typeof validatedEmail !== Boolean) {
+      setEmailStatus(validatedEmail);
+    }
+    if (typeof validatedPassword !== Boolean) {
+      setPasswordStatus(validatedPassword);
+    }
+
+    //폼 유효성
+    const validatedForm = !validatedEmail && !validatedPassword ? true : false;
+
+    console.log(form); //확인용
+    console.log(validatedForm); //확인용
   };
 
   return (
@@ -72,9 +69,9 @@ const LoginPage = () => {
               errorText={passwordStatus}
             />
           </form>
-          <Button width={"big"} type="submit" form="loginForm">
-              로그인
-            </Button>
+          <Button width={'big'} type="submit" form="loginForm">
+            로그인
+          </Button>
         </div>
         <div className={styles.overlayContainer}>
           <h1>
@@ -88,10 +85,11 @@ const LoginPage = () => {
             저희와 기록을 남겨요
           </p>
           <Button
-            width={"big"}
-            border={"borderwhite"}
+            width={'big'}
+            border={'borderwhite'}
             type="submit"
             form="loginForm"
+            onClick={onClickedRegister}
           >
             회원가입
           </Button>

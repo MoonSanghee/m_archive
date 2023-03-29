@@ -1,30 +1,23 @@
-@use "../../../styles/constants/" as c;
-@use "../../../styles/mixins/" as m;
+@use "../../../../styles/constants/" as c;
+@use "../../../../styles/mixins/" as m;
 .wrapper {
   @include m.flex();
-  column-gap: 8px;
+  column-gap: 4px;
   padding: 28px 0;
   .ulWrapper {
     @include m.flex(flex-start);
     column-gap: 40px; 
-    width: 1712px;
+    width: 2056px;
     //NOTE: Feedback - width 조절해서 페이지 전체가 좌우 스크롤이 되지 않도록
     //width: calc(100vw - 96px); -> 이렇게하니 버튼이 맨끝으로감 ㅠ
     //overflow-x: scroll;
   }
   > svg {
     cursor: pointer;
-    width: 40px;
-    height: 40px;
-    > path {
-      fill: c.$C_WHITE;
-    }
-    z-index: c.$Z_CAROUSELARROW;
   }
-  .prevBtn {
-    transform: rotate(90deg);
-  }
-  .nextBtn {
-    transform: rotate(270deg);
+  .cliked{
+    width: 12px;
+    height: 12px;
+    > svg {fill:c.$C_PRIMARY;}
   }
 }

@@ -1,5 +1,5 @@
 import React, { memo, useState } from "react";
-import { LikeIcon, LikeIcon2 } from "../../../assets/icon";
+import { LikeRedIcon, LikeIcon } from "../../../assets/icon";
 import styles from "./likebutton.module.scss";
 
 const LikeButton = () => {

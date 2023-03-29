@@ -18,16 +18,14 @@ const ReviewModal = ({ title, content, onClose }) => {
      *  */
     //e.preventDefalut();
     const btn_type = e.currentTarget.id;
-    if(btn_type ==="save"){
+    if (btn_type === "save") {
       if (isModified) {
         alert("리뷰가 수정되었습니다.");
       } else {
         alert("리뷰가 작성되었습니다.");
       }
-    }
-    else{
+    } else {
       alert("리뷰가 삭제되었습니다.");
-
     }
     onClose();
   };
@@ -39,7 +37,6 @@ const ReviewModal = ({ title, content, onClose }) => {
     alert("리뷰가 삭제되었습니다.");
     //setIsDeleted(true);
     //return()=>{onClose();}
-    
   };
 
   const onChange = (e) => {
@@ -75,12 +72,12 @@ const ReviewModal = ({ title, content, onClose }) => {
         {/* //NOTE: position fixed */}
         <div className={styles.btnWrapper}>
           {isModified && (
-            <Button id="delete" color={"gray"} type="submit"  form="reviewForm">
+            <Button id="delete" color={"gray"} type="submit" form="reviewForm">
               삭제
             </Button>
           )}
 
-          <Button  id="save" color={"secondary"} type="submit" form="reviewForm" >
+          <Button id="save" color={"secondary"} type="submit" form="reviewForm">
             {!isModified ? "저장" : "수정"}
           </Button>
         </div>
