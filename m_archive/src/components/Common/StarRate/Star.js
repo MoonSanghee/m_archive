@@ -1,12 +1,13 @@
 import React from "react";
 import cx from "classnames";
 import styles from "./star.module.scss";
-const Star = ({ID,item,idx ,ratesResArr}) =>{
+
+const Star = ({ID,item,index ,ratesResArr}) =>{
     return(
-        <span className={styles.star_icon} id={`${ID}-${item}-${idx}`} >
+    <span className={styles.star_icon} id={`${ID}-${item}-${index}`} >
         <svg width="40" height="38" viewBox="0 0 40 38" fill="#ccc" xmlns="http://www.w3.org/2000/svg">
             <clipPath id={`${ID}-${item}StarClip`}>
-                <rect width={`${ratesResArr[idx]}`} height='38' />
+                <rect width={`${ratesResArr[index]}`} height='38' />
             </clipPath>
             
             <path id={`${ID}-${item}Star`} 
@@ -16,7 +17,7 @@ const Star = ({ID,item,idx ,ratesResArr}) =>{
             <use clipPath={`url(#${ID}-${item}StarClip)`} href={`#${ID}-${item}Star`} fill="#FCE22A"
             />
         </svg>
-    </span>
+    </span>  
     )
 
 }

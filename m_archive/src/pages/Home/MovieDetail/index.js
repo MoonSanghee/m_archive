@@ -4,17 +4,19 @@ import { getMovie } from "../../../api/Movies";
 import { StarRateButton } from "./_shared";
 import styles from "./moviedetail.module.scss";
 import { ReviewCard, ShareButton, LikeButton } from "../../../components/Common";
-
+import ReviewCarousel from "./ReviewCarousel";
+import { getMovieReviews } from "../../../api/Reviews";
 const MovieDetailPage = () => {
   const params = useParams();
   const [movie, setMovie] = useState({});
   const [genres, setGenres] = useState([]);
   const [staffs, setStaffs] = useState([]);
+  const [reviews,setReviews] = useState([]);
   
   const navigate = useNavigate();
 
   const location = useLocation();
-  console.log(location)
+  console.log(location);
   const onClick = () => {
     return () => {
       const move = location.pathname + '/reviews'
@@ -22,25 +24,32 @@ const MovieDetailPage = () => {
     };
   };
 
-  const onGetMovie = async () => {
-    const response = await getMovie(params.id);
-
-    // console.log(response)
+  const onGetMovie = async (id) => {
+    const response = await getMovie(id);
     if (response.status === 200) {
       setMovie(response.data);
       setGenres(response.data.genres)
       setStaffs(response.data.staffs)
     };
-
   };
+  const onGetReviwes = async (id) =>{
+    const response = await getMovieReviews(id);
+    if (response.status === 200) {
+      const items = [...response.data];
+      setReviews(items);
+  }
+}
 
   useEffect(() => {
     if (!params.id) {
       return;
     }
-    onGetMovie();
+    onGetMovie(params.id);
+    console.log(params.id);
+    onGetReviwes(params.id);
   }, [params.id]);
-  console.log(genres)
+
+
   return (
     <main>
       <div className={styles.back}>
@@ -104,11 +113,10 @@ const MovieDetailPage = () => {
           </p>
           <p className={styles.divide}>
             <span className={styles.head}>리뷰</span>
-            <span onClick={onClick()}>더보기</span>
+            <span className={styles.more} onClick={onClick()}>더보기</span>
           </p>
           <section className={styles.reviews}>
-            <ReviewCard/>
-            <ReviewCard/>
+            <ReviewCarousel reviews={reviews}/>
           </section>
         </section>
       </section>
