@@ -1,15 +1,15 @@
-import React, { useState }  from "react";
-import cx from 'classnames';
-import styles from './lnb.module.scss';
+import React, { useState } from "react";
+import cx from "classnames";
+import styles from "./lnb.module.scss";
 import { useNavigate } from "react-router-dom";
-import boExamples from './boExamples';
+import boExamples from "./boExamples";
 
-const AdminLNB = ({useplace, ...props}) => {
+const AdminLNB = ({ useplace, ...props }) => {
   const navigate = useNavigate();
 
   const onClick = (item) => {
     return () => {
-      navigate(item.path)
+      navigate(item.path);
     };
   };
 
@@ -19,15 +19,13 @@ const AdminLNB = ({useplace, ...props}) => {
         {boExamples.map((item) => {
           return (
             <li className={styles.example} onClick={onClick(item)}>
-              <span>
-              {item.name}
-              </span>
+              <span>{item.name}</span>
             </li>
-          )
+          );
         })}
       </menu>
     </section>
-  )
+  );
 };
 
 export default AdminLNB;
