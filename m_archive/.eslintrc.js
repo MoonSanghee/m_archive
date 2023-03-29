@@ -9,6 +9,7 @@ module.exports = {
     ecmaFeatures: { jsx: true },
     jsx: true,
     useJSXTextNode: true,
+    sourceType: 'module',
   },
   extends: [
     'eslint:recommended',
@@ -97,7 +98,5 @@ module.exports = {
       },
     ],
   },
-  parserOptions: {
-    sourceType: 'module',
-  },
+ 
 };
