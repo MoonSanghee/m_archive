@@ -1,0 +1,1 @@
+export {default as ManageMoviesPage} from "./ManageMoviesPage";

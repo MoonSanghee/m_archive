@@ -27,7 +27,6 @@ export {ReactComponent as ShareIcon} from "./share-icon.svg";
 export {ReactComponent as MypageArrow} from "./Mypage-arrow.svg";
 //좋아요 아이콘
 export { ReactComponent as LikeIcon } from "./like-icon.svg";
-export {ReactComponent as LikeIcon2} from "./like-icon2.svg";
 //Movie - Card
 export {ReactComponent as LikeRedIcon} from "./like-red.svg";
 export {ReactComponent as LikeBlackIcon} from "./like-black.svg";
