@@ -1,5 +1,5 @@
 import React, { memo, useState } from "react";
-import { LikeIcon, LikeIcon2 } from "../../../assets/icon";
+import { LikeRedIcon, LikeIcon } from "../../../assets/icon";
 import styles from "./likebutton.module.scss";
 
 const LikeButton = () => {
@@ -12,7 +12,7 @@ const LikeButton = () => {
     return (
         <label className={styles.wrapper}>
             <span className={styles.click} onClick={onLikeBtn}>
-                {like ? <LikeIcon2 fill="red"/> : <LikeIcon fill="gray"/>}
+                {like ? <LikeRedIcon className={styles.icon2}/> : <LikeIcon className={styles.icon}/>}
                 좋아요
             </span>
         </label>
