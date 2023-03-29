@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState, memo } from "react";
 import styles from "./starRateButton.module.scss";
-import { HalfStarIcon } from "../../../../assets/icon";
+import { HalfStarIcon } from "../../../../../assets/icon";
 import cx from "classnames";
 
 const StarRateButton = ({ myRate }) => {

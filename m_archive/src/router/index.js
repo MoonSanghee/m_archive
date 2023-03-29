@@ -20,8 +20,9 @@ import MyPageLayout from "../components/Layout/MyPageLayout";
 //import {ProfilePage} from '../pages/MyPage/';
 import Profile from "../pages/MyPage/Profile";
 import Register from "../pages/Auth/Register";
-import { HomePage } from "../pages";
 import { ManageMoviesPage } from "../pages/Admin";
+import { HomePage, MovieDetailPage } from '../pages';
+
 
 const router = (
   <Route path="/">
@@ -45,10 +46,14 @@ const router = (
         {/*<Route path="movie:id" element={<MovieDetailPage/>}/>
          */}
       
+        <Route path="detail/:id" element={<MovieDetailPage/>}/>
+    
+        <Route path="mypage" element={<MyPageLayout/>}>
+          
+          <Route path="profile" element={<Profile/>}/>
+          {/*
 
-      <Route path="mypage" element={<MyPageLayout />}>
-        <Route path="profile" element={<Profile />} />
-        {/*
+
           <Route path="like" element={<LikePage/>}/>
           <Route path="review" element={<ReviewPage/>}/>
           <Route path="faq" element={<FAQ/>}/>
@@ -66,6 +71,7 @@ const router = (
       </Route>
       
   </Route>
+  
 );
 
 const rootRouter = createBrowserRouter(createRoutesFromElements(router));

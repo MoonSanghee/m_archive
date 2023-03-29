@@ -16,3 +16,4 @@ export { default as Modal } from "./Modal";
 export { default as Card } from "./Card";
 export {default as LikeButton} from "./LikeButton";
 export {default as ShareButton} from "./ShareButton";
+export { default as ReviewCard } from "./ReviewCard";

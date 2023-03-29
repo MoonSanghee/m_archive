@@ -1,214 +1,105 @@
-import React, { useState } from "react";
-import styles from "./register.module.scss";
-import { Button, Input } from "../../../components";
-import { useNavigate } from "react-router-dom";
-import { validateForm } from "./utils";
+import React, { useState } from 'react';
+import styles from './register.module.scss';
+import { Button, Input } from '../../../components';
+import { useNavigate } from 'react-router-dom';
+import { saveTokens } from '../../../utils/';
+import { register } from '../../../api/Auth';
+import {
+  validateName,
+  validateNickname,
+  validateEmail,
+  validatePassword,
+  validateCheckpassword,
+} from './utils';
 
 const Register = () => {
-  const navigate = useNavigate();
-
-  //NOTE: state를 많이 사용하는 것보다 객체로 관리하는 것이 편합니다~
-  const [name, setName] = useState({
-    entered: "",
-    touched: false,
-    status: null,
-  });
-
-  //NOTE: 기능마다 state 분리
+  //기능
   const [form, setForm] = useState({
-    name: "",
-    nickname: "",
-    email: "",
-    password: "",
+    name: '',
+    nickname: '',
+    email: '',
+    password: '',
+    checkpassword: '',
   });
+
   const [touched, setTouched] = useState({
     name: false,
     nickname: false,
     email: false,
     password: false,
+    checkpassword: false,
   });
+
   const [status, setStatus] = useState({
-    name: null,
-    nickname: null,
+    name: '',
+    nickname: '',
+    email: '',
+    password: '',
+    checkpassword: '',
   });
+  const [font,setFont]=useState({
+    fontFamily:"Arial",
+  });
+  const navigate = useNavigate();
 
-  const [enteredName, setEnteredName] = useState("");
-  const [enteredNameTouched, setEnteredNameTouched] = useState(false);
-  const [nameStatus, setNameStatus] = useState("null");
-
-  const [enteredNickname, setEnteredNickname] = useState("");
-  const [enteredNicknameTouched, setEnteredNicknameTouched] = useState(false);
-  const [nicknameStatus, setNicknameStatus] = useState("null");
-
-  const [enteredEmail, setEnteredEmail] = useState("");
-  const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
-  const [emailStatus, setEmailStatus] = useState("null");
-
-  //TODO: 정규식은 분리
-  const emailRegEx =
-    /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i; //제일 많이 보임
-
-  const [enteredPassword, setEnteredPassword] = useState("");
-  const [enteredPasswordTouched, setEnteredPasswordTouched] = useState(false);
-  const [passwordStatus, setPasswordStatus] = useState("");
-  const passwordRegEx = /^[A-Za-z0-9]{8,16}$/; //대문자,소문자,숫자 8~16자리수
-
-  const [enteredCheckpassword, setEnteredCheckpassword] = useState("");
-  const [enteredCheckpasswordTouched, setEnteredCheckpasswordTouched] =
-    useState(false);
-  const [checkpasswordStatus, setCheckpasswordStatus] = useState("1");
-
-  //form 유효 확인
-  let formIsValid = false;
-
-  if (
-    nameStatus === "" &&
-    nicknameStatus === "" &&
-    emailStatus === "" &&
-    passwordStatus === "" &&
-    enteredPassword === enteredCheckpassword
-  ) {
-    formIsValid = true;
-  }
-
-  //name
-  const nameInputChangeHandler = (event) => {
-    setEnteredNameTouched(false);
-    console.log(event.target.value);
-    setEnteredName(event.target.value);
+  const onClickedLogin = () => {
+    navigate('/login');
   };
 
-  //NOTE: nameInputBlurHandler -> 올드한 네이밍 => onBlurNameInput
-  const nameInputBlurHandler = (event) => {
-    setEnteredNameTouched(true);
-    isPassedName();
+  const onChange = (e) => {
+    const { name } = e.target;
+    setTouched({ ...touched, [name]: false });
+    setForm({ ...form, [name]: e.currentTarget.value });
   };
 
-  //NOTE: 함수를 하나로 합치기
   const onBlur = (e) => {
     const { name } = e.target;
     setTouched({ ...touched, [name]: true });
   };
 
-  //NOTE: 유효성 검사는 파일을 생성해서 따로 분리해서 관리
-  const isPassedName = () => {
-    if (enteredName.trim() === "") {
-      return setNameStatus("이름을 입력하세요.");
-    } else {
-      return setNameStatus("");
-    }
-  };
-
-  //nickname
-  const nicknameInputChangeHandler = (event) => {
-    setEnteredNicknameTouched(false);
-    setEnteredNickname(event.target.value);
-  };
-
-  const nicknameInputBlurHandler = (event) => {
-    setEnteredNicknameTouched(true);
-    isPassedNickname();
-  };
-
-  const isPassedNickname = () => {
-    if (enteredNickname.trim() === "") {
-      return setNicknameStatus("사용할 닉네임을 입력하세요.");
-    } else {
-      return setNicknameStatus("");
-    }
-  };
-
-  //email
-  const emailInputChangeHandler = (event) => {
-    setEnteredEmailTouched(false);
-    setEnteredEmail(event.target.value);
-  };
-
-  const emailInputBlurHandler = (event) => {
-    setEnteredEmailTouched(true);
-    isPassedEmail();
-  };
-
-  const isPassedEmail = () => {
-    if (enteredEmail === "") {
-      return setEmailStatus("입력하세요.");
-    } else if (emailRegEx.test(enteredEmail)) {
-      return setEmailStatus("");
-    } else {
-      return setEmailStatus("정확한 이메일 주소를 입력하세요.");
-    }
-  };
-
-  //password
-  const passwordInputChangeHandler = (event) => {
-    setEnteredPasswordTouched(false);
-    setEnteredPassword(event.target.value);
-  };
-
-  const passwordInputBlurHandler = (event) => {
-    setEnteredPasswordTouched(true);
-    isPassedPassword();
-  };
-
-  const isPassedPassword = () => {
-    if (enteredPassword === "") {
-      //입력 0
-      return setPasswordStatus("입력하세요.");
-    } else if (enteredPassword.match(passwordRegEx) === null) {
-      //땡
-      return setPasswordStatus("비밀번호는 8~16자 이내로 입력해주세요.");
-    } else {
-      //성공
-      return setPasswordStatus("");
-    }
-  };
-
-  //check password
-  const checkpasswordInputChangeHandler = (event) => {
-    setEnteredCheckpasswordTouched(false);
-    setEnteredCheckpassword(event.target.value);
-  };
-
-  const checkpasswordInputBlurHandler = (event) => {
-    setEnteredCheckpasswordTouched(true);
-    isPassedcheckPassword();
-  };
-
-  const isPassedcheckPassword = () => {
-    if (enteredCheckpassword === enteredPassword) {
-      return setCheckpasswordStatus("");
-    } else {
-      //땡
-      return setCheckpasswordStatus("입력하신 비밀번호가 일치하지 않습니다.");
-    }
-  };
-  const onClickedLogin = () => {
-    navigate("/login");
-  };
-
-  //회원가입버튼
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(`이름: ${enteredName}`); //확인용
-    console.log(`닉네임: ${enteredNickname}`);
-    console.log(`이메일: ${enteredEmail}`);
-    console.log(`비번: ${enteredPassword}`);
-    console.log(formIsValid);
-    validateForm();
-    // if (formIsValid !== true) {
-    //   return;
-    // }
-    //navigate('/'); 장르선택화면으로 넘어갈 예정
+    console.log(form);
+    console.log(validatedForm); //true면 api 보내기
+    if(!validatedForm){
+      //false면리턴
+      return;
+    }
+    let resgisterData = {
+      email:form.email,
+      name:form.name,
+      nickname:form.nickname,
+      password:form.password,
+    };
+    
+    const response = await register(resgisterData);
+    if(response.status===200){
+      const data = response.data;
+      saveTokens(data);
+      navigate("/movies");
+    }
 
-    setForm({
-      ...form,
-      name: enteredName,
-      nickname: enteredNickname,
-      email: enteredEmail,
-      password: enteredPassword,
-    });
   };
-  console.log({ form });
+
+  //메시지
+  const validatedName = validateName(form.name);
+  const validatedNickname = validateNickname(form.nickname);
+  const validatedEmail = validateEmail(form.email);
+  const validatedPassword = validatePassword(form.password);
+  const validatedCheckpassword = validateCheckpassword(
+    form.checkpassword,
+    form.password,
+  );
+
+  //폼 유효성
+  const validatedForm =
+    !validatedName &&
+    !validatedNickname &&
+    !validatedEmail &&
+    !validatedPassword &&
+    !validatedCheckpassword
+      ? true
+      : false;
 
   return (
     <main className={styles.wrapper}>
@@ -225,8 +116,8 @@ const Register = () => {
             로그인해주세요
           </p>
           <Button
-            width={"big"}
-            border={"borderwhite"}
+            width={'big'}
+            border={'borderwhite'}
             type="submit"
             form="loginForm"
             onClick={onClickedLogin}
@@ -236,62 +127,68 @@ const Register = () => {
         </div>
         <div className={styles.formContainer}>
           <h1>M-archive</h1>
-          <form id="loginForm" className={styles.loginForm} onSubmit={onSubmit}>
+          <form id="registerForm" className={styles.loginForm} onSubmit={onSubmit}>
             <Input
+              style={font}
               placeholder="사용자의 이름을 입력해주세요"
               className={styles.inputWrapper}
               name="name"
               autoComplete="off"
-              onChange={nameInputChangeHandler}
-              onBlur={nameInputBlurHandler}
-              value={enteredName}
-              errorText={enteredNameTouched && nameStatus}
+              onChange={onChange}
+              onBlur={onBlur}
+              value={form.name}
+              errorText={touched.name && validatedName}
             />
             <Input
+               style={font}
               placeholder="닉네임을 입력해주세요"
               className={styles.inputWrapper}
               name="nickname"
               autoComplete="off"
-              onChange={nicknameInputChangeHandler}
-              onBlur={nicknameInputBlurHandler}
-              value={enteredNickname}
-              errorText={enteredNicknameTouched && nicknameStatus}
+              onChange={onChange}
+              onBlur={onBlur}
+              value={form.nickname}
+              errorText={touched.nickname && validatedNickname}
             />
             <Input
+             style={font}
               placeholder="이메일주소를 입력해주세요"
               className={styles.inputWrapper}
               name="email"
               autoComplete="off"
-              onChange={emailInputChangeHandler}
-              onBlur={emailInputBlurHandler}
-              value={enteredEmail}
-              errorText={enteredEmailTouched && emailStatus}
+              onChange={onChange}
+              onBlur={onBlur}
+              value={form.email}
+              errorText={touched.email && validatedEmail}
             />
             <Input
+             style={font}
               className={styles.inputWrapper}
+              type="password"
               placeholder="비밀번호"
               name="password"
               autoComplete="off"
-              onChange={passwordInputChangeHandler}
-              onBlur={passwordInputBlurHandler}
-              value={enteredPassword}
-              errorText={enteredPasswordTouched && passwordStatus}
+              onChange={onChange}
+              onBlur={onBlur}
+              value={form.password}
+              errorText={touched.password && validatedPassword}
             />
             <Input
+              style={font}
               className={styles.inputWrapper}
+              type="password"
               placeholder="비밀번호 재확인"
               name="checkpassword"
               autoComplete="off"
-              onChange={checkpasswordInputChangeHandler}
-              onBlur={checkpasswordInputBlurHandler}
-              value={enteredCheckpassword}
-              errorText={enteredCheckpasswordTouched && checkpasswordStatus}
+              onChange={onChange}
+              onBlur={onBlur}
+              value={form.checkpassword}
+              errorText={touched.checkpassword && validatedCheckpassword}
             />
           </form>
-          <Button width={"big"} type="submit" form="loginForm">
+          <Button width={'big'} type="submit" form="registerForm">
             회원가입
           </Button>
-          {/* {formIsValid ? "(확인용-성공)" : "(확인용-실패)"} */}
         </div>
       </section>
     </main>

@@ -1,57 +1,64 @@
-import React, { useState } from "react";
-import styles from "./login.module.scss";
-import { Button, Input } from "../../../components";
-import { useNavigate } from "react-router-dom";
-import { emailRegEx, passwordRegEx } from "../../../utils/regex";
-import { validateEmail } from "./utils";
+import React, { useState } from 'react';
+import styles from './login.module.scss';
+import { Button, Input } from '../../../components';
+import { useNavigate } from 'react-router-dom';
+import { validateEmail, validatePassword  } from "./utils";
+import { saveTokens } from '../../../utils';
+import { login } from '../../../api/Auth';
 
 const LoginPage = () => {
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
-    userEmail: "",
-    password: "",
+    userEmail: '',
+    password: '',
   });
-  const { userEmail, password } = form;
-
-  const [emailStatus, setEmailStatus] = useState("");
-  const [passwordStatus, setPasswordStatus] = useState("");
+  const [emailStatus, setEmailStatus] = useState('');
+  const [passwordStatus, setPasswordStatus] = useState('');
+  const [font,setFont]=useState({
+    fontFamily:"Arial",
+  });
 
   const onChange = (e) => {
     const { name, value } = e.currentTarget;
     setForm({ ...form, [name]: value });
-    console.log(e.currentTarget.value); //확인용
-  };
-
-  //NOTE: 유효성 검사
-  const validatePassword = () => {
-    if (password === "") {
-      //입력 0
-      return setPasswordStatus("입력하세요.");
-    } else if (password.match(passwordRegEx) === null) {
-      //성공
-      return setPasswordStatus("올바른 비밀번호를 입력하세요.");
-    } else {
-      //땡
-      return setPasswordStatus("");
-    }
   };
 
   const onClickedRegister = () => {
-    navigate("/register");
+    navigate('/register');
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    const validatedEmail = validateEmail(form.userEmail);
 
-    if (typeof validatedEmail === "string") {
+    const validatedEmail = validateEmail(form.userEmail);
+    const validatedPassword = validatePassword(form.password);
+
+    //submit 눌렀을때 오류메시지 수정
+    if (typeof validatedEmail !== Boolean) {
       setEmailStatus(validatedEmail);
-      return;
+    }
+    if (typeof validatedPassword !== Boolean) {
+      setPasswordStatus(validatedPassword);
     }
 
-    validatePassword();
+    //폼 유효성
+    const validatedForm = !validatedEmail && !validatedPassword ? true : false;
+
     console.log(form); //확인용
+    console.log(validatedForm); //확인용
+    
+    let loginData = {
+      email:form.userEmail,
+      password:form.password,
+    };
+    
+    const response = await login(loginData);
+    if(response.status===200){
+      const data = response.data;
+      saveTokens(data);
+      navigate("/movies");
+    }
   };
 
   return (
@@ -61,6 +68,7 @@ const LoginPage = () => {
           <h1>M-archive</h1>
           <form id="loginForm" className={styles.loginForm} onSubmit={onSubmit}>
             <Input
+              style={font}
               placeholder="이메일주소"
               className={styles.inputWrapper}
               name="userEmail"
@@ -70,7 +78,8 @@ const LoginPage = () => {
             />
             <Input
               className={styles.inputWrapper}
-              // type="password"
+              type="password"
+              style={font}
               placeholder="비밀번호"
               name="password"
               value={form.password}
@@ -78,7 +87,7 @@ const LoginPage = () => {
               errorText={passwordStatus}
             />
           </form>
-          <Button width={"big"} type="submit" form="loginForm">
+          <Button width={'big'} type="submit" form="loginForm">
             로그인
           </Button>
         </div>
@@ -94,8 +103,8 @@ const LoginPage = () => {
             저희와 기록을 남겨요
           </p>
           <Button
-            width={"big"}
-            border={"borderwhite"}
+            width={'big'}
+            border={'borderwhite'}
             type="submit"
             form="loginForm"
             onClick={onClickedRegister}
