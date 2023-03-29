@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styles from './register.module.scss';
 import { Button, Input } from '../../../components';
 import { useNavigate } from 'react-router-dom';
+import { saveTokens } from '../../../utils/';
+import { register } from '../../../api/Auth';
 import {
   validateName,
   validateNickname,
@@ -35,7 +37,9 @@ const Register = () => {
     password: '',
     checkpassword: '',
   });
-
+  const [font,setFont]=useState({
+    fontFamily:"Arial",
+  });
   const navigate = useNavigate();
 
   const onClickedLogin = () => {
@@ -53,10 +57,28 @@ const Register = () => {
     setTouched({ ...touched, [name]: true });
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     console.log(form);
     console.log(validatedForm); //true면 api 보내기
+    if(!validatedForm){
+      //false면리턴
+      return;
+    }
+    let resgisterData = {
+      email:form.email,
+      name:form.name,
+      nickname:form.nickname,
+      password:form.password,
+    };
+    
+    const response = await register(resgisterData);
+    if(response.status===200){
+      const data = response.data;
+      saveTokens(data);
+      navigate("/movies");
+    }
+
   };
 
   //메시지
@@ -105,8 +127,9 @@ const Register = () => {
         </div>
         <div className={styles.formContainer}>
           <h1>M-archive</h1>
-          <form id="loginForm" className={styles.loginForm} onSubmit={onSubmit}>
+          <form id="registerForm" className={styles.loginForm} onSubmit={onSubmit}>
             <Input
+              style={font}
               placeholder="사용자의 이름을 입력해주세요"
               className={styles.inputWrapper}
               name="name"
@@ -117,6 +140,7 @@ const Register = () => {
               errorText={touched.name && validatedName}
             />
             <Input
+               style={font}
               placeholder="닉네임을 입력해주세요"
               className={styles.inputWrapper}
               name="nickname"
@@ -127,6 +151,7 @@ const Register = () => {
               errorText={touched.nickname && validatedNickname}
             />
             <Input
+             style={font}
               placeholder="이메일주소를 입력해주세요"
               className={styles.inputWrapper}
               name="email"
@@ -137,7 +162,9 @@ const Register = () => {
               errorText={touched.email && validatedEmail}
             />
             <Input
+             style={font}
               className={styles.inputWrapper}
+              type="password"
               placeholder="비밀번호"
               name="password"
               autoComplete="off"
@@ -147,7 +174,9 @@ const Register = () => {
               errorText={touched.password && validatedPassword}
             />
             <Input
+              style={font}
               className={styles.inputWrapper}
+              type="password"
               placeholder="비밀번호 재확인"
               name="checkpassword"
               autoComplete="off"
@@ -157,7 +186,7 @@ const Register = () => {
               errorText={touched.checkpassword && validatedCheckpassword}
             />
           </form>
-          <Button width={'big'} type="submit" form="loginForm">
+          <Button width={'big'} type="submit" form="registerForm">
             회원가입
           </Button>
         </div>
