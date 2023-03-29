@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Header from "../../../components/Layout/Header";
 import styles from "./seo.module.scss";
 import { StarRate, Dropdown, Modal } from "../../../components/Common/";
@@ -9,13 +9,16 @@ import ReviewModal from "../../Home/MovieDetail/ReviewModal";
 //import {ReviewButton,StarRateButton}from "../../Home/MovieDetail/_shared/";
 import { ReviewWriteIcon } from "../../../assets/icon";
 import ReviewCarousel from "../../Home/MovieDetail/ReviewCarousel";
-
+import { getMovieReviews } from "../../../api/Reviews";
 const Seo = () => {
   const [selectedSort, setSelectedSort] = useState(null);
   const [selectedType, setSelectedType] = useState(null);
 
   const [modalOption, showModal] = useModal();
   const [isOpen, setIsOpen] = useState(true);
+  const [reviews,setReviews] = useState([]);
+  const [movieId,setMovieId] = useState('0151449f-d2ae-4753-a44c-79be9044f8ff');
+
   const starRatesItems = starRates;
   const dropdownSortItems = sortItems;
   const dropdownBOItems = typeItems;
@@ -48,11 +51,27 @@ const Seo = () => {
     );
   }, []);
 
+  const onGetReviwes = async (id) =>{
+    const response = await getMovieReviews(id);
+
+    if (response.status === 200) {
+      //console.log(response.data);
+      const items = [...response.data];
+      //console.log("items",items);
+      setReviews(items);
+  }
+}
+useEffect(()=>{
+  onGetReviwes(movieId);
+},[movieId])
+
   return (
     <div className={styles.layout}>
       <Header />
       <main className={styles.main}>
         <section className={styles.sectionWrapper}>
+
+        <ReviewCarousel reviews={reviews}/>
           <Dropdown
             items={dropdownSortItems}
             valueKey="name"
@@ -69,7 +88,8 @@ const Seo = () => {
 
           <div className={styles.starRateWrapper}>
             <h1>### 저장된 별점 보여주는 컴포넌트 - 리뷰Card etc.</h1>
-            {starRatesItems.map((itm, idx) => {
+         
+            {/*starRatesItems.map((itm, idx) => {
               return (
                 <StarRate
                   key={`starRate-${idx}`}
@@ -77,7 +97,7 @@ const Seo = () => {
                   item={itm}
                 />
               );
-            })}
+            })*/}
 
             {/*
             <h1>### 별점 입력 컴포넌트</h1>
@@ -89,7 +109,7 @@ const Seo = () => {
           {/*<ReviewButton onClick={onClickOpenModal} btnName="리뷰 수정"/>*/}
 
           <Modal modalOption={modalOption} modalSize="small" />
-          <ReviewCarousel/>
+          
         </section>
       </main>
     </div>

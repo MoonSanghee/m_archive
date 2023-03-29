@@ -64,13 +64,17 @@
     }
 
     .divide {
+      @include m.flex(space-between);
       font-size: 20px;
       margin-top: 32px;
       width: 100%;
-      @include m.flex(space-between)
+      .more{
+        cursor: pointer;
+      }
+      
     }
     .reviews {
-      display: flex;
+      //display: flex;
     }
   }
 }

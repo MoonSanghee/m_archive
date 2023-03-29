@@ -13,38 +13,28 @@ import cx from "classnames";
 
 //NOTE: hook -> state -> 함수 -> useEffect
 
-const ReviewCarousel = ({ reviews, type }) => {
+const ReviewCarousel = ({ reviews }) => {
+    console.log(reviews);
     const navigate = useNavigate();
     //ReviewCardWrapper크기알아야함!!
     const [slidePx, setSlidePx] = useState(0);
-    //const [movePx, setMovePx] = useState(0);
-    //const [moveCount, setMoveCount] = useState(4);
-    //console.log({movies});
     const [position,setPosition] = useState(0);
+    
 
     const onNavigateDetail = (id) => {
         return () => {
         //MEMO: navigate를 할 때는 /가 있어야 함
-        navigate(`/movies/detail/${id}/reviews`);
+        //navigate(`/movies/detail/${id}/reviews`);
         };
     };
 
-    /*
-    const toPrev = () => {
-        //card width - 1712 , homepage padding-48
-        slidePx < 0 && setSlidePx(slidePx + movePx);
-    };
 
-    const toNext = () => {
-        //card width - 1712 , homepage padding-48 , li gap - 8
-        slidePx > -(movePx * moveCount) && setSlidePx(slidePx - movePx);
-    };
-    */
     const onMove=()=>{
         setSlidePx(position * 1000);
     }
     const onClick=(idx)=>{
         setPosition(idx);
+        onMove();
     }
     
 
@@ -52,6 +42,7 @@ const ReviewCarousel = ({ reviews, type }) => {
     return (
         <section className={styles.wrapper}>
         {/*<ChevronArrow className={styles.prevBtn} onClick={toPrev} />*/}
+        
         <ul className={styles.ulWrapper}>
             {reviews.map((review) => {
             return (
@@ -59,7 +50,7 @@ const ReviewCarousel = ({ reviews, type }) => {
                 slide={slidePx}
                 key={`Review-${review.id}`}
                 review={review}
-                //onClick={onNavigateDetail(movie.id)}
+                //onClick={onNavigateDetail(review.id)}
                 //type={type}
                 //idx={idx}
                 />
@@ -67,10 +58,10 @@ const ReviewCarousel = ({ reviews, type }) => {
             })}
         </ul>
         <div className={styles.eclipseWrapper}>
-            <EclipseIcon className={cx({[styles.cliked]:position ===1 })} onClick={onClick(1)}/>
-            <EclipseIcon className={cx({[styles.cliked]:position ===2 })} onClick={onClick(2)}/>
-            <EclipseIcon className={cx({[styles.cliked]:position ===3 })} onClick={onClick(3)}/>
-            <EclipseIcon className={cx({[styles.cliked]:position ===4 })} onClick={onClick(4)}/>
+            <EclipseIcon className={cx({[styles.clicked]:position ===1 })} onClick={()=>{onClick(1)}}/>
+            <EclipseIcon className={cx({[styles.clicked]:position ===2 })} onClick={()=>{onClick(2)}}/>
+            <EclipseIcon className={cx({[styles.clicked]:position ===3 })} onClick={()=>{onClick(3)}}/>
+            <EclipseIcon className={cx({[styles.clicked]:position ===4 })} onClick={()=>{onClick(4)}}/>
         </div>
         {/*<ChevronArrow className={styles.nextBtn} onClick={toNext} />*/}
         </section>
