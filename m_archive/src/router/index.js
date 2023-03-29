@@ -13,7 +13,7 @@ import MyPageLayout from "../components/Layout/MyPageLayout";
 //import {ProfilePage} from '../pages/MyPage/';
 import Profile from "../pages/MyPage/Profile";
 import Register from "../pages/Auth/Register";
-import { HomePage } from '../pages';
+import { HomePage, MovieDetailPage } from '../pages';
 
 
 const router = (
@@ -36,10 +36,8 @@ const router = (
 
       <Route path="home" element={<Layout/>}>
           
-        <Route path="movies" element={<HomePage/>}>
-         {/*<Route path=":id" element={<MovieDetailPage/>}/>
-         */} 
-        </Route>
+        <Route index element={<HomePage/>}/>
+        <Route path="detail/:id" element={<MovieDetailPage/>}/>
     
         <Route path="mypage" element={<MyPageLayout/>}>
           

@@ -13,7 +13,6 @@ const LikeButton = () => {
         <label className={styles.wrapper}>
             <span className={styles.click} onClick={onLikeBtn}>
                 {like ? <LikeIcon2 fill="red"/> : <LikeIcon fill="gray"/>}
-                좋아요
             </span>
         </label>
     )
