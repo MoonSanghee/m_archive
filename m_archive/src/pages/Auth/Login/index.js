@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './login.module.scss';
 import { Button, Input } from '../../../components';
 import { useNavigate } from 'react-router-dom';
-import { validateEmail, validatePassword  } from "./utils";
+import { validateEmail, validatePassword } from './utils';
 import { saveTokens } from '../../../utils';
 import { login } from '../../../api/Auth';
 
@@ -15,8 +15,8 @@ const LoginPage = () => {
   });
   const [emailStatus, setEmailStatus] = useState('');
   const [passwordStatus, setPasswordStatus] = useState('');
-  const [font,setFont]=useState({
-    fontFamily:"Arial",
+  const [font, setFont] = useState({
+    fontFamily: 'Arial',
   });
 
   const onChange = (e) => {
@@ -37,9 +37,12 @@ const LoginPage = () => {
     //submit 눌렀을때 오류메시지 수정
     if (typeof validatedEmail !== Boolean) {
       setEmailStatus(validatedEmail);
+      //NOTE: return을 넣어서 다음 코드가 실행되지 않도록 설정
+      return;
     }
     if (typeof validatedPassword !== Boolean) {
       setPasswordStatus(validatedPassword);
+      return;
     }
 
     //폼 유효성
@@ -47,17 +50,17 @@ const LoginPage = () => {
 
     console.log(form); //확인용
     console.log(validatedForm); //확인용
-    
-    let loginData = {
-      email:form.userEmail,
-      password:form.password,
+
+    const loginData = {
+      email: form.userEmail,
+      password: form.password,
     };
-    
+
     const response = await login(loginData);
-    if(response.status===200){
+    if (response.status === 200) {
       const data = response.data;
       saveTokens(data);
-      navigate("/movies");
+      navigate('/movies');
     }
   };
 
