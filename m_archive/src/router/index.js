@@ -20,7 +20,7 @@ import MyPageLayout from "../components/Layout/MyPageLayout";
 //import {ProfilePage} from '../pages/MyPage/';
 import Profile from "../pages/MyPage/Profile";
 import Register from "../pages/Auth/Register";
-import { ManageMoviesPage } from "../pages/Admin";
+import { ManageMoviesPage , ManageReviewsPage, ManageFAQsPage, ManageUsersPage } from "../pages/Admin";
 import { HomePage, MovieDetailPage } from '../pages';
 
 
@@ -65,9 +65,9 @@ const router = (
         <Route index element={<ManageMoviesPage/>}>
           {/* <Route path="addMovie" element={<AddMoviePage/>}> */}
         </Route>
-        {/* <Route path="manageReviews" element={<ManageReviewsPage/>}/>
+        <Route path="manageReviews" element={<ManageReviewsPage/>}/>
         <Route path="manageUsers" element={<ManageUsersPage/>}/>
-        <Route path="manageFAQs" element={<ManageFAQsPage/>}/> */}
+        <Route path="manageFAQs" element={<ManageFAQsPage/>}/>
       </Route>
       
   </Route>
