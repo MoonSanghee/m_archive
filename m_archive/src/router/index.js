@@ -4,7 +4,7 @@ import {
   Route,
 } from "react-router-dom";
 import Layout from "../components/Layout";
-
+import LoginPage from "../pages/Auth/Login";
 import {
   TestIm,
   TestJo,
@@ -14,14 +14,14 @@ import {
   TestKim2,
 } from "../pages/Test";
 //import {TestSeo } from '../pages/Test';
-import { StartPage,LoginPage,RegisterPage,AdminLoginPage,AdminRegisterPage } from "../pages/Auth";
+import { StartPage } from "../pages/Auth";
 import Feedback from "../pages/Test/Feedback";
 import MyPageLayout from "../components/Layout/MyPageLayout";
 //import {ProfilePage} from '../pages/MyPage/';
 import Profile from "../pages/MyPage/Profile";
-import { ManageMoviesPage , ManageReviewsPage, ManageFAQsPage, ManageUsersPage } from "../pages/Admin";
+import FAQ from "../pages/MyPage/FAQ"
+import Register from "../pages/Auth/Register";
 import { HomePage, MovieDetailPage } from '../pages';
-
 
 const router = (
   <Route path="/">
@@ -36,9 +36,7 @@ const router = (
       <Route path="feedback" element={<Feedback />} />
     </Route>
     <Route path="login" element={<LoginPage />} />
-    <Route path="register" element={<RegisterPage />} />
-    <Route path="admin/login" element={<AdminLoginPage />} />
-    <Route path="admin/register" element={<AdminRegisterPage />} />
+    <Route path="register" element={<Register />} />
     {/* 
        <Route path="feedback" element={<Feedback/>}/>
       <Route path="register" element={<RegisterPage/>}/> */}
@@ -50,27 +48,26 @@ const router = (
         <Route path="detail/:id" element={<MovieDetailPage/>}/>
     
         <Route path="mypage" element={<MyPageLayout/>}>
-          
+        <Route path="faq" element={<FAQ/>}/>
           <Route path="profile" element={<Profile/>}/>
           {/*
 
 
           <Route path="like" element={<LikePage/>}/>
           <Route path="review" element={<ReviewPage/>}/>
-          <Route path="faq" element={<FAQ/>}/>
           <Route path=":id" element={<UserPage/>}/>*/}
       </Route>
     </Route>
-    
+    {/*
       <Route path="admin">
         <Route index element={<ManageMoviesPage/>}>
-          {/* <Route path="addMovie" element={<AddMoviePage/>}> */}
+          <Route path="addMovie" element={<AddMoviePage/>}>
         </Route>
         <Route path="manageReviews" element={<ManageReviewsPage/>}/>
         <Route path="manageUsers" element={<ManageUsersPage/>}/>
         <Route path="manageFAQs" element={<ManageFAQsPage/>}/>
       </Route>
-      
+      */}
   </Route>
   
 );
