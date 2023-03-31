@@ -1,8 +1,8 @@
 import apiClient from '../apiClient';
 
 //MEMO: 영화 여러개(리스트) page - ? , limit - 한번에 받아오는 영화개수(추측)
-export const getMovies = () => {
-  return apiClient.get('/movies?page=1&limit=20');
+export const getMovies = (page) => {
+  return apiClient.get(`/movies?page=${page}&limit=10000`);
 };
 
 //MEMO: 영화 하나 (상세)
