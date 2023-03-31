@@ -1,5 +1,5 @@
-@use "../../styles/constants/" as c;
-@use "../../styles/mixins/" as m;
+@use '../../styles/constants/' as c;
+@use '../../styles/mixins/' as m;
 
 .wrapper {
   @include m.flex(flex-start, center, column);
@@ -22,12 +22,28 @@
     //padding:10px 0;
   }
   .genreWrapper {
-    @include m.flex(flex-start, flex-start, column);
     width: 100%;
     min-height: 460px;
-    //height: 800
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 20px 0 15px;
+
+      button {
+        margin: 0 20px 0 0;
+      }
+    }
   }
   .header {
     font-size: 40px;
   }
+}
+.genreMovies {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  align-content: space-around;
+  justify-items: center;
+  row-gap: 20px;
 }
