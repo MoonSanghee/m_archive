@@ -4,7 +4,6 @@ import {
   Route,
 } from "react-router-dom";
 import Layout from "../components/Layout";
-import LoginPage from "../pages/Auth/Login";
 import {
   TestIm,
   TestJo,
@@ -20,7 +19,7 @@ import Profile from "../pages/MyPage/Profile";
 import FAQ from "../pages/MyPage/FAQ"
 import { HomePage, MovieDetailPage } from '../pages';
 import { LoginPage,RegisterPage,AdminLoginPage,AdminRegisterPage } from "../pages/Auth";
-import {ManageFAQsPage, ManageMoviesPage,ManageReviewsPage,ManageMoviesPage} from "../pages/Admin";
+import {ManageFAQsPage, ManageMoviesPage,ManageReviewsPage, ManageUsersPage} from "../pages/Admin";
 
 const router = (
   <Route path="/">
@@ -59,7 +58,7 @@ const router = (
     
       <Route path="admin">
         <Route index element={<ManageMoviesPage/>}>
-          <Route path="addMovie" element={<AddMoviePage/>}/>
+          {/* <Route path="addMovie" element={<AddMoviePage/>}/> */}
         </Route>
         <Route path="manageReviews" element={<ManageReviewsPage/>}/>
         <Route path="manageUsers" element={<ManageUsersPage/>}/>
