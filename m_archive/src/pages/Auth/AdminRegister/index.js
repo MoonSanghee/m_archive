@@ -3,7 +3,7 @@ import styles from './register.module.scss';
 import { Button, Input } from '../../../components';
 import { useNavigate } from 'react-router-dom';
 import { saveTokens } from '../../../utils/';
-import { register } from '../../../api/Auth';
+import { adminRegister } from '../../../api/Auth';
 import {
   validateName,
   validateNickname,
@@ -12,7 +12,7 @@ import {
   validateCheckpassword,
 } from './utils';
 
-const Register = () => {
+const AdminRegister = () => {
   //기능
   const [form, setForm] = useState({
     name: '',
@@ -193,4 +193,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default AdminRegister;
