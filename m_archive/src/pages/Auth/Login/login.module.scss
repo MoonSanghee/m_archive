@@ -1,4 +1,4 @@
-@use "../../../styles/constants/" as c;
+@use '../../../styles/constants/' as c;
 
 .wrapper {
   width: 100%;
@@ -79,5 +79,8 @@
 
   .inputWrapper + .inputWrapper {
     margin-top: 50px;
+  }
+  .inputWrapper > input {
+    font-family: 'Arial',
   }
 }

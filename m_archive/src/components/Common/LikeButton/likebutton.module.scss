@@ -26,13 +26,7 @@
 
     .icon {
         width: 20px;
-        height: 20px;
-
-        // > svg {
-        //     path {
-        //     fill: c.$C_WHITE;
-        //     }
-        // }    
+        height: 20px; 
     }
 
     @keyframes heartBeat {
@@ -45,6 +39,13 @@
         100% {
           transform: scale(1);
         }
+      }
+      .label {
+        color: c.$C_WHITE;
+        font-size: 16px;
+        letter-spacing: 1px;
+        cursor: pointer;
+        // 좋아요도 똑같이
       }
 
 }

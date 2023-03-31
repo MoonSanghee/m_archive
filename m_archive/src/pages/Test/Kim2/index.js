@@ -1,71 +1,56 @@
-import { useState } from "react";
+import React from "react";
 import styles from "./kim.module.scss";
-import { Button } from "../../../components";
-import { Tag } from "../../../components/Common";
-import { ProfileIcon } from "../../../assets/icon";
+import { Button, SearchBox, Tag } from "../../../components/Common";
+import Accordion from "../../../components/Common/Accordion";
+
+
+const data = [
+  {
+    title: "선호 장르는 어디서 바꿀 수 있나요?",
+    content:
+      "마이페이지 - 프로필 에서 하단에 선호장르를 변경 후 저장하시면 변경 됩니다.",
+  },
+  {
+    title: "제가 쓴 리뷰는 어디서 볼수 있나요?",
+    content:
+      "마이페이지 - 리뷰&댓글 에서 자신이 쓴 리뷰 혹은 댓글 내용을 확인 하실 수 있습니다.",
+  },
+  {
+    title: "프로필 아이콘은 어디서 바꾸나요?",
+    content:
+      "마이페이지 - 프로필 에서 아이콘 버튼을 클릭 후 원하는 아이콘 혹은 이미지 를 첨부하여 변경 하실수 있습니다.",
+  },
+  {
+    title: "추가 문의사항은 어디로 문의 하나요?",
+    content:
+      "기타 문의사항은 마이페이지 - 고객센턴 - 문의하기 버튼을 이용하여 작성해주시면 빠른시일내에 답변을 도와드리겠습니다.",
+  },
+];
+
+
+
 const Kim2 = () =>{
 
-  const genre = [
-    { id: 1, genre: "로맨스" },
-    { id: 2, genre: "드라마" },
-    { id: 3, genre: "코미디" },
-    { id: 4, genre: "액션" },
-    { id: 5, genre: "스릴러" },
-    { id: 6, genre: "미스터리" },
-    { id: 7, genre: "SF" },
-    { id: 8, genre: "공포" },
-  ];
+ return (
+<main className={styles.mainContainer}>
+   <h1> FAQ</h1>
+   <div className={styles.mainInput}>
+   <SearchBox />
+   <div className={Styles.sideButton}>
+   <Button>문의 내역</Button>
+   <Button>문의 하기</Button>
+   </div>
+   </div>
+  <ul className={styles.accordionWrapper}>
+  {data.map((item, index) => (
+    <li key={index} style={{ marginBottom: "5px" }}>
+      <Accordion title={item.title} content={item.content} />
+    </li>
+  ))}
+</ul>
 
-  const [pick, setPick] = useState(genre);
-  const [select, setSelect] = useState([]);
-    return(
-        <main>
-            <section className={styles.profile}>
-                <ProfileIcon className={styles.icon}></ProfileIcon>
-                <div className={styles.textInput}>
-                  <div>소개글</div>
-                  <div>
-                      <p>닉네임</p>
-                      <input />
-                  </div>
-                  <div>
-                      {/* 수정 불가  */}
-                      <p>이메일</p>
-                      <input />
-                  </div>
-                  <div>
-                      <p>비밀번호 변경</p>
-                      <input />
-                  </div>
-                  <div>
-                      <p>새 비밀번호 확인</p>
-                      <input />
-                  </div>
-                </div>
-                
-            </section>
-          <section className={styles.tag}>
-        <h2 className={styles.text}>선호 장르</h2>
-        {pick.map((item) => {
-          const onClickBtn = () => {
-            !select.includes(item)
-              ? setSelect((select) => [...select, item])
-              : setSelect(select.filter((button) => button !== item));
-            console.log(select);
-          };
-          return (
-            <Tag
-              key={item.id}
-              // width={"middle"}
-              border={"border" + (select.includes(item) ? " active" : "")}
-              onClick={onClickBtn}
-            >
-              {item.genre}
-            </Tag>
-          );
-        })}
-      </section>
-        </main>
-    )
+</main>
+ );
+    
 }
 export default Kim2;

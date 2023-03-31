@@ -19,6 +19,7 @@ import Feedback from "../pages/Test/Feedback";
 import MyPageLayout from "../components/Layout/MyPageLayout";
 //import {ProfilePage} from '../pages/MyPage/';
 import Profile from "../pages/MyPage/Profile";
+import FAQ from "../pages/MyPage/FAQ"
 import Register from "../pages/Auth/Register";
 import { HomePage, MovieDetailPage } from '../pages';
 
@@ -47,14 +48,13 @@ const router = (
         <Route path="detail/:id" element={<MovieDetailPage/>}/>
     
         <Route path="mypage" element={<MyPageLayout/>}>
-          
+        <Route path="faq" element={<FAQ/>}/>
           <Route path="profile" element={<Profile/>}/>
           {/*
 
 
           <Route path="like" element={<LikePage/>}/>
           <Route path="review" element={<ReviewPage/>}/>
-          <Route path="faq" element={<FAQ/>}/>
           <Route path=":id" element={<UserPage/>}/>*/}
       </Route>
     </Route>

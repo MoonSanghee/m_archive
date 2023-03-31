@@ -1,4 +1,4 @@
-import apiClient from "../apiClient";
+import apiClient from '../apiClient';
 
 //MEMO: 영화 여러개(리스트) page - ? , limit - 한번에 받아오는 영화개수(추측)
 export const getMovies = (page) => {
@@ -11,8 +11,15 @@ export const getMovie = (id) => {
 };
 
 export const getTop10Movies = () => {
-  return apiClient.get("/movies/top");
+  return apiClient.get('/movies/top');
 };
+
+export const getGenreMovies = (page, selected) => {
+  return apiClient.get(
+    `/movies/genre?page=${page}&limit=24&genreIds=${selected}`,
+  );
+};
+
 /*
 export const searchProduct = (params) => {
   return apiClient.get("/products/search", {

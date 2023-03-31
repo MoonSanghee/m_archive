@@ -8,6 +8,7 @@
         width:100%;
         > h1 {
             font-size: 24px;
+            color: c.$C_SECONDARY;
         }
     }
     .formWrapper{
@@ -21,9 +22,10 @@
             border: none;
             font-family: "KIMM_Light";
             color:c.$C_BLACK;
+            letter-spacing: 1px;
         }
         .btnWrapper{
-            @include m.flex(space-between);
+            @include m.flex(flex-end,space-between);
             width: 100%;
             height:20% ;
 

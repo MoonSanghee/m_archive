@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import styles from './login.module.scss';
 import { Button, Input } from '../../../components';
 import { useNavigate } from 'react-router-dom';
-import { validateEmail, validatePassword  } from "./utils";
-import { saveTokens } from '../../../utils';
+import { validateEmail, validatePassword } from './utils';
+import { getTokens, saveTokens } from '../../../utils';
 import { login } from '../../../api/Auth';
 
-const LoginPage = () => {
+const Login = () => {
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -15,9 +15,7 @@ const LoginPage = () => {
   });
   const [emailStatus, setEmailStatus] = useState('');
   const [passwordStatus, setPasswordStatus] = useState('');
-  const [font,setFont]=useState({
-    fontFamily:"Arial",
-  });
+
 
   const onChange = (e) => {
     const { name, value } = e.currentTarget;
@@ -37,28 +35,38 @@ const LoginPage = () => {
     //submit 눌렀을때 오류메시지 수정
     if (typeof validatedEmail !== Boolean) {
       setEmailStatus(validatedEmail);
+      //NOTE: return을 넣어서 다음 코드가 실행되지 않도록 설정
+      
+      //return;
     }
     if (typeof validatedPassword !== Boolean) {
       setPasswordStatus(validatedPassword);
+      
+      //return;
     }
 
     //폼 유효성
     const validatedForm = !validatedEmail && !validatedPassword ? true : false;
 
-    console.log(form); //확인용
-    console.log(validatedForm); //확인용
-    
-    let loginData = {
-      email:form.userEmail,
-      password:form.password,
-    };
-    
-    const response = await login(loginData);
-    if(response.status===200){
-      const data = response.data;
-      saveTokens(data);
-      navigate("/movies");
+    if(validatedForm){
+      //console.log(form); //확인용
+      //console.log(validatedForm); //확인용
+  
+      const loginData = {
+        email: form.userEmail,
+        password: form.password,
+      };
+  
+      const response = await login(loginData);
+      if (response.status === 200) {
+        const data = response.data;
+        saveTokens(data);
+        navigate('/movies');
+      }
+    }else{
+      console.log("invalid form");
     }
+   
   };
 
   return (
@@ -68,7 +76,6 @@ const LoginPage = () => {
           <h1>M-archive</h1>
           <form id="loginForm" className={styles.loginForm} onSubmit={onSubmit}>
             <Input
-              style={font}
               placeholder="이메일주소"
               className={styles.inputWrapper}
               name="userEmail"
@@ -79,7 +86,6 @@ const LoginPage = () => {
             <Input
               className={styles.inputWrapper}
               type="password"
-              style={font}
               placeholder="비밀번호"
               name="password"
               value={form.password}
@@ -117,4 +123,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Login;

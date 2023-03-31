@@ -1,9 +1,10 @@
-import React from "react";
-import ProfileDropdown from "./ProfileDropdown";
-import dropdownItems from "./menu";
-import { SearchBox } from "../../Common";
-import styles from "./header.module.scss";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import ProfileDropdown from './ProfileDropdown';
+import dropdownItems from './menu';
+import { SearchBox } from '../../Common';
+import styles from './header.module.scss';
+import { useNavigate } from 'react-router-dom';
+import { useMe } from '../../../hooks';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const Header = () => {
     };
   };
   const onClickLogo = () => {
-    return navigate("/home");
+    return navigate('/home');
   };
 
   return (

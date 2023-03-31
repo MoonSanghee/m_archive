@@ -4,7 +4,11 @@ import styles from "./starRateButton.module.scss";
 import { HalfStarIcon } from "../../../../../assets/icon";
 import cx from "classnames";
 
-const StarRateButton = ({ myRate }) => {
+const StarRateButton = ({ myRate , me}) => {
+  //console.log(myRate);
+  //console.log(me);  
+
+  //TODO: 리뷰생성 코드작성.
   const [hoveredStarIndex, setHoveredStarIndex] = useState(0);
   const [clickedStarIndex, setClickedStarIndex] = useState(0);
 
