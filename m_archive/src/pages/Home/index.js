@@ -14,7 +14,7 @@ const Home = () => {
 
   const onGetMovies = async () => {
     //서버에서 데이터를 불러옴.
-    const response = await getMovies();
+    const response = await getMovies(1);
 
     if (response.status === 200) {
       //console.log(response.data.data);

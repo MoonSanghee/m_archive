@@ -7,6 +7,6 @@ export const getUsers = () => {
   };
   
   //MEMO: 유저 한 명 (상세)
-  export const getUser = (id) => {
+export const getUser = (id) => {
     return apiClient.get(`/users/${id}/detail`);
   };
