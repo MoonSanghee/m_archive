@@ -1,5 +1,4 @@
-@use "../../../styles/constants/colors" as c;
-@use "../../../styles/mixins/" as m;
+@use "../../../styles/constants/" as c;
 
 .wrapper {
     width: 100%;
@@ -13,19 +12,21 @@
         display: flex;
         flex-direction: column;
         row-gap: 8px;
-        .topMenu {            
+
+        .topMenu {
             background-color: c.$C_CARD_MENU;
             height: 80px;
             column-gap: 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+
             .check {
                 margin-left: 12px;
                 border-radius: 4px;
             }
         }
-    
+
         .secondMenu {
             height: 60px;
             background-color: c.$C_SECONDARY;
@@ -34,9 +35,10 @@
             // justify-content: space-around;
             // color: c.$C_WHITE;
         }
-    
+
         .table {
-    
+
         }
+
     }
 }
