@@ -4,7 +4,7 @@ import {
   Route,
 } from "react-router-dom";
 import Layout from "../components/Layout";
-import LoginPage from "../pages/Auth/Login";
+
 import {
   TestIm,
   TestJo,
@@ -14,12 +14,12 @@ import {
   TestKim2,
 } from "../pages/Test";
 //import {TestSeo } from '../pages/Test';
-import { StartPage } from "../pages/Auth";
+import { StartPage,LoginPage,RegisterPage,AdminLoginPage,AdminRegisterPage } from "../pages/Auth";
 import Feedback from "../pages/Test/Feedback";
 import MyPageLayout from "../components/Layout/MyPageLayout";
 //import {ProfilePage} from '../pages/MyPage/';
 import Profile from "../pages/MyPage/Profile";
-import Register from "../pages/Auth/Register";
+
 import { ManageMoviesPage } from "../pages/Admin";
 import { HomePage, MovieDetailPage } from '../pages';
 
@@ -37,7 +37,9 @@ const router = (
       <Route path="feedback" element={<Feedback />} />
     </Route>
     <Route path="login" element={<LoginPage />} />
-    <Route path="register" element={<Register />} />
+    <Route path="register" element={<RegisterPage />} />
+    <Route path="admin/login" element={<AdminLoginPage />} />
+    <Route path="admin/register" element={<AdminRegisterPage />} />
     {/* 
        <Route path="feedback" element={<Feedback/>}/>
       <Route path="register" element={<RegisterPage/>}/> */}

@@ -4,7 +4,7 @@ import styles from "./sharebutton.module.scss";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import swal from "sweetalert2";
 
-const ShareButton = () => {
+const ShareButton = ({label}) => {
   const currentUrl = window.location.href;
 
   const onShareBtnClick = () => {
@@ -27,7 +27,7 @@ const ShareButton = () => {
         <CopyToClipboard text={currentUrl}>
           <ShareIcon /> 
         </CopyToClipboard>
-        <span className={styles.label}>공유</span>
+        {label && <span className={styles.label}>{label}</span>}
       </section>
   );
 };

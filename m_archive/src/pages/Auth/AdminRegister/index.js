@@ -3,7 +3,7 @@ import styles from './register.module.scss';
 import { Button, Input } from '../../../components';
 import { useNavigate } from 'react-router-dom';
 import { saveTokens } from '../../../utils/';
-import { adminRegister } from '../../../api/Auth';
+import { register } from '../../../api/Auth';
 import {
   validateName,
   validateNickname,
@@ -43,7 +43,7 @@ const Register = () => {
   const navigate = useNavigate();
 
   const onClickedLogin = () => {
-    navigate('/login');
+    navigate('/admin/login');
   };
 
   const onChange = (e) => {
@@ -110,7 +110,7 @@ const Register = () => {
             어서오세요!
           </h1>
           <p>
-            서비스를 이용하시려면
+            관리자 서비스를 이용하시려면
             <br />
             로그인해주세요
           </p>
@@ -184,7 +184,7 @@ const Register = () => {
               errorText={touched.checkpassword && validatedCheckpassword}
             />
           </form>
-          <Button width={'big'} type="submit" form="registerForm">
+          <Button width={'big'} type="submit" form="registerForm" color="secondary">
             회원가입
           </Button>
         </div>
