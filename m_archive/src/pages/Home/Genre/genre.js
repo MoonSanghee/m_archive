@@ -10,4 +10,8 @@ export const genre = [
   { id: '079e9098-ff7c-49c7-8d71-fe3fd066aafb', genre: '스릴러' },
   { id: '6853de88-2380-4d2c-90b1-05fec52bef9b', genre: '미스터리' },
 ];
+/**
+id : string
+name : string
+*/
 export default genre;

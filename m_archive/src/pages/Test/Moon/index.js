@@ -7,6 +7,9 @@ import {
   ServiceLNB,
   AdminLNB,
 } from '../../../components';
+import Movies from '../../../components/Common/TableElements/movies';
+import Reviews from '../../../components/Common/TableElements/Reviews';
+import Movie from '../../Home/Carousel/Movie';
 import styles from './moon.module.scss';
 
 const Moon = () => {
@@ -31,11 +34,15 @@ const Moon = () => {
             </section> */}
       <section className={styles.table}>
         <TableMenu tableName="reviews" />
+        <TableElements>{/* <Reviews /> */}</TableElements>
         <TableMenu tableName="users" />
         <TableMenu tableName="F&Q" />
         <table>
           <TableMenu tableName="movieInfo" />
-          <TableElements />
+          <TableElements>
+            {/* //NOTE: children을 사용해서 분기처리 없이 사용 */}
+            <Movies />
+          </TableElements>
         </table>
       </section>
     </main>

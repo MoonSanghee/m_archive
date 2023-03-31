@@ -23,7 +23,8 @@ const Home = () => {
   const [genreMovies, setGenreMovies] = useState([]);
   const [pick, setPick] = useState(genre);
   const [select, setSelect] = useState([]); //선택한 tag 배열
-  let genreSelected = '';
+  //NOTE: useMemo 사용
+  // let genreSelected = '';
 
   const dropdownSortItems = sortItems;
   const [selectedSort, setSelectedSort] = useState(null);
@@ -55,9 +56,17 @@ const Home = () => {
     }
   };
 
-  const onGetGenreMovies = useCallback(async () => {
-    const selected = genreSelected;
-    const response = await getGenreMovies(page, selected);
+  const onGetGenreMovies = async () => {
+    //NOTE: map 이전
+    //[{id : "id1"}, {id : "id2"}]
+    //NOTE: map 이후
+    //["id1", "id2"]
+    //NOTE: join 이후
+    //"id1,id2"
+    const response = await getGenreMovies(
+      page,
+      select.map((item) => item.id).join(','),
+    );
     setLoading(true);
 
     if (response.status === 200) {
@@ -67,25 +76,37 @@ const Home = () => {
       setGenreMovies(newArr);
     }
     setLoading(false);
-  }, [page]);
+  };
 
   //선택된 장르 문자열 (주소)
-  {
-    select.map((item) => {
-      // console.log(item.genre);
-      // console.log(typeof item);
-      if (genreSelected !== '') {
-        genreSelected += '%2C';
-      }
-      genreSelected += item.id;
-    });
-    // console.log(genreSelected);
-  }
+  //NOTE: useMemo 사용
+  // {
+  //   select.map((item) => {
+  //     // console.log(item.genre);
+  //     // console.log(typeof item);
+  //     if (genreSelected !== '') {
+  //       genreSelected += '%2C';
+  //     }
+  //     genreSelected += item.id;
+  //   });
+  // }
 
   const onNavigateDetail = (id) => {
     return () => {
       //MEMO: navigate를 할 때는 /가 있어야 함
       navigate(`/movies/detail/${id}`);
+    };
+  };
+
+  const onClickBtn = (item) => {
+    return () => {
+      !select.includes(item)
+        ? setSelect((select) => [...select, item])
+        : setSelect(select.filter((button) => button !== item));
+
+      //NOTE: 이걸 왜 해야하나?
+      setGenreMovies([]);
+      setPage(1);
     };
   };
 
@@ -99,18 +120,19 @@ const Home = () => {
   useEffect(() => {
     onGetMovies();
     onGetTop10Movies();
-    onGetGenreMovies();
+
     //setMovies(movieListTest);
-  }, [genreSelected]); //여기 genreSelected 를 넣어도 되는건가
+  }, []); //여기 genreSelected 를 넣어도 되는건가
 
   useEffect(() => {
     onGetGenreMovies();
-  }, [onGetGenreMovies]);
+  }, [select]);
 
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView && !loading) {
       setPage((prevState) => prevState + 1);
+      onGetGenreMovies();
     }
   }, [inView, loading]);
 
@@ -130,18 +152,12 @@ const Home = () => {
           {/* genre tag */}
           <div className={styles.tag}>
             {pick.map((item) => {
-              const onClickBtn = () => {
-                !select.includes(item)
-                  ? setSelect((select) => [...select, item])
-                  : setSelect(select.filter((button) => button !== item));
-                onGetGenreMovies();
-              };
               return (
                 <Tag
                   key={item.id}
                   // width={"middle"}
                   border={'border' + (select.includes(item) ? ' active' : '')}
-                  onClick={onClickBtn}
+                  onClick={onClickBtn(item)}
                 >
                   {item.genre}
                 </Tag>
@@ -155,7 +171,7 @@ const Home = () => {
             onClick={onClickSortDropdown}
           />
         </nav>
-        {console.log(inView)}
+
         <div className={styles.genreMovies}>
           {genreMovies.length > 0 &&
             genreMovies.map((item) => {

@@ -14,10 +14,15 @@ export const getTop10Movies = () => {
   return apiClient.get('/movies/top');
 };
 
+//NOTE: query는 params에 객체 넣듯이 넣어서 사용
 export const getGenreMovies = (page, selected) => {
-  return apiClient.get(
-    `/movies/genre?page=${page}&limit=24&genreIds=${selected}`,
-  );
+  return apiClient.get(`/movies/genre`, {
+    params: {
+      page,
+      limit: 24,
+      genreIds: selected,
+    },
+  });
 };
 
 /*
