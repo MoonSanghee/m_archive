@@ -11,12 +11,12 @@ const ReviewCard = (item, ...props) => {
   };
   const isExists = (attr) => {
     const result = !item['item']['user'][attr];
-
-    if (!result) return result;
+    //있으면 값, 없으면 false??
+    if (!result) return item['item']['user'][attr];
     else return 'none';
   };
   return (
-    <section className={styles.wrapper} {...props}>
+    <section className={styles.wrapper} >
       <div className={cx({ [styles.blind]: blind === true })}></div>
       <div className={cx(styles.cardWrapper)}>
         <div className={styles.infoWrapper}>
@@ -28,7 +28,7 @@ const ReviewCard = (item, ...props) => {
               <StarRate
                 //key={`starRate`}
                 className={styles.score}
-                id={`SR`}
+                id={`SR-${item?.item.id}`}
                 item={item?.item}
               />
             </div>

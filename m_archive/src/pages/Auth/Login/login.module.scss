@@ -80,4 +80,7 @@
   .inputWrapper + .inputWrapper {
     margin-top: 50px;
   }
+  .inputWrapper > input {
+    font-family: 'Arial',
+  }
 }

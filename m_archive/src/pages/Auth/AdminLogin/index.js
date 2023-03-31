@@ -4,9 +4,9 @@ import { Button, Input } from '../../../components';
 import { useNavigate } from 'react-router-dom';
 import { validateEmail, validatePassword } from './utils';
 import { getTokens, saveTokens } from '../../../utils';
-import { login } from '../../../api/Auth';
+import { adminLogin } from '../../../api/Auth';
 
-const Login = () => {
+const AdminLogin = () => {
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -23,7 +23,7 @@ const Login = () => {
   };
 
   const onClickedRegister = () => {
-    navigate('/register');
+    navigate('/admin/register');
   };
 
   const onSubmit = async (e) => {
@@ -57,7 +57,7 @@ const Login = () => {
         password: form.password,
       };
   
-      const response = await login(loginData);
+      const response = await adminLogin(loginData);
       if (response.status === 200) {
         const data = response.data;
         saveTokens(data);
@@ -93,7 +93,7 @@ const Login = () => {
               errorText={passwordStatus}
             />
           </form>
-          <Button width={'big'} type="submit" form="loginForm">
+          <Button width={'big'} type="submit" form="loginForm" color="secondary">
             로그인
           </Button>
         </div>
@@ -104,9 +104,9 @@ const Login = () => {
             안녕하세요?
           </h1>
           <p>
-            회원가입하시고,
+            M-archive
             <br />
-            저희와 기록을 남겨요
+            관리자로 오신 것을 환영합니다.
           </p>
           <Button
             width={'big'}
@@ -123,4 +123,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default AdminLogin;

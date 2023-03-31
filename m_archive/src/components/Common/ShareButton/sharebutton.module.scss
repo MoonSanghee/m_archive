@@ -7,13 +7,12 @@
   width: 68px;
   cursor: pointer;
   column-gap: 8px;
-
-
   .label {
     color: c.$C_WHITE;
     font-size: 16px;
     letter-spacing: 1px;
-    // 좋아요도 똑같이
+    cursor: pointer;
+  
   }
 }
 

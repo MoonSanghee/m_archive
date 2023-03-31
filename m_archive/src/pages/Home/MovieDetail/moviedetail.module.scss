@@ -14,7 +14,7 @@
 }
 .base {
   position: relative;
-  z-index:5;
+  z-index:c.$Z_DETAILBASE;
   top: -180px;
   display: flex;
   padding: 0px 100px;
@@ -30,43 +30,49 @@
   .info {
     padding-top: 200px;
     @include m.flex(start, start, column);
-    flex-grow: 4;
-    row-gap: 12px;
+    //flex-grow: 4;
+    row-gap: 24px;
     margin-left: 20px;
-    max-width: 55vw;
-
+    max-width: 60vw;
+    p{
+      letter-spacing: 1px;
+      > span{
+        margin-left: 6px;
+      }
+    }
     >h2 {
       font-size: 32px;
+    }
+    .movieDetails{
+      @include m.flex(start, start, column);
+      row-gap: 8px;
     }
     .buttons {
       display: flex;
       width: 60%;
       justify-content: space-between;
-      margin-bottom: 32px;
+      //margin-bottom: 32px;
 
       .buttonPlace {
         @include m.flex(center, center)
       }
     }
-    >p {
-      margin: 4px 0px;
-      >span {
-        margin: 8px;
-      }
-      .head {
-        margin: 0px;
-        font-size: 20px;
-      }
-    }
+
 
     .story {
-      margin: 32px 0px;
+      margin: 28px 0px;
+      .head {
+        font-size: 20px;
+      }
+      .plot{
+        padding-top: 16px;
+      }
     }
 
     .divide {
       @include m.flex(space-between);
       font-size: 20px;
-      margin-top: 32px;
+      margin-top: 28px;
       width: 100%;
       .more{
         cursor: pointer;
@@ -74,7 +80,8 @@
       
     }
     .reviews {
-      //display: flex;
+     /// width: 100%;
+     height: 304px;
     }
   }
 }

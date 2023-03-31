@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './review.module.scss';
 import ReviewCard from '../../../../../components/Common/ReviewCard';
 import cx from 'classnames';
-const Review = ({ review, slide, onClick }) => {
+const Review = ({ review, slide, onClick,idx }) => {
   //const { id, name, release_date, image_url } = movie;
   const { id } = review;
   return (
@@ -21,6 +21,7 @@ const Review = ({ review, slide, onClick }) => {
         //type={type}
         //idx={idx}
       />
+    
     </li>
   );
 };
