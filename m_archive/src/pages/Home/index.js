@@ -63,7 +63,8 @@ const Home = () => {
     if (response.status === 200) {
       // console.log(response.data.data);
       const items = [...response.data.data];
-      setGenreMovies(items);
+      let newArr = [...genreMovies, ...items];
+      setGenreMovies(newArr);
     }
     setLoading(false);
   }, [page]);
