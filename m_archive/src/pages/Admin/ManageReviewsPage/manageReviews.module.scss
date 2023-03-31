@@ -1,4 +1,5 @@
 @use "../../../styles/constants/" as c;
+@use "../../../styles/mixins/" as m;
 
 .wrapper {
     width: 100%;
@@ -21,9 +22,40 @@
             justify-content: space-between;
             align-items: center;
 
+            .menuLeft {
+                display: flex;
+                column-gap: 36px;
+                align-items: center;
+            }
+
             .check {
                 margin-left: 12px;
                 border-radius: 4px;
+            }
+
+            .menuRight {
+                width: 520px;
+                display: flex;
+                align-items: center;
+                column-gap: 20px;
+
+                .SearchBox {
+                    @include m.flex();
+                    width: 100%;
+
+                    > input {
+                        height: 52px;
+                        width: 100%;
+                        margin-right: 20px;
+                        border: none;
+                    }
+
+                    > button {
+                        width: 60px;
+                        height: 52px;
+                        border: none;
+                    }
+                }
             }
         }
 

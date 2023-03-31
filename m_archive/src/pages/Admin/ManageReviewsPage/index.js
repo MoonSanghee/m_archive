@@ -8,9 +8,16 @@ const ManageReviewsPage = () => {
             <AdminLNB/>
             <section className={styles.allSection}>
                 <div className={styles.topMenu}>
-                    <CheckBox className={styles.check}/> 전체선택
-                    <Button width={"long"} color={"secondary"}>선택 삭제</Button>
-                    <SearchBox placeholder="검색 (제목, 배우, 감독)" />
+                    <span className={styles.menuLeft}>
+                        <CheckBox className={styles.check} />
+                        전체선택
+                    </span>
+                    <span className={styles.menuRight}>
+                        <Button width={"long"} color={"secondary"}>
+                            선택 삭제
+                        </Button>
+                        <SearchBox className={styles.SearchBox} placeholder="제목, 배우, 감독" />
+                    </span>
                 </div>
                 <p className={styles.secondMenu}>
                     <TableMenu tableName="reviews"/>
