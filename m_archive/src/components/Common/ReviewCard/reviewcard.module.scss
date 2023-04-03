@@ -34,8 +34,6 @@
       width: 100%;
       background-color: transparent;
       border: none;
-    
-
     }
     .infoWrapper{
       @include m.flex(center,center,row);
@@ -58,7 +56,8 @@
           //color:c.$C_BLACK_MODAL;
           > span:first-of-type{
             font-size: 24px;
-            color:c.$C_BLACK_MODAL;
+            //color:c.$C_BLACK_MODAL;
+            color:c.$C_BLACK;
           }
           > span:last-of-type{
             font-size: 16px;
@@ -89,6 +88,13 @@
       > span {
         //padding:8px;
         color:c.$C_CARD_BG;
+      }
+      .functionsWrapper{
+        @include m.flex();
+        column-gap: 8px;
+      }
+      .dateWrapper{
+
       }
     }
   }

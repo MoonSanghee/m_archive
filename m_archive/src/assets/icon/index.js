@@ -37,3 +37,7 @@ export {ReactComponent as EclipseIcon} from "./eclipse-icon.svg";
 //블라인드아이콘
 export {ReactComponent as EyeIcon} from "./eye-icon.svg";
 export {ReactComponent as EyeBlindIcon} from "./eye-blind-icon.svg";
+
+//리뷰-댓글 아이콘
+export {ReactComponent as CommentLikeIcon} from "./comment-like-icon.svg";
+export {ReactComponent as CommentIcon} from "./comment-icon.svg";

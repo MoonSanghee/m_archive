@@ -32,7 +32,7 @@ const StarRate = ({item}) =>  {
         <div className={styles.wrapper} id={`StarsWrapper-${ID}`}>
             {STAR_IDX_ARR.map((itm, idx) => {
                 return (
-                <Star key={ID+idx} ID={ID} item={itm} index={idx}  ratesResArr={ratesResArr}/>     
+                <Star key={'STAR'+ID+idx} ID={ID+idx} item={itm} index={idx}  ratesResArr={ratesResArr}/>     
                 )
             })
             }

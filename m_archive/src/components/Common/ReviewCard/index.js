@@ -1,20 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './reviewcard.module.scss';
-import { ProfileIcon, EyeIcon, EyeBlindIcon } from '../../../assets/icon';
+import { ProfileIcon, EyeIcon, EyeBlindIcon ,CommentIcon,CommentLikeIcon} from '../../../assets/icon';
 import cx from 'classnames';
 import StarRate from '../StarRate';
+import dayjs from "dayjs";
 
+
+const diff = (date) =>{
+  const now = dayjs();
+    return `${now.diff(date, "day")}일 전`;
+}
 const ReviewCard = ({item,onClick, ...props}) => {
   const [blind, setBlind] = useState(false);
+
   const onClickBlind = () => {
     setBlind(!blind);
   };
   const isExists = (attr) => {
-    const result = !item['user'][attr];
+    const result = item['user'][attr];
     //있으면 값, 없으면 false??
-    if (!result) return item['user'][attr];
-    else return 'none';
+    if (!!result) return item['user'][attr];
+    else return false;
   };
+
   return (
     <section className={styles.wrapper}>
       <div className={cx({ [styles.blind]: blind === true })}></div>
@@ -33,7 +41,7 @@ const ReviewCard = ({item,onClick, ...props}) => {
               />
             </div>
             <p className={styles.nickname}>
-              <span>{isExists('nickname')}</span>
+              <span>{isExists('nickname') || isExists('name') }</span>
               <span> / 칭호</span>
             </p>
           </div>
@@ -55,8 +63,13 @@ const ReviewCard = ({item,onClick, ...props}) => {
           )}
         </div>
         <div className={styles.detailsWrapper}>
-          <span className={styles.functionsWrapper}>좋아요/댓글</span>
-          <span className={styles.dateWrapper}>날짜</span>
+          <span className={styles.functionsWrapper}>
+            <CommentLikeIcon/>{item?.likeCount}
+            <CommentIcon/>{item?.comments.length}
+            </span>
+          <span className={styles.dateWrapper}>
+            {diff(item?.updatedAt)}
+          </span>
         </div>
       </div>
     </section>
