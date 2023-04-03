@@ -4,19 +4,19 @@ import { ProfileIcon, EyeIcon, EyeBlindIcon } from '../../../assets/icon';
 import cx from 'classnames';
 import StarRate from '../StarRate';
 
-const ReviewCard = (item, ...props) => {
+const ReviewCard = ({item,onClick, ...props}) => {
   const [blind, setBlind] = useState(false);
   const onClickBlind = () => {
     setBlind(!blind);
   };
   const isExists = (attr) => {
-    const result = !item['item']['user'][attr];
+    const result = !item['user'][attr];
     //있으면 값, 없으면 false??
-    if (!result) return item['item']['user'][attr];
+    if (!result) return item['user'][attr];
     else return 'none';
   };
   return (
-    <section className={styles.wrapper} >
+    <section className={styles.wrapper}>
       <div className={cx({ [styles.blind]: blind === true })}></div>
       <div className={cx(styles.cardWrapper)}>
         <div className={styles.infoWrapper}>
@@ -28,8 +28,8 @@ const ReviewCard = (item, ...props) => {
               <StarRate
                 //key={`starRate`}
                 className={styles.score}
-                id={`SR-${item?.item.id}`}
-                item={item?.item}
+                id={`SR-${item.id}`}
+                item={item}
               />
             </div>
             <p className={styles.nickname}>
@@ -45,9 +45,9 @@ const ReviewCard = (item, ...props) => {
             )}
           </span>
         </div>
-        <div className={styles.contentWrapper}>
+        <div className={styles.contentWrapper}  onClick={onClick}>
           {!blind ? (
-            <p className={styles.clientcomment}>{item?.item.content}</p>
+            <p className={styles.clientcomment}>{item?.content}</p>
           ) : (
             <p className={styles.clientcomment}>
               {'블라인드 처리된 리뷰입니다.'}

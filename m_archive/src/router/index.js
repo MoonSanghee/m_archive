@@ -17,7 +17,7 @@ import Feedback from "../pages/Test/Feedback";
 import MyPageLayout from "../components/Layout/MyPageLayout";
 import Profile from "../pages/MyPage/Profile";
 import FAQ from "../pages/MyPage/FAQ"
-import { HomePage, MovieDetailPage } from '../pages';
+import { HomePage, MovieDetailPage,ReviewsPage } from '../pages';
 import { LoginPage,RegisterPage,AdminLoginPage,AdminRegisterPage } from "../pages/Auth";
 import {ManageFAQsPage, ManageMoviesPage,ManageReviewsPage, ManageUsersPage} from "../pages/Admin";
 
@@ -44,6 +44,7 @@ const router = (
          */}
       
       <Route path="detail/:id" element={<MovieDetailPage/>}/>
+      <Route path="detail/:id/reviews" element={<ReviewsPage/>}/>
       <Route path="mypage" element={<MyPageLayout/>}>
         <Route path="faq" element={<FAQ/>}/>
           <Route path="profile" element={<Profile/>}/>

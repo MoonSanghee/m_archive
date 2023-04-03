@@ -7,7 +7,7 @@ const Review = ({ review, slide, onClick,idx }) => {
   const { id } = review;
   return (
     <li
-      className={cx(styles.review)}
+      className={cx(styles.review,{[styles.odd]:idx%2>0})}
       id={`Review-Li-${id}`}
       style={{
         transform: `translateX(${slide}px)`,

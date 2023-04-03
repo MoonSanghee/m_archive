@@ -14,11 +14,13 @@ import { getMovieReviews } from '../../../api/Reviews';
 import useModal from '../../../components/Common/Modal/useModal';
 import ReviewModal from './ReviewModal';
 import { useMe } from '../../../hooks';
+import { useMount } from 'react-use';
+
 
 const MovieDetailPage = () => {
   const navigate = useNavigate();
   const params = useParams();
-  //const location = useLocation();
+  const me = useMe(); 
   //해당 영화-정보
   const [movie, setMovie] = useState({});
   const [details, setDetails] = useState({
@@ -31,18 +33,21 @@ const MovieDetailPage = () => {
   const [myReview, setMyReview] = useState({});
   //모달
   const [modalOption, showModal] = useModal();
-  const [isOpen, setIsOpen] = useState(true);
-  //const [myInfo,setMyInfo] = useMe({});
+  //const [isOpen, setIsOpen] = useState(true);
 
-  const me = useMe();
-
-  //console.log(location);
+  //별점
+  const [starClicked, setStarCliked] = useState(false);
   const onClick = () => {
     return () => {
-      const move = location.pathname + '/reviews';
+      const move = location.pathname + 'reviews';
       navigate(move);
     };
   };
+  const onClickStar=()=>{
+    return ()=>{
+      setStarCliked(!starClicked);
+    }
+  }
 
   const onGetMovie = async (id) => {
     const response = await getMovie(id);
@@ -52,16 +57,15 @@ const MovieDetailPage = () => {
         genres: response.data.genres,
         staffs: response.data.staffs,
       });
-      console.log('movie', movie);
-      console.log('details', details);
     }
   };
-  const onGetReviwes = async (id) => {
+  
+  const onGetReviews = async (id) => {
     const response = await getMovieReviews(id);
     if (response.status === 200) {
-      const items = [...response.data];
-      setReviews(items);
-      console.log(reviews);
+      //const items = [...response.data]; 
+      //setReviews(items);
+      setReviews(response.data);
     }
   };
 
@@ -69,9 +73,7 @@ const MovieDetailPage = () => {
     showModal(
       true,
       '',
-      () => {
-        console.log('모달 on');
-      },
+      null,
       null,
       <ReviewModal
         title={movie?.title}
@@ -80,8 +82,12 @@ const MovieDetailPage = () => {
         myReview={myReview}
         onClose={() => {
           //NOTE: 생성/수정/삭제와 같이 데이터를 변경하는 API를 사용한다면 -> API 요청 완료 후에 재요청을 해야한다~
-          onGetReviwes();
           modalOption.onClose();
+          if (!params.id) {
+            return;
+          }
+          onGetMovie(params.id);
+          onGetReviews(params.id);
         }}
       />,
     );
@@ -90,38 +96,43 @@ const MovieDetailPage = () => {
   const findMyReview = (items) => {
     //해당 영화의 리뷰 목록중 내가 쓴 목록이 있으면 reviewID 리턴
     //리뷰쓴 userId와 내 userId 비교 -> 내 리뷰가 있으면 내리뷰리턴
+    if(!me){
+      //console.log("로그아웃상태, 로그인바람");
+      return;
+    }
     const review = items.filter((item) => {
       if (item.user.id === me.id) {
-        //if(item.user.id==="4bc9718a-f8f1-4f5a-99b6-31e029c35309"){
         return item;
       }
     });
-    //console.log(review);
     if (review.length > 0) {
       setMyReview(review[0]);
+      //console.log(myReview);
     } else {
+      setMyReview({});
     }
-    //console.log(myReview);
-
-    //console.log("review" , reviewID);
   };
-  function isEmptyObject(param) {
+  const isEmptyObject =(param) =>{
     return Object.keys(param).length === 0 && param.constructor === Object;
   }
   useEffect(() => {
-    console.log(params);
-    console.log(me);
+    console.log("별점 변동됨");
+    onGetReviews(params.id);
+    //if (reviews.length > 0) findMyReview(reviews);
+  }, [starClicked]);
+
+  useEffect(()=>{
+    findMyReview(reviews);
+  },[reviews])
+  useMount(()=>{
     if (!params.id) {
       console.log(params.id, '없음');
       return;
     }
     onGetMovie(params.id);
-    onGetReviwes(params.id);
-  }, [params.id]);
-
-  useEffect(() => {
-    if (reviews.length > 0) findMyReview(reviews);
-  }, [reviews]);
+    onGetReviews(params.id); 
+    //if (reviews.length > 0) findMyReview(reviews);
+  })
 
   return (
     <main>
@@ -149,8 +160,12 @@ const MovieDetailPage = () => {
 
           <div className={styles.buttons}>
             <StarRateButton
-              myRate={isEmptyObject(myReview) && myReview}
-              me={me}
+              myReview={!isEmptyObject(myReview) ? myReview:null} 
+              movieId={movie?.id}
+              isModified={!isEmptyObject(myReview)}
+              reload={onClickStar()}
+              //onClick={onClickStar}
+              //clickedStarIndex={clickedStarIndex}
             />
             <span className={styles.buttonPlace}>
               <ReviewButton
@@ -159,7 +174,7 @@ const MovieDetailPage = () => {
               />
             </span>
             <span className={styles.buttonPlace}>
-              <LikeButton label="좋아요" />
+              <LikeButton label="좋아요" movieId={movie?.id} />
             </span>
             <span className={styles.buttonPlace}>
               <ShareButton label="공유" />

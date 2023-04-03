@@ -35,7 +35,7 @@ const ReviewCarousel = ({ reviews }) => {
 
   const toNext = () => {
     //card width - 1712 , homepage padding-48 , li gap - 8
-    slidePx > - (movePx * moveCount) && setSlidePx(slidePx - movePx);
+    slidePx > - (movePx * moveCount) && setSlidePx(slidePx - movePx );
   };
 
   useEffect(() => {
@@ -62,7 +62,7 @@ const ReviewCarousel = ({ reviews }) => {
               idx={idx}
               //onClick={onNavigateDetail(review.id)}
               //type={type}
-              //idx={idx}
+              
             />  
           );
           

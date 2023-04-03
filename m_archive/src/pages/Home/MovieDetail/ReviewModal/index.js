@@ -34,6 +34,7 @@ const ReviewModal = ({ title, isEmptyReview, movieId, myReview, onClose }) => {
     if (isModified) {
       //리뷰 수정
       //NOTE: 수정 -> 204
+      reviewData.score = myReview.score;
       const response = await modifyReview(myReview.id, reviewData);
       //NOTE: 반복되는 코드는 함수로 분리
       checkResponse(response.status, '수정', 204);
@@ -47,15 +48,14 @@ const ReviewModal = ({ title, isEmptyReview, movieId, myReview, onClose }) => {
     onClose();
   };
   //NOTE: GET -> 200, POST -> 201, PATCH -> 204, DELETE -> 204
-  const onDelete = () => {
+  const onDelete = async() => {
     //NOTE: 삭제는 따로 분리
     //NOTE: 삭제 -> 204
-    //   const response = await deleteReview(myReview.id);
-    //   if (response.status === 200) {
-    //     alert('리뷰가 삭제되었습니다.');
-    //   } else {
-    //     alert('리뷰삭제 오류');
-    //   }
+    //console.log(myReview.id);
+    const response = await deleteReview(myReview.id);
+    checkResponse(response.status,'삭제',204);
+    onClose();
+    
   };
 
   const onChange = (e) => {
@@ -94,7 +94,7 @@ const ReviewModal = ({ title, isEmptyReview, movieId, myReview, onClose }) => {
 
         {/* //NOTE: position fixed */}
         <div className={styles.btnWrapper}>
-          <Button color={'secondary'} type="submit" form="reviewForm">
+        <Button color={'secondary'} type="submit" form="reviewForm">
             {!isModified ? '저장' : '수정'}
           </Button>
           {isModified && (
@@ -107,6 +107,8 @@ const ReviewModal = ({ title, isEmptyReview, movieId, myReview, onClose }) => {
               삭제
             </Button>
           )}
+       
+             
         </div>
       </form>
     </section>
