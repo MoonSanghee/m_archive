@@ -6,7 +6,7 @@ import { getMovies, getTop10Movies, getGenreMovies } from '../../api/Movies';
 import { useState, useEffect, useCallback } from 'react';
 import Carousel from './Carousel';
 
-import { Card, Dropdown, Tag } from '../../components/Common';
+import { Card, Dropdown, Tag, ScrollTopButton } from '../../components/Common';
 import genre from './Genre/genre';
 import { sortItems } from './Genre/sortItems';
 // import {dropdownSortItems} from
@@ -35,7 +35,7 @@ const Home = () => {
 
   const onGetMovies = async () => {
     //서버에서 데이터를 불러옴.
-    const response = await getMovies(1,20);
+    const response = await getMovies(1, 20);
 
     if (response.status === 200) {
       //console.log(response.data.data);
@@ -138,6 +138,7 @@ const Home = () => {
 
   return (
     <main className={styles.wrapper}>
+      <ScrollTopButton />
       <section className={styles.top10Wrapper}>
         <h1 className={styles.header}>Top 10</h1>
         <Carousel movies={top10Movies} type="top10" />
