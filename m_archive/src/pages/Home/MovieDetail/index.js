@@ -39,7 +39,7 @@ const MovieDetailPage = () => {
   const [starClicked, setStarCliked] = useState(false);
   const onClick = () => {
     return () => {
-      const move = location.pathname + 'reviews';
+      const move = location.pathname + '/reviews';
       navigate(move);
     };
   };
