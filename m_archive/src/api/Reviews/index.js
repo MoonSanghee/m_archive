@@ -16,7 +16,7 @@ export const modifyReview = (id,body) => {
   return apiClient.patch(`/reviews/${id}`,body)
 }
 export const deleteReview = (id) => {
-  return apiClient.patch(`/reviews/${id}`)
+  return apiClient.delete(`/reviews/${id}`)
 }
 
 

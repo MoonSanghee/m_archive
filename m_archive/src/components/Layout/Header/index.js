@@ -5,6 +5,7 @@ import { SearchBox } from '../../Common';
 import styles from './header.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { useMe } from '../../../hooks';
+import { getMovies } from '../../../api/Movies';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -14,8 +15,9 @@ const Header = () => {
     };
   };
   const onClickLogo = () => {
-    return navigate('/home');
+    return navigate('/movies');
   };
+
 
   return (
     <header className={styles.wrapper}>

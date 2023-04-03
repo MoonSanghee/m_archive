@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "./star.module.scss";
 import Star from "./Star";
 
-const STAR_WIDTH = 40;
+const STAR_WIDTH = 38;
 
 const StarRate = ({item}) =>  {
     const RATE = item.score;
