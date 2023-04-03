@@ -3,8 +3,9 @@ import { ShareIcon } from "../../../assets/icon";
 import styles from "./sharebutton.module.scss";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import swal from "sweetalert2";
+import cx from "classnames";
 
-const ShareButton = ({label}) => {
+const ShareButton = ({label,className}) => {
   const currentUrl = window.location.href;
 
   const onShareBtnClick = () => {
@@ -23,7 +24,7 @@ const ShareButton = ({label}) => {
   };
 
   return (
-      <section className={styles.wrapper} onClick={onShareBtnClick}>
+      <section className={cx(styles.wrapper,className)} onClick={onShareBtnClick}>
         <CopyToClipboard text={currentUrl}>
           <ShareIcon /> 
         </CopyToClipboard>

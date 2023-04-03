@@ -2,7 +2,7 @@
 .wrapper{
     @include m.flex(center,center,column);
     width: 100%;
-    height: calc(100vh - 80px);
+    height: 100vh;
     padding: 48px 60px;
     > h1{
         width: 100%;
@@ -11,8 +11,9 @@
     }
     .reviewsWrapper{
         display: grid;
-        height: 92%;
+        min-height: 92%;
         grid-template-columns: repeat(3,1fr);
+        row-gap: 24px;
         width: 100%;
     }
     

@@ -33,7 +33,6 @@ const ReviewModal = ({ title, isEmptyReview, movieId, myReview, onClose }) => {
     };
     if (isModified) {
       //리뷰 수정
-      //NOTE: 수정 -> 204
       reviewData.score = myReview.score;
       const response = await modifyReview(myReview.id, reviewData);
       //NOTE: 반복되는 코드는 함수로 분리
@@ -41,7 +40,6 @@ const ReviewModal = ({ title, isEmptyReview, movieId, myReview, onClose }) => {
     } else {
       //리뷰 생성
       const response = await createReview(movieId, reviewData);
-      //NOTE: 생성 -> 201
       checkResponse(response.status, '생성', 201);
     }
 
@@ -49,9 +47,6 @@ const ReviewModal = ({ title, isEmptyReview, movieId, myReview, onClose }) => {
   };
   //NOTE: GET -> 200, POST -> 201, PATCH -> 204, DELETE -> 204
   const onDelete = async() => {
-    //NOTE: 삭제는 따로 분리
-    //NOTE: 삭제 -> 204
-    //console.log(myReview.id);
     const response = await deleteReview(myReview.id);
     checkResponse(response.status,'삭제',204);
     onClose();

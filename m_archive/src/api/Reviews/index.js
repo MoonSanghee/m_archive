@@ -20,6 +20,21 @@ export const deleteReview = (id) => {
 }
 
 
+//리뷰댓글 생성 id - 리뷰 id
+export const createComment = (id,body) =>{
+  return apiClient.post(`/reviews/${id}/comments`,body);
+}
+//리뷰댓글 수정 id - 댓글 id
+export const modifyComment = (id,body) =>{
+  return apiClient.patch(`/reviews/comments/${id}`,body);
+}
+//리뷰댓글 삭제 id - 댓글 id
+export const deleteComment = (id) =>{
+  return apiClient.delete(`/reviews/comments/${id}`);
+}
+
+
+
 //Admin - CMS 로그인
 //MEMO: 리뷰목록조회
 export const getReviews = () => {

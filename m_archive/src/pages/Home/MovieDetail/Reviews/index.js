@@ -35,16 +35,14 @@ const Reviews = () =>{
         }
       };
       
-      const onClickOpenModal = useCallback((review) => {
+      const onClickOpenModal = useCallback(({review}) => {
         showModal(
           true,
           '',
           null,
           null,
           <ReviewDetailModal
-            title={"hi"}
-            //movieId={movie?.id}
-            review={review}
+            thisReview={review}
             onClose={() => {
               //NOTE: 생성/수정/삭제와 같이 데이터를 변경하는 API를 사용한다면 -> API 요청 완료 후에 재요청을 해야한다~
               modalOption.onClose();
@@ -69,7 +67,7 @@ const Reviews = () =>{
                     reviews.map((review)=>{
                         return(
                             <ReviewCard 
-                            onClick={()=>{onClickOpenModal(review)}} 
+                            onClick={()=>{onClickOpenModal({review})}} 
                             key={review.id} item={review}/>
                             
                         )
