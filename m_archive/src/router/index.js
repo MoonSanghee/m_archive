@@ -2,8 +2,8 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
-} from "react-router-dom";
-import Layout from "../components/Layout";
+} from 'react-router-dom';
+import Layout from '../components/Layout';
 import {
   TestIm,
   TestJo,
@@ -11,15 +11,30 @@ import {
   TestKim,
   TestSeo,
   TestKim2,
-} from "../pages/Test";
-import { StartPage } from "../pages/Auth";
-import Feedback from "../pages/Test/Feedback";
-import MyPageLayout from "../components/Layout/MyPageLayout";
-import Profile from "../pages/MyPage/Profile";
-import FAQ from "../pages/MyPage/FAQ"
-import { HomePage, MovieDetailPage,ReviewsPage } from '../pages';
-import { LoginPage,RegisterPage,AdminLoginPage,AdminRegisterPage } from "../pages/Auth";
-import {ManageFAQsPage, ManageMoviesPage,ManageReviewsPage, ManageUsersPage} from "../pages/Admin";
+} from '../pages/Test';
+import { StartPage } from '../pages/Auth';
+import Feedback from '../pages/Test/Feedback';
+import MyPageLayout from '../components/Layout/MyPageLayout';
+import Profile from '../pages/MyPage/Profile';
+import FAQ from '../pages/MyPage/FAQ';
+import {
+  HomePage,
+  MovieDetailPage,
+  MovieSearchPage,
+  ReviewsPage,
+} from '../pages';
+import {
+  LoginPage,
+  RegisterPage,
+  AdminLoginPage,
+  AdminRegisterPage,
+} from '../pages/Auth';
+import {
+  ManageFAQsPage,
+  ManageMoviesPage,
+  ManageReviewsPage,
+  ManageUsersPage,
+} from '../pages/Admin';
 
 const router = (
   <Route path="/">
@@ -39,16 +54,17 @@ const router = (
     <Route path="admin/register" element={<AdminRegisterPage />} />
 
     <Route path="movies" element={<Layout />}>
-      <Route index element={<HomePage />}/>
-        {/*<Route path="movie:id" element={<MovieDetailPage/>}/>
-         */}
-      
-      <Route path="detail/:id" element={<MovieDetailPage/>}/>
-      <Route path="detail/:id/reviews" element={<ReviewsPage/>}/>
-      <Route path="mypage" element={<MyPageLayout/>}>
-        <Route path="faq" element={<FAQ/>}/>
-          <Route path="profile" element={<Profile/>}/>
-          {/*
+      <Route index element={<HomePage />} />
+      {/*<Route path="movie:id" element={<MovieDetailPage/>}/>
+       */}
+
+      <Route path="detail/:id" element={<MovieDetailPage />} />
+      <Route path="search" element={<MovieSearchPage />} />
+      <Route path="detail/:id/reviews" element={<ReviewsPage />} />
+      <Route path="mypage" element={<MyPageLayout />}>
+        <Route path="faq" element={<FAQ />} />
+        <Route path="profile" element={<Profile />} />
+        {/*
 
 
           <Route path="like" element={<LikePage/>}/>
@@ -56,18 +72,16 @@ const router = (
           <Route path=":id" element={<UserPage/>}/>*/}
       </Route>
     </Route>
-    
-      <Route path="admin">
-        <Route index element={<ManageMoviesPage/>}>
-          {/* <Route path="addMovie" element={<AddMoviePage/>}/> */}
-        </Route>
-        <Route path="manageReviews" element={<ManageReviewsPage/>}/>
-        <Route path="manageUsers" element={<ManageUsersPage/>}/>
-        <Route path="manageFAQs" element={<ManageFAQsPage/>}/>
+
+    <Route path="admin">
+      <Route index element={<ManageMoviesPage />}>
+        {/* <Route path="addMovie" element={<AddMoviePage/>}/> */}
       </Route>
-      
+      <Route path="manageReviews" element={<ManageReviewsPage />} />
+      <Route path="manageUsers" element={<ManageUsersPage />} />
+      <Route path="manageFAQs" element={<ManageFAQsPage />} />
+    </Route>
   </Route>
-  
 );
 
 const rootRouter = createBrowserRouter(createRoutesFromElements(router));

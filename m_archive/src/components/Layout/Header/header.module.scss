@@ -1,5 +1,5 @@
-@use "../../../styles/constants/" as c;
-@use "../../../styles/mixins/" as m;
+@use '../../../styles/constants/' as c;
+@use '../../../styles/mixins/' as m;
 
 .wrapper {
   @include m.flex(space-between, flex-start, row);
@@ -40,15 +40,24 @@
       width: 400px;
       //margin-bottom: 10px;
       .search {
+        position: relative;
         @include m.flex();
         width: 100%;
         > input {
+          padding-left: 60px;
           height: 48px;
           width: 100%;
+          font-size: 16px;
+          padding-bottom: 2px;
         }
         > button {
+          position: absolute;
+          left: -2px;
+          top: 1px;
           width: 60px;
           height: 48px;
+          background: none;
+          border: none;
         }
       }
     }
