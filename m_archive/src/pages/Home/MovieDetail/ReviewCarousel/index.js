@@ -30,23 +30,18 @@ const ReviewCarousel = ({ reviews }) => {
 
   const toPrev = () => {
     //card width - 1712 , homepage padding-48
-    slidePx < 0 && setSlidePx(slidePx + movePx);
+    if(slidePx < 0) setSlidePx(slidePx + movePx);
   };
 
   const toNext = () => {
     //card width - 1712 , homepage padding-48 , li gap - 8
-    slidePx > - (movePx * moveCount) && setSlidePx(slidePx - movePx );
+    console.log((movePx*moveCount))
+    if(slidePx > - (movePx * moveCount)) setSlidePx(slidePx - movePx );
   };
 
   useEffect(() => {
-  
-    if(reviews.length <= 2 ) setMoveCount(0);
-    else if(reviews.length <= 4  ) setMoveCount(1);
-    else if(reviews.length <= 6 ) setMoveCount(2);
-    else if(reviews.length <= 8 ) setMoveCount(3);
-    else setMoveCount(4);
-
-  }, []);
+    setMoveCount(Math.round(reviews.length / 2 )-1);
+  }, [reviews]);
 
   if (!reviews) return;
   return (
