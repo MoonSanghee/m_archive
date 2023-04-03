@@ -11,6 +11,7 @@ const MovieSearch = () => {
   const [movies, setMovies] = useState([]);
   const searchText = state.keyword;
   const navigate = useNavigate();
+
   // 제목검색
   const filteredFirst = movies.filter((item) =>
     item.title.replace(/ /g, '').includes(searchText.replace(/ /g, '')),
@@ -21,8 +22,6 @@ const MovieSearch = () => {
 
   //제목,배우,감독 검색 결과 모으기
   const result = [...filteredFirst];
-
-  console.log(searchText);
 
   const onGetMovies = async () => {
     //서버에서 데이터를 불러옴.

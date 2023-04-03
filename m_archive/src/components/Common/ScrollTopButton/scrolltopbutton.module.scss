@@ -1,0 +1,13 @@
+@use '../../../styles/constants/' as c;
+
+.button {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  z-index: 100;
+  font-size: 20px;
+
+  &:hover {
+    box-shadow: c.$C_SHADOW;
+  }
+}
