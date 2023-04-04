@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './home.module.scss';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { getMovies, getTop10Movies, getGenreMovies } from '../../api/Movies';
 import { useState, useEffect, useCallback } from 'react';
 import Carousel from './Carousel';
@@ -32,6 +32,9 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [test, setTest] = useState([]);
+
+  const location = useLocation();
+  const alert = location.state;
 
   const onGetMovies = async () => {
     //서버에서 데이터를 불러옴.
@@ -188,6 +191,11 @@ const Home = () => {
         <div ref={ref}></div>
         {/* ref - 마지막 아이템에 사용해야 하지만 컴포넌트에는 ref를 사용할 수 없음 */}
       </section>
+      {alert && ( //회원가입 장르 선택 안하면 알림띄우기
+        <div className={styles.alert}>
+          <p>취향은 마이페이지에서 수정이 가능합니다.</p>
+        </div>
+      )}
     </main>
   );
 };

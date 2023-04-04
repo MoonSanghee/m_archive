@@ -29,6 +29,7 @@ import {
   AdminLoginPage,
   AdminRegisterPage,
   LogoutPage,
+  RegisterGenrePage,
 } from '../pages/Auth';
 import {
   ManageFAQsPage,
@@ -52,9 +53,10 @@ const router = (
     </Route>
     <Route path="login" element={<LoginPage />} />
     <Route path="register" element={<RegisterPage />} />
+    <Route path="registerGenre" element={<RegisterGenrePage />} />
     <Route path="admin/login" element={<AdminLoginPage />} />
     <Route path="admin/register" element={<AdminRegisterPage />} />
-    <Route path='logout' element={<LogoutPage/>}/>
+    <Route path="logout" element={<LogoutPage />} />
 
     <Route path="movies" element={<Layout />}>
       <Route index element={<HomePage />} />
