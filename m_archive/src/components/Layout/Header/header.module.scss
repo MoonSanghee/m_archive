@@ -30,7 +30,7 @@
   .navWrapper {
     @include m.flex();
     height: 100%;
-    column-gap: 20px;
+    column-gap: 60px;
     //padding: 20px;
     .movieButton {
       font-size: 28px;
@@ -62,7 +62,7 @@
       }
     }
     .profileIcon {
-      //width: 140px;
+      @include m.flex(center,center,column);
     }
   }
 }

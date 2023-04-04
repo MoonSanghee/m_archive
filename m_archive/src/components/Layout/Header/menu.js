@@ -35,7 +35,7 @@ export default  [
             id:5,
             name:"로그아웃",
             value:"Logout",
-            path:"/auth/Logout",
+            path:"/logout",
             icon:<LogoutIcon/>
         },
     

@@ -17,7 +17,7 @@ const Button = ({
         styles.button,
         styles[width],
         styles[border],
-        styles[color]
+        styles[color],
       )}
       type="button"
       {...props}
