@@ -32,10 +32,7 @@ const MovieDetailPage = () => {
   const [myReview, setMyReview] = useState({});
   //모달
   const [modalOption, showModal] = useModal();
-  //const [isOpen, setIsOpen] = useState(true);
-
-  //별점
-  // const [starClicked, setStarCliked] = useState(false);
+  
 
   // NOTE: curring이 필요없는 함수
   const onClick = () => {
@@ -117,13 +114,6 @@ const MovieDetailPage = () => {
   const isEmptyObject = (param) => {
     return Object.keys(param).length === 0 && param.constructor === Object;
   };
-
-  //NOTE: 불필요한 useEffect입니다~
-  // useEffect(() => {
-  //   console.log('별점 변동됨');
-
-  //   //if (reviews.length > 0) findMyReview(reviews);
-  // }, [starClicked]);
 
   useEffect(() => {
     findMyReview(reviews);

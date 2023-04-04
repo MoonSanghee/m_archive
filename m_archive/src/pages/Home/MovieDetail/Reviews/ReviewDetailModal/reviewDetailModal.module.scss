@@ -108,6 +108,15 @@
                 fill:c.$C_DARKGRAY;
             }
         }
+        .likeButton{
+            cursor: pointer;
+        }
+        .isLiked{
+            color:c.$C_PINK;
+            > svg {
+                fill:c.$C_PINK;
+            }
+        }
     }
     .commentsWrapper{
         @include m.flex(space-between,center,column);
@@ -136,7 +145,7 @@
                 }
             }
             > p {
-                @include m.flex(space-between,center,column);
+                @include m.flex(center,center,column);
                 width: 12%;
                 height: 100%;
                 color:c.$C_DARKGRAY;
@@ -152,6 +161,7 @@
                     width: 96%;
                     border: none;
                     font-family: 'KIMM_Light';
+                    font-size: 16px;
                     //color:c.$C_DARKGRAY;
                 }
                 .button{

@@ -4,10 +4,12 @@ import styles from "./sharebutton.module.scss";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import swal from "sweetalert2";
 import cx from "classnames";
+import { useLocation } from "react-router-dom";
 
-const ShareButton = ({label,className}) => {
-  const currentUrl = window.location.href;
-
+const ShareButton = ({label,className,url}) => {
+  const location = useLocation();
+  const currentUrl = url ? url : location.pathname;
+  
   const onShareBtnClick = () => {
     //NOTE: position 으로 조절하거나, showClass로 조절
     swal.fire({
