@@ -21,8 +21,6 @@ const Reviews = () => {
   const onGetReviews = async (id) => {
     const response = await getMovieReviews(id);
     if (response.status === 200) {
-      //const items = [...response.data];
-      //setReviews(items);
       setReviews(response.data);
     }
   };
@@ -36,14 +34,14 @@ const Reviews = () => {
 
   const onClickOpenModal = useCallback(
     ({ review }) => {
-      // console.log({ review });
       showModal(
         true,
         '',
         null,
-        null,
+        ()=>onGetReviews(params.id),
         <ReviewDetailModal
           thisReview={review}
+          movieId={params.id}
           onClose={() => {
             //NOTE: 생성/수정/삭제와 같이 데이터를 변경하는 API를 사용한다면 -> API 요청 완료 후에 재요청을 해야한다~
             modalOption.onClose();
@@ -51,12 +49,12 @@ const Reviews = () => {
               return;
             }
             //onGetMovie(params.id);
-            //onGetReviews(params.id);
+            
           }}
         />,
       );
     },
-    [modalOption],
+    [params.id,modalOption],
   );
 
   useMount(() => {

@@ -1,11 +1,14 @@
 import apiClient from "../apiClient";
+import {getTokens} from "../../utils/";
+
+
 //MEMO: 리뷰 목록 조회
 export const getMovieReviews = (id) => {
   return apiClient.get(`/reviews/movie/${id}`);
 };
 
 export const getReviewDetail = (id) => {
-  return apiClient.get(`/reviews/${id}/detail`);
+  return apiClient.get(`/reviews/${id}/detail`)
 };
 
 export const createReview = (id,body) => {
@@ -32,8 +35,13 @@ export const modifyComment = (id,body) =>{
 export const deleteComment = (id) =>{
   return apiClient.delete(`/reviews/comments/${id}`);
 }
-
-
+//리뷰 좋아요
+export const createReviewLike = (id) =>{
+  return apiClient.post(`/reviews/${id}/like`);
+}
+export const deleteReviewLike = (id) =>{
+  return apiClient.delete(`/reviews/${id}/like`);
+}
 
 //Admin - CMS 로그인
 //MEMO: 리뷰목록조회
