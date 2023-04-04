@@ -8,6 +8,7 @@
     @include m.flex(flex-start);
     column-gap: 40px; 
     width: 1712px;
+    overflow: hidden;
     //NOTE: Feedback - width 조절해서 페이지 전체가 좌우 스크롤이 되지 않도록
     //width: calc(100vw - 96px); -> 이렇게하니 버튼이 맨끝으로감 ㅠ
     //overflow-x: scroll;

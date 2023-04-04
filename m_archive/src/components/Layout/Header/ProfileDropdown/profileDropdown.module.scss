@@ -1,7 +1,7 @@
 @use "../../../../styles/constants/colors" as c;
 @use "../../../../styles/mixins" as m;
 .dropdownWrapper {
-    width: 60px;
+    width: 56px;
     position: relative;
     border-radius: 4px;
     font-size: 20px;
@@ -17,13 +17,15 @@
           stroke: c.$C_GRAY;
           stroke-width: 1px;
         }
+      }
     }
-  }
-    
+    .button{
+        height: 48px;
+    }
   
     .dropdownInfo {
       @include m.flex(space-between,flex-end,column);
-      
+    
     }
   
     .itemWrapper {

@@ -28,6 +28,7 @@ import {
   RegisterPage,
   AdminLoginPage,
   AdminRegisterPage,
+  LogoutPage,
 } from '../pages/Auth';
 import {
   ManageFAQsPage,
@@ -35,6 +36,7 @@ import {
   ManageReviewsPage,
   ManageUsersPage,
 } from '../pages/Admin';
+import { LogoutIcon } from '../assets/icon';
 
 const router = (
   <Route path="/">
@@ -52,6 +54,7 @@ const router = (
     <Route path="register" element={<RegisterPage />} />
     <Route path="admin/login" element={<AdminLoginPage />} />
     <Route path="admin/register" element={<AdminRegisterPage />} />
+    <Route path='logout' element={<LogoutPage/>}/>
 
     <Route path="movies" element={<Layout />}>
       <Route index element={<HomePage />} />

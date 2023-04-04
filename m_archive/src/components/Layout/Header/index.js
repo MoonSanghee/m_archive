@@ -18,7 +18,6 @@ const Header = () => {
     return navigate('/movies');
   };
 
-
   return (
     <header className={styles.wrapper}>
       <div className={styles.logo}>
@@ -27,7 +26,7 @@ const Header = () => {
       <nav className={styles.navWrapper}>
         {/*<span className={styles.movieButton}>영화</span>*/}
         <span className={styles.searchBox}>
-          <SearchBox className={styles.search} placeholder="제목, 배우, 감독" />
+          <SearchBox className={styles.search} placeholder="제목, 배우, 감독"/>
         </span>
         <span className={styles.profileIcon}>
           <ProfileDropdown items={dropdownItems} onClick={onClick} />
