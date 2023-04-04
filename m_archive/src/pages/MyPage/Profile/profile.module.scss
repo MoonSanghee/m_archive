@@ -9,7 +9,7 @@
   font-size:200px;
 }
 
-.profile {
+.container {
   background-color:transparent;
   margin-top: 34px;
   border: 4px solid c.$C_PRIMARY;
@@ -51,12 +51,15 @@
   width: 940px;
   height: 447px;
   margin-top: 34px;
-  
-  
+
 }
 
 .buttonTag {
+  
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-flow: column;
+  flex-wrap: wrap;
+  
 }

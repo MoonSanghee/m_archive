@@ -24,56 +24,68 @@ const Profile = () =>{
   const [pick, setPick] = useState(genre);
   const [select, setSelect] = useState([]);
 
-  useEffect(() => {
-    axios.get('http://ec2-3-39-25-160.ap-northeast-2.compute.amazonaws.com/users/me', {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
-    .then(response => {
-      setUserInfo(response.data);
-    })
-    .catch(error => {
-      console.error(error);
+  // 프로필 정보를 저장할 상태 변수
+  const [profile, setProfile] = useState({
+    id: '',
+    name: '',
+    birth: '',
+    nickname: '',
+    email: '',
+    description: '',
+    profileImage: '',
+    gender: '',
+    preferredGenres: [],
+    createdAt: '',
+    updatedAt: '',
+  });
+
+  // 프로필 정보를 입력할 때마다 상태 변수에 저장
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setProfile({
+      ...profile,
+      [name]: value,
     });
-  }, []);
-  if (!userInfo) {
-    return <div>Loading...</div>;
-  }
-    return(
-        <main>
-            <section className={styles.profile}>
-                <div className={styles.sideIcon}> 
-                <div>
-                  <img src={userInfo.profileImage} alt={userInfo.name} />
-                    <h1>{userInfo.name}</h1>
-                    <p>{userInfo.email}</p>
-                    <p>{userInfo.birth}</p>
-                    <p>{userInfo.description}</p>
-                </div>
-                {/* 밑에 내용은 그냥 틀  (삭제 예정) */}
-                <ProfileIcon></ProfileIcon>
-                <textarea>소개글</textarea>
-                </div>
-                <div className={styles.textInput}>
-                  
-                  <div>
-                      <p>닉네임 <input /></p>
-                  </div>
-                  <div>
-                      {/* 수정 불가  */}
-                      <p>이메일 <input /></p>
-                  </div>
-                  <div>
-                      <p>비밀번호 변경 <input /></p>
-                  </div>
-                  <div>
-                      <p>새 비밀번호 확인 <input /></p>
-                  </div>
-                </div>
-                
-            </section>
-            {/* 윗부분 삭제 예정 */}
+  };
+
+  // 수정 버튼 클릭 시 API 호출
+  const handleSubmit = async () => {
+    try {
+      const res = await axios.put("/users/me", profile); 
+      // API 주소
+      console.log(res.data);
+      // 수정 성공 시 처리
+    } catch (err) {
+      console.error(err);
+      // 수정 실패 시 처리
+    }
+  };
+
+  return (
+    <main>
+    <div className={styles.container}>
+      <h1>프로필 수정</h1>
+      <div className={styles.profileInfo}>
+        <ProfileIcon profileImage={profile.profileImage} />
+        <textarea name="description" value={profile.description} onChange={handleChange} placeholder="소개글"></textarea>
+      </div>
+      <div className={styles.textInput}>
+        <div>
+          <p>닉네임 <input name="nickname" value={profile.nickname} onChange={handleChange} /></p>
+        </div>
+        <div>
+          {/* 수정 불가 */}
+          <p>이메일 {profile.email}</p>
+        </div>
+        <div>
+          <p>비밀번호 변경 <input type="password" name="password" onChange={handleChange} /></p>
+        </div>
+        <div>
+          <p>새 비밀번호 확인 <input type="password" name="passwordConfirm" onChange={handleChange} /></p>
+        </div>
+      </div>
+      <button onClick={handleSubmit}>수정</button>
+    </div>
           <section className={styles.tag}>
         <h2 className={styles.text}>선호 장르</h2>
         <div className={styles.buttonTag}>
