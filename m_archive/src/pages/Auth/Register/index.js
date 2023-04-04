@@ -76,7 +76,7 @@ const Register = () => {
     if (response.status === 200) {
       const data = response.data;
       saveTokens(data);
-      navigate('/movies');
+      navigate('/registerGenre');
     }
   };
 

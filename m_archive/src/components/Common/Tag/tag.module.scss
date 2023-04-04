@@ -1,5 +1,4 @@
-@use "../../../styles/constants/" as c;
-
+@use '../../../styles/constants/' as c;
 
 .tag {
   box-sizing: border-box;
@@ -15,7 +14,7 @@
 
   &:hover {
     filter: brightness(1.1);
-    box-shadow:rgba(255, 255, 255, 0.5) 0px 0px 50px 0px;
+    box-shadow: rgba(255, 255, 255, 0.5) 0px 0px 50px 0px;
   }
 
   &.border {
@@ -32,6 +31,14 @@
     height: 56px;
     font-size: 20px;
     border-radius: 120px;
+  }
+
+  &.big {
+    width: 160px;
+    height: 60px;
+    font-size: 24px;
+    border-radius: 120px;
+    border-width: 2px;
   }
 
   &.active {
