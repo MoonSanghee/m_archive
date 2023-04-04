@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 const MovieSearch = () => {
   const { state } = useLocation();
   const [movies, setMovies] = useState([]);
+  const [isSuccess, setIsSuccess] = useState(false);
   const searchText = state.keyword;
   const navigate = useNavigate();
 
@@ -30,6 +31,7 @@ const MovieSearch = () => {
     if (response.status === 200) {
       const items = [...response.data.data];
       setMovies(items);
+      setIsSuccess(true);
     }
   };
 
@@ -41,8 +43,8 @@ const MovieSearch = () => {
   };
 
   useEffect(() => {
+    setIsSuccess(false);
     onGetMovies();
-    console.log(searchText);
   }, []);
 
   return (
@@ -63,7 +65,8 @@ const MovieSearch = () => {
           </div>
         </div>
       )}
-      {(searchText === '' || result.length === 0) && (
+      {/* //NOTE: 영화를 불러오는 중간에는 밑의 컴포넌트가 뜨지 않도록 설정 */}
+      {(searchText === '' || result.length === 0) && isSuccess && (
         <div className={styles.searchedNoMovies}>
           <WarningIcon className={styles.icon} />
           <h2>{`입력하신 검색어 "${searchText}" 와(과) 일치하는 결과가 없습니다.`}</h2>

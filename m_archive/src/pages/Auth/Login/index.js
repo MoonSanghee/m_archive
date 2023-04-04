@@ -16,7 +16,6 @@ const Login = () => {
   const [emailStatus, setEmailStatus] = useState('');
   const [passwordStatus, setPasswordStatus] = useState('');
 
-
   const onChange = (e) => {
     const { name, value } = e.currentTarget;
     setForm({ ...form, [name]: value });
@@ -36,37 +35,36 @@ const Login = () => {
     if (typeof validatedEmail !== Boolean) {
       setEmailStatus(validatedEmail);
       //NOTE: return을 넣어서 다음 코드가 실행되지 않도록 설정
-      
+
       //return;
     }
     if (typeof validatedPassword !== Boolean) {
       setPasswordStatus(validatedPassword);
-      
+
       //return;
     }
 
     //폼 유효성
     const validatedForm = !validatedEmail && !validatedPassword ? true : false;
 
-    if(validatedForm){
+    if (validatedForm) {
       //console.log(form); //확인용
       //console.log(validatedForm); //확인용
-  
+
       const loginData = {
         email: form.userEmail,
         password: form.password,
       };
-  
+
       const response = await login(loginData);
       if (response.status === 200) {
         const data = response.data;
         saveTokens(data);
         navigate('/movies');
       }
-    }else{
-      console.log("invalid form");
+    } else {
+      console.log('invalid form');
     }
-   
   };
 
   return (

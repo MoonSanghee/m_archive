@@ -16,11 +16,10 @@ import ReviewModal from './ReviewModal';
 import { useMe } from '../../../hooks';
 import { useMount } from 'react-use';
 
-
 const MovieDetailPage = () => {
   const navigate = useNavigate();
   const params = useParams();
-  const me = useMe(); 
+  const me = useMe();
   //해당 영화-정보
   const [movie, setMovie] = useState({});
   const [details, setDetails] = useState({
@@ -36,18 +35,18 @@ const MovieDetailPage = () => {
   //const [isOpen, setIsOpen] = useState(true);
 
   //별점
-  const [starClicked, setStarCliked] = useState(false);
+  // const [starClicked, setStarCliked] = useState(false);
+
+  // NOTE: curring이 필요없는 함수
   const onClick = () => {
-    return () => {
-      const move = location.pathname + '/reviews';
-      navigate(move);
-    };
+    const move = location.pathname + '/reviews';
+    navigate(move);
   };
-  const onClickStar=()=>{
-    return ()=>{
-      setStarCliked(!starClicked);
-    }
-  }
+  const onClickStar = () => {
+    onGetReviews(params.id);
+    onGetMovie(params.id);
+    // setStarCliked(!starClicked);
+  };
 
   const onGetMovie = async (id) => {
     const response = await getMovie(id);
@@ -59,12 +58,13 @@ const MovieDetailPage = () => {
       });
     }
   };
-  
+
   const onGetReviews = async (id) => {
     const response = await getMovieReviews(id);
     if (response.status === 200) {
-      //const items = [...response.data]; 
+      //const items = [...response.data];
       //setReviews(items);
+      // console.log(response.data);
       setReviews(response.data);
     }
   };
@@ -96,7 +96,7 @@ const MovieDetailPage = () => {
   const findMyReview = (items) => {
     //해당 영화의 리뷰 목록중 내가 쓴 목록이 있으면 reviewID 리턴
     //리뷰쓴 userId와 내 userId 비교 -> 내 리뷰가 있으면 내리뷰리턴
-    if(!me){
+    if (!me) {
       //console.log("로그아웃상태, 로그인바람");
       return;
     }
@@ -105,6 +105,7 @@ const MovieDetailPage = () => {
         return item;
       }
     });
+
     if (review.length > 0) {
       setMyReview(review[0]);
       //console.log(myReview);
@@ -112,27 +113,31 @@ const MovieDetailPage = () => {
       setMyReview({});
     }
   };
-  const isEmptyObject =(param) =>{
-    return Object.keys(param).length === 0 && param.constructor === Object;
-  }
-  useEffect(() => {
-    console.log("별점 변동됨");
-    onGetReviews(params.id);
-    //if (reviews.length > 0) findMyReview(reviews);
-  }, [starClicked]);
 
-  useEffect(()=>{
+  const isEmptyObject = (param) => {
+    return Object.keys(param).length === 0 && param.constructor === Object;
+  };
+
+  //NOTE: 불필요한 useEffect입니다~
+  // useEffect(() => {
+  //   console.log('별점 변동됨');
+
+  //   //if (reviews.length > 0) findMyReview(reviews);
+  // }, [starClicked]);
+
+  useEffect(() => {
     findMyReview(reviews);
-  },[reviews])
-  useMount(()=>{
+  }, [reviews]);
+
+  useMount(() => {
     if (!params.id) {
       console.log(params.id, '없음');
       return;
     }
     onGetMovie(params.id);
-    onGetReviews(params.id); 
+    onGetReviews(params.id);
     //if (reviews.length > 0) findMyReview(reviews);
-  })
+  });
 
   return (
     <main>
@@ -155,15 +160,16 @@ const MovieDetailPage = () => {
                 return <span key={`장르-${genre.id}`}>{genre.name}</span>;
               })}
             </p>
-            <p>평균 : {movie?.averageScore}</p>
+            {/* //NOTE: toFixed(1) => 소수점 1자리까지 출력 */}
+            <p>평균 : {movie?.averageScore?.toFixed(1)}</p>
           </div>
 
           <div className={styles.buttons}>
             <StarRateButton
-              myReview={!isEmptyObject(myReview) ? myReview:null} 
+              myReview={!isEmptyObject(myReview) ? myReview : null}
               movieId={movie?.id}
               isModified={!isEmptyObject(myReview)}
-              reload={onClickStar()}
+              reload={onClickStar}
               //onClick={onClickStar}
               //clickedStarIndex={clickedStarIndex}
             />
@@ -183,10 +189,12 @@ const MovieDetailPage = () => {
           <div className={styles.movieDetails}>
             <p>
               감독 :
-              {details.staffs.map((staff) => {
-                if (staff.role === '감독')
+              {/* //NOTE: if문으로 map을 하려면 if문에도 return이, else문에도 return이 있어야 합니다. (안그러면 undefined return)  */}
+              {details.staffs
+                .filter((staff) => staff.role === '감독')
+                .map((staff) => {
                   return <span key={`감독-${staff.id}`}>{staff.name}</span>;
-              })}
+                })}
             </p>
             <p>
               배우 :
@@ -206,7 +214,7 @@ const MovieDetailPage = () => {
           </div>
           <div className={styles.divide}>
             <p className={styles.head}>리뷰</p>
-            <span className={styles.more} onClick={onClick()}>
+            <span className={styles.more} onClick={onClick}>
               더보기
             </span>
           </div>

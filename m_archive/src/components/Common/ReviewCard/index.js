@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import styles from './reviewcard.module.scss';
-import { ProfileIcon, EyeIcon, EyeBlindIcon ,CommentIcon,CommentLikeIcon} from '../../../assets/icon';
+import {
+  ProfileIcon,
+  EyeIcon,
+  EyeBlindIcon,
+  CommentIcon,
+  CommentLikeIcon,
+} from '../../../assets/icon';
 import cx from 'classnames';
 import StarRate from '../StarRate';
-import dayjs from "dayjs";
+import dayjs from 'dayjs';
 
-
-const diff = (date) =>{
+const diff = (date) => {
   const now = dayjs();
-    return `${now.diff(date, "day")}일 전`;
-}
-const ReviewCard = ({item,onClick, ...props}) => {
+  return `${now.diff(date, 'day')}일 전`;
+};
+const ReviewCard = ({ item, onClick, ...props }) => {
   const [blind, setBlind] = useState(false);
 
   const onClickBlind = () => {
@@ -41,7 +46,7 @@ const ReviewCard = ({item,onClick, ...props}) => {
               />
             </div>
             <p className={styles.nickname}>
-              <span>{isExists('nickname') || isExists('name') }</span>
+              <span>{isExists('nickname') || isExists('name')}</span>
               <span> / 칭호</span>
             </p>
           </div>
@@ -53,7 +58,7 @@ const ReviewCard = ({item,onClick, ...props}) => {
             )}
           </span>
         </div>
-        <div className={styles.contentWrapper}  onClick={onClick}>
+        <div className={styles.contentWrapper} onClick={onClick}>
           {!blind ? (
             <p className={styles.clientcomment}>{item?.content}</p>
           ) : (
@@ -64,12 +69,12 @@ const ReviewCard = ({item,onClick, ...props}) => {
         </div>
         <div className={styles.detailsWrapper}>
           <span className={styles.functionsWrapper}>
-            <CommentLikeIcon/>{item?.likeCount}
-            <CommentIcon/>{item?.comments.length}
-            </span>
-          <span className={styles.dateWrapper}>
-            {diff(item?.updatedAt)}
+            <CommentLikeIcon />
+            {item?.likeCount}
+            <CommentIcon />
+            {item?.comments.length}
           </span>
+          <span className={styles.dateWrapper}>{diff(item?.updatedAt)}</span>
         </div>
       </div>
     </section>

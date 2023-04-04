@@ -30,17 +30,17 @@ const ReviewCarousel = ({ reviews }) => {
 
   const toPrev = () => {
     //card width - 1712 , homepage padding-48
-    if(slidePx < 0) setSlidePx(slidePx + movePx);
+    if (slidePx < 0) setSlidePx(slidePx + movePx);
   };
 
   const toNext = () => {
     //card width - 1712 , homepage padding-48 , li gap - 8
-    console.log((movePx*moveCount))
-    if(slidePx > - (movePx * moveCount)) setSlidePx(slidePx - movePx );
+    console.log(movePx * moveCount);
+    if (slidePx > -(movePx * moveCount)) setSlidePx(slidePx - movePx);
   };
 
   useEffect(() => {
-    setMoveCount(Math.round(reviews.length / 2 )-1);
+    setMoveCount(Math.round(reviews.length / 2) - 1);
   }, [reviews]);
 
   if (!reviews) return;
@@ -48,7 +48,7 @@ const ReviewCarousel = ({ reviews }) => {
     <section className={styles.wrapper}>
       <ChevronArrow className={styles.prevBtn} onClick={toPrev} />
       <ul className={styles.ulWrapper}>
-        {reviews.map((review,idx) => {
+        {reviews.map((review, idx) => {
           return (
             <Review
               slide={slidePx}
@@ -57,10 +57,8 @@ const ReviewCarousel = ({ reviews }) => {
               idx={idx}
               //onClick={onNavigateDetail(review.id)}
               //type={type}
-              
-            />  
+            />
           );
-          
         })}
       </ul>
       <ChevronArrow className={styles.nextBtn} onClick={toNext} />
