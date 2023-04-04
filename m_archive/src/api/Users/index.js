@@ -14,3 +14,8 @@ export const getUser = (id) => {
 export const getMe = () => {
   return apiClient.get('/users/me');
 };
+
+//유저
+export const modifyUser = (id, body) => {
+  return apiClient.patch(`/users/${id}`, body);
+};
