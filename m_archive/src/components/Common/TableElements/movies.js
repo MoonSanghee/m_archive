@@ -4,7 +4,7 @@ import CheckBox from '../CheckBox';
 import { getMovies, countMovies } from '../../../api/Movies';
 import Pagination from '../PageNation';
 
-const Movies = ({page, limit, title, selectedMovies, onCheckMovie}) => {
+const Movies = ({ page, limit, title, selectedMovies, onCheckMovie }) => {
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageLimit, setPageLimit] = useState(limit);
@@ -28,12 +28,12 @@ const Movies = ({page, limit, title, selectedMovies, onCheckMovie}) => {
 
   return (
     <div className="movie-list">
-       <table>
-         {movies.map((movie, idx) => {
+      <table>
+        {movies.map((movie, idx) => {
           return (
             <td key={idx} className={styles.elements}>
-              <CheckBox 
-                className={styles.check} 
+              <CheckBox
+                className={styles.check}
                 checked={selectedMovies.includes(movie.id)}
                 onChange={onCheckMovie(movie.id)}
               />

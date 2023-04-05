@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { getMovie } from '../../../api/Movies';
+import { createLike, deleteLike, getMovie } from '../../../api/Movies';
 import { ReviewButton, StarRateButton } from './_shared';
 import styles from './moviedetail.module.scss';
 import {
@@ -10,7 +10,7 @@ import {
   Modal,
 } from '../../../components/Common';
 import ReviewCarousel from './ReviewCarousel';
-import { getMovieReviews,getMovieMyReview } from '../../../api/Reviews';
+import { getMovieReviews, getMovieMyReview } from '../../../api/Reviews';
 import useModal from '../../../components/Common/Modal/useModal';
 import ReviewModal from './ReviewModal';
 import { useMe } from '../../../hooks';
@@ -32,7 +32,6 @@ const MovieDetailPage = () => {
   const [myReview, setMyReview] = useState({});
   //모달
   const [modalOption, showModal] = useModal();
-  
 
   // NOTE: curring이 필요없는 함수
   const onClick = () => {
@@ -56,6 +55,27 @@ const MovieDetailPage = () => {
     }
   };
 
+  const onCreateLike = async () => {
+    const response = await createLike(movie.id);
+    if (response.status === 201) {
+      onGetMovie(movie.id);
+    }
+  };
+
+  const onDeleteLike = async () => {
+    const response = await deleteLike(movie.id);
+    if (response.status === 204) {
+      onGetMovie(movie.id);
+    }
+  };
+
+  const onLikeBtn = () => {
+    if (!movie) {
+      return;
+    }
+    movie.isLiked === false ? onCreateLike() : onDeleteLike();
+  };
+
   const onGetReviews = async (id) => {
     const response = await getMovieReviews(id);
     if (response.status === 200) {
@@ -69,10 +89,10 @@ const MovieDetailPage = () => {
       //console.log("로그아웃상태, 로그인바람");
       return;
     }
-  
+
     const response = await getMovieMyReview(id);
     if (response.status === 200) {
-      if(response.data) setMyReview(response.data);
+      if (response.data) setMyReview(response.data);
       //else setMyReview({});
     }
   };
@@ -101,7 +121,6 @@ const MovieDetailPage = () => {
     );
   }, [movie, myReview, modalOption]);
 
-  
   const isEmptyObject = (param) => {
     return Object.keys(param).length === 0 && param.constructor === Object;
   };
@@ -161,7 +180,12 @@ const MovieDetailPage = () => {
               />
             </span>
             <span className={styles.buttonPlace}>
-              <LikeButton label="좋아요" movieId={movie?.id}/>
+              <LikeButton
+                label="좋아요"
+                movieId={movie?.id}
+                onClick={onLikeBtn}
+                isLiked={movie?.isLiked}
+              />
             </span>
             <span className={styles.buttonPlace}>
               <ShareButton label="공유" />

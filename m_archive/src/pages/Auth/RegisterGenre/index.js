@@ -31,20 +31,22 @@ const RegisterGenre = () => {
     }
   };
 
-  console.log(user); //사용자정보
-  console.log(user.id); //사용자아이디
+  // console.log(user); //사용자정보
+  // console.log(user.id); //사용자아이디
 
   const onFetchGenres = async () => {
     const userData = {
-      preferredGenres: select, //select는 선택한 태그
+      //NOTE: id배열을 보내면 됩니다!
+      preferredGenres: select.map((item) => item.id), //select는 선택한 태그
     };
-    
+
+    console.log(userData);
+
     const response = await modifyUser(userData);
-    if(response.status ===204){
-      console.log("정상");
-    }
-    else{
-      console.log("에러");
+    if (response.status === 204) {
+      console.log('정상');
+    } else {
+      console.log('에러');
     }
     console.log(response);
   };

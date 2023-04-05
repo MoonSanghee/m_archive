@@ -9,8 +9,8 @@ const TableElements = ({ children }) => {
   return (
     <section className={styles.tableElements}>
       {children}
-      <Movies />
-      <Reviews/>
+      {/* <Movies />
+      <Reviews/> */}
       {/* <Users/> */}
     </section>
   );

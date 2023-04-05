@@ -1,14 +1,10 @@
-import React from 'react';
 import cx from 'classnames';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './profileDropdown.module.scss';
-import { useState } from 'react';
-import { useRef } from 'react';
-import { useEffect } from 'react';
 //import { ProfileIcon } from "../../../../assets/icon";
-import { ProfileIcon} from '../../../Common';
-import { useMe } from '../../../../hooks';
-import { Button } from '../../../Common';
 import { useNavigate } from 'react-router-dom';
+import { useMe } from '../../../../hooks';
+import { Button, ProfileIcon } from '../../../Common';
 
 const ProfileDropdown = ({ items, onClick }) => {
   const ref = useRef(null);
@@ -37,7 +33,11 @@ const ProfileDropdown = ({ items, onClick }) => {
       document.removeEventListener('click', handleClick);
     };
   }, [isOpen]);
+
   //const Dropdown = ({className,itmes,valueKey})
+  //NOTE: ref는 (우리가 따로 만들어놓은) 컴포넌트에는 사용이 안된다.
+  //NOTE: ref는 html 태그에만 사용이 가능하다~
+  //NOTE: forwardRef
   return (
     <div className={styles.dropdownWrapper}>
       <div className={styles.dropdownInfo}>

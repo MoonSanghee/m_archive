@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import styles from './tableElements.module.scss';
-import CheckBox from "../CheckBox";
-import { getReviews, getReviewsCount } from "../../../api/Reviews"
-import { getMovie } from "../../../api/Movies"
+import CheckBox from '../CheckBox';
+import { getReviews, getReviewsCount } from '../../../api/Reviews';
+import { getMovie } from '../../../api/Movies';
 
-
-const Reviews = ({page, limit}) => {
+const Reviews = ({ page, limit }) => {
   const [reviews, setReviews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageLimit, setPageLimit] = useState(limit);
+  const [pageLimit] = useState(limit);
   const [totalPages, setTotalPages] = useState(1);
 
   const handlePageChange = (page) => {
@@ -22,11 +21,11 @@ const Reviews = ({page, limit}) => {
       const items = [...response.data.data];
       setTotalPages(Math.ceil(count.data.count / pageLimit));
       setReviews(items);
-    };
+    }
   };
 
   useEffect(() => {
-    fetchData()
+    fetchData();
   }, [currentPage, pageLimit]);
 
   return (
@@ -34,15 +33,15 @@ const Reviews = ({page, limit}) => {
       {reviews.map((review) => {
         return (
           <td className={styles.elements}>
-            {/* <span id="영화">{getMovieTitle(review.movie.id)}</span> */}
+            <span id="영화">제목</span>
             <span>{review.user.name}</span>
             <span>{review.likeCount}</span>
             <span>{review.createdAt}</span>
           </td>
-          )
+        );
       })}
     </table>
-  )
-}
+  );
+};
 
-export default Reviews
+export default Reviews;

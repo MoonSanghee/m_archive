@@ -79,9 +79,9 @@ const router = (
     </Route>
 
     <Route path="admin">
-      <Route index element={<ManageMoviesPage />}>
-        {/* <Route path="addMovie" element={<AddMoviePage/>}/> */}
-      </Route>
+      <Route index element={<ManageMoviesPage />} />
+      {/* <Route path="addMovie" element={<AddMoviePage/>}/> */}
+
       <Route path="manageReviews" element={<ManageReviewsPage />} />
       <Route path="manageUsers" element={<ManageUsersPage />} />
       <Route path="manageFAQs" element={<ManageFAQsPage />} />
