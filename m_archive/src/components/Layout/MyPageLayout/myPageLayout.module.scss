@@ -9,7 +9,9 @@
     .sectionWrapper{
         //overflow-y: auto;
         width: 70%; 
-        height: calc((100vh - 80px)*2);
+        //height: calc((100vh - 80px)*2);
+        //Lnb가 같이 안내려가서 일단 위에거 주석처리함
+        height:calc(100vh - 80px);
     }
     
     
