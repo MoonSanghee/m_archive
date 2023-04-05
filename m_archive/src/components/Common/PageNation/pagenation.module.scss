@@ -2,7 +2,7 @@
 @use '../../../styles/constants/' as c;
 
 .pagenation {
-  @include m.flex();
+  @include m.flex(center);
   width: 100%;
   > button {
     @include m.flex();
