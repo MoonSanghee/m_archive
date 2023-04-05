@@ -1,6 +1,7 @@
 import React from "react";
 import { AdminLNB, CheckBox, SearchBox, Button, TableMenu, TableElements } from "../../../components";
 import styles from "./manageReviews.module.scss";
+import Reviews from "../../../components/Common/TableElements/Reviews";
 
 const ManageReviewsPage = () => {
     return (
@@ -23,7 +24,11 @@ const ManageReviewsPage = () => {
                     <TableMenu tableName="reviews"/>
                 </p>
                 <p className={styles.table}>
-                    <TableElements/>
+                    <TableElements>
+                        <Reviews 
+                            limit={10}
+                        />
+                    </TableElements>
                 </p>
             </section>
         </main>
