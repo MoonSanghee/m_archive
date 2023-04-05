@@ -163,7 +163,7 @@ const Home = () => {
                   border={'border' + (select.includes(item) ? ' active' : '')}
                   onClick={onClickBtn(item)}
                 >
-                  {item.genre}
+                  {item.name}
                 </Tag>
               );
             })}

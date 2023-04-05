@@ -38,8 +38,14 @@ const RegisterGenre = () => {
     const userData = {
       preferredGenres: select, //select는 선택한 태그
     };
-
+    
     const response = await modifyUser(userData);
+    if(response.status ===204){
+      console.log("정상");
+    }
+    else{
+      console.log("에러");
+    }
     console.log(response);
   };
 
@@ -82,7 +88,7 @@ const RegisterGenre = () => {
                   border={'border' + (select.includes(item) ? ' active' : '')}
                   onClick={onClickBtn(item)}
                 >
-                  {item.genre}
+                  {item.name}
                 </Tag>
               );
             })}

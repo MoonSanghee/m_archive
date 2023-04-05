@@ -9,9 +9,9 @@ const ServiceLNB = () => {
   const navigate = useNavigate();
 
   const onClick = (item) => {
-    return () => {
+    return()=>{
       navigate(item.path);
-    };
+    }
   };
 
   return (
@@ -27,7 +27,7 @@ const ServiceLNB = () => {
             );
           })}
         </section>
-        <div className={styles.logout}>로그아웃</div>
+        <div className={styles.logout} onClick={()=>{navigate("/logout")}} >로그아웃</div>
       </menu>
     </section>
   );

@@ -1,11 +1,23 @@
-feeback - 
-영화카드 누르면 이동하는 상세페이지 - 
-별점 수정기능은 되는데, 
-1. 이미 있는 별점으로 초기화가 안됨. (별점이 채워져있지않음).
-2. 변동된 후  새로고침 안되는 이슈 
+feed back : 
+service test login
+id: sjj@naver.com
+pwd: testpassword
 
-영화디테일페이지 - 더보기누르면 나오는 리뷰페이지
-디테일-> 모달로 데이터넘겨줄때 props로 review객체만 넘겨주면 에러가 안나는데
-댓글생성,삭제 상태관리위해 useState-setState(review)로 하면 에러발생..  
+1. 프로필드랍다운에 뭔가..에러가있는것같은데이유를 모르겠습니다. 
+( FAQ 누르면 멈춤..콘솔창에서는 ref 관련된 에러가 뜸. 잘될땐 잘되네용..이상하네)
 
-영화 검색기능 추가했습니다.
+2. 영화 디테일페이지 , 리뷰 더보기페이지 기능 다 넣었는데, 
+자잘한 이슈가 있는것같습니다. 
+- 좋아요 버튼 동작안하는것같음..
+
+3. backoffice css를 동일하게 작성했는데 각자 다른 이유를 모르겠습니다..
+/admin/manageReviews , /admin/manageFAQs    화면크기때문인듯 ...?
+
+4. RegisterGenre 페이지에서 확인 눌렀을때 선택한 장르(select)를 패치하는 방법... 모르겠습니다...
+ ->  500에러,,,,, 
+
+5. 페이지네이션 추가했습니다. 
+/admin/login
+admin test login 
+id: msh1002@naver.com
+pwd: 11223344
