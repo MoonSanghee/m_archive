@@ -7,6 +7,7 @@ import {
   TableElements,
   TableMenu,
 } from '../../../components';
+import Movies from '../../../components/Common/TableElements/movies';
 import styles from './manage.module.scss';
 
 const ManageMoviesPage = () => {
@@ -23,7 +24,7 @@ const ManageMoviesPage = () => {
       <section className={styles.allSection}>
         <p className={styles.topMenu}>
           <span className={styles.menuLeft}>
-            <CheckBox className={styles.check} />
+            <CheckBox id='checkAll' className={styles.check} />
             전체선택
           </span>
           <span className={styles.menuRight}>
@@ -40,7 +41,7 @@ const ManageMoviesPage = () => {
           <TableMenu tableName="movieInfo" />
         </p>
         <div className={styles.table}>
-          <TableElements />
+          <Movies limit={10}/>
         </div>
       </section>
     </main>

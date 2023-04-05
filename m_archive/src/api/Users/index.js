@@ -2,8 +2,13 @@ import apiClient from '../apiClient';
 
 //Admin - CMS 로그인
 //MEMO: 유저리스트 가져오기
-export const getUsers = () => {
-  return apiClient.get('/users');
+export const getUsers = (page, limit) => {
+  return apiClient.get('/users',{
+    params:{
+      page,
+      limit,
+    }
+  });
 };
 
 //MEMO: 유저 한 명 (상세)
@@ -19,3 +24,7 @@ export const getMe = () => {
 export const modifyUser = (id, body) => {
   return apiClient.patch(`/users/${id}`, body);
 };
+
+export const countUsers = () => {
+  return apiClient.get(`users/count`)
+}

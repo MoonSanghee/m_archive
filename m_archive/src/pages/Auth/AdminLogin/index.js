@@ -61,7 +61,7 @@ const AdminLogin = () => {
       if (response.status === 200) {
         const data = response.data;
         saveTokens(data);
-        navigate('/movies');
+        navigate('/admin');
       }
     }else{
       console.log("invalid form");

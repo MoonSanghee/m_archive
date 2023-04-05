@@ -1,37 +1,57 @@
 import React, { useState, useEffect } from "react";
 import styles from './tableElements.module.scss';
 import CheckBox from "../CheckBox";
-import { getUsers } from "../../../api/Users"
+import { getUsers, countUsers } from "../../../api/Users"
+import Pagination from '../PageNation';
+import dayjs from "dayjs";
 
-const Users = () => {
+
+const Users = ({page, limit}) => {
   const [users, setUsers] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageLimit, setPageLimit] = useState(limit);
+  const [totalPages, setTotalPages] = useState(1);
 
-  const onGetUsers = async () => {
-    const response = await getUsers();
-    console.log(response)
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const fetchData = async () => {
+    const response = await getUsers(currentPage, pageLimit);;
+    const count = await countUsers();
     if (response.status === 200) {
       const items = [...response.data.data];
+      setTotalPages(Math.ceil(count.data.count / pageLimit));
       setUsers(items);
-    }
-  }
+    };
+  };
 
   useEffect(() => {
-    onGetUsers();
-  }, [])
+    fetchData()
+  }, [currentPage, pageLimit]);
 
   return (
-    <td>
-      {users.map((user)=>{
-        return (
-          <div>
-            <span>{user.email}</span>
-            <span>{user.name}</span>
-            <span>{user.nickname}</span>
-            <span>{user.createdAt}</span>
-          </div>
-        )
-      })}
-    </td>
+    <div>
+      <table>
+        {users.map((user)=>{
+          const time = user.createdAt
+          return (
+            <td className={styles.elements}>
+              <CheckBox  className={styles.check} />
+              <span>{user.email}</span>
+              <span>{user.name}</span>
+              <span>{user.nickname}</span>
+              <span>{dayjs(time).format('YYYY-MM-DD HH:mm:ss')}</span>
+            </td>
+          )
+        })}
+      </table>
+      <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+      />
+  </div>
   )
 }
 
