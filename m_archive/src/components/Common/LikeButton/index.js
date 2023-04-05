@@ -1,40 +1,36 @@
 import React, { memo, useEffect, useState } from "react";
 import { LikeRedIcon, LikeBlackIcon, LikeIcon } from "../../../assets/icon";
 import styles from "./likebutton.module.scss";
-import { createLike,deleteLike,getLikes } from "../../../api/Movies";
+import { createLike,deleteLike,getMovie } from "../../../api/Movies";
 import { useMount } from "react-use";
 const LikeButton = ({label,movieId}) => {
     const [like, setLike] = useState(false);
-    const [myLikes,setMyLikes] = useState([]);
-    const onGetLikes = async() =>{
-        const response = await getLikes();
+    const [movie,setMovie] = useState({});
+
+    const onGetMovie = async (id)=>{
+        const response = await getMovie(id);
         if(response.status===200){
-            const items = [...response.data];
-            setMyLikes(items);
-        }
+            setMovie(response.data);
+        }   
     }
     const onCreateLike = async () =>{
         const response = await createLike(movieId);
         if(response.status===201){
-          setLike(true);
+          onGetMovie(movieId);
         }
     }
     const onDeleteLike = async ()=>{
         const response = await deleteLike(movieId);
         if(response.status===204){
-          setLike(false);
+          onGetMovie(movieId);
         }
     }
+    useMount(()=>{
+        onGetMovie(movieId);
+    });
     useEffect(()=>{
-        onGetLikes();
-        setLike(false);
-        myLikes.forEach((item)=>{
-            if(item.id === movieId){
-                setLike(true);
-            }
-        })
-    },[movieId]);
-
+        setLike(movie.isLiked);
+    },[movie]);
     const onLikeBtn = () => {
         like===false ? onCreateLike() : onDeleteLike()
     }

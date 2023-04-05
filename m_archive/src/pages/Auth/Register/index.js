@@ -3,7 +3,7 @@ import styles from './register.module.scss';
 import { Button, Input } from '../../../components';
 import { useNavigate } from 'react-router-dom';
 import { saveTokens } from '../../../utils/';
-import { adminRegister } from '../../../api/Auth';
+import { register } from '../../../api/Auth';
 import {
   validateName,
   validateNickname,
@@ -72,7 +72,7 @@ const Register = () => {
       password: form.password,
     };
 
-    const response = await adminRegister(resgisterData);
+    const response = await register(resgisterData);
     if (response.status === 200) {
       const data = response.data;
       saveTokens(data);
