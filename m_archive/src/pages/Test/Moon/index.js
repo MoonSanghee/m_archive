@@ -11,10 +11,10 @@ import Movies from '../../../components/Common/TableElements/movies';
 import Reviews from '../../../components/Common/TableElements/Reviews';
 import Movie from '../../Home/Carousel/Movie';
 import styles from './moon.module.scss';
+import Pagination from '../../../components/Common/PageNation';
 
 const Moon = () => {
   const [isError, setIsError] = useState(false);
-
   const onClickButton = () => {
     setIsError(!isError);
   };
@@ -33,15 +33,15 @@ const Moon = () => {
                 <SearchBox placeholder="검색어를 입력해주세요"/>
             </section> */}
       <section className={styles.table}>
-        <TableMenu tableName="reviews" />
+        {/* <TableMenu tableName="reviews" /> */}
         <TableElements>{/* <Reviews /> */}</TableElements>
-        <TableMenu tableName="users" />
-        <TableMenu tableName="F&Q" />
+        {/* <TableMenu tableName="users" />
+        <TableMenu tableName="F&Q" /> */}
         <table>
           <TableMenu tableName="movieInfo" />
           <TableElements>
             {/* //NOTE: children을 사용해서 분기처리 없이 사용 */}
-            <Movies />
+            <Movies limit={10}/>
           </TableElements>
         </table>
       </section>

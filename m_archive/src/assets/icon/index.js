@@ -42,3 +42,6 @@ export { ReactComponent as WarningIcon } from './warning-mark.svg';
 //리뷰-댓글 아이콘
 export {ReactComponent as CommentLikeIcon} from "./comment-like-icon.svg";
 export {ReactComponent as CommentIcon} from "./comment-icon.svg";
+// 페이지네이션 아이콘
+export {ReactComponent as First} from "./First.svg";
+export {ReactComponent as Last} from "./Last.svg";
