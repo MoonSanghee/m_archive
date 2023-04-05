@@ -44,3 +44,7 @@ export const deleteLike = (id) =>{
 export const getLikes = () =>{
   return apiClient.get(`/movies/me/like`);
 }
+
+export const countMovies = () => {
+  return apiClient.get(`movies/count`);
+}
