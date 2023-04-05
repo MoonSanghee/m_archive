@@ -19,6 +19,7 @@ const Users = ({page, limit}) => {
   const fetchData = async () => {
     const response = await getUsers(currentPage, pageLimit);;
     const count = await countUsers();
+    console.log(1)
     if (response.status === 200) {
       const items = [...response.data.data];
       setTotalPages(Math.ceil(count.data.count / pageLimit));

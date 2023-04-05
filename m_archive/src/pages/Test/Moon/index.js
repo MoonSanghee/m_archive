@@ -13,6 +13,7 @@ import Movie from '../../Home/Carousel/Movie';
 import styles from './moon.module.scss';
 import Pagination from '../../../components/Common/PageNation';
 import Users from '../../../components/Common/TableElements/Users';
+import FAQs from '../../../components/Common/TableElements/FAQs'
 
 const Moon = () => {
   const [isError, setIsError] = useState(false);
@@ -34,18 +35,18 @@ const Moon = () => {
                 <SearchBox placeholder="검색어를 입력해주세요"/>
             </section> */}
       <section className={styles.table}>
+        {/* <TableMenu tableName="users" /> */}
         {/* <TableMenu tableName="reviews" /> */}
-        <TableElements>{/* <Reviews /> */}</TableElements>
-        <TableMenu tableName="users" />
-        {/* <TableMenu tableName="F&Q" /> */}
+        <TableMenu tableName="F&Q" />
+        {/* <TableMenu tableName="movieInfo" /> */}
         <table>
-          {/* <TableMenu tableName="movieInfo" /> */}
-          <TableElements>
+          {/* <Users limit={10}/> */}
+          {/* <TableElements>
+          </TableElements> */}
             {/* //NOTE: children을 사용해서 분기처리 없이 사용 */}
             {/* <Movies limit={10}/> */}
-            {/* <Users limit={10}/> */}
-            <Reviews limit={10}/>
-          </TableElements>
+            {/* <Reviews limit={10}/> */}
+            <FAQs limit={10}/>
         </table>
       </section>
     </main>
