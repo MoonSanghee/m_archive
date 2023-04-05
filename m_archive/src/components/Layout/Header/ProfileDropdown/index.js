@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
 //import { ProfileIcon } from "../../../../assets/icon";
-import ProfileIcon from '../ProfileIcon';
+import { ProfileIcon} from '../../../Common';
 import { useMe } from '../../../../hooks';
 import { Button } from '../../../Common';
 import { useNavigate } from 'react-router-dom';
