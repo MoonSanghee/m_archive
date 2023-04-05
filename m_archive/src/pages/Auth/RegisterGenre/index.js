@@ -39,12 +39,12 @@ const RegisterGenre = () => {
       preferredGenres: select, //select는 선택한 태그
     };
 
-    const response = await modifyUser(user.id, userData);
+    const response = await modifyUser(userData);
     console.log(response);
   };
 
   const onClickSubmit = () => {
-    navigate('/movies');
+    // navigate('/movies');
     onFetchGenres();
   };
 
