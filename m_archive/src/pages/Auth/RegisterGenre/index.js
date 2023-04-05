@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './registergenre.module.scss';
 import { Button, Input, Tag } from '../../../components';
 import { useNavigate } from 'react-router-dom';
 import genre from '../../Home/Genre/genre';
+import { getMe, modifyUser } from '../../../api/Users';
 
 const RegisterGenre = () => {
   const navigate = useNavigate();
@@ -10,6 +11,8 @@ const RegisterGenre = () => {
   const [genreMovies, setGenreMovies] = useState([]);
   const [pick, setPick] = useState(genre);
   const [select, setSelect] = useState([]); //선택한 tag 배열
+
+  const [user, setUser] = useState([]);
 
   const onClickBtn = (item) => {
     return () => {
@@ -19,12 +22,40 @@ const RegisterGenre = () => {
     };
   };
 
-  const onClickSubmit = () => {
-    navigate('/movies');
+  const onGetUser = async () => {
+    const response = await getMe();
+
+    if (response.status === 200) {
+      const items = response.data;
+      setUser(items);
+    }
   };
+
+  console.log(user); //사용자정보
+  console.log(user.id); //사용자아이디
+
+  const onFetchGenres = async () => {
+    const userData = {
+      preferredGenres: select, //select는 선택한 태그
+    };
+
+    const response = await modifyUser(userData);
+    console.log(response);
+  };
+
+  const onClickSubmit = () => {
+    // navigate('/movies');
+    onFetchGenres();
+  };
+
   const onClickSkip = () => {
     navigate('/movies', { state: true });
   };
+
+  useEffect(() => {
+    onGetUser();
+  }, []);
+
   return (
     <main className={styles.wrapper}>
       <section>

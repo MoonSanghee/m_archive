@@ -21,8 +21,12 @@ export const getMe = () => {
 };
 
 //유저
-export const modifyUser = (id, body) => {
-  return apiClient.patch(`/users/${id}`, body);
+// export const modifyUser = (id, body) => {
+//   return apiClient.patch(`/users/${id}`, body);
+// };
+
+export const modifyUser = (body) => {
+  return apiClient.patch(`/users`, body);
 };
 
 export const countUsers = () => {

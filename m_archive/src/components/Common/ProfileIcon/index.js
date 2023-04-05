@@ -1,8 +1,8 @@
 import React from "react"
-import { useMe } from "../../../../hooks"
+import { useMe } from "../../../hooks";
 import {AngelIcon, AssasinIcon,CircusIcon,DevilIcon,GhostIcon,KnightIcon,
 ManIcon,PrincessIcon,QueenIcon,SantaIcon,AlienIcon,FairyIcon,DefaultIcon
-} from "../../../../assets/profileIcon";
+} from "../../../assets/profileIcon";
 import cx from "classnames";
 const icon = (item) =>{
     let myIcon;

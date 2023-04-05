@@ -10,7 +10,7 @@ import {
   Modal,
 } from '../../../components/Common';
 import ReviewCarousel from './ReviewCarousel';
-import { getMovieReviews } from '../../../api/Reviews';
+import { getMovieReviews,getMovieMyReview } from '../../../api/Reviews';
 import useModal from '../../../components/Common/Modal/useModal';
 import ReviewModal from './ReviewModal';
 import { useMe } from '../../../hooks';
@@ -59,10 +59,21 @@ const MovieDetailPage = () => {
   const onGetReviews = async (id) => {
     const response = await getMovieReviews(id);
     if (response.status === 200) {
-      //const items = [...response.data];
-      //setReviews(items);
-      // console.log(response.data);
       setReviews(response.data);
+    }
+  };
+  const onGetMyReview = async (id) => {
+    //해당 영화의 리뷰 목록중 내가 쓴 목록이 있으면 reviewID 리턴
+    //리뷰쓴 userId와 내 userId 비교 -> 내 리뷰가 있으면 내리뷰리턴
+    if (!me) {
+      //console.log("로그아웃상태, 로그인바람");
+      return;
+    }
+  
+    const response = await getMovieMyReview(id);
+    if (response.status === 200) {
+      if(response.data) setMyReview(response.data);
+      //else setMyReview({});
     }
   };
 
@@ -90,33 +101,13 @@ const MovieDetailPage = () => {
     );
   }, [movie, myReview, modalOption]);
 
-  const findMyReview = (items) => {
-    //해당 영화의 리뷰 목록중 내가 쓴 목록이 있으면 reviewID 리턴
-    //리뷰쓴 userId와 내 userId 비교 -> 내 리뷰가 있으면 내리뷰리턴
-    if (!me) {
-      //console.log("로그아웃상태, 로그인바람");
-      return;
-    }
-    const review = items.filter((item) => {
-      if (item.user.id === me.id) {
-        return item;
-      }
-    });
-
-    if (review.length > 0) {
-      setMyReview(review[0]);
-      //console.log(myReview);
-    } else {
-      setMyReview({});
-    }
-  };
-
+  
   const isEmptyObject = (param) => {
     return Object.keys(param).length === 0 && param.constructor === Object;
   };
 
   useEffect(() => {
-    findMyReview(reviews);
+    onGetMyReview(params.id);
   }, [reviews]);
 
   useMount(() => {
@@ -170,7 +161,7 @@ const MovieDetailPage = () => {
               />
             </span>
             <span className={styles.buttonPlace}>
-              <LikeButton label="좋아요" movieId={movie?.id} />
+              <LikeButton label="좋아요" movieId={movie?.id}/>
             </span>
             <span className={styles.buttonPlace}>
               <ShareButton label="공유" />

@@ -2,12 +2,9 @@ import React, { useEffect, useState } from "react";
 import { BlockIcon, LikeBlackIcon, LikeRedIcon } from "../../../assets/icon";
 import styles from "./card.module.scss";
 import cx from "classnames";
+import LikeButton from "../LikeButton";
 
 const Card = ({ item ,onClick,type,idx}) => {
-  /*const navigate = useNavigate();
-  const onNavigateDetail = (id) => {
-     navigate(`/movie/${id}`);
-  }*/
 
   const [isClicked, setIsClicked] = useState(false);
   const [genres,setGenres] = useState("");
@@ -20,6 +17,8 @@ const Card = ({ item ,onClick,type,idx}) => {
     genre = genre.substring(0,genre.length-1);
     setGenres(genre);
   },[]);
+
+
 
   return (
     <div
@@ -35,6 +34,7 @@ const Card = ({ item ,onClick,type,idx}) => {
             <p>{item?.plot}</p>
           </div>
           <div className={styles.menu}>
+            {/*<LikeButton movieId={item.id}/>*/}
             {isClicked === true ? (
               <LikeRedIcon
                 onClick={onChangeBtn}

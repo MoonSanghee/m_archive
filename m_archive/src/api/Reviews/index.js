@@ -1,11 +1,15 @@
 import apiClient from "../apiClient";
 import {getTokens} from "../../utils/";
 
-
 //MEMO: 리뷰 목록 조회
 export const getMovieReviews = (id) => {
   return apiClient.get(`/reviews/movie/${id}`);
 };
+export const getMovieMyReview = (id) => {
+  return apiClient.get(`/reviews/movie/${id}/me`);
+};
+
+
 
 export const getReviewDetail = (id) => {
   return apiClient.get(`/reviews/${id}/detail`)
