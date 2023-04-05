@@ -38,6 +38,7 @@
                 display: flex;
                 align-items: center;
                 column-gap: 20px;
+                font-size: 20px;
                 
                 .searchBox {
                     @include m.flex();
@@ -48,12 +49,14 @@
                         width: 100%;
                         margin-right: 20px;
                         border: none;
+                        background-color: c.$C_WHITE_50;
                     }
 
                     > button {
                         width: 60px;
                         height: 52px;
                         border: none;
+                        background-color: c.$C_WHITE_50;
                     }
                 }
             }

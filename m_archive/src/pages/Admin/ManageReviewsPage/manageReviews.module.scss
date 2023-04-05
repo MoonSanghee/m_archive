@@ -48,12 +48,14 @@
                         width: 100%;
                         margin-right: 20px;
                         border: none;
+                        background-color: c.$C_WHITE_50;
                     }
 
                     > button {
                         width: 60px;
                         height: 52px;
                         border: none;
+                        background-color: c.$C_WHITE_50;
                     }
                 }
             }
@@ -64,6 +66,10 @@
             background-color: c.$C_SECONDARY;
             display: flex;
             align-items: center;
+        }
+
+        .table {
+            
         }
     }
 }
