@@ -50,7 +50,12 @@ export const deleteReviewLike = (id) =>{
 //Admin - CMS 로그인
 //MEMO: 리뷰목록조회
 export const getReviews = () => {
-  return apiClient.get("/reviews");
+  return apiClient.get("/reviews",{
+    params:{
+      page,
+      limit,
+    }
+  });
 };
 
 //MEMO: 영화 리뷰 수 구하기

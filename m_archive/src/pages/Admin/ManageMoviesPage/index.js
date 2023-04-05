@@ -7,8 +7,8 @@ import {
   TableElements,
   TableMenu,
 } from '../../../components';
-import styles from './manage.module.scss';
 import Movies from '../../../components/Common/TableElements/movies';
+import styles from './manage.module.scss';
 import { getMovies } from '../../../api/Movies';
 
 const ManageMoviesPage = () => {

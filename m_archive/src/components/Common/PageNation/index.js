@@ -32,7 +32,6 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       <button onClick={() => handlePageChange(1)}>
         <First/>
       </button>
-      {/* <button onClick={() => handlePageChange(prevPage)}><Left/></button> */}
       <button className={styles.move} onClick={() => handlePageChange(prevPage)}>{'<'}</button>
       <div className={styles.pages}>
         {pageNumbers.map((page) => (
@@ -45,8 +44,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           </button>
         ))}
       </div>
-      {/* <button onClick={() => handlePageChange(nextPage)}><Right/></button> */}
-      <button className={styles.move} onClick={() => handlePageChange(prevPage)}>{'>'}</button>
+      <button className={styles.move} onClick={() => handlePageChange(nextPage)}>{'>'}</button>
       <button onClick={() => handlePageChange(totalPages)}><Last/></button>
     </div>
   );

@@ -12,6 +12,7 @@ import Reviews from '../../../components/Common/TableElements/Reviews';
 import Movie from '../../Home/Carousel/Movie';
 import styles from './moon.module.scss';
 import Pagination from '../../../components/Common/PageNation';
+import Users from '../../../components/Common/TableElements/Users';
 
 const Moon = () => {
   const [isError, setIsError] = useState(false);
@@ -35,13 +36,15 @@ const Moon = () => {
       <section className={styles.table}>
         {/* <TableMenu tableName="reviews" /> */}
         <TableElements>{/* <Reviews /> */}</TableElements>
-        {/* <TableMenu tableName="users" />
-        <TableMenu tableName="F&Q" /> */}
+        <TableMenu tableName="users" />
+        {/* <TableMenu tableName="F&Q" /> */}
         <table>
-          <TableMenu tableName="movieInfo" />
+          {/* <TableMenu tableName="movieInfo" /> */}
           <TableElements>
             {/* //NOTE: children을 사용해서 분기처리 없이 사용 */}
-            <Movies limit={10}/>
+            {/* <Movies limit={10}/> */}
+            {/* <Users limit={10}/> */}
+            <Reviews limit={10}/>
           </TableElements>
         </table>
       </section>
