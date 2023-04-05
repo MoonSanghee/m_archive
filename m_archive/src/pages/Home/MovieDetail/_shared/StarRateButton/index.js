@@ -47,14 +47,11 @@ const StarRateButton = ({ myReview, movieId, isModified, reload }) => {
     return '#ccc';
   };
 
-  // useEffect(() => {
-  //   setScore();
-  // }, [clickedStarIndex]);
 
   //NOTE: setState는 동시에 일어나지 않습니다. (비동기)
   useEffect(() => {
     if (myReview) {
-      console.log('리뷰존재');
+      //console.log('리뷰존재');
       setClickedStarIndex(myReview.score);
     }
     //NOTE: deps에 myReview를 넣어야 합니다~ (state로 관리되는 객체이기 때문)
