@@ -9,7 +9,7 @@ import {
 } from '../../../components';
 import Movies from '../../../components/Common/TableElements/movies';
 import Reviews from '../../../components/Common/TableElements/Reviews';
-import Movie from '../../Home/Carousel/Movie';
+//import Movie from '../../Home/Carousel/Movie';
 import styles from './moon.module.scss';
 import Pagination from '../../../components/Common/PageNation';
 import Users from '../../../components/Common/TableElements/Users';

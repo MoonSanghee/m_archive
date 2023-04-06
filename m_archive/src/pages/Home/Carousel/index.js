@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Movie from "./Movie";
 import styles from "./carousel.module.scss";
 import { Card } from "../../../components/Common";
 import { ChevronArrow } from "../../../assets/icon";
 import { useNavigate } from "react-router-dom";
+import cx from "classnames";
 
 /**
  * items - 캐러셀 안에 들어갈 아이템배열
@@ -44,9 +44,7 @@ const Carousel = ({ movies, type }) => {
       setMovePx(1712 + 40);
       setMoveCount(2);
     }
-    /*else if(type==="reviews"){
-            //reviews는 따로빼는게 나을듯!
-        }*/
+
   }, [type]);
   if (!movies) return;
   return (
@@ -55,14 +53,29 @@ const Carousel = ({ movies, type }) => {
       <ul className={styles.ulWrapper}>
         {movies.map((movie, idx) => {
           return (
-            <Movie
-              slide={slidePx}
-              key={`Movie-${movie.id}`}
-              movie={movie}
-              onClick={onNavigateDetail(movie.id)}
-              type={type}
-              idx={idx}
-            />
+                <li
+                  className={cx(styles.movie, styles[type])}
+                  id={`Movie-Li-${movie.id}`}
+                  style={{
+                    transform: `translateX(${slidePx}px)`,
+                    transition: '0.5s ease',
+                  }}
+                >
+                {type === 'top10' && (
+                  <p 
+                  className={cx(styles.rankingWrapper, 
+                  { [styles.first]: idx === 0 })}>
+                    {idx + 1}
+                  </p>
+                )}
+              <Card
+                id={`Card-${movie.id}`}
+                item={movie}
+                onClick={onNavigateDetail(movie.id)}
+                type={type}
+                idx={idx}
+              />
+            </li>
           );
         })}
       </ul>
@@ -73,3 +86,15 @@ const Carousel = ({ movies, type }) => {
 };
 
 export default Carousel;
+
+{/**
+ <Movie
+              slide={slidePx}
+              key={`Movie-${movie.id}`}
+              movie={movie}
+              onClick={onNavigateDetail(movie.id)}
+              type={type}
+              idx={idx}
+            />
+
+*/}
