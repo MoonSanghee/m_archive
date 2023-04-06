@@ -9,9 +9,9 @@ const ServiceLNB = () => {
   const navigate = useNavigate();
 
   const onClick = (item) => {
-    return()=>{
+    return () => {
       navigate(item.path);
-    }
+    };
   };
 
   return (
@@ -21,13 +21,24 @@ const ServiceLNB = () => {
         <section>
           {myPageExamples.map((item) => {
             return (
-              <li className={styles.example} onClick={onClick(item)}>
+              <li
+                className={styles.example}
+                onClick={onClick(item)}
+                key={item.id}
+              >
                 <span>{item.name}</span>
               </li>
             );
           })}
         </section>
-        <div className={styles.logout} onClick={()=>{navigate("/logout")}} >로그아웃</div>
+        <div
+          className={styles.logout}
+          onClick={() => {
+            navigate('/logout');
+          }}
+        >
+          로그아웃
+        </div>
       </menu>
     </section>
   );

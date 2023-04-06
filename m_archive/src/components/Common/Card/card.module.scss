@@ -1,4 +1,4 @@
-@use "../../../styles/constants/colors" as c;
+@use '../../../styles/constants/colors' as c;
 
 .cardWrapper {
   width: 252px;
@@ -12,11 +12,10 @@
   &:hover .card_inner {
     transform: rotateY(180deg);
   }
-  &.top10First{
+  &.top10First {
     width: 300px;
     height: 400px;
   }
- 
 }
 
 .card_inner {
@@ -85,7 +84,7 @@
       background: c.$C_CARD_MENU;
       height: 50px;
       width: 100%;
-
+      padding-left: 4px;
       display: flex;
       align-items: center;
 
@@ -108,7 +107,6 @@
           transform: scale(1);
         }
       }
-
     }
   }
 }

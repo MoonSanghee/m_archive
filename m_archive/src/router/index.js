@@ -38,6 +38,7 @@ import {
   ManageUsersPage,
 } from '../pages/Admin';
 import { LogoutIcon } from '../assets/icon';
+import { LikePage } from '../pages/MyPage';
 
 const router = (
   <Route path="/">
@@ -69,10 +70,9 @@ const router = (
       <Route path="mypage" element={<MyPageLayout />}>
         <Route path="faq" element={<FAQ />} />
         <Route path="profile" element={<Profile />} />
+        <Route path="like" element={<LikePage />} />
+
         {/*
-
-
-          <Route path="like" element={<LikePage/>}/>
           <Route path="review" element={<ReviewPage/>}/>
           <Route path=":id" element={<UserPage/>}/>*/}
       </Route>
