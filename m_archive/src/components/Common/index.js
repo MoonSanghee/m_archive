@@ -15,7 +15,6 @@ export { default as ServiceLNB } from '../Layout/ServiceLNB';
 export { default as Modal } from './Modal';
 export { default as Card } from './Card';
 export { default as LikeButton } from './LikeButton';
-export { default as LikeButtonCard } from './LikeButtonCard';
 export { default as ShareButton } from './ShareButton';
 export { default as ReviewCard } from './ReviewCard';
 export { default as ScrollTopButton } from './ScrollTopButton';

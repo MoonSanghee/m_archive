@@ -4,7 +4,7 @@ import styles from './card.module.scss';
 import cx from 'classnames';
 // import LikeButton from '../LikeButton';
 import { createLike, deleteLike } from '../../../api/Movies';
-import LikeButtonCard from '../LikeButtonCard';
+import LikeButton from '../LikeButton';
 
 const Card = ({ item, onClick, type, idx }) => {
   const [genres, setGenres] = useState('');
@@ -53,7 +53,7 @@ const Card = ({ item, onClick, type, idx }) => {
             <p>{item?.plot}</p>
           </div>
           <div className={styles.menu}>
-            <LikeButtonCard
+            <LikeButton
               movieId={movie?.id}
               onClick={onLikeBtn}
               isLiked={movie?.isLiked}
