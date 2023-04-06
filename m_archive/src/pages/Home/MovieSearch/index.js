@@ -7,27 +7,14 @@ import { WarningIcon } from '../../../assets/icon';
 import { useNavigate } from 'react-router-dom';
 
 const MovieSearch = () => {
+  const navigate = useNavigate();
   const { state } = useLocation();
+  const searchText = state.keyword;
   const [movies, setMovies] = useState([]);
   const [isSuccess, setIsSuccess] = useState(false);
-  const searchText = state.keyword;
-  const navigate = useNavigate();
-
-  // 제목검색
-  const filteredFirst = movies.filter((item) =>
-    item.title.replace(/ /g, '').includes(searchText.replace(/ /g, '')),
-  );
-
-  // 배우 검색
-  // const filteredSecond = movies.map(() => {});
-
-  //제목,배우,감독 검색 결과 모으기
-  const result = [...filteredFirst];
 
   const onGetMovies = async () => {
-    //서버에서 데이터를 불러옴.
-    const response = await getMovies(1, 200);
-
+    const response = await getMovies(1, 200, searchText);
     if (response.status === 200) {
       const items = [...response.data.data];
       setMovies(items);
@@ -37,7 +24,6 @@ const MovieSearch = () => {
 
   const onNavigateDetail = (id) => {
     return () => {
-      //MEMO: navigate를 할 때는 /가 있어야 함
       navigate(`/movies/detail/${id}`);
     };
   };
@@ -49,11 +35,11 @@ const MovieSearch = () => {
 
   return (
     <main className={styles.body}>
-      {searchText !== '' && result.length !== 0 && (
+      {searchText !== '' && movies.length !== 0 && (
         <div className={styles.searchedMovies}>
           <h2>{`"${searchText}"의 검색 결과입니다.`}</h2>
           <div className={styles.showMovies}>
-            {result.map((item) => {
+            {movies.map((item) => {
               return (
                 <Card
                   key={item.id}
@@ -65,8 +51,8 @@ const MovieSearch = () => {
           </div>
         </div>
       )}
-      {/* //NOTE: 영화를 불러오는 중간에는 밑의 컴포넌트가 뜨지 않도록 설정 */}
-      {(searchText === '' || result.length === 0) && isSuccess && (
+      {/* //NOTE: isSuccess - 처음 뜨는거 막아두기  */}
+      {(searchText === '' || movies.length === 0) && isSuccess && (
         <div className={styles.searchedNoMovies}>
           <WarningIcon className={styles.icon} />
           <h2>{`입력하신 검색어 "${searchText}" 와(과) 일치하는 결과가 없습니다.`}</h2>
