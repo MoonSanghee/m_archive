@@ -19,30 +19,30 @@ import cx from 'classnames';
 
 const icon = (item) => {
   if(item==='AngelIcon') return <AngelIcon />;
-  if(item==='AssasinIcon') return <AssasinIcon />;
-  if(item==='CircusIcon') return <CircusIcon />;
-  if(item==='DevilIcon') return <DevilIcon />;
-  if(item==='GhostIcon') return <GhostIcon />;
-  if(item==='KnightIcon') return <KnightIcon />;
-  if(item==='ManIcon') return <ManIcon />;
-  if(item==='PrincessIcon') return <PrincessIcon />;
-  if(item==='QueenIcon') return <QueenIcon />;
-  if(item==='SantaIcon') return <SantaIcon />;
-  if(item==='AlienIcon') return <AlienIcon />;
-  if(item==='FairyIcon') return <FairyIcon />;
-  if(item==='DefaultIcon') return <DefaultIcon />;
-
+  else if(item==='AssasinIcon') return <AssasinIcon />;
+  else if(item==='CircusIcon') return <CircusIcon />;
+  else if(item==='DevilIcon') return <DevilIcon />;
+  else if(item==='GhostIcon') return <GhostIcon />;
+  else if(item==='KnightIcon') return <KnightIcon />;
+  else if(item==='ManIcon') return <ManIcon />;
+  else if(item==='PrincessIcon') return <PrincessIcon />;
+  else if(item==='QueenIcon') return <QueenIcon />;
+  else if(item==='SantaIcon') return <SantaIcon />;
+  else if(item==='AlienIcon') return <AlienIcon />;
+  else if(item==='FairyIcon') return <FairyIcon />;
+  else if(item==='DefaultIcon') return <DefaultIcon />;
+  else return <DefaultIcon />;
 };
 
 //NOTE: forwardRef 사용
-const ProfileIcon = forwardRef(({ className, onClick ,profileImage}, ref) => {
+const ProfileIcon = forwardRef(({ className, onClick ,profileImage,user}, ref) => {
   const me = useMe();
 
   return (
-    <div className={cx(className)} onClick={onClick} ref={ref}>
+    <span className={cx(className)} onClick={onClick} ref={ref}>
       {profileImage && icon(profileImage)}
-      {!profileImage && ( me?.profileImage ? icon(me?.profileImage) : <DefaultIcon />)}
-    </div>
+      {!profileImage && ( user?.profileImage ? icon(user?.profileImage) : <DefaultIcon />)}
+    </span>
   );
 });
 

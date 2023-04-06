@@ -5,18 +5,19 @@ import { createComment, deleteReviewLike,createReviewLike, deleteComment, getRev
 import {
   CommentIcon,
   CommentLikeIcon,
-  ProfileIcon,
 } from '../../../../../assets/icon';
 import {
   Button,
   ShareButton,
   StarRate,
+  ProfileIcon
 } from '../../../../../components/Common';
 import { useMe } from '../../../../../hooks';
 import styles from './reviewDetailModal.module.scss';
 import { useLocation } from 'react-router-dom';
 import { getTokens } from '../../../../../utils';
 import { useMount } from 'react-use';
+
 
 const diff = (date) => {
   const now = dayjs();
@@ -167,7 +168,7 @@ const isMyComment = (item) => {
             review.comments?.map((item) => {
               return (
                 <li key={`${item.id}`} className={styles.li}>
-                  <ProfileIcon />
+                  <ProfileIcon user={item.user}/>
                   <div>
                     <span>
                       {isExists('nickname',item) || isExists('name',item) }
@@ -195,7 +196,7 @@ const isMyComment = (item) => {
             })}
         </ul>
         <li className={cx(styles.li, styles.me)}>
-          <ProfileIcon />
+          <ProfileIcon user={me}/>
           <div>
             <span>{me?.nickname || me?.name}</span>
             <span className={styles.comment}>

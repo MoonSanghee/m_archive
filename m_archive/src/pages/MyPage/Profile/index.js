@@ -139,7 +139,7 @@ const Profile = () =>{
         <div className={styles.profileInfo}>
           <div className={styles.profileWrapper}>
             <div className={styles.iconsWrapper}>
-              <ProfileIcon className={styles.profileIcon} onClick={onClickOpenModal} profileImage={form?.profileImage}/>
+              <ProfileIcon user={me} className={styles.profileIcon} onClick={onClickOpenModal} profileImage={form?.profileImage}/>
               <ReviewModifyIcon className={styles.modifyIcon}/>
             </div>
            

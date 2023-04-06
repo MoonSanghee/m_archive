@@ -43,6 +43,7 @@ const ProfileDropdown = ({ items, onClick }) => {
       <div className={styles.dropdownInfo}>
         {me ? (
           <ProfileIcon
+            user={me}
             ref={ref}
             onClick={onClickIcon}
             className={cx(styles.icon, { [styles.isOpen]: isOpen })}
