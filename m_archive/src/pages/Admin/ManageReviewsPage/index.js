@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   AdminLNB,
   CheckBox,
@@ -9,20 +9,68 @@ import {
 } from '../../../components';
 import styles from './manageReviews.module.scss';
 import Reviews from '../../../components/Common/TableElements/Reviews';
+import { getReviews } from '../../../api/Reviews';
 
 const ManageReviewsPage = () => {
-  console.log('REVIEW');
+  
+    const [selectedReviews, setSelectedReviews] = useState([]);
+    const [reviews, setReviews] = useState([]);
+    const isAllChecked = selectedReviews.length === reviews.length;
+
+    const onGetReviews = async () => {
+        const response = await getReviews(1, 10);
+        if (response.status === 200) {
+            const items = [...response.data.data];
+            setReviews(items);
+        }
+    };
+
+    const onRemoveReviews = ((id) => {
+        setReviews(review => {
+            return review.filter(review => review.id !== id);
+        })
+    })
+
+    const onCheckReview = (id) => {
+        return () => {
+            if (selectedReviews.includes(id)) {
+                setSelectedReviews(selectedReviews.filter((reviewId) => reviewId !== id));
+            } else {
+                setSelectedReviews([...selectedReviews, id]);
+            }
+        }
+    };
+
+    const onCheckAll = () => {
+        if (isAllChecked) {
+            setSelectedReviews([]);
+        } else {
+            setSelectedReviews(reviews.map((review) => review.id));
+        }
+    }
+
+    useEffect(() => {
+        onGetReviews();
+    }, []);
+
   return (
     <main className={styles.wrapper}>
       <AdminLNB />
       <section className={styles.allSection}>
         <div className={styles.topMenu}>
           <span className={styles.menuLeft}>
-            <CheckBox className={styles.check} />
+            <CheckBox 
+                className={styles.check} 
+                checked={isAllChecked}
+                onChange={onCheckAll}
+            />
             전체선택
           </span>
           <span className={styles.menuRight}>
-            <Button width={'long'} color={'secondary'}>
+            <Button 
+                width={'long'} 
+                color={'secondary'} 
+                onClick={onRemoveReviews}>
               선택 삭제
             </Button>
             <SearchBox
@@ -35,9 +83,12 @@ const ManageReviewsPage = () => {
           <TableMenu tableName="reviews" />
         </p>
         <p className={styles.table}>
-          <TableElements>
-            <Reviews limit={10} />
-          </TableElements>
+            <Reviews 
+                reviews={reviews}
+                selectedReviews={selectedReviews}
+                onCheckReview={onCheckReview}
+                limit={10} 
+            />
         </p>
       </section>
     </main>
