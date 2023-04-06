@@ -3,6 +3,7 @@ import styles from "./faq.module.scss";
 
 import { Button, SearchBox, Tag, Modal } from "../../../components/Common";
 import Accordion from "../../../components/Common/Accordion";
+import faqdata from "./faqData"
 
 // 틀만 짜고 지금 SCSS 와 API 복습하면서 하는중.
 const data = [
@@ -42,17 +43,17 @@ const FAQ = () =>{
     const handleOpenModal = () => {
       setModalOption({
         show: true,
-        title: "문의하기",
+        title: "1:1 문의하기",
         onSubmit: handleSubmitInquiry,
         onClose: handleCloseModal,
         element: (
           <div>
-            {/* Render inquiry form or any additional components here */}
-            <h3>문의 내용을 작성해주세요</h3>
+            <p>M-archive를 이용하시면서 불편한 사항이나 개선 의견이 있다면 문의해주세요</p>
+            <txextara rows={1} />
             <textarea rows={5} />
             <div>
-              <Button onClick={handleSubmitInquiry}>확인</Button>
-              <Button onClick={handleCloseModal}>닫기</Button>
+              <Button onClick={handleSubmitInquiry}>문의하기</Button>
+              <Button onClick={handleCloseModal}>취소</Button>
             </div>
           </div>
         ),
@@ -64,7 +65,6 @@ const FAQ = () =>{
     };
   
     const handleSubmitInquiry = () => {
-      // Logic for submitting inquiry goes here
       console.log("Inquiry submitted");
       // Close modal after submitting inquiry
       handleCloseModal();
@@ -74,12 +74,13 @@ const FAQ = () =>{
 <main className={styles.mainContainer}>
    <h1> FAQ</h1>
    <div className={styles.mainInput}>
-   <SearchBox />
+   <SearchBox/>
    <div className={styles.sideButton}>
    <Button>문의 내역</Button>
-   <Button onClick={handleOpenModal}>문의 하기</Button>
+   <Button onClick={handleOpenModal}><Modal />문의 하기</Button>
    </div>
    </div>
+   <h2>자주묻는 질문</h2>
   <ul className={styles.accordionWrapper}>
   {data.map((item, index) => (
     <li key={index} style={{ marginBottom: "5px" }}>
