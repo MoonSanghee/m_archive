@@ -1,8 +1,6 @@
 //드랍다운-쉐브론아이콘
 export { ReactComponent as ChevronIcon } from './chevron-down.svg';
 export { ReactComponent as ChevronArrow } from './chevron-arrow.svg';
-//프로필 아이콘
-export { ReactComponent as ProfileIcon } from './profile-icon.svg';
 //마이페이지 아이콘
 export { ReactComponent as MyPageIcon } from './mypage-icon.svg';
 export { ReactComponent as SettingIcon } from './setting-icon.svg';

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './reviewcard.module.scss';
 import {
-  ProfileIcon,
   EyeIcon,
   EyeBlindIcon,
   CommentIcon,
@@ -10,6 +9,7 @@ import {
 import cx from 'classnames';
 import StarRate from '../StarRate';
 import dayjs from 'dayjs';
+import ProfileIcon from '../ProfileIcon';
 
 const diff = (date) => {
   const now = dayjs();
@@ -34,7 +34,7 @@ const ReviewCard = ({ item, onClick, ...props }) => {
       <div className={cx(styles.cardWrapper)}>
         <div className={styles.infoWrapper}>
           <span className={styles.profileIcon}>
-            <ProfileIcon />
+            <ProfileIcon user={item?.user}/>
           </span>
           <div className={styles.rateNicknameWrapper}>
             <div className={styles.scoreWrapper}>

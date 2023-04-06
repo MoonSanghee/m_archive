@@ -122,12 +122,14 @@
         @include m.flex(space-between,center,column);
         width: 100%;
         height: 68%;
+
         .ul{
             width: 100%;
             @include m.flex(center,center,column);
         }
         .li {
             @include m.flex(flex-start,flex-start,row);
+            column-gap: 12px;
             padding: 4px;
             width: 100%;
             height: 60px;
