@@ -2,10 +2,8 @@ import React, { useEffect, useState } from 'react';
 import styles from './reviewCarousel.module.scss';
 import { ChevronArrow } from '../../../../assets/icon';
 import { useNavigate } from 'react-router-dom';
-//import ReviewCard from "../../../../components/Common/ReviewCard";
-import Review from './Review';
-import { EclipseIcon } from '../../../../assets/icon';
 import cx from 'classnames';
+import ReviewCard from '../../../../components/Common/ReviewCard';
 /**
  * items - 캐러셀 안에 들어갈 아이템배열
  *
@@ -50,14 +48,23 @@ const ReviewCarousel = ({ reviews }) => {
       <ul className={styles.ulWrapper}>
         {reviews.map((review, idx) => {
           return (
-            <Review
-              slide={slidePx}
-              key={`Review-${review.id}`}
-              review={review}
-              idx={idx}
-              //onClick={onNavigateDetail(review.id)}
-              //type={type}
-            />
+                <li
+                className={cx(styles.review,{[styles.odd]:idx%2>0})}
+                id={`Review-Li-${review.id}`}
+                style={{
+                  transform: `translateX(${slidePx}px)`,
+                  transition: '0.5s ease',
+                }}
+                >
+                <ReviewCard
+                  id={`Card-${review.id}`}
+                  item={review}
+                  //onClick={onClick}
+                  //type={type}
+                  //idx={idx}
+                />
+              
+              </li>
           );
         })}
       </ul>
@@ -67,3 +74,11 @@ const ReviewCarousel = ({ reviews }) => {
 };
 
 export default ReviewCarousel;
+     {/*<Review
+              slide={slidePx}
+              key={`Review-${review.id}`}
+              review={review}
+              idx={idx}
+              //onClick={onNavigateDetail(review.id)}
+              //type={type}
+          />*/}
