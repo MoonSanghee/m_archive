@@ -113,8 +113,13 @@ const Profile = () =>{
       checkpassword:'',
       profileImage:me?.profileImage,
     })
+    setSelect([]);
+    me?.preferredGenres?.forEach((item)=>{
+      setSelect((select) => [...select, item])
+    })  
+  
   },[me]);
-
+  
   const validatedNickname = validateNickname(form?.nickname);
   const validatedPassword = validatePassword(form?.password);
   const validatedCheckpassword = validateCheckpassword(
@@ -188,7 +193,7 @@ const Profile = () =>{
               <Tag
                 key={item.id}
                 // width={"middle"}
-                border={"border" + (select.includes(item) ? " active" : "")}
+                border={"border" + (select.some((genre) => genre.id === item.id) ? " active" : "")}
                 onClick={onClickBtn(item)}
               >
                 {item.name}
