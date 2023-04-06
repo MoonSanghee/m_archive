@@ -16,9 +16,9 @@ import { CloseIcon } from "../../../assets/icon";
     const [modalOption, setModalOption] = useState(OPTION)
  */
 
-const Modal = ({ modalOption, modalSize }) => {
+const Modal = ({ modalOption, modalSize,className }) => {
   return (
-    <main>
+    <main >
       {modalOption?.show && (
         <section className={cx(styles.wrapper)}>
           <div
@@ -26,7 +26,7 @@ const Modal = ({ modalOption, modalSize }) => {
             onClick={() => modalOption.onClose()}
           />
 
-          <div className={cx(styles.modalWrapper, styles[modalSize])}>
+          <div className={cx(styles.modalWrapper, styles[modalSize],className)}>
             <div className={styles.closeButtonWrapper}>
               <CloseIcon onClick={() => modalOption.onClose()} />
             </div>

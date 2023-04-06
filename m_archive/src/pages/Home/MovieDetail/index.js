@@ -16,16 +16,13 @@ import ReviewModal from './ReviewModal';
 import { useMe } from '../../../hooks';
 import { useMount } from 'react-use';
 
+
 const MovieDetailPage = () => {
   const navigate = useNavigate();
   const params = useParams();
   const me = useMe();
   //해당 영화-정보
   const [movie, setMovie] = useState({});
-  const [details, setDetails] = useState({
-    genres: [],
-    staffs: [],
-  });
   //해당 영화-리뷰들
   const [reviews, setReviews] = useState([]);
   //해당 영화-나의 리뷰
@@ -48,10 +45,6 @@ const MovieDetailPage = () => {
     const response = await getMovie(id);
     if (response.status === 200) {
       setMovie(response.data);
-      setDetails({
-        genres: response.data.genres,
-        staffs: response.data.staffs,
-      });
     }
   };
 
@@ -156,7 +149,7 @@ const MovieDetailPage = () => {
             </p>
             <p>
               장르 :
-              {details.genres.map((genre) => {
+              {movie?.genres?.map((genre) => {
                 return <span key={`장르-${genre.id}`}>{genre.name}</span>;
               })}
             </p>
@@ -170,8 +163,6 @@ const MovieDetailPage = () => {
               movieId={movie?.id}
               isModified={!isEmptyObject(myReview)}
               reload={onClickStar}
-              //onClick={onClickStar}
-              //clickedStarIndex={clickedStarIndex}
             />
             <span className={styles.buttonPlace}>
               <ReviewButton
@@ -182,7 +173,7 @@ const MovieDetailPage = () => {
             <span className={styles.buttonPlace}>
               <LikeButton
                 label="좋아요"
-                movieId={movie?.id}
+                //movieId={movie?.id}
                 onClick={onLikeBtn}
                 isLiked={movie?.isLiked}
               />
@@ -195,22 +186,18 @@ const MovieDetailPage = () => {
             <p>
               감독 :
               {/* //NOTE: if문으로 map을 하려면 if문에도 return이, else문에도 return이 있어야 합니다. (안그러면 undefined return)  */}
-              {details.staffs
-                .filter((staff) => staff.role === '감독')
+              {movie?.staffs?.filter((staff) => staff.role === '감독')
                 .map((staff) => {
                   return <span key={`감독-${staff.id}`}>{staff.name}</span>;
                 })}
             </p>
             <p>
               배우 :
-              {details.staffs.map((staff) => {
-                if (staff.role === '출연')
-                  return (
-                    <span key={`출연-${staff.id}`} className={styles.actors}>
-                      {staff.name}
-                    </span>
-                  );
-              })}
+               {/* //NOTE: if문으로 map을 하려면 if문에도 return이, else문에도 return이 있어야 합니다. (안그러면 undefined return)  */}
+               {movie?.staffs?.filter((staff) => staff.role === '출연')
+                .map((staff) => {
+                  return <span key={`출연-${staff.id}`} className={styles.actors}>{staff.name}</span>;
+                })}
             </p>
           </div>
           <div className={styles.story}>
