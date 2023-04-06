@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import styles from './tableElements.module.scss';
 import CheckBox from '../CheckBox';
 import { getReviews, getReviewsCount } from '../../../api/Reviews';
-import { getMovie } from '../../../api/Movies';
 import Pagination from '../PageNation';
 import dayjs from 'dayjs';
 
-const Reviews = ({ page, limit }) => {
+const Reviews = ({ page, limit, selectedReviews, onCheckReview, onRemoveReviews }) => {
   const [reviews, setReviews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageLimit, setPageLimit] = useState(limit);
@@ -19,7 +18,7 @@ const Reviews = ({ page, limit }) => {
   const fetchData = async () => {
     const response = await getReviews(currentPage, pageLimit);
     const count = await getReviewsCount();
-    console.log(response)
+    // console.log(response)
     if (response.status === 200) {
       const items = [...response.data.data];
       setTotalPages(Math.ceil(count.data.count / pageLimit));
@@ -34,14 +33,14 @@ const Reviews = ({ page, limit }) => {
   return (
     <div>
       <table className={styles.reviews}>
-        {reviews.map((review) => {
+        {reviews.map((review, idx) => {
           const createdAt = review.createdAt
           return (
-            <td className={styles.elements}>
+            <td  key={idx} className={styles.elements}>
               <CheckBox
                 className={styles.check}
-                // checked={selectedMovies.includes(movie.id)}
-                // onChange={onCheckMovie(movie.id)}
+                checked={selectedReviews.includes(review.id)}
+                onChange={onCheckReview(review.id)}
                 />
               <span id="영화">제목</span>
               <span>{review.user.name}</span>
