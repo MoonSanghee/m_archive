@@ -31,7 +31,7 @@ const MovieSearch = () => {
   useEffect(() => {
     setIsSuccess(false);
     onGetMovies();
-  }, []);
+  }, [searchText]);
 
   return (
     <main className={styles.body}>
