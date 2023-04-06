@@ -11,10 +11,15 @@ import useModal from "../../../components/Common/Modal/useModal";
 import IconModal from "./IconModal";
 import { useCallback } from "react";
 import {ReviewModifyIcon} from "../../../assets/icon";
+import { validateNickname,validatePassword, validateCheckpassword } from "../../Auth/Register/utils";
+import { modifyUser } from "../../../api/Users";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Profile = () =>{
+  const navigate = useNavigate();
   const me = useMe();
-  //const [userInfo, setUserInfo] = useState(null);
+  const location = useLocation();
   const [pick, setPick] = useState(genre);
   const [select, setSelect] = useState([]);
   const [modalOption, showModal] = useModal();
@@ -22,11 +27,22 @@ const Profile = () =>{
     nickname: '',
     description: '',
     password:'',
-    checkPassword:'',
+    checkpassword:'',
     profileImage:'',
     preferredGenres:[],
   })
-  
+
+  const [touched, setTouched] = useState({
+    nickname: false,
+    password: false,
+    checkpassword: false,
+  });
+
+    const onBlur = (e) => {
+      const { name } = e.target;
+      setTouched({ ...touched, [name]: true });
+    };
+  //select.map((item) => item.id)
   const onClickBtn = (item) => {
     return () => {
       !select.includes(item)
@@ -37,7 +53,8 @@ const Profile = () =>{
 
   // 프로필 정보를 입력할 때마다 상태 변수에 저장
   const onChange = (e) => {
-    const { name, value } = e.currentTarget;
+    const { name, value } = e.target;
+    setTouched({ ...touched, [name]: false });
     setForm({
       ...form,
       [name]: value,
@@ -46,9 +63,34 @@ const Profile = () =>{
 
   // 저장 버튼 클릭 시 API 호출
   const onSubmit = async (e) => {
-    console.log(form);
+    e.preventDefault();
+    if(!validatedForm){
+      return;
+    }
+
+    const userData = {
+      nickname: form?.nickname,
+      description: form?.description,
+      password:form?.password,
+      profileImage:form?.profileImage,
+      preferredGenres: select.map((item) => item.id), //select는 선택한 태그
+    };
+    //console.log(userData);
+
+    const response = await modifyUser(userData);
+    if (response.status === 204) {
+      console.log("프로필 정상 수정!");
+    }else{
+      console.log("프로필 수정 에러!");
+    }
   };
 
+  const getProfileImage = (name) => {
+    setForm({
+      ...form,
+      ['profileImage']: name,
+    });
+  };
   const onClickOpenModal = useCallback(() => {
     showModal(
       true,
@@ -56,26 +98,35 @@ const Profile = () =>{
       null,
       null,
       <IconModal
-          onClose={() => {
-          //NOTE: 생성/수정/삭제와 같이 데이터를 변경하는 API를 사용한다면 -> API 요청 완료 후에 재요청을 해야한다~
-          modalOption.onClose();
-          if (!me) {
-            return;
-          } 
-        }}
+          getProfileImage={getProfileImage} 
+          onClose={()=> modalOption.onClose()}
       />,
     );
-  }, [ modalOption]);
-  useMount(()=>{
+  }, [ modalOption,getProfileImage]);
+
+  useEffect(()=>{
+    //console.log(me);
     setForm({
       nickname: me?.nickname,
       description: me?.description,
-      password:me?.password,
-      checkPassword:me?.password,
+      password:'',
+      checkpassword:'',
       profileImage:me?.profileImage,
     })
-    
-  })
+  },[me]);
+
+  const validatedNickname = validateNickname(form?.nickname);
+  const validatedPassword = validatePassword(form?.password);
+  const validatedCheckpassword = validateCheckpassword(
+    form?.checkpassword,
+    form?.password,
+  );
+  const validatedForm =  
+  !validatedNickname && 
+  !validatedPassword &&
+  !validatedCheckpassword
+    ? true
+    : false;
   return (
     <main className={styles.wrapper}>
       <section className={styles.profileContainer}>
@@ -83,18 +134,49 @@ const Profile = () =>{
         <div className={styles.profileInfo}>
           <div className={styles.profileWrapper}>
             <div className={styles.iconsWrapper}>
+              <ProfileIcon className={styles.profileIcon} onClick={onClickOpenModal} profileImage={form?.profileImage}/>
               <ReviewModifyIcon className={styles.modifyIcon}/>
-              <ProfileIcon className={styles.profileIcon} />
-              <ProfileIcon className={styles.overlay} onClick={onClickOpenModal}/>
             </div>
            
-            <textarea name="description" value={form.description} onChange={onChange} placeholder="소개글"></textarea>
+            <textarea name="description" value={form?.description} onChange={onChange} placeholder="소개글"></textarea>
           </div>
           <div className={styles.inputsWrapper}>         
-            <Input name="nickname" value={form.nickname} onChange={onChange} className={styles.input} label="닉네임"/>
-            <Input name="email" value={me?.email} onChange={onChange} className={styles.input} label="이메일"/>
-            <Input name="password" value={form.password} onChange={onChange} type="password" className={styles.input} label="비밀번호"/>
-            <Input name="checkPassword" value={form.checkPassword} onChange={onChange} type="password" className={styles.input} label="비밀번호 확인"/>
+            <Input 
+            name="nickname" 
+            value={form.nickname} 
+            onChange={onChange} 
+            onBlur={onBlur}
+            className={styles.input} 
+            errorText={touched.nickname && validatedNickname}
+            label="닉네임"/>
+            <Input 
+            name="email" 
+            value={me?.email} 
+            onChange={onChange} 
+            className={styles.input} 
+            label="이메일"/>
+            <Input 
+            name="password" 
+            value={form.password} 
+            onChange={onChange} 
+            onBlur={onBlur}
+            type="password"
+             className={styles.input} 
+             label="비밀번호"
+             autoComplete="off"
+             errorText={touched.password && validatedPassword}
+             />
+            <Input 
+            name="checkpassword" 
+            value={form.checkpassword} 
+            onChange={onChange} 
+            onBlur={onBlur}
+            type="password" 
+            className={styles.input} 
+            label="비밀번호 확인"
+            autoComplete="off"
+            errorText={touched.checkpassword && validatedCheckpassword}
+            />
           </div>
         </div>
       </section>
@@ -116,7 +198,7 @@ const Profile = () =>{
           </div>
         </section>
         <span><Button onClick={onSubmit}>저장</Button></span>
-        <Modal modalOption={modalOption} modalSize="small" />
+        <Modal modalOption={modalOption} modalSize="small" className={styles.iconModal} />
       </main>
     );
 };

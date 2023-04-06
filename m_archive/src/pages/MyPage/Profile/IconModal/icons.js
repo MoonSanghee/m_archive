@@ -18,12 +18,12 @@ export const icons = [
     {
         id:1,
         name:"AngelIcon",
-        icon:()=>(<AssasinIcon/>),
+        icon:()=>(<AngelIcon/>),
     },
     {
         id:2,
         name:"AssasinIcon",
-        icon:()=>(<AngelIcon/>),
+        icon:()=>(<AssasinIcon/>),
     },
     {
         id:3,

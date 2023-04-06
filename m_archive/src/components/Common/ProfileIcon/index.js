@@ -18,20 +18,20 @@ import {
 import cx from 'classnames';
 
 const icon = (item) => {
-  let myIcon;
-  myIcon = item === 'AngelIcon' && <AngelIcon />;
-  myIcon = item === 'AssasinIcon' && <AssasinIcon />;
-  myIcon = item === 'CircusIcon' && <CircusIcon />;
-  myIcon = item === 'DevilIcon' && <DevilIcon />;
-  myIcon = item === 'GhostIcon' && <GhostIcon />;
-  myIcon = item === 'KnightIcon' && <KnightIcon />;
-  myIcon = item === 'ManIcon' && <ManIcon />;
-  myIcon = item === 'PrincessIcon' && <PrincessIcon />;
-  myIcon = item === 'QueenIcon' && <QueenIcon />;
-  myIcon = item === 'SantaIcon' && <SantaIcon />;
-  myIcon = item === 'AlienIcon' && <AlienIcon />;
-  myIcon = item === 'FairyIcon' && <FairyIcon />;
-  return myIcon;
+  if(item==='AngelIcon') return <AngelIcon />;
+  if(item==='AssasinIcon') return <AssasinIcon />;
+  if(item==='CircusIcon') return <CircusIcon />;
+  if(item==='DevilIcon') return <DevilIcon />;
+  if(item==='GhostIcon') return <GhostIcon />;
+  if(item==='KnightIcon') return <KnightIcon />;
+  if(item==='ManIcon') return <ManIcon />;
+  if(item==='PrincessIcon') return <PrincessIcon />;
+  if(item==='QueenIcon') return <QueenIcon />;
+  if(item==='SantaIcon') return <SantaIcon />;
+  if(item==='AlienIcon') return <AlienIcon />;
+  if(item==='FairyIcon') return <FairyIcon />;
+  if(item==='DefaultIcon') return <DefaultIcon />;
+
 };
 
 //NOTE: forwardRef 사용
@@ -40,7 +40,7 @@ const ProfileIcon = forwardRef(({ className, onClick ,profileImage}, ref) => {
 
   return (
     <div className={cx(className)} onClick={onClick} ref={ref}>
-      {profileImage && profileImage}
+      {profileImage && icon(profileImage)}
       {!profileImage && ( me?.profileImage ? icon(me?.profileImage) : <DefaultIcon />)}
     </div>
   );

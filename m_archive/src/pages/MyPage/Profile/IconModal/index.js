@@ -2,32 +2,21 @@ import React from "react"
 import {icons} from "./icons.js";
 import styles from "./iconModal.module.scss";
 
-const IconModal = ()=>{
-    //const iconItems = [...icons];
+const IconModal = ({onClose,getProfileImage,...props})=>{
     
+    const setProfileImage = (name) => {
+        getProfileImage(name);
+        onClose();
+    }
     return (
         <section className={styles.wrapper}>
-            {/*
+            {
                 icons.map(({name,icon,id})=>{
                         return(
-                        <span key={id}>{icon()}</span>
+                        <span onClick={()=>{setProfileImage(name),onClose();}} key={id}>{icon()}</span>
                         )
                 })
-            */}
-            {icons[0].icon()
-            }
-             {icons[1].icon()
-            }
-             {icons[2].icon()
-            }
-             {icons[3].icon()
-            }
-             {icons[4].icon()
-            }
-
-             {icons[12].icon()
-            }
-           
+            }           
         </section>
     )
 }
