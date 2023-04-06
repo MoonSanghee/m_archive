@@ -38,12 +38,46 @@
         width: 45%;
         height: 90%;
         row-gap: 32px;
-          .profileIcon{
+          .iconsWrapper{
+          
+            .modifyIcon{
+              z-index: 20;
+              position:relative;  
+              top:75px;
+              right: -65px;
+              > svg{
+                width: 100px;
+                height: 100px;
+                }
+            }
+            .profileIcon{
+              //cursor: pointer;
               > svg{
               width: 140px;
               height: 140px;
               }
+            }
+            .overlay{
+              position:relative;  
+              background-color:transparent;
+              z-index: 10;
+              top: -141px;
+              right: -0px;
+              
+              &:hover{
+                background-color: c.$C_BLACK_MODAL;
+                > svg {
+                  width: 140px;
+                  height: 140px;
+                  > circle{
+                    fill:c.$C_BLACK_MODAL;
+                  }
+                  }
+              }
+           
+            }
           }
+ 
           > textarea{
             width: 340px;
             height: 140px;

@@ -6,36 +6,27 @@ import axios from 'axios';
 import genre from "../../Home/Genre/genre";
 import { useMe } from "../../../hooks";
 import { useMount } from "react-use";
-// 현재 틀만 만드는중 나중에 따로 코드 수정 예정 .
-// user 데이터 끌어오는 방법 보는중 .
-// api 건드는중 .
+import {Modal} from "../../../components/Common";
+import useModal from "../../../components/Common/Modal/useModal";
+import IconModal from "./IconModal";
+import { useCallback } from "react";
+import {ReviewModifyIcon} from "../../../assets/icon";
+
 const Profile = () =>{
   const me = useMe();
-  const [userInfo, setUserInfo] = useState(null);
+  //const [userInfo, setUserInfo] = useState(null);
   const [pick, setPick] = useState(genre);
   const [select, setSelect] = useState([]);
+  const [modalOption, showModal] = useModal();
   const [form,setForm] = useState({
     nickname: '',
     description: '',
     password:'',
     checkPassword:'',
     profileImage:'',
+    preferredGenres:[],
   })
-  // 프로필 정보를 저장할 상태 변수
-  /*const [profile, setProfile] = useState({
-    id: '',
-    name: '',
-    birth: '',
-    nickname: '',
-    email: '',
-    description: '',
-    profileImage: '',
-    gender: '',
-    preferredGenres: [],
-    createdAt: '',
-    updatedAt: '',
-  });*/
-
+  
   const onClickBtn = (item) => {
     return () => {
       !select.includes(item)
@@ -53,19 +44,28 @@ const Profile = () =>{
     });
   };
 
-  // 수정 버튼 클릭 시 API 호출
+  // 저장 버튼 클릭 시 API 호출
   const onSubmit = async (e) => {
-    //e.preventDefault();
-    try {
-      const res = await axios.put("/users/me", profile); 
-      // API 주소
-      console.log(res.data);
-      // 수정 성공 시 처리
-    } catch (err) {
-      console.error(err);
-      // 수정 실패 시 처리
-    }
+    console.log(form);
   };
+
+  const onClickOpenModal = useCallback(() => {
+    showModal(
+      true,
+      '',
+      null,
+      null,
+      <IconModal
+          onClose={() => {
+          //NOTE: 생성/수정/삭제와 같이 데이터를 변경하는 API를 사용한다면 -> API 요청 완료 후에 재요청을 해야한다~
+          modalOption.onClose();
+          if (!me) {
+            return;
+          } 
+        }}
+      />,
+    );
+  }, [ modalOption]);
   useMount(()=>{
     setForm({
       nickname: me?.nickname,
@@ -82,7 +82,12 @@ const Profile = () =>{
         <h1>프로필 수정</h1>
         <div className={styles.profileInfo}>
           <div className={styles.profileWrapper}>
-            <ProfileIcon className={styles.profileIcon} />
+            <div className={styles.iconsWrapper}>
+              <ReviewModifyIcon className={styles.modifyIcon}/>
+              <ProfileIcon className={styles.profileIcon} />
+              <ProfileIcon className={styles.overlay} onClick={onClickOpenModal}/>
+            </div>
+           
             <textarea name="description" value={form.description} onChange={onChange} placeholder="소개글"></textarea>
           </div>
           <div className={styles.inputsWrapper}>         
@@ -104,13 +109,14 @@ const Profile = () =>{
                 border={"border" + (select.includes(item) ? " active" : "")}
                 onClick={onClickBtn(item)}
               >
-                {item.genre}
+                {item.name}
               </Tag>
             );
           })}
           </div>
         </section>
         <span><Button onClick={onSubmit}>저장</Button></span>
+        <Modal modalOption={modalOption} modalSize="small" />
       </main>
     );
 };

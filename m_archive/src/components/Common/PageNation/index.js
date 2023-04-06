@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import styles from './pagenation.module.scss';
-import { range } from 'lodash-es';
+//import { range } from 'lodash-es';
 import { First, Last } from '../../../assets/icon';
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {

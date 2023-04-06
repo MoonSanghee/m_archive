@@ -35,12 +35,13 @@ const icon = (item) => {
 };
 
 //NOTE: forwardRef 사용
-const ProfileIcon = forwardRef(({ className, onClick }, ref) => {
+const ProfileIcon = forwardRef(({ className, onClick ,profileImage}, ref) => {
   const me = useMe();
 
   return (
     <div className={cx(className)} onClick={onClick} ref={ref}>
-      {me?.profileImage ? icon(me?.profileImage) : <DefaultIcon />}
+      {profileImage && profileImage}
+      {!profileImage && ( me?.profileImage ? icon(me?.profileImage) : <DefaultIcon />)}
     </div>
   );
 });
