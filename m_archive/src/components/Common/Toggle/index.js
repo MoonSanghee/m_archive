@@ -10,7 +10,7 @@ const Toggle = ( {className,checked, onChange,...props}) => {
     },[checked]);
     return (
         <label className={cx(styles.wrapper, className)}>
-            <input type="checkbox" hidden checked={isChecked} onChange={onChange} {...props} />
+            <input type="checkbox" hidden checked={isChecked} onChange={onChange}  {...props} />
             <span role="button" className={styles.button}/>
             <span className={styles.letter1}>ON</span> 
             <span className={styles.letter2}>OFF</span>
