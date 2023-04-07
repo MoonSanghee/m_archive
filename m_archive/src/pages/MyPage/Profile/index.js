@@ -11,7 +11,7 @@ import {
 import axios from 'axios';
 import genre from '../../Home/Genre/genre';
 import { useMe } from '../../../hooks';
-import { useMount } from 'react-use';
+import { useAsync, useMount } from 'react-use';
 import { Modal } from '../../../components/Common';
 import useModal from '../../../components/Common/Modal/useModal';
 import IconModal from './IconModal';
@@ -31,9 +31,8 @@ import { getMe } from "../../../api/Users";
 
 const Profile = () => {
   const navigate = useNavigate();
-  //const me = useMe();
-  const [me,setMe] = useRecoilState(meState);
   const location = useLocation();
+  const [me,setMe] = useRecoilState(meState);
   const [pick, setPick] = useState(genre);
   const [select, setSelect] = useState([]);
   const [modalOption, showModal] = useModal();
@@ -123,26 +122,40 @@ const Profile = () => {
     );
   }, [modalOption, getProfileImage]);
 
+  const onClickToggle =async () =>{
+    const userData = {
+     isPreferenceView:!me?.isPreferenceView,
+    }
+    const response = await modifyUser(userData);
+    if(response.status === 204){
+      onGetMe();
+    }else{
+      console.log("토글클릭에러 !");
+    }
+  }
   useEffect(() => {
-    //console.log(me);
     setForm({
       nickname: me?.nickname,
       description: me?.description,
       password: '',
       checkpassword: '',
       profileImage: me?.profileImage,
-    });
+      });
     setSelect([]);
     me?.preferredGenres?.forEach((item) => {
       setSelect((select) => [...select, item]);
     });
   }, [me]);
+  
+
   const onGetMe = async()=>{
     const response = await getMe();
     if(response.status===200){
       setMe(response.data);
     }
   }
+
+
   useMount(()=>{
     onGetMe();
   })
@@ -183,43 +196,43 @@ const Profile = () => {
           <div className={styles.inputsWrapper}>
             <Input
               name="nickname"
-              value={form.nickname}
+              value={form?.nickname}
               onChange={onChange}
               onBlur={onBlur}
               className={styles.input}
               //autoComplete="off"
-              errorText={touched.nickname && validatedNickname}
+              errorText={touched?.nickname && validatedNickname}
               label="닉네임"
             />
             <Input
               name="email"
               value={me?.email}
-              onChange={onChange}
+              //onChange={onChange}
               className={styles.input}
               //autoComplete="off"
               label="이메일"
             />
             <Input
               name="password"
-              value={form.password}
+              value={form?.password}
               onChange={onChange}
               onBlur={onBlur}
               type="password"
               className={styles.input}
               label="비밀번호"
               //autoComplete="off"
-              errorText={touched.password && validatedPassword}
+              errorText={touched?.password && validatedPassword}
             />
             <Input
               name="checkpassword"
-              value={form.checkpassword}
+              value={form?.checkpassword}
               onChange={onChange}
               onBlur={onBlur}
               type="password"
               className={styles.input}
               label="비밀번호 확인"
               //autoComplete="off"
-              errorText={touched.checkpassword && validatedCheckpassword}
+              errorText={touched?.checkpassword && validatedCheckpassword}
             />
           </div>
         </div>
@@ -227,7 +240,7 @@ const Profile = () => {
       <section className={styles.genreContainer}>
         <h1>
           {'선호 장르'}
-          <Toggle />{' '}
+          <Toggle checked={me?.isPreferenceView} onChange={onClickToggle}/>{' '}
         </h1>
         <div className={styles.tagsWrapper}>
           {pick.map((item) => {
