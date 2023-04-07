@@ -112,7 +112,7 @@ const isMyComment = (item) => {
       <div className={styles.reviewWrapper}>
         <div className={styles.infoWrapper}>
           <span className={styles.profileIcon}>
-            <ProfileIcon />
+            <ProfileIcon user={review?.user}/>
           </span>
           <div className={styles.rateNicknameWrapper}>
             <div className={styles.scoreWrapper}>
