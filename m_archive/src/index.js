@@ -4,11 +4,14 @@ import { RouterProvider } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import rootRouter from './router';
 import './styles/global.scss';
+import {RecoilRoot} from "recoil";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={rootRouter}/>
+    <RecoilRoot>
+      <RouterProvider router={rootRouter}/>
+    </RecoilRoot>
   </React.StrictMode>
 );
 
