@@ -5,17 +5,24 @@ import { useNavigate } from 'react-router-dom';
 import { validateEmail, validatePassword } from './utils';
 import { getTokens, saveTokens } from '../../../utils';
 import { login } from '../../../api/Auth';
-
+import {useSetRecoilState, useRecoilValue} from "recoil";
+import { meState } from '../../../recoil';
+import { getMe } from '../../../api/Users';
 const Login = () => {
   const navigate = useNavigate();
-
+  const setMe = useSetRecoilState(meState);
   const [form, setForm] = useState({
     userEmail: '',
     password: '',
   });
   const [emailStatus, setEmailStatus] = useState('');
   const [passwordStatus, setPasswordStatus] = useState('');
-
+  const onGetMe = async()=>{
+    const response = await getMe();
+    if(response.status===200){
+      setMe(response.data);
+    }
+  }
   const onChange = (e) => {
     const { name, value } = e.currentTarget;
     setForm({ ...form, [name]: value });
@@ -48,19 +55,23 @@ const Login = () => {
     const validatedForm = !validatedEmail && !validatedPassword ? true : false;
 
     if (validatedForm) {
-      //console.log(form); //확인용
-      //console.log(validatedForm); //확인용
 
       const loginData = {
         email: form.userEmail,
         password: form.password,
       };
 
-      const response = await login(loginData);
-      if (response.status === 200) {
-        const data = response.data;
-        saveTokens(data);
-        navigate('/movies');
+      
+      try{
+        const response = await login(loginData);
+        if (response.status === 200) {
+          const data = response.data;
+          saveTokens(data);
+          navigate('/movies');
+          onGetMe();
+        }
+      }catch(err){
+        alert("로그인 실패");
       }
     } else {
       console.log('invalid form');

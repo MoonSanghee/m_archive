@@ -25,10 +25,14 @@ import {
 import { modifyUser } from '../../../api/Users';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import {useRecoilState, useSetRecoilState} from "recoil";
+import { meState} from '../../../recoil';
+import { getMe } from "../../../api/Users";
 
 const Profile = () => {
   const navigate = useNavigate();
-  const me = useMe();
+  //const me = useMe();
+  const [me,setMe] = useRecoilState(meState);
   const location = useLocation();
   const [pick, setPick] = useState(genre);
   const [select, setSelect] = useState([]);
@@ -75,25 +79,29 @@ const Profile = () => {
   //NOTE: 수정하고 나서 getMe 호출
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (!validatedForm) {
+    if ((touched.password || touched.checkpassword) && !validatedForm) {
+      console.log("not submit");
       return;
     }
 
     const userData = {
       nickname: form?.nickname,
       description: form?.description,
-      password: form?.password,
       profileImage: form?.profileImage,
       preferredGenres: select.map((item) => item.id), //select는 선택한 태그
     };
-    //console.log(userData);
-
+    if(touched.password){
+      userData.password = form?.password;
+    }
+  
     const response = await modifyUser(userData);
     if (response.status === 204) {
       console.log('프로필 정상 수정!');
+      onGetMe();
     } else {
       console.log('프로필 수정 에러!');
     }
+    
   };
 
   const getProfileImage = (name) => {
@@ -129,7 +137,16 @@ const Profile = () => {
       setSelect((select) => [...select, item]);
     });
   }, [me]);
-
+  const onGetMe = async()=>{
+    const response = await getMe();
+    if(response.status===200){
+      setMe(response.data);
+    }
+  }
+  useMount(()=>{
+    onGetMe();
+  })
+ 
   const validatedNickname = validateNickname(form?.nickname);
   const validatedPassword = validatePassword(form?.password);
   const validatedCheckpassword = validateCheckpassword(
@@ -170,7 +187,7 @@ const Profile = () => {
               onChange={onChange}
               onBlur={onBlur}
               className={styles.input}
-              autoComplete="off"
+              //autoComplete="off"
               errorText={touched.nickname && validatedNickname}
               label="닉네임"
             />
@@ -179,7 +196,7 @@ const Profile = () => {
               value={me?.email}
               onChange={onChange}
               className={styles.input}
-              autoComplete="off"
+              //autoComplete="off"
               label="이메일"
             />
             <Input
@@ -190,7 +207,7 @@ const Profile = () => {
               type="password"
               className={styles.input}
               label="비밀번호"
-              autoComplete="off"
+              //autoComplete="off"
               errorText={touched.password && validatedPassword}
             />
             <Input
@@ -201,7 +218,7 @@ const Profile = () => {
               type="password"
               className={styles.input}
               label="비밀번호 확인"
-              autoComplete="off"
+              //autoComplete="off"
               errorText={touched.checkpassword && validatedCheckpassword}
             />
           </div>
