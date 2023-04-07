@@ -42,7 +42,7 @@ const Reviews = () => {
         true,
         '',
         null,
-        ()=>onGetReviews(params.id),
+        () => onGetReviews(params.id),
         <ReviewDetailModal
           thisReview={review}
           movieId={params.id}
@@ -53,21 +53,23 @@ const Reviews = () => {
               return;
             }
             //onGetMovie(params.id);
-            
           }}
         />,
       );
     },
-    [params.id,modalOption],
+    [params.id, modalOption],
   );
-  useEffect(()=>{
-    if(!ref.current) return;
-    ref.current.scrollIntoView({
-      behavior:"smooth",
-      block:"start",
-      inline:"nearest",
-    },[pathname])
-  })
+  useEffect(() => {
+    if (!ref.current) return;
+    ref.current.scrollIntoView(
+      {
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'nearest',
+      },
+      [pathname],
+    );
+  });
   useMount(() => {
     onGetMovie(params.id);
     onGetReviews(params.id);

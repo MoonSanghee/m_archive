@@ -6,15 +6,19 @@ import cx from 'classnames';
 import { createLike, deleteLike } from '../../../api/Movies';
 import LikeButton from '../LikeButton';
 
-const Card = ({ item, onClick, type, idx }) => {
-  const [genres, setGenres] = useState('');
+const Card = ({ item, onClick, type, idx, callback }) => {
   const movie = item;
+  const [genres, setGenres] = useState('');
+  //NOTE: isLiked state를 useEffect를 통해 movie.isLiked로  초기화 하고나서 setIsLiked로 관리
+  const [isLiked, setIsLiked] = useState(false);
 
   const onCreateLike = async () => {
     const response = await createLike(movie.id);
     if (response.status === 201) {
       console.log('생성');
       //???
+      setIsLiked(true);
+      callback && callback();
     }
   };
 
@@ -22,19 +26,25 @@ const Card = ({ item, onClick, type, idx }) => {
     const response = await deleteLike(movie.id);
     if (response.status === 204) {
       console.log('삭제');
+      setIsLiked(false);
       //???
+      callback && callback();
     }
   };
 
   const onLikeBtn = () => {
-    movie.isLiked === false ? onCreateLike() : onDeleteLike();
+    isLiked === false ? onCreateLike() : onDeleteLike();
   };
 
   useEffect(() => {
     let genre = item.genres.reduce((acc, cur) => acc + cur.name + '/', '');
     genre = genre.substring(0, genre.length - 1);
     setGenres(genre);
-  }, [movie.isLiked]);
+  }, [isLiked]);
+
+  useEffect(() => {
+    setIsLiked(movie?.isLiked ?? false);
+  }, [movie]);
 
   return (
     <div
@@ -56,7 +66,7 @@ const Card = ({ item, onClick, type, idx }) => {
             <LikeButton
               movieId={movie?.id}
               onClick={onLikeBtn}
-              isLiked={movie?.isLiked}
+              isLiked={isLiked}
             />
             <BlockIcon className={styles.icon} />
           </div>

@@ -16,7 +16,6 @@ import ReviewModal from './ReviewModal';
 import { useMe } from '../../../hooks';
 import { useMount } from 'react-use';
 
-
 const MovieDetailPage = () => {
   const navigate = useNavigate();
   const params = useParams();
@@ -186,17 +185,23 @@ const MovieDetailPage = () => {
             <p>
               감독 :
               {/* //NOTE: if문으로 map을 하려면 if문에도 return이, else문에도 return이 있어야 합니다. (안그러면 undefined return)  */}
-              {movie?.staffs?.filter((staff) => staff.role === '감독')
+              {movie?.staffs
+                ?.filter((staff) => staff.role === '감독')
                 .map((staff) => {
                   return <span key={`감독-${staff.id}`}>{staff.name}</span>;
                 })}
             </p>
             <p>
               배우 :
-               {/* //NOTE: if문으로 map을 하려면 if문에도 return이, else문에도 return이 있어야 합니다. (안그러면 undefined return)  */}
-               {movie?.staffs?.filter((staff) => staff.role === '출연')
+              {/* //NOTE: if문으로 map을 하려면 if문에도 return이, else문에도 return이 있어야 합니다. (안그러면 undefined return)  */}
+              {movie?.staffs
+                ?.filter((staff) => staff.role === '출연')
                 .map((staff) => {
-                  return <span key={`출연-${staff.id}`} className={styles.actors}>{staff.name}</span>;
+                  return (
+                    <span key={`출연-${staff.id}`} className={styles.actors}>
+                      {staff.name}
+                    </span>
+                  );
                 })}
             </p>
           </div>

@@ -3,6 +3,7 @@ import { getMe } from '../api/Users';
 
 //NOTE: 커스텀 훅
 const useMe = () => {
+  //NOTE: recoil을 써야한다.
   const [me, setMe] = useState(null);
 
   const onGetMe = async () => {

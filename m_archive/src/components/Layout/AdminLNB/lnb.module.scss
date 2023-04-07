@@ -5,8 +5,10 @@
   background-color: c.$C_SECONDARY;
   color: c.$C_WHITE;
   height: 100%;
-}
 
+  //NOTE: AdminLNB width를 유지하게 만들기
+  flex-shrink: 0;
+}
 
 .menu {
   position: relative;
@@ -21,7 +23,7 @@
       cursor: pointer;
       &:hover {
         transform: scale(1.5);
-        transition: transform .3s;
+        transition: transform 0.3s;
       }
     }
   }

@@ -44,6 +44,8 @@ const Like = () => {
             item={item}
             onClick={onNavigateDetail(item.id)}
             className={styles.movie}
+            // NOTE: callback은 좋아요 삭제 혹은 생성 시에 실행되는 함수
+            callback={onGetMovies}
           />
         ))}
       </section>

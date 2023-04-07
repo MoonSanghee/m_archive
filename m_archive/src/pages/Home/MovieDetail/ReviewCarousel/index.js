@@ -48,23 +48,22 @@ const ReviewCarousel = ({ reviews }) => {
       <ul className={styles.ulWrapper}>
         {reviews.map((review, idx) => {
           return (
-                <li
-                className={cx(styles.review,{[styles.odd]:idx%2>0})}
-                id={`Review-Li-${review.id}`}
-                style={{
-                  transform: `translateX(${slidePx}px)`,
-                  transition: '0.5s ease',
-                }}
-                >
-                <ReviewCard
-                  id={`Card-${review.id}`}
-                  item={review}
-                  //onClick={onClick}
-                  //type={type}
-                  //idx={idx}
-                />
-              
-              </li>
+            <li
+              className={cx(styles.review, { [styles.odd]: idx % 2 > 0 })}
+              id={`Review-Li-${review.id}`}
+              style={{
+                transform: `translateX(${slidePx}px)`,
+                transition: '0.5s ease',
+              }}
+            >
+              <ReviewCard
+                id={`Card-${review.id}`}
+                item={review}
+                //onClick={onClick}
+                //type={type}
+                //idx={idx}
+              />
+            </li>
           );
         })}
       </ul>
@@ -74,11 +73,13 @@ const ReviewCarousel = ({ reviews }) => {
 };
 
 export default ReviewCarousel;
-     {/*<Review
+{
+  /*<Review
               slide={slidePx}
               key={`Review-${review.id}`}
               review={review}
               idx={idx}
               //onClick={onNavigateDetail(review.id)}
               //type={type}
-          />*/}
+          />*/
+}

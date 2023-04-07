@@ -12,7 +12,7 @@ import styles from './manage.module.scss';
 import { getMovies } from '../../../api/Movies';
 
 const ManageMoviesPage = () => {
-//   // id로 담는다
+  //   // id로 담는다
   const [selectedMovies, setSelectedMovies] = useState([]);
   const [movies, setMovies] = useState([]);
   const isAllChecked = selectedMovies.length === movies.length;
@@ -45,27 +45,28 @@ const ManageMoviesPage = () => {
   //NOTE: 전체 선택? => 불러온 모든 movie들의 id를 selectedMovies에 넣어주면 됩니다~
   //NOTE: 전체 선택 해체? => selectedMovies를 빈 배열로 바꾸면 됩니다~
   const onCheckAll = () => {
-    // 선택된 영화의 수  === 전체 영화의 수  => 전체 선택이 되어있는 경우 
+    // 선택된 영화의 수  === 전체 영화의 수  => 전체 선택이 되어있는 경우
     if (isAllChecked) {
       setSelectedMovies([]);
     } else {
       // 선택된 영화의 수  !== 전체 영화의 수  => 전체 선택이 안되어있는 경우ㄴ
       setSelectedMovies(movies.map((movie) => movie.id));
     }
-  }
+  };
 
   useEffect(() => {
     onGetMovies();
   }, []);
-
+  console.log({ movies });
   return (
     <main className={styles.wrapper}>
+      {/* //TODO: main이랑 AdminLNB는 AdminLayout으로 분리 */}
       <AdminLNB />
       <section className={styles.allSection}>
         <p className={styles.topMenu}>
           <span className={styles.menuLeft}>
-            <CheckBox 
-              className={styles.check} 
+            <CheckBox
+              className={styles.check}
               checked={isAllChecked}
               onChange={onCheckAll}
             />
@@ -85,12 +86,12 @@ const ManageMoviesPage = () => {
           <TableMenu tableName="movieInfo" />
         </p>
         <div className={styles.table}>
-            <Movies
-              movies={movies}
-              selectedMovies={selectedMovies}
-              onCheckMovie={onCheckMovie}
-              limit={10}
-            />
+          <Movies
+            movies={movies}
+            selectedMovies={selectedMovies}
+            onCheckMovie={onCheckMovie}
+            limit={10}
+          />
         </div>
       </section>
     </main>

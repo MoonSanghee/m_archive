@@ -14,6 +14,8 @@ const Movies = ({ page, limit, title, selectedMovies, onCheckMovie }) => {
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
+
+  //NOTE: ManageMoviesPage로 옮겨야 한다~
   useEffect(() => {
     const fetchData = async () => {
       const response = await getMovies(currentPage, pageLimit, movieTitle);
