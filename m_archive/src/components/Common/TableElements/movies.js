@@ -57,7 +57,7 @@ const Movies = ({ page, limit, title, selectedMovies, onCheckMovie }) => {
               <span className={styles.block}>
                 {movie.staffs.map((staff) => {
                   if (staff.role === '감독') {
-                    return <span>{staff.name}</span>;
+                    return <span key={staff.id}>{staff.name}</span>;
                   }
                 })}
               </span>

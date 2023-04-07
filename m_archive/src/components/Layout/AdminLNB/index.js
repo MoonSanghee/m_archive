@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import cx from "classnames";
-import styles from "./lnb.module.scss";
-import { useNavigate } from "react-router-dom";
-import boExamples from "./boExamples";
+import React, { useState } from 'react';
+import cx from 'classnames';
+import styles from './lnb.module.scss';
+import { useNavigate } from 'react-router-dom';
+import boExamples from './boExamples';
 
 const AdminLNB = ({ useplace, ...props }) => {
   const navigate = useNavigate();
@@ -18,7 +18,11 @@ const AdminLNB = ({ useplace, ...props }) => {
       <menu className={styles.menu}>
         {boExamples.map((item) => {
           return (
-            <li className={styles.example} onClick={onClick(item)}>
+            <li
+              className={styles.example}
+              onClick={onClick(item)}
+              key={item.id}
+            >
               <span>{item.name}</span>
             </li>
           );
