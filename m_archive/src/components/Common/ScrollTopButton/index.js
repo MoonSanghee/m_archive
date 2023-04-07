@@ -14,7 +14,8 @@ const TopButton = () => {
 
   useEffect(() => {
     const ShowButtonClick = () => {
-      if (window.scrollY > 1200) {
+      if (window.scrollY > 0) {
+        //1200
         setShowButton(true);
       } else {
         setShowButton(false);
