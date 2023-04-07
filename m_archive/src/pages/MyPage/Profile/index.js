@@ -25,7 +25,7 @@ import {
 import { modifyUser } from '../../../api/Users';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import {useRecoilState, useSetRecoilState} from "recoil";
+import {useRecoilState, } from "recoil";
 import { meState} from '../../../recoil';
 import { getMe } from "../../../api/Users";
 

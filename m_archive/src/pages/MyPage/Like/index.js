@@ -2,11 +2,34 @@ import React, { useEffect, useState } from 'react';
 import { Card, ScrollTopButton, Toggle } from '../../../components';
 import styles from './like.module.scss';
 import { createLike, getLikes } from '../../../api/Movies';
+import {useRecoilState, } from "recoil";
+import { meState} from '../../../recoil';
 import { useNavigate } from 'react-router-dom';
+import { getMe,modifyUser } from '../../../api/Users';
+import { useMount } from 'react-use';
 
 const Like = () => {
   const navigate = useNavigate();
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState([]);  
+  const [me,setMe] = useRecoilState(meState);
+
+  const onClickToggle =async () =>{
+    const userData = {
+      isLikeView:!me?.isLikeView,
+    }
+    const response = await modifyUser(userData);
+    if(response.status === 204){
+      onGetMe();
+    }else{
+      console.log("토글클릭에러 !");
+    }
+  }
+  const onGetMe = async()=>{
+    const response = await getMe();
+    if(response.status===200){
+      setMe(response.data);
+    }
+  }
 
   const onGetMovies = async () => {
     const response = await getLikes();
@@ -31,11 +54,15 @@ const Like = () => {
     onGetMovies();
   }, []);
 
+  useMount(()=>{
+    onGetMe();
+  })
+ 
   return (
     <div className={styles.wrapper}>
       <header>
         <h1>좋아요 관리</h1>
-        <Toggle />
+        <Toggle checked={me?.isLikeView} onChange={onClickToggle}/>
       </header>
       <section>
         <div className={styles.container}>
