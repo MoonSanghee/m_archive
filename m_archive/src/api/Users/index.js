@@ -32,3 +32,8 @@ export const modifyUser = (body) => {
 export const countUsers = () => {
   return apiClient.get(`users/count`)
 }
+
+//userDelete
+export const deleteUserAdmin = (id) => {
+  return apiClient.delete(`/users/${id}/admin`);
+};
