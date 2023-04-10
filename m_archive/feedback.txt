@@ -1,7 +1,7 @@
 feed back : 
 < service test login >
 id: sjj@naver.com
-pwd: testpassword
+pwd: 12345678
 
 /admin/login
 < admin test login >
