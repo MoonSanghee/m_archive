@@ -80,6 +80,8 @@
             width: 340px;
             height: 160px;
             font-size: 20px;
+            padding: 16px;
+            border-radius: 8px;
           }
       }
       .inputsWrapper{
@@ -89,10 +91,12 @@
         padding-top: 36px;
         row-gap: 8px;
         .input {
+          
           > p:first-of-type{
             color: c.$C_WHITE;
           }
           > input{
+            border-radius: 8px;
             color: c.$C_BLACK;
             font-family: 'Courier New', Courier, monospace;
           }

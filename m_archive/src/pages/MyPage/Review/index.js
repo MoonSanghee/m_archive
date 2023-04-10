@@ -15,7 +15,7 @@ const Review = () => {
 
   const onClickToggle = async () => {
     const userData = {
-      isLikeView: !me?.isLikeView,
+      isReviewView: !me?.isReviewView,
     };
     const response = await modifyUser(userData);
     if (response.status === 204) {
@@ -60,16 +60,15 @@ const Review = () => {
       <section className={styles.section}>
         <header>
           <h1>리뷰 관리</h1>
-          <Toggle checked={me?.isLikeView} onChange={onClickToggle} />
+          <Toggle checked={me?.isReviewView} onChange={onClickToggle} />
         </header>
-        <p>더보기</p>
         <section className={styles.cardContainer}>
           <div className={styles.container}>
             {reviews.map((item) => (
               <ReviewCards
                 key={item.id}
                 item={item}
-                onClick={onNavigateDetail(item.id)} //타이틀이없음
+                onClick={onNavigateDetail(item?.movie?.id)} //타이틀이없음
                 className={styles.movie}
               />
             ))}
@@ -80,7 +79,6 @@ const Review = () => {
         <header>
           <h1>댓글관리</h1>
         </header>
-        <p>더보기</p>
       </section>
     </div>
   );

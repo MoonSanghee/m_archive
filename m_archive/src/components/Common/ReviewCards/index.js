@@ -16,12 +16,11 @@ const ReviewCards = ({ item, onClick, type, idx, callback }) => {
     >
       <div className={styles.card_inner}>
         <div className={styles.card_front}>
-          <img src={item?.postImage} alt={item?.title} />
+          <img src={item?.movie?.postImage} alt={item?.movie?.title} />
         </div>
         <div className={styles.card_back}>
           <div className={styles.card_content} onClick={onClick}>
-            {/* <h2 className={styles.title}>{item?.title}</h2> */}
-            <h2 className={styles.title}>제목없엉</h2>
+            <h2 className={styles.title}>{item?.movie?.title}</h2>
             {/* <h3>내가 준 평점</h3> */}
             <div className={styles.scoreWrapper}>
               <StarRate
@@ -31,7 +30,7 @@ const ReviewCards = ({ item, onClick, type, idx, callback }) => {
                 item={item}
               />
             </div>
-            <h3>리뷰내용</h3>
+            <h3>리뷰 : </h3>
             <p>{item?.content}</p>
           </div>
         </div>

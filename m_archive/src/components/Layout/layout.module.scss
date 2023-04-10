@@ -8,10 +8,13 @@
   background-color: c.$C_BLACK;
   color: c.$C_WHITE;
   overflow-y: scroll;
+  width: 100vw;
+  overflow-x: hidden;
 
   //overflow: scroll;
   //NOTE: 둘 중 하나에만 scroll
   .sectionWrapper {
+    width: 100%;
     //overflow-y: aut
     // overflow-y: scroll;
     // height: calc(100vh - 80px);

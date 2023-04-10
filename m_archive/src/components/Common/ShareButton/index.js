@@ -6,11 +6,13 @@ import swal from 'sweetalert2';
 import cx from 'classnames';
 import { useLocation } from 'react-router-dom';
 
+const curUrl = window.location.href;
 const ShareButton = ({ label, className, url }) => {
   const location = useLocation();
   //NOTE: host url도 같이 복사
-  const currentUrl = url ? url : location.pathname;
-
+ 
+  const currentUrl = url ? url : curUrl;
+  
   const onShareBtnClick = () => {
     //NOTE: position 으로 조절하거나, showClass로 조절
     swal.fire({
