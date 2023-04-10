@@ -59,7 +59,7 @@ export const getReviews = (page, limit) => {
 export const getReviewsCount = () => {
   return apiClient.get(`/reviews/count`);
 };
-
+//MEMO: 리뷰 삭제
 export const deleteReviewAdmin = (id) => {
   return apiClient.delete(`/reviews/${id}/admin`);
 };
