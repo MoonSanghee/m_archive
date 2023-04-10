@@ -1,32 +1,16 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import styles from "./faq.module.scss";
 
 import { Button, SearchBox, Tag, Modal, ModalButton  } from "../../../components/Common";
 import Accordion from "../../../components/Common/Accordion";
 import faqData from "./faqData";
-
+import useModal from "../../../components/Common/Modal/useModal";
+import FAQModal from "./FAQModal";
 const FAQ = () => {
-  const [modalOption, setModalOption] = useState({
-    show: false,
-    title: "",
-    onSubmit: () => {},
-    onClose: () => {},
-    element: null,
-  });
+  const [modalOption,showModal] = useModal(); 
 //TODO: 재사용 가능한 모달 컴포넌트 만들기
-/**
- * 모달을 사용할 페이지에 밑에 옵션을 항상 넣어주쇼
-    const OPTION = {
-    show: false, // 모달을 키고 끄는 옵션 
-    title: "", // 모달의 문구 
-    onSubmit: () => {}, // 모달을 킬 때마다 사용할 콜백 함수
-    onClose: () => {}, // 모달을 끌 때마다 사용할 콜백 함수
-    element: null // 모달마다 넣고 싶은 추가 컴포넌트 자리
-    }
 
-    const [modalOption, setModalOption] = useState(OPTION)
- */
-  const handleOpenModal = (showInquiryModal) => {
+  /*const handleOpenModal = (showInquiryModal) => {
     if (showInquiryModal) {
       setModalOption({
         show: true,
@@ -68,7 +52,31 @@ const FAQ = () => {
       });
     }
   };
-  
+  */
+ const handleOpenModalQuestions= useCallback(()=>{
+    showModal(
+      true,
+      '',
+      null,
+      null,
+      <FAQModal
+        type={"questions"}
+        //onClose={() => modalOption.onClose()}
+      />,
+    )
+ },[modalOption]);
+ const handleOpenModalToAsk= useCallback(()=>{
+  showModal(
+    true,
+    '',
+    null,
+    null,
+    <FAQModal
+      type={"ask"}
+      //onClose={() => modalOption.onClose()}
+    />,
+  )
+},[modalOption]);
 
   const handleCloseModal = () => {
     setModalOption({ ...modalOption, show: false });
@@ -99,8 +107,8 @@ const FAQ = () => {
       <div className={styles.mainInput}>
         <SearchBox onChange={handleSearch} />
         <div className={styles.sideButton}>   
-        <Button onClick={() => handleOpenModal(false)}>문의 내역</Button>
-        <Button onClick={() => handleOpenModal(true)}>문의 하기</Button>
+        <Button onClick={handleOpenModalQuestions}>문의 내역</Button>
+        <Button onClick={handleOpenModalToAsk}>문의 하기</Button>
         </div>
       </div>
       <li ><div className={styles.thtitle}>자주 묻는 질문</div></li>
@@ -112,7 +120,11 @@ const FAQ = () => {
           </li>
         ))}
       </ul>
-      <Modal {...modalOption} />
+      <Modal
+        modalOption={modalOption}
+        modalSize="big"
+        //className={styles.iconModal}
+      />
     </main>
   );
 };
