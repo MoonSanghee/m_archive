@@ -59,3 +59,8 @@ export const getReviews = (page, limit) => {
 export const getReviewsCount = () => {
   return apiClient.get(`/reviews/count`);
 };
+
+//MEMO: 내 리뷰들 가져오기
+export const getMyReviews = () => {
+  return apiClient.get(`/reviews/me`);
+};
