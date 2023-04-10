@@ -8,6 +8,7 @@ const FAQs = ({ page, limit }) => {
   const [FAQs, setFAQs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageLimit, setPageLimit] = useState(limit);
+  const [totalPages, setTotalPages] = useState(1);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -44,7 +45,7 @@ const FAQs = ({ page, limit }) => {
       </table>
       <Pagination
           currentPage={currentPage}
-          totalPages={3}
+          totalPages={totalPages}
           onPageChange={handlePageChange}
       />
     </div>
