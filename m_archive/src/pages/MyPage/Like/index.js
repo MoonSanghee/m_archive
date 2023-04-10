@@ -64,7 +64,7 @@ const Like = () => {
         <h1>좋아요 관리</h1>
         <Toggle checked={me?.isLikeView} onChange={onClickToggle}/>
       </header>
-      <section>
+      <section className={styles.cardContainer}>
         <div className={styles.container}>
           {movies.map((item) => (
             <Card
