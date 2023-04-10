@@ -103,8 +103,9 @@ const FAQ = () => {
         <Button onClick={() => handleOpenModal(true)}>문의 하기</Button>
         </div>
       </div>
-      <h2>자주묻는 질문</h2>
+      <li ><div className={styles.thtitle}>자주 묻는 질문</div></li>
       <ul className={styles.accordionWrapper}>
+     
         {filteredFAQ.map((item, index) => (
           <li key={index}>
             <Accordion title={item.title} content={item.content} />
