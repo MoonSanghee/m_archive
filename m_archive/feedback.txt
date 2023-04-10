@@ -25,3 +25,7 @@ test/moon페이지로 접근
 문제 2.
 내림차순만 적용된고 한 번 더 클릭하면 오름차순으로 정렬되는거 아직 구현 못 함
 
+
+1) text box, input에 padding + border-radius
+2) myPage => like  좌우 스크롤이 생김
+3) detail page => 좌우 스크롤 없애기

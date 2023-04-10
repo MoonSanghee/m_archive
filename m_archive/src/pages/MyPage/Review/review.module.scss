@@ -39,6 +39,9 @@
   //overflow-y: scroll;
   overflow: hidden;
 
+  .container::-webkit-scrollbar {
+    display: block;
+  }
 
   > .container {
     //width: 100%;
@@ -51,12 +54,12 @@
     width: 100%;
     display: flex;
     column-gap: 20px;
-    flex-wrap: nowrap; 
-    overflow-x: scroll; 
-    overflow-y: hidden; 
-    > div{
-      flex: 0 0 auto; 
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+
+    > div {
+      flex: 0 0 auto;
     }
-    
   }
 }
