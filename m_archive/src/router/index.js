@@ -38,7 +38,9 @@ import {
   ManageUsersPage,
 } from '../pages/Admin';
 import { LogoutIcon } from '../assets/icon';
-import { LikePage } from '../pages/MyPage';
+
+import Review from '../pages/MyPage/Review';
+import Like from '../pages/MyPage/Like';
 
 const router = (
   <Route path="/">
@@ -69,10 +71,9 @@ const router = (
       <Route path="mypage" element={<MyPageLayout />}>
         <Route path="faq" element={<FAQ />} />
         <Route path="profile" element={<Profile />} />
-        <Route path="like" element={<LikePage />} />
-
+        <Route path="like" element={<Like />} />
+        <Route path="review" element={<Review />} />
         {/*
-          <Route path="review" element={<ReviewPage/>}/>
           <Route path=":id" element={<UserPage/>}/>*/}
       </Route>
     </Route>

@@ -5,7 +5,7 @@ import styles from './profileDropdown.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { useMe } from '../../../../hooks';
 import { Button, ProfileIcon } from '../../../Common';
-import {useRecoilValue} from "recoil";
+import {useRecoilValue,useSetRecoilState} from "recoil";
 import { meState } from '../../../../recoil';
 import { useMount } from 'react-use';
 
@@ -13,6 +13,8 @@ const ProfileDropdown = ({ items, onClick }) => {
   const ref = useRef(null);
   //const isLogin = useMe();
   const me = useRecoilValue(meState);
+  const setMe = useSetRecoilState(meState);
+  const myInfo = useMe();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const onClickIcon = () => {
@@ -28,7 +30,9 @@ const ProfileDropdown = ({ items, onClick }) => {
     navigate('/login');
   };
 
- 
+  useEffect(()=>{
+    setMe(myInfo);
+  },[myInfo]);
   useEffect(() => {
     if (!isOpen) {
       return;
