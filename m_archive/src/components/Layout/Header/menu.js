@@ -24,7 +24,7 @@ export default [
   },
   {
     id: 3,
-    name: '리뷰',
+    name: '리뷰 & 댓글',
     value: 'Review',
     path: '/movies/mypage/review',
     icon: <ReviewWriteIcon />,
