@@ -59,3 +59,7 @@ export const getReviews = (page, limit) => {
 export const getReviewsCount = () => {
   return apiClient.get(`/reviews/count`);
 };
+
+export const deleteReviewAdmin = (id) => {
+  return apiClient.delete(`/reviews/${id}/admin`);
+};
