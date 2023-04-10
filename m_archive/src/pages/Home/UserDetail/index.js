@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { getUser } from "../../../api/Users";
 import {Tag} from "../../../components/Common";
 import { LockIcon } from "../../../assets/icon";
+import { getUserLikes } from "../../../api/Movies";
 const UserDetail = () =>{
     const params = useParams();
     const [user,setUser] = useState({});
@@ -18,8 +19,15 @@ const UserDetail = () =>{
             setUser(response.data);
         }
     }
+    const onGetLikes = async ()=>{
+        const response = await getUserLikes(params.id);
+        if(response.status === 200){
+            setLikes(response.data);
+        }
+    }
     useMount(()=>{
         onGetUser();
+        onGetLikes();
     })
     return (
         <main className={styles.wrapper}>
