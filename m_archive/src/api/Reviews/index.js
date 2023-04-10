@@ -59,3 +59,7 @@ export const getReviews = (page, limit) => {
 export const getReviewsCount = () => {
   return apiClient.get(`/reviews/count`);
 };
+
+export const getReviewsMe = () => {
+  return apiClient.get(`/reviews/me`);
+}

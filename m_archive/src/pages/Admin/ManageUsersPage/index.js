@@ -2,6 +2,7 @@ import React from "react";
 import { AdminLNB, Button, CheckBox, SearchBox, TableElements, TableMenu } from "../../../components";
 
 import styles from "./manageUsers.module.scss";
+import Users from "../../../components/Common/TableElements/Users";
 
 const ManageUsersPage = () => {
     return (
@@ -24,7 +25,7 @@ const ManageUsersPage = () => {
                     <TableMenu tableName="users" />
                 </p>
                 <div className={styles.table}>
-                    <TableElements />
+                    <Users limit={10} />
                 </div>
             </section>
         </main>

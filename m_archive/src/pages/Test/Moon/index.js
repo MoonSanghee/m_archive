@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Input,
   SearchBox,
@@ -9,17 +9,32 @@ import {
 } from '../../../components';
 import Movies from '../../../components/Common/TableElements/movies';
 import Reviews from '../../../components/Common/TableElements/Reviews';
-import Movie from '../../Home/Carousel/Movie';
+// import Movie from '../../Home/Carousel/Movie';
 import styles from './moon.module.scss';
 import Pagination from '../../../components/Common/PageNation';
 import Users from '../../../components/Common/TableElements/Users';
-import FAQs from '../../../components/Common/TableElements/FAQs'
+// import FAQs from '../../../components/Common/TableElements/FAQs'
+import { getReviewsMe } from "../../../api/Reviews"
 
 const Moon = () => {
   const [isError, setIsError] = useState(false);
+  const [reviews, setReviews] = useState([]);
   const onClickButton = () => {
     setIsError(!isError);
   };
+  const onGetMyReviews = async () => {
+    const response = await getReviewsMe();
+    console.log(response)
+    if (response.status === 200) {
+      const items = [...response.data];
+      setReviews(items);
+    }
+  }
+
+  useEffect(() => {
+    onGetMyReviews();
+  }, [])
+  console.log(reviews)
   return (
     <main className={styles.wrapper}>
       <AdminLNB className={styles.left} />
@@ -35,18 +50,18 @@ const Moon = () => {
                 <SearchBox placeholder="검색어를 입력해주세요"/>
             </section> */}
       <section className={styles.table}>
-        {/* <TableMenu tableName="users" /> */}
+        <TableMenu tableName="users" />
         {/* <TableMenu tableName="reviews" /> */}
-        <TableMenu tableName="F&Q" />
+        {/* <TableMenu tableName="F&Q" /> */}
         {/* <TableMenu tableName="movieInfo" /> */}
         <table>
-          {/* <Users limit={10}/> */}
+          <Users limit={10}/>
           {/* <TableElements>
           </TableElements> */}
             {/* //NOTE: children을 사용해서 분기처리 없이 사용 */}
             {/* <Movies limit={10}/> */}
             {/* <Reviews limit={10}/> */}
-            <FAQs limit={10}/>
+            {/* <FAQs limit={10}/> */}
         </table>
       </section>
     </main>

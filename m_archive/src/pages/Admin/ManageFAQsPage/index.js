@@ -8,7 +8,7 @@ import {
   TableMenu,
 } from '../../../components';
 import styles from './manageFAQ.module.scss';
-import Users from '../../../components/Common/TableElements/Users';
+import FAQs from '../../../components/Common/TableElements/FAQs';
 
 const ManageFAQsPage = () => {
   return (
@@ -34,7 +34,7 @@ const ManageFAQsPage = () => {
           <TableMenu tableName="F&Q" />
         </p>
         <div className={styles.table}>
-          <TableElements></TableElements>
+          <FAQs limit={10}/>
         </div>
       </section>
     </main>

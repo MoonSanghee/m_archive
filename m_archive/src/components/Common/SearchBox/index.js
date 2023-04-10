@@ -7,25 +7,27 @@ import { useNavigate } from 'react-router-dom';
 
 const SearchBox = ({ placeholder, ...props }) => {
   const [state, setState] = useState({ keyword: '', results: [] });
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleChange = (event) => {
     setState({ ...state, keyword: event.target.value });
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    handleClick();
-  };
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   handleClick();
+  // };
 
-  const handleClick = () => {
-    navigate('/movies/search', {
-      state,
-    });
-  };
+  // const handleClick = () => {
+  //   navigate('/movies/search', {
+  //     state,
+  //   });
+  // };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.searchbox} {...props}>
+    <form 
+    // onSubmit={handleSubmit} 
+    className={styles.searchbox} {...props}>
       <button type="submit">
         <SearchIcon className={styles.icon} />
       </button>

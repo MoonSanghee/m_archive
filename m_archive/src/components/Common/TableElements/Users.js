@@ -12,6 +12,19 @@ const Users = ({page, limit}) => {
   const [pageLimit, setPageLimit] = useState(limit);
   const [totalPages, setTotalPages] = useState(1);
 
+  useEffect(() => {
+    if (!users) return;
+    setUsers(users);
+  }, [users]);
+  
+  const changeNameOrder = () => {
+    setUsers(
+      [...users].sort(function (a, b) {
+        return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+      })
+    );
+  };
+  
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
@@ -19,11 +32,13 @@ const Users = ({page, limit}) => {
   const fetchData = async () => {
     const response = await getUsers(currentPage, pageLimit);;
     const count = await countUsers();
-    console.log(1)
     if (response.status === 200) {
       const items = [...response.data.data];
       setTotalPages(Math.ceil(count.data.count / pageLimit));
       setUsers(items);
+      setNames(items.map((item)=> {
+        return(item.name)
+      }))
     };
   };
 
@@ -33,6 +48,7 @@ const Users = ({page, limit}) => {
 
   return (
     <div>
+      <button onClick={() => changeNameOrder()}>이름</button>
       <table>
         {users.map((user)=>{
           const time = user.createdAt
@@ -40,8 +56,7 @@ const Users = ({page, limit}) => {
             <td className={styles.elements}>
               <CheckBox  className={styles.check} />
               <span>{user.email}</span>
-              <span>{user.name}</span>
-              <span>{user.nickname}</span>
+              <span>{user.name} ({user.nickname})</span>
               <span>{dayjs(time).format('YYYY-MM-DD HH:mm:ss')}</span>
             </td>
           )

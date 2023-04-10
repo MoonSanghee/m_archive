@@ -19,7 +19,6 @@ const Reviews = ({ page, limit }) => {
   const fetchData = async () => {
     const response = await getReviews(currentPage, pageLimit);
     const count = await getReviewsCount();
-    console.log(response)
     if (response.status === 200) {
       const items = [...response.data.data];
       setTotalPages(Math.ceil(count.data.count / pageLimit));
