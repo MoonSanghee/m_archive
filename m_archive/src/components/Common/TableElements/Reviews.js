@@ -5,7 +5,7 @@ import { getReviews, getReviewsCount } from '../../../api/Reviews';
 import Pagination from '../PageNation';
 import dayjs from 'dayjs';
 
-const Reviews = ({ page, limit, selectedReviews, onCheckReview, onRemoveReviews }) => {
+const Reviews = ({ page, limit, selectedReviews, onCheckReview }) => {
   const [reviews, setReviews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageLimit, setPageLimit] = useState(limit);

@@ -9,7 +9,7 @@ import {
 } from '../../../components';
 import styles from './manageReviews.module.scss';
 import Reviews from '../../../components/Common/TableElements/Reviews';
-import { getReviews } from '../../../api/Reviews';
+import { getReviews, deleteReview } from '../../../api/Reviews';
 
 const ManageReviewsPage = () => {
   
@@ -24,12 +24,6 @@ const ManageReviewsPage = () => {
             setReviews(items);
         }
     };
-
-    const onRemoveReviews = ((id) => {
-        setReviews(review => {
-            return review.filter(review => review.id !== id);
-        })
-    })
 
     const onCheckReview = (id) => {
         return () => {
@@ -47,6 +41,13 @@ const ManageReviewsPage = () => {
         } else {
             setSelectedReviews(reviews.map((review) => review.id));
         }
+    }
+
+    const onDeleteReview = () => {
+      const reviews = selectedReviews;
+      for (const el of reviews) {
+        deleteReview(el);
+      }
     }
 
     useEffect(() => {
@@ -70,7 +71,7 @@ const ManageReviewsPage = () => {
             <Button 
                 width={'long'} 
                 color={'secondary'} 
-                onClick={onRemoveReviews}>
+                onClick={onDeleteReview}>
               선택 삭제
             </Button>
             <SearchBox
