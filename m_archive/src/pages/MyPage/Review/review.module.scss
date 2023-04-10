@@ -36,15 +36,27 @@
 .cardContainer {
   height: 100%;
   width: 100%;
-  overflow-y: scroll;
+  //overflow-y: scroll;
+  overflow: hidden;
+
 
   > .container {
+    //width: 100%;
+
+    //display: grid;
+    //grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    //justify-items: center;
+    //row-gap: 20px;
+    //gap: 20px;
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    align-content: space-around;
-    justify-items: center;
-    row-gap: 20px;
-    gap: 20px;
+    display: flex;
+    column-gap: 20px;
+    flex-wrap: nowrap; 
+    overflow-x: scroll; 
+    overflow-y: hidden; 
+    > div{
+      flex: 0 0 auto; 
+    }
+    
   }
 }
