@@ -18,4 +18,5 @@ export { default as LikeButton } from './LikeButton';
 export { default as ShareButton } from './ShareButton';
 export { default as ReviewCard } from './ReviewCard';
 export { default as ScrollTopButton } from './ScrollTopButton';
-export {default as ProfileIcon} from "./ProfileIcon";
+export { default as ProfileIcon } from './ProfileIcon';
+export { default as ReviewCards } from './ReviewCards';

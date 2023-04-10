@@ -14,7 +14,7 @@ import styles from './moon.module.scss';
 import Pagination from '../../../components/Common/PageNation';
 import Users from '../../../components/Common/TableElements/Users';
 // import FAQs from '../../../components/Common/TableElements/FAQs'
-import { getReviewsMe } from "../../../api/Reviews"
+import { getMyReviews } from "../../../api/Reviews"
 
 const Moon = () => {
   const [isError, setIsError] = useState(false);
@@ -23,7 +23,7 @@ const Moon = () => {
     setIsError(!isError);
   };
   const onGetMyReviews = async () => {
-    const response = await getReviewsMe();
+    const response = await getMyReviews();
     console.log(response)
     if (response.status === 200) {
       const items = [...response.data];

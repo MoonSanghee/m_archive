@@ -39,6 +39,9 @@ import {
 } from '../pages/Admin';
 import { LogoutIcon } from '../assets/icon';
 
+import Review from '../pages/MyPage/Review';
+import Like from '../pages/MyPage/Like';
+
 const router = (
   <Route path="/">
     <Route index element={<StartPage />} />
@@ -54,8 +57,7 @@ const router = (
     <Route path="login" element={<LoginPage />} />
     <Route path="register" element={<RegisterPage />} />
     <Route path="registerGenre" element={<RegisterGenrePage />} />
-    <Route path="admin/login" element={<AdminLoginPage />} />
-    <Route path="admin/register" element={<AdminRegisterPage />} />
+
     <Route path="logout" element={<LogoutPage />} />
 
     <Route path="movies" element={<Layout />}>
@@ -69,11 +71,9 @@ const router = (
       <Route path="mypage" element={<MyPageLayout />}>
         <Route path="faq" element={<FAQ />} />
         <Route path="profile" element={<Profile />} />
+        <Route path="like" element={<Like />} />
+        <Route path="review" element={<Review />} />
         {/*
-
-
-          <Route path="like" element={<LikePage/>}/>
-          <Route path="review" element={<ReviewPage/>}/>
           <Route path=":id" element={<UserPage/>}/>*/}
       </Route>
     </Route>
@@ -81,7 +81,9 @@ const router = (
     <Route path="admin">
       <Route index element={<ManageMoviesPage />} />
       {/* <Route path="addMovie" element={<AddMoviePage/>}/> */}
-
+      {/* //NOTE: 같은 admin 사용하니까 안으로 넣었습니다~ */}
+      <Route path="login" element={<AdminLoginPage />} />
+      <Route path="register" element={<AdminRegisterPage />} />
       <Route path="manageReviews" element={<ManageReviewsPage />} />
       <Route path="manageUsers" element={<ManageUsersPage />} />
       <Route path="manageFAQs" element={<ManageFAQsPage />} />

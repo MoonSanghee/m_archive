@@ -18,30 +18,31 @@ import {
 import cx from 'classnames';
 
 const icon = (item) => {
-  let myIcon;
-  myIcon = item === 'AngelIcon' && <AngelIcon />;
-  myIcon = item === 'AssasinIcon' && <AssasinIcon />;
-  myIcon = item === 'CircusIcon' && <CircusIcon />;
-  myIcon = item === 'DevilIcon' && <DevilIcon />;
-  myIcon = item === 'GhostIcon' && <GhostIcon />;
-  myIcon = item === 'KnightIcon' && <KnightIcon />;
-  myIcon = item === 'ManIcon' && <ManIcon />;
-  myIcon = item === 'PrincessIcon' && <PrincessIcon />;
-  myIcon = item === 'QueenIcon' && <QueenIcon />;
-  myIcon = item === 'SantaIcon' && <SantaIcon />;
-  myIcon = item === 'AlienIcon' && <AlienIcon />;
-  myIcon = item === 'FairyIcon' && <FairyIcon />;
-  return myIcon;
+  if(item==='AngelIcon') return <AngelIcon />;
+  else if(item==='AssasinIcon') return <AssasinIcon />;
+  else if(item==='CircusIcon') return <CircusIcon />;
+  else if(item==='DevilIcon') return <DevilIcon />;
+  else if(item==='GhostIcon') return <GhostIcon />;
+  else if(item==='KnightIcon') return <KnightIcon />;
+  else if(item==='ManIcon') return <ManIcon />;
+  else if(item==='PrincessIcon') return <PrincessIcon />;
+  else if(item==='QueenIcon') return <QueenIcon />;
+  else if(item==='SantaIcon') return <SantaIcon />;
+  else if(item==='AlienIcon') return <AlienIcon />;
+  else if(item==='FairyIcon') return <FairyIcon />;
+  else if(item==='DefaultIcon') return <DefaultIcon />;
+  else return <DefaultIcon />;
 };
 
 //NOTE: forwardRef 사용
-const ProfileIcon = forwardRef(({ className, onClick }, ref) => {
+const ProfileIcon = forwardRef(({ className, onClick ,profileImage,user}, ref) => {
   const me = useMe();
 
   return (
-    <div className={cx(className)} onClick={onClick} ref={ref}>
-      {me?.profileImage ? icon(me?.profileImage) : <DefaultIcon />}
-    </div>
+    <span className={cx(className)} onClick={onClick} ref={ref}>
+      {profileImage && icon(profileImage)}
+      {!profileImage && ( user?.profileImage ? icon(user?.profileImage) : <DefaultIcon />)}
+    </span>
   );
 });
 

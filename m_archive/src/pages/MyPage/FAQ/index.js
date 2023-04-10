@@ -1,95 +1,121 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from "./faq.module.scss";
 
-import { Button, SearchBox, Tag, Modal } from "../../../components/Common";
+import { Button, SearchBox, Tag, Modal, ModalButton  } from "../../../components/Common";
 import Accordion from "../../../components/Common/Accordion";
+import faqData from "./faqData";
 
-// 틀만 짜고 지금 SCSS 와 API 복습하면서 하는중.
-const data = [
-  {
-    title: "선호 장르는 어디서 바꿀 수 있나요?",
-    content:
-      "마이페이지 - 프로필 에서 하단에 선호장르를 변경 후 저장하시면 변경 됩니다.",
-  },
-  {
-    title: "제가 쓴 리뷰는 어디서 볼수 있나요?",
-    content:
-      "마이페이지 - 리뷰&댓글 에서 자신이 쓴 리뷰 혹은 댓글 내용을 확인 하실 수 있습니다.",
-  },
-  {
-    title: "프로필 아이콘은 어디서 바꾸나요?",
-    content:
-      "마이페이지 - 프로필 에서 아이콘 버튼을 클릭 후 원하는 아이콘 혹은 이미지 를 첨부하여 변경 하실수 있습니다.",
-  },
-  {
-    title: "추가 문의사항은 어디로 문의 하나요?",
-    content:
-      "기타 문의사항은 마이페이지 - 고객센턴 - 문의하기 버튼을 이용하여 작성해주시면 빠른시일내에 답변을 도와드리겠습니다.",
-  },
-];
+const FAQ = () => {
+  const [modalOption, setModalOption] = useState({
+    show: false,
+    title: "",
+    onSubmit: () => {},
+    onClose: () => {},
+    element: null,
+  });
+//TODO: 재사용 가능한 모달 컴포넌트 만들기
+/**
+ * 모달을 사용할 페이지에 밑에 옵션을 항상 넣어주쇼
+    const OPTION = {
+    show: false, // 모달을 키고 끄는 옵션 
+    title: "", // 모달의 문구 
+    onSubmit: () => {}, // 모달을 킬 때마다 사용할 콜백 함수
+    onClose: () => {}, // 모달을 끌 때마다 사용할 콜백 함수
+    element: null // 모달마다 넣고 싶은 추가 컴포넌트 자리
+    }
 
-
-
-const FAQ = () =>{
-    const [modalOption, setModalOption] = useState({
-      show: false,
-      title: "",
-      onSubmit: () => {},
-      onClose: () => {},
-      element: null,
-    });
-  
-    const handleOpenModal = () => {
+    const [modalOption, setModalOption] = useState(OPTION)
+ */
+  const handleOpenModal = (showInquiryModal) => {
+    if (showInquiryModal) {
       setModalOption({
         show: true,
-        title: "문의하기",
+        title: "1:1 문의하기",
         onSubmit: handleSubmitInquiry,
         onClose: handleCloseModal,
         element: (
           <div>
-            {/* Render inquiry form or any additional components here */}
-            <h3>문의 내용을 작성해주세요</h3>
+            <p>M-archive를 이용하시면서 불편한 사항이나 개선 의견이 있다면 문의해주세요</p>
+            <txextara rows={1} />
             <textarea rows={5} />
             <div>
-              <Button onClick={handleSubmitInquiry}>확인</Button>
-              <Button onClick={handleCloseModal}>닫기</Button>
+              <Button onClick={handleSubmitInquiry}>문의하기</Button>
+              <Button onClick={handleCloseModal}>취소</Button>
             </div>
           </div>
         ),
       });
-    };
+    } else {
+      // API에서 사용자 문의를 가져와 userInquires로 설정 하는 코드 (?)
+      const userInquiries = [];
   
-    const handleCloseModal = () => {
-      setModalOption({ ...modalOption, show: false });
-    };
+      setModalOption({
+        show: true,
+        title: "문의 내역",
+        onClose: handleCloseModal,
+        element: (
+          <div>
+            <ul>
+              {userInquiries.map((inquiry, index) => (
+                <li key={index}>
+                  <h3>{inquiry.title}</h3>
+                  <p>{inquiry.content}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ),
+      });
+    }
+  };
   
-    const handleSubmitInquiry = () => {
-      // Logic for submitting inquiry goes here
-      console.log("Inquiry submitted");
-      // Close modal after submitting inquiry
-      handleCloseModal();
-    };
 
- return (
-<main className={styles.mainContainer}>
-   <h1> FAQ</h1>
-   <div className={styles.mainInput}>
-   <SearchBox />
-   <div className={styles.sideButton}>
-   <Button>문의 내역</Button>
-   <Button onClick={handleOpenModal}>문의 하기</Button>
-   </div>
-   </div>
-  <ul className={styles.accordionWrapper}>
-  {data.map((item, index) => (
-    <li key={index} style={{ marginBottom: "5px" }}>
-      <Accordion title={item.title} content={item.content} />
-    </li>
-  ))}
-</ul>
+  const handleCloseModal = () => {
+    setModalOption({ ...modalOption, show: false });
+  };
 
-</main>
- );
-    
-}
+  const handleSubmitInquiry = () => {
+    console.log("Inquiry submitted");
+    // 모달 닫기 ?
+    handleCloseModal();
+  };
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  //검색 필터링 기능 
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredFAQ = faqData.filter(
+    (item) =>
+      item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.content.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <main className={styles.mainContainer}>
+      <h1> FAQ</h1>
+      <div className={styles.mainInput}>
+        <SearchBox onChange={handleSearch} />
+        <div className={styles.sideButton}>   
+        <Button onClick={() => handleOpenModal(false)}>문의 내역</Button>
+        <Button onClick={() => handleOpenModal(true)}>문의 하기</Button>
+        </div>
+      </div>
+      <li ><div className={styles.thtitle}>자주 묻는 질문</div></li>
+      <ul className={styles.accordionWrapper}>
+     
+        {filteredFAQ.map((item, index) => (
+          <li key={index}>
+            <Accordion title={item.title} content={item.content} />
+          </li>
+        ))}
+      </ul>
+      <Modal {...modalOption} />
+    </main>
+  );
+};
+
 export default FAQ;
+

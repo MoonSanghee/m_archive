@@ -107,7 +107,6 @@ const Home = () => {
         ? setSelect((select) => [...select, item])
         : setSelect(select.filter((button) => button !== item));
 
-      //NOTE: 이걸 왜 해야하나?
       setGenreMovies([]);
       setPage(1);
     };
@@ -123,8 +122,6 @@ const Home = () => {
   useEffect(() => {
     onGetMovies();
     onGetTop10Movies();
-
-    //setMovies(movieListTest);
   }, []); //여기 genreSelected 를 넣어도 되는건가
 
   useEffect(() => {

@@ -12,7 +12,7 @@
     height: 15%; 
   }
   .profileContainer,.genreContainer{
-    padding: 32px 48px;
+    padding: 24px 48px;
     width: 85%;
     //width: 1000px;
     background-color:transparent;
@@ -25,42 +25,71 @@
   }
   .profileContainer {
     @include m.flex(flex-start,flex-start,column); 
-    row-gap: 8px;
+    row-gap: 0px;
     border: 2px solid c.$C_PRIMARY;
     height: 460px;
     .profileInfo{
       @include m.flex(center,center,row);
       width: 90%;
-      height: 85%;
+      height: 80%;
       column-gap: 60px;
       .profileWrapper{
         @include m.flex(center,center,column);
         width: 45%;
-        height: 90%;
+        height: 100%;
         row-gap: 32px;
-          .profileIcon{
+          .iconsWrapper{
+        
+            .profileIcon{
+              cursor: pointer;
               > svg{
               width: 140px;
               height: 140px;
               }
+               &:hover{
+                > svg {
+                  //fill:c.$C_BLACK_MODAL;  
+                  > path{
+                    fill:c.$C_BLACK_MODAL;
+                  }
+                  > circle{
+                    fill:c.$C_BLACK_MODAL;  
+                  }
+                  }
+              }
+            }
+            .modifyIcon{
+              cursor: pointer;
+              z-index: 20;
+              position:relative;  
+              top:-60px;
+              right: 80px;
+              pointer-events: none;
+              fill:transparent;
+              > svg{
+                width: 100px;
+                height: 100px;
+              }
+            }
+            .profileIcon:hover+.modifyIcon{
+              fill: c.$C_WHITE;
+            }
           }
+ 
           > textarea{
             width: 340px;
-            height: 140px;
+            height: 160px;
             font-size: 20px;
           }
       }
       .inputsWrapper{
         @include m.flex(center,center,column);
         width: 45%;
-        height: 90%;
+        height: 100%;
         padding-top: 36px;
-        //row-gap: 12px;
-        > textarea {
-          width: 520px;
-        }
+        row-gap: 8px;
         .input {
-          > p{
+          > p:first-of-type{
             color: c.$C_WHITE;
           }
           > input{
@@ -86,42 +115,12 @@
       row-gap: 16px;
     }
   }
-}
-.div {
-  font-size:200px;
-}
-
-
-
-.sideIcon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  
-}
- 
-
-.Icon {
-  width: 300px;
-  height: 300px;
-}
-
-.textInput {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: column;
-  
+  .iconModal{
+    background-color:c.$C_BLACK_MODAL;
+    box-shadow: 0px 0px 15px 5px c.$C_WHITE_50;
+    
+    
+  }
 }
 
 
-.buttonTag {
-  
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: column;
-  flex-wrap: wrap;
-  
-}

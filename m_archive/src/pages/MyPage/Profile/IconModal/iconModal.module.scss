@@ -1,0 +1,13 @@
+.wrapper{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    row-gap: 28px;
+    > span {
+        cursor: pointer;
+        >svg{
+            width: 80px;
+            height: 80px;
+        }
+       
+    }
+}

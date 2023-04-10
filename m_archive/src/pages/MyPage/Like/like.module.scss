@@ -1,0 +1,38 @@
+@use '../../../styles/mixins/' as m;
+@use '../../../styles/constants/' as c;
+
+.wrapper {
+  @include m.flex(flex-start, flex-start, column);
+  width: 100%;
+  padding: 24px 0px;
+  row-gap: 20px;
+  padding-left: 28px; //임시
+  box-sizing: border-box;
+
+  > header {
+    padding: 0 4px;
+    // margin-top: 32px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    font-size: 24px;
+  }
+}
+.cardContainer {
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+
+  > .container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    align-content: space-around;
+    justify-items: center;
+    row-gap: 20px;
+  }
+}
+.scrollButton {
+  left: 500px;
+  bottom: 500px;
+}

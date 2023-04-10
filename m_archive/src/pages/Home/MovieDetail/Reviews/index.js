@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './reviews.module.scss';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
@@ -10,8 +10,12 @@ import { Modal } from '../../../../components/Common';
 import { useCallback } from 'react';
 import { getMovie } from '../../../../api/Movies';
 import ReviewDetailModal from './ReviewDetailModal';
+import { useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const Reviews = () => {
+  const ref = useRef();
+  const pathname = useLocation().pathname;
   const params = useParams();
   const [reviews, setReviews] = useState([]);
   const [movie, setMovie] = useState({});
@@ -38,7 +42,7 @@ const Reviews = () => {
         true,
         '',
         null,
-        ()=>onGetReviews(params.id),
+        () => onGetReviews(params.id),
         <ReviewDetailModal
           thisReview={review}
           movieId={params.id}
@@ -49,20 +53,29 @@ const Reviews = () => {
               return;
             }
             //onGetMovie(params.id);
-            
           }}
         />,
       );
     },
-    [params.id,modalOption],
+    [params.id, modalOption],
   );
-
+  useEffect(() => {
+    if (!ref.current) return;
+    ref.current.scrollIntoView(
+      {
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'nearest',
+      },
+      [pathname],
+    );
+  });
   useMount(() => {
     onGetMovie(params.id);
     onGetReviews(params.id);
   });
   return (
-    <main className={styles.wrapper}>
+    <main ref={ref} className={styles.wrapper}>
       <h1>{movie?.title} </h1>
       <section className={styles.reviewsWrapper}>
         {reviews.map((review) => {
