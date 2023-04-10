@@ -9,13 +9,20 @@ import {
 } from '../../../components';
 import Movies from '../../../components/Common/TableElements/movies';
 import styles from './manage.module.scss';
+import movieStyle from "../../../components/Common/TableElements/tableElements.module.scss"
 import { getMovies } from '../../../api/Movies';
+import { countMovies } from '../../../api/Movies';
+import Pagination from '../../../components/Common/PageNation';
 
 const ManageMoviesPage = () => {
   //   // id로 담는다
   const [selectedMovies, setSelectedMovies] = useState([]);
   const [movies, setMovies] = useState([]);
   const isAllChecked = selectedMovies.length === movies.length;
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageLimit, setPageLimit] = useState(10);
+  const [totalPages, setTotalPages] = useState(1);
 
   const onGetMovies = async () => {
     const response = await getMovies(1, 10);
@@ -57,7 +64,26 @@ const ManageMoviesPage = () => {
   useEffect(() => {
     onGetMovies();
   }, []);
-  console.log({ movies });
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const fetchData = async () => {
+    const response = await getMovies(currentPage, pageLimit);
+    const count = await countMovies();
+
+    if (response.status === 200) {
+      const items = [...response.data.data];
+      setTotalPages(Math.ceil(count.data.count / pageLimit));
+      setMovies(items);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [currentPage, pageLimit]);
+
   return (
     <main className={styles.wrapper}>
       {/* //TODO: main이랑 AdminLNB는 AdminLayout으로 분리 */}
@@ -73,9 +99,9 @@ const ManageMoviesPage = () => {
             전체선택
           </span>
           <span className={styles.menuRight}>
-            <Button width={'long'} color={'secondary'}>
+            {/* <Button width={'long'} color={'secondary'}>
               선택 삭제
-            </Button>
+            </Button> */}
             <SearchBox
               className={styles.searchBox}
               placeholder="제목, 배우, 감독"
@@ -85,14 +111,44 @@ const ManageMoviesPage = () => {
         <p className={styles.secondMenu}>
           <TableMenu tableName="movieInfo" />
         </p>
-        <div className={styles.table}>
-          <Movies
-            movies={movies}
-            selectedMovies={selectedMovies}
-            onCheckMovie={onCheckMovie}
-            limit={10}
-          />
-        </div>
+        <p className={styles.table}>
+          <div>
+            <table className={movieStyle.movies}>
+              {movies.map((movie, idx) => {
+                const createdAt = movie.createdAt
+                return (
+                  <tb key={idx} className={movieStyle.elements}>
+                    <CheckBox
+                      className={movieStyle.check}
+                      checked={selectedMovies.includes(movie.id)}
+                      onChange={onCheckMovie(movie.id)}
+                    />
+                    <span>{movie.title}</span>
+                    <span>{movie.releasedAt}</span>
+                    <span className={styles.block}>
+                      {movie.genres.map((genre) => (
+                        <span key={genre.id}>{genre.name}</span>
+                      ))}
+                    </span>
+                    <span></span>
+                    <span className={movieStyle.block}>
+                      {movie.staffs.map((staff) => {
+                        if (staff.role === "감독") {
+                          return <span key={staff.id}>{staff.name}</span>
+                        }
+                      })}
+                    </span>
+                  </tb>
+                );
+              })}
+            </table>
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          </div>
+        </p>
       </section>
     </main>
   );

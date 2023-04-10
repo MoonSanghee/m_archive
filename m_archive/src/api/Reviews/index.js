@@ -60,6 +60,11 @@ export const getReviewsCount = () => {
   return apiClient.get(`/reviews/count`);
 };
 
+//MEMO: 리뷰 삭제
+export const deleteReviewAdmin = (id) => {
+  return apiClient.delete(`/reviews/${id}/admin`);
+};
+
 //MEMO: 내 리뷰들 가져오기
 export const getMyReviews = () => {
   return apiClient.get(`/reviews/me`);
