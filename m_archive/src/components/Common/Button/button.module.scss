@@ -65,6 +65,11 @@
     height: 52px;
     font-size: 24px;
   }
+  &.short {
+    width: 100px;
+    height: 40px;
+    font-size: 20px;
+  }
 
   &.active {
     background-color: c.$C_PRIMARY;
