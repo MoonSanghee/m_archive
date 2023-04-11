@@ -22,9 +22,11 @@
             width: 100%;
             height: 95%;
             background-color: c.$C_SECONDARY;
+            overflow-y: auto;
         }
         .profileWrapper{
             @include m.flex(flex-start,center,column);
+            overflow: hidden;
             row-gap: 120px;
             padding: 60px 20px;
             > div{
@@ -82,7 +84,6 @@
 
         }
         .likesWrapper{
-            overflow-y: auto;
             padding: 16px;
             @include m.flex(flex-start,flex-start,row);
             flex-wrap: wrap;
@@ -90,13 +91,13 @@
             row-gap: 16px;
             .movie{
                 width: 124px;
-                height: 144px;
+                height: 152px;
                 pointer-events: none;
             }
         }
         .reviewsWrapper{
             @include m.flex(flex-start,center,column);
-            overflow-y: auto;
+            //overflow-y: auto;
             //padding: 16px;
             .reviewInfo{
                 @include m.flex();
@@ -104,6 +105,7 @@
                 padding: 8px 12px;
                 border-bottom: 1px solid c.$C_WHITE;
                 > img{
+                    border-radius: 4px;
                     width: 102px;
                     height: 136px;
                 }

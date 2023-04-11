@@ -86,7 +86,8 @@ const UserDetail = () =>{
             </section>
             <section className={styles.sectionWrapper}>
                 <h1>{`${user?.nickname} 님이 좋아하는 영화`}</h1>
-                <article className={styles.likesWrapper}>
+                <article>
+                    <div  className={styles.likesWrapper}>
                     {
                         likes?.map((item)=>(
                             <Card
@@ -99,6 +100,8 @@ const UserDetail = () =>{
                             />
                           ))
                     }
+                    </div>
+                   
                 </article>
             </section>
             <section className={styles.sectionWrapper}>
