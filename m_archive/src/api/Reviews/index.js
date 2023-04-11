@@ -74,3 +74,8 @@ export const deleteReviewAdmin = (id) => {
 export const getMyReviews = () => {
   return apiClient.get(`/reviews/me`);
 };
+
+//MEMO: 내 리뷰 댓글 조회
+export const getMyComments = () => {
+  return apiClient.get(`/reviews/comments/me`);
+};
