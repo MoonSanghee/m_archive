@@ -24,18 +24,32 @@ const ManageUsersPage = () => {
 
     const [modalOption, showModal] = useModal();
 
+    const [isChecked, setIsChecked] = useState(false);
+
+    const onClick = () => {
+      setIsChecked(!isChecked)
+    }
+
     useEffect(() => {
         if (!users) return;
         setUsers(users);
     }, [users]);
 
-    const changeNameOrder = () => {
-        setUsers(
-            [...users].sort(function (a, b) {
-                return a.name < b.name ? -1 : a.name > b.name ? 1: 0;
-            })
-        )
-    }
+    const handleSubmit = async (event) => {
+        const response = await getUsers(1, 10, event.target.value)
+        if (response.status === 200) {
+          const items = [...response.data.data];
+          setUsers(items);
+          setTotalPages(Math.ceil(items.length / pageLimit));
+          setCurrentPage(1)
+        }
+        if (event.target.value === "") {
+          // 검색어가 비어있는 경우
+          setTotalPages(response.length / pageLimit);
+          setCurrentPage(1)
+          return;
+        }
+      };
 
     const onGetUsers = async () => {
         const response = await getUsers(1, 10);
@@ -56,7 +70,7 @@ const ManageUsersPage = () => {
     };
 
     const onCheckAll = () => {
-        if (isAllChecked) {
+        if (isChecked) {
             setSelectedUsers([]);
         } else {
             setSelectedUsers(users.map((user) => user.id));
@@ -105,6 +119,8 @@ const ManageUsersPage = () => {
 
     const handlePageChange = (page) => {
         setCurrentPage(page);
+        setIsChecked(false);
+
     }
 
     const fetchData = async () => {
@@ -129,8 +145,9 @@ const ManageUsersPage = () => {
                     <span className={styles.menuLeft}>
                         <CheckBox 
                             className={styles.check} 
-                            checked={isAllChecked}
+                            checked={isChecked}
                             onChange={onCheckAll}
+                            onClick={onClick}
                         />
                         전체선택
                     </span>
@@ -143,7 +160,8 @@ const ManageUsersPage = () => {
                         </Button>
                         <SearchBox 
                             className={styles.searchBox} 
-                            placeholder="제목, 배우, 감독" 
+                            placeholder="이름, 닉네임, 이메일" 
+                            onChange={handleSubmit}
                         />
                     </span>
                 </p>
@@ -152,7 +170,6 @@ const ManageUsersPage = () => {
                 </p>
                 <p className={styles.table}>
                     <div>
-                        <button onClick={() => changeNameOrder()}>이름</button>
                         <table className={userStyle.users}>
                             {users.map((user, idx) => {
                                 const time = user.createdAt

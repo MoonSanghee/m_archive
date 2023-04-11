@@ -11,19 +11,6 @@ const Users = ({page, limit}) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageLimit, setPageLimit] = useState(limit);
   const [totalPages, setTotalPages] = useState(1);
-
-  useEffect(() => {
-    if (!users) return;
-    setUsers(users);
-  }, [users]);
-  
-  const changeNameOrder = () => {
-    setUsers(
-      [...users].sort(function (a, b) {
-        return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
-      })
-    );
-  };
   
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -48,7 +35,6 @@ const Users = ({page, limit}) => {
 
   return (
     <div>
-      <button onClick={() => changeNameOrder()}>이름</button>
       <table>
         {users.map((user)=>{
           const time = user.createdAt

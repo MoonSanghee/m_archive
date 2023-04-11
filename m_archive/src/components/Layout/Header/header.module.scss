@@ -43,12 +43,27 @@
         position: relative;
         @include m.flex();
         width: 100%;
+        background-color: none;
         > input {
-          padding-left: 60px;
+          padding-left: 52px;
           height: 48px;
           width: 100%;
           font-size: 16px;
           padding-bottom: 2px;
+          background-color: transparent;
+          color: c.$C_WHITE;
+          border-bottom: 1px solid c.$C_WHITE;
+          border-top: none;
+          border-left: none;
+          border-right: none;
+
+         /*&:focus{
+            border-bottom: 1px solid c.$C_WHITE;
+          }*/
+          &::placeholder{
+            color: c.$C_WHITE;
+            font-family: 'KIMM_Light';
+          }
         }
         > button {
           position: absolute;
@@ -58,6 +73,10 @@
           height: 48px;
           background: none;
           border: none;
+          > svg{
+            fill:c.$C_WHITE;
+            fill-opacity: 0.7;
+          }
         }
       }
     }

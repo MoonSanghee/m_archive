@@ -54,6 +54,7 @@ const Carousel = ({ movies, type }) => {
         {movies.map((movie, idx) => {
           return (
                 <li
+                  key={`li-idx-${movie.id}`}
                   className={cx(styles.movie, styles[type])}
                   id={`Movie-Li-${movie.id}`}
                   style={{
