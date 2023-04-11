@@ -10,10 +10,10 @@
   box-sizing: border-box;
 
   .section {
-    @include m.flex(center,center,column);
+    @include m.flex(center, center, column);
     row-gap: 20px;
     width: 100%;
-    height: 50%;
+    // height: 50%;
     overflow: hidden;
     padding: 0 0 10px 0;
     &:first-child {
@@ -21,7 +21,7 @@
     }
 
     header {
-      padding:0 4px;
+      padding: 0 4px;
       padding: 32px 0 8px 0;
       display: flex;
       width: 100%;
@@ -42,14 +42,12 @@
 
   .container::-webkit-scrollbar {
     display: block;
-    
   }
   .container::-webkit-scrollbar-thumb {
     background-color: c.$C_WHITE;
-    border-radius:30px;
+    border-radius: 30px;
   }
   > .container {
-
     width: 100%;
     display: flex;
     column-gap: 20px;
@@ -58,9 +56,109 @@
     overflow-y: hidden;
     cursor: pointer;
 
-
     > div {
       flex: 0 0 auto;
+    }
+  }
+}
+// ------------------------------
+.commentsContainer {
+  display: flex;
+  flex-direction: row;
+  color: white;
+  width: 1300px;
+  height: 38vh;
+  overflow: scroll;
+  flex-wrap: wrap;
+}
+.commentCards {
+  width: 630px;
+  margin: 10px;
+  padding: 8px 4px;
+  border-bottom: 1px solid white;
+  height: 152px;
+  display: flex;
+
+  > img {
+    border-radius: 5px;
+    padding-right: 12px;
+    height: 120px;
+  }
+}
+
+.contents {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+  > div {
+    margin-left: 8px;
+  }
+
+  .info {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    > div {
+      height: 30px;
+    }
+
+    .user {
+      display: flex;
+      align-items: center;
+      height: 30px;
+      p {
+        padding-right: 8px;
+      }
+      svg {
+        margin-top: 2px;
+        height: 20px;
+        width: 16px;
+      }
+    }
+
+    .function {
+      span {
+        display: flex;
+        column-gap: 4px;
+      }
+      svg {
+        height: 16px;
+        fill: c.$C_WHITE;
+        padding-bottom: 2px;
+      }
+    }
+  }
+
+  .review {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4px;
+    span {
+      font-size: 12px;
+    }
+  }
+
+  .commentbox {
+    margin-top: 28px;
+    height: 40px;
+    background: c.$C_GRAY;
+    color: c.$C_BLACK;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4px;
+    border-radius: 4px;
+    p {
+      width: 360px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    span {
+      font-size: 12px;
+      color: c.$C_DARKGRAY;
     }
   }
 }
