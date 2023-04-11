@@ -55,6 +55,10 @@ const Review = () => {
       navigate(`/movies/detail/${id}`);
     };
   };
+  const onNavigateUser = (id)=>{
+    return () => {
+    navigate(`/movies/user/${id}`);};
+  }
 
   const onClickComment = (id) => {
     return () => {
@@ -101,11 +105,11 @@ const Review = () => {
                 <div
                   className={styles.commentCards}
                   key={comment.id}
-                  onClick={onClickComment(item?.movie?.id)}
+                  //onClick={onClickComment(item?.movie?.id)}
                 >
-                  <img src={item?.movie?.postImage} alt={item?.movie?.title} />
-                  <ProfileIcon user={item?.user} />
-                  <div className={styles.contents}>
+                  <img src={item?.movie?.postImage} alt={item?.movie?.title} onClick={onClickComment(item?.movie?.id)} />
+                  <ProfileIcon user={item?.user}  onClick={onNavigateUser(item?.user?.id)}/>
+                  <div className={styles.contents} onClick={onClickComment(item?.movie?.id)}>
                     <div className={styles.info}>
                       <div className={styles.user}>
                         <p>{item?.user?.nickname || item?.user?.name}</p>
