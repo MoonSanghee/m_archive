@@ -8,6 +8,7 @@ import { login } from '../../../api/Auth';
 import {useSetRecoilState, useRecoilValue} from "recoil";
 import { meState } from '../../../recoil';
 import { getMe } from '../../../api/Users';
+import video from "../Start/sky.gif"
 const Login = () => {
   const navigate = useNavigate();
   const setMe = useSetRecoilState(meState);
@@ -80,6 +81,9 @@ const Login = () => {
 
   return (
     <main className={styles.wrapper}>
+      <div className={styles.backGround}>
+        <img src={video}/>
+      </div>
       <section>
         <div className={styles.formContainer}>
           <h1>M-archive</h1>
