@@ -28,10 +28,10 @@ const Home = () => {
 
   const dropdownSortItems = sortItems;
   const [selectedSort, setSelectedSort] = useState(null);
+  const [sort, setSort] = useState('');
 
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
-  const [test, setTest] = useState([]);
 
   const location = useLocation();
   const alert = location.state;
@@ -69,6 +69,7 @@ const Home = () => {
     const response = await getGenreMovies(
       page,
       select.map((item) => item.id).join(','),
+      sort, //NAME | CREATED_AT | LIKE
     );
     setLoading(true);
 
@@ -81,22 +82,8 @@ const Home = () => {
     setLoading(false);
   };
 
-  //선택된 장르 문자열 (주소)
-  //NOTE: useMemo 사용
-  // {
-  //   select.map((item) => {
-  //     // console.log(item.genre);
-  //     // console.log(typeof item);
-  //     if (genreSelected !== '') {
-  //       genreSelected += '%2C';
-  //     }
-  //     genreSelected += item.id;
-  //   });
-  // }
-
   const onNavigateDetail = (id) => {
     return () => {
-      //MEMO: navigate를 할 때는 /가 있어야 함
       navigate(`/movies/detail/${id}`);
     };
   };
@@ -116,13 +103,18 @@ const Home = () => {
   const onClickSortDropdown = useCallback((item) => {
     return () => {
       setSelectedSort((prev) => (prev?.id === item.id ? null : item));
+      setSort(item.value);
+
+      setGenreMovies([]);
+      setPage(1);
+      getGenreMovies();
     };
   }, []);
 
   useEffect(() => {
     onGetMovies();
     onGetTop10Movies();
-  }, []); //여기 genreSelected 를 넣어도 되는건가
+  }, []);
 
   useEffect(() => {
     onGetGenreMovies();
