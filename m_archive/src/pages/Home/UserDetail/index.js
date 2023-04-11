@@ -87,6 +87,7 @@ const UserDetail = () =>{
             <section className={styles.sectionWrapper}>
                 <h1>{`${user?.nickname} 님이 좋아하는 영화`}</h1>
                 <article>
+                {user?.isLikeView ? 
                     <div  className={styles.likesWrapper}>
                     {
                         likes?.map((item)=>(
@@ -101,12 +102,18 @@ const UserDetail = () =>{
                           ))
                     }
                     </div>
-                   
+                   :
+                   <div className={styles.lockWrapper}>
+                        <LockIcon/>
+                    </div>
+                    }
                 </article>
             </section>
             <section className={styles.sectionWrapper}>
             <h1>{`${user?.nickname} 님이 남긴 리뷰`}</h1>
-                <article className={styles.reviewsWrapper}>
+                <article>
+                { user?.isReviewView ? 
+                    <div className={styles.reviewsWrapper}>
                     {
                         reviews?.map((item)=>(
                             <div className={styles.reviewInfo} key={item.id}>
@@ -134,6 +141,11 @@ const UserDetail = () =>{
                                 </div>
                             </div>
                         ))
+                    }</div>
+                    :
+                    <div className={styles.lockWrapper}>
+                        <LockIcon/>
+                    </div>
                     }
                 </article>  
             </section>
