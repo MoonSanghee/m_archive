@@ -20,7 +20,7 @@ const myPageExamples = [
   },
   {
     id: 4,
-    name: '고객센터',
+    name: 'FAQ',
     value: 'cs',
     path: '/movies/mypage/faq',
   },
