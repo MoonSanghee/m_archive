@@ -79,3 +79,8 @@ export const getMyReviews = () => {
 export const getMyComments = () => {
   return apiClient.get(`/reviews/comments/me`);
 };
+
+// 리뷰 수정
+export const patchReview = (id, body) => {
+  return apiClient.patch(`/reviews/${id}/admin`, body);
+};

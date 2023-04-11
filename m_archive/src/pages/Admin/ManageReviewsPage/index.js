@@ -93,14 +93,6 @@ const ManageReviewsPage = () => {
         />,
       );
     }, [modalOption]);
-  
-
-
-    const onEditReviews = (id) => {
-      return (
-        console.log(id)
-      );
-    }
 
     useEffect(() => {
         onGetReviews();

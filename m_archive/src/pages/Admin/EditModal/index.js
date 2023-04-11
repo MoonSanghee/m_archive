@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Button, Input } from "../../../components";
 import styles from "./editModal.module.scss";
 import cx from "classnames";
+import { patchUser } from "../../../api/Users";
+import { patchReview,modifyReview } from "../../../api/Reviews";
 const EditModal = ({item,type,onClose}) =>{
     // useState변수- 리뷰, 유저-  form 2;   
     // onSubmitReview 수정 api 성공 ->  onClose();
@@ -12,11 +14,23 @@ const EditModal = ({item,type,onClose}) =>{
     })
     const [userForm, setUserForm] = useState({
         email:item?.email,
-        password:"",
+        // password:item?.password,
         name:item?.name,
         nickname:item?.nickname,
         description: item?.description,
     })
+
+    const onSubmitUser = async (e) => {
+        e.preventDefault();
+        await patchUser(item.id, userForm);
+        onClose();        
+    }
+
+    const onSubmitReview = async (e) => {
+        e.preventDefault();
+        await patchReview(item.id, reviewForm);
+        onClose();
+    }
 
     const onChangeReview = (e) =>{
         const {name,value} = e.currentTarget; 
@@ -46,7 +60,7 @@ const EditModal = ({item,type,onClose}) =>{
                         children="저장"
                         width={"short"}
                         color={"secondary"}
-                        //onClick={}
+                        onClick={onSubmitReview}
                     />
                 </div>
             </section>
@@ -58,13 +72,17 @@ const EditModal = ({item,type,onClose}) =>{
                 <Input name="password" className={styles.userInput} label={"비밀번호 : "} value={userForm?.password} onChange={onChangeUser}/>
                 <Input name="name" className={styles.userInput} label={"이름 : "} value={userForm?.name} onChange={onChangeUser}/>
                 <Input name="nickname" className={styles.userInput} label={"닉네임 : "} value={userForm?.nickname} onChange={onChangeUser}/>
-                <Input name="description" className={styles.userInput} label={"소개글 : "} value={userForm?.description} onChange={onChangeUser}/>
+                {/* <Input name="description" className={styles.userInput} label={"소개글 : "} value={userForm?.description} onChange={onChangeUser}/> */}
+                <div className={styles.user}>
+                    <label for="user"><p>소개글 :</p> </label>
+                    <textarea name="description" id="user" value={userForm?.description} onChange={onChangeUser}/>
+                </div>
                 <div className={styles.button}>
                     <Button 
                         children="저장"
                         width={"short"}
                         color={"secondary"}
-                        //onClick={}
+                        onClick={onSubmitUser}
                     />
                 </div>
             </section>

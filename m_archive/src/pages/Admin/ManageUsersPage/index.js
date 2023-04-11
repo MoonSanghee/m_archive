@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { AdminLNB, Button, CheckBox, SearchBox, TableElements, TableMenu } from "../../../components";
 
 import styles from "./manageUsers.module.scss";
@@ -7,6 +7,10 @@ import userStyle from "../../../components/Common/TableElements/tableElements.mo
 import { countUsers, deleteUserAdmin, getUsers } from "../../../api/Users";
 import dayjs from "dayjs";
 import Pagination from "../../../components/Common/PageNation";
+import cx from "classnames";
+import useModal from "../../../components/Common/Modal/useModal";
+import {Modal} from "../../../components";
+import EditModal from "../EditModal";
 
 const ManageUsersPage = () => {
 
@@ -17,6 +21,8 @@ const ManageUsersPage = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [pageLimit, setPageLimit] = useState(10);
     const [totalPages, setTotalPages] = useState(1);
+
+    const [modalOption, showModal] = useModal();
 
     useEffect(() => {
         if (!users) return;
@@ -74,6 +80,24 @@ const ManageUsersPage = () => {
             alert("삭제 오류!");
         }
     }
+
+    const onClickOpenModal = useCallback((item,type) => {
+        showModal(
+          true,
+          '',
+          null,
+          onGetUsers,
+          <EditModal
+            item={item}
+            type={type}
+            onClose={() => {
+              //NOTE: 생성/수정/삭제와 같이 데이터를 변경하는 API를 사용한다면 -> API 요청 완료 후에 재요청을 해야한다~
+              modalOption.onClose();
+              //onGetReviews();
+            }}
+          />,
+        );
+      }, [modalOption]);
 
     useEffect(() => {
         onGetUsers();
@@ -142,6 +166,14 @@ const ManageUsersPage = () => {
                                         <span>{user.email}</span>
                                         <span>{user.name} ({user.nickname})</span>
                                         <span>{dayjs(time).format("YYYY-MM-DD HH:mm:ss")}</span>
+                                        {selectedUsers.includes(user?.id) && <Button
+                                            className={styles.editBtn}
+                                            children="수정"
+                                            width={"short"}
+                                            color={"secondary"}
+                                            onClick={()=>onClickOpenModal(user,"user")}
+                                        >
+                                        </Button>}
                                     </td>
                                 )
                             })}
@@ -154,6 +186,7 @@ const ManageUsersPage = () => {
                     </div>
                 </p>
             </section>
+            <Modal modalOption={modalOption} modalSize="small" />
         </main>
     )
 };

@@ -37,3 +37,8 @@ export const countUsers = () => {
 export const deleteUserAdmin = (id) => {
   return apiClient.delete(`/users/${id}`);
 };
+
+// user수정
+export const patchUser = (id, body) => {
+  return apiClient.patch(`/users/${id}`, body);
+}
