@@ -19,10 +19,10 @@
   
 }
 .elements {
-  @include m.flex(start, center, row);
+  @include m.flex(flex-start, center, row);
   width: 100%;
   height: 64px;
-  justify-content: space-between;
+  //justify-content: space-between;
 
   .check {
     margin: 12px;

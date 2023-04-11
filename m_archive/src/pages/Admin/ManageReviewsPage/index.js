@@ -8,13 +8,18 @@ import {
   TableElements,
 } from '../../../components';
 import styles from './manageReviews.module.scss';
-//import Reviews from '../../../components/Common/TableElements/Reviews';
 import { getReviews, deleteReviewAdmin } from '../../../api/Reviews';
 
 import reviewStyle from "../../../components/Common/TableElements/tableElements.module.scss";
 import { getReviewsCount } from '../../../api/Reviews';
 import Pagination from '../../../components/Common/PageNation';
 import dayjs from 'dayjs';
+import cx from "classnames";
+//MEMO: modal에 필요한 것들
+import useModal from '../../../components/Common/Modal/useModal';
+import {Modal} from '../../../components';
+import EditModal from '../EditModal';
+
 
 const ManageReviewsPage = () => {
   
@@ -26,6 +31,8 @@ const ManageReviewsPage = () => {
     const [pageLimit, setPageLimit] = useState(10);
     const [totalPages, setTotalPages] = useState(1);
 
+    const [modalOption, showModal] = useModal();
+    
     const [isChecked, setIsChecked] = useState(false);
 
     const onClick = () => {
@@ -91,12 +98,27 @@ const ManageReviewsPage = () => {
         alert("삭제 오류!");
       }
     }
+    const onClickOpenModal = useCallback((item,type) => {
+      showModal(
+        true,
+        '',
+        null,
+        onGetReviews,
+        <EditModal
+          item={item}
+          type={type}
+          onClose={() => {
+            //NOTE: 생성/수정/삭제와 같이 데이터를 변경하는 API를 사용한다면 -> API 요청 완료 후에 재요청을 해야한다~
+            modalOption.onClose();
+            //onGetReviews();
+          }}
+        />,
+      );
+    }, [modalOption]);
 
     useEffect(() => {
         onGetReviews();
     }, []);
-
-
 
     const handlePageChange = (page) => {
       setCurrentPage(page);
@@ -165,6 +187,15 @@ const ManageReviewsPage = () => {
                       <span>{review.user.name}</span>
                       <span>{review.likeCount}</span>
                       <span>{dayjs(createdAt).format('YYYY-MM-DD HH:mm:ss')}</span>
+                      {selectedReviews.includes(review?.id) && <Button
+                        className={styles.editBtn}
+                        children="수정"
+                        width={"short"}
+                        color={"secondary"}
+                        onClick={()=>onClickOpenModal(review,"review")}
+                        // onClick={onEditReviews(review)}
+                        >
+                      </Button>}
                     </td>
                   );
                 })}
@@ -177,6 +208,7 @@ const ManageReviewsPage = () => {
           </div>
         </p>
       </section>
+      <Modal modalOption={modalOption} modalSize="small" />
     </main>
   );
 };
