@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./start.module.scss";
 import { Button } from "../../../components/Common";
 import { useNavigate } from "react-router-dom";
+import video from "./sky.gif";
 
 const Start = () => {
   const completedTitle = "어서와요 *^^*";
@@ -36,19 +37,24 @@ const Start = () => {
 
   return (
     <main className={styles.wrapper}>
-      <h1 className={styles.header}>M - archive</h1>
-      <section className={styles.section}>
-        {/* 어서와요 *^^* (타이핑 애니메이션) 투명도 opacity 0.5 적용 */}
-        {title}
+      <div className={styles.backGround}>
+        <img src={video}/>
+      </div>
+      <section className={styles.sectionWrapper}>
+        <h1 className={styles.header}>M - archive</h1>
+        <div className={styles.section}>
+          {/* 어서와요 *^^* (타이핑 애니메이션) 투명도 opacity 0.5 적용 */}
+          {title}
+        </div>
+        <Button
+          width={"big"}
+          type={"submit"}
+          form="loginForm"
+          onClick={navigateToLogin}
+        >
+          시작하기
+        </Button>
       </section>
-      <Button
-        width={"big"}
-        type={"submit"}
-        form="loginForm"
-        onClick={navigateToLogin}
-      >
-        시작하기
-      </Button>
     </main>
   );
 };

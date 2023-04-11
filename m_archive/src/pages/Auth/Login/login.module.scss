@@ -8,8 +8,21 @@
   align-items: center;
   justify-content: center;
   background: black; //임시
-
+  .backGround{
+    background-color: c.$C_BLACK;
+    margin: 0px auto;
+    width: 100%;
+    height: 100%;
+    img{
+        width: 100%;
+        height: 100%;
+        image-rendering:-webkit-optimize-contrast;
+        transform:translateZ(0);
+        backface-visibility:hidden; 
+    }
+}
   > section {
+    position:absolute;
     background: c.$C_WHITE;
     display: flex;
     flex-direction: row;
