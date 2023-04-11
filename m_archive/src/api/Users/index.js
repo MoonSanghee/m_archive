@@ -2,11 +2,12 @@ import apiClient from '../apiClient';
 
 //Admin - CMS 로그인
 //MEMO: 유저리스트 가져오기
-export const getUsers = (page, limit) => {
+export const getUsers = (page, limit, name) => {
   return apiClient.get('/users',{
     params:{
       page,
       limit,
+      name 
     }
   });
 };

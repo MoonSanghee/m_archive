@@ -26,6 +26,28 @@ const ManageReviewsPage = () => {
     const [pageLimit, setPageLimit] = useState(10);
     const [totalPages, setTotalPages] = useState(1);
 
+    const [isChecked, setIsChecked] = useState(false);
+
+    const onClick = () => {
+      setIsChecked(!isChecked)
+    }
+
+    const handleSubmit = async (event) => {
+      const response = await getReviews(1, 10, event.target.value)
+      if (response.status === 200) {
+        const items = [...response.data.data];
+        setReviews(items);
+        setTotalPages(Math.ceil(items.length / pageLimit));
+        setCurrentPage(1)
+      }
+      if (event.target.value === "") {
+        // 검색어가 비어있는 경우
+        setTotalPages(response.length / pageLimit);
+        setCurrentPage(1)
+        return;
+      }
+    };
+
     const onGetReviews = async () => {
         const response = await getReviews(1, 10);
         if (response.status === 200) {
@@ -45,7 +67,7 @@ const ManageReviewsPage = () => {
     };
 
     const onCheckAll = () => {
-        if (isAllChecked) {
+        if (isChecked) {
             setSelectedReviews([]);
         } else {
             setSelectedReviews(reviews.map((review) => review.id));
@@ -78,6 +100,7 @@ const ManageReviewsPage = () => {
 
     const handlePageChange = (page) => {
       setCurrentPage(page);
+      setIsChecked(false);
     };
   
     const fetchData = async () => {
@@ -102,8 +125,10 @@ const ManageReviewsPage = () => {
           <span className={styles.menuLeft}>
             <CheckBox 
                 className={styles.check} 
-                checked={isAllChecked}
+                checked={isChecked}
                 onChange={onCheckAll}
+                onClick={onClick}
+                id="SelectAll"
             />
             전체선택
           </span>
@@ -116,7 +141,8 @@ const ManageReviewsPage = () => {
             </Button>
             <SearchBox
               className={styles.SearchBox}
-              placeholder="제목, 배우, 감독"
+              placeholder="영화제목, 작성자"
+              onChange={handleSubmit}
             />
           </span>
         </div>

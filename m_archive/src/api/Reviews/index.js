@@ -46,11 +46,12 @@ export const deleteReviewLike = (id) => {
 
 //Admin - CMS 로그인
 //MEMO: 리뷰목록조회
-export const getReviews = (page, limit) => {
+export const getReviews = (page, limit, name) => {
   return apiClient.get('/reviews', {
     params: {
       page,
       limit,
+      name,
     },
   });
 };

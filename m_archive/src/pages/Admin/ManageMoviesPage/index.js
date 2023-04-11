@@ -24,6 +24,30 @@ const ManageMoviesPage = () => {
   const [pageLimit, setPageLimit] = useState(10);
   const [totalPages, setTotalPages] = useState(1);
 
+  const [keyword, setKeyword] = useState();
+
+  const [isChecked, setIsChecked] = useState(false);
+
+  const onClick = () => {
+    setIsChecked(!isChecked)
+  }
+
+  const handleSubmit = async (event) => {
+    const response = await getMovies(1, 10, event.target.value)
+    if (response.status === 200) {
+      const items = [...response.data.data];
+      setMovies(items);
+      setTotalPages(Math.ceil(items.length / pageLimit));
+      setCurrentPage(1)
+    }
+    if (event.target.value === "") {
+      // 검색어가 비어있는 경우
+      setTotalPages(response.length / pageLimit);
+      setCurrentPage(1)
+      return;
+    }
+  };
+
   const onGetMovies = async () => {
     const response = await getMovies(1, 10);
     if (response.status === 200) {
@@ -53,7 +77,7 @@ const ManageMoviesPage = () => {
   //NOTE: 전체 선택 해체? => selectedMovies를 빈 배열로 바꾸면 됩니다~
   const onCheckAll = () => {
     // 선택된 영화의 수  === 전체 영화의 수  => 전체 선택이 되어있는 경우
-    if (isAllChecked) {
+    if (isChecked) {
       setSelectedMovies([]);
     } else {
       // 선택된 영화의 수  !== 전체 영화의 수  => 전체 선택이 안되어있는 경우ㄴ
@@ -67,7 +91,9 @@ const ManageMoviesPage = () => {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
+    setIsChecked(false);
   };
+
 
   const fetchData = async () => {
     const response = await getMovies(currentPage, pageLimit);
@@ -93,8 +119,10 @@ const ManageMoviesPage = () => {
           <span className={styles.menuLeft}>
             <CheckBox
               className={styles.check}
-              checked={isAllChecked}
+              checked={isChecked}
               onChange={onCheckAll}
+              onClick={onClick}
+              id="SelectAll"
             />
             전체선택
           </span>
@@ -105,6 +133,7 @@ const ManageMoviesPage = () => {
             <SearchBox
               className={styles.searchBox}
               placeholder="제목, 배우, 감독"
+              onChange={handleSubmit}
             />
           </span>
         </p>
