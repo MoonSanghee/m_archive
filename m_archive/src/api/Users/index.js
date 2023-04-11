@@ -35,5 +35,5 @@ export const countUsers = () => {
 
 //userDelete
 export const deleteUserAdmin = (id) => {
-  return apiClient.delete(`/users/${id}/admin`);
+  return apiClient.delete(`/users/${id}`);
 };

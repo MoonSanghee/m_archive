@@ -15,6 +15,7 @@ import reviewStyle from "../../../components/Common/TableElements/tableElements.
 import { getReviewsCount } from '../../../api/Reviews';
 import Pagination from '../../../components/Common/PageNation';
 import dayjs from 'dayjs';
+import ReviewModal from '../../Home/MovieDetail/ReviewModal';
 
 const ManageReviewsPage = () => {
   
@@ -70,11 +71,15 @@ const ManageReviewsPage = () => {
       }
     }
 
+    const onEditReviews = (id) => {
+      return (
+        console.log(id)
+      );
+    }
+
     useEffect(() => {
         onGetReviews();
     }, []);
-
-
 
     const handlePageChange = (page) => {
       setCurrentPage(page);
@@ -139,6 +144,14 @@ const ManageReviewsPage = () => {
                       <span>{review.user.name}</span>
                       <span>{review.likeCount}</span>
                       <span>{dayjs(createdAt).format('YYYY-MM-DD HH:mm:ss')}</span>
+                      <Button
+                        className={styles.editBtn}
+                        children="수정"
+                        width={"long"}
+                        color={"secondary"}
+                        // onClick={onEditReviews(review)}
+                        >
+                      </Button>
                     </td>
                   );
                 })}

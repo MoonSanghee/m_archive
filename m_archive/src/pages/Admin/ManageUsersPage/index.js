@@ -65,6 +65,7 @@ const ManageUsersPage = () => {
     }
 
     const onDelete = async(id) => {
+        console.log(id);
         const response = await deleteUserAdmin(id);
         if (response.status === 204) {
             alert("정상 삭제");
