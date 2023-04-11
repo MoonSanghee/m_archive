@@ -22,6 +22,7 @@ import {
   MovieDetailPage,
   MovieSearchPage,
   ReviewsPage,
+  UserDetailPage
 } from '../pages';
 import {
   LoginPage,
@@ -64,10 +65,10 @@ const router = (
       <Route index element={<HomePage />} />
       {/*<Route path="movie:id" element={<MovieDetailPage/>}/>
        */}
-
       <Route path="detail/:id" element={<MovieDetailPage />} />
       <Route path="search" element={<MovieSearchPage />} />
       <Route path="detail/:id/reviews" element={<ReviewsPage />} />
+      <Route path="user/:id" element={<UserDetailPage />} />
       <Route path="mypage" element={<MyPageLayout />}>
         <Route path="faq" element={<FAQ />} />
         <Route path="profile" element={<Profile />} />
@@ -76,6 +77,7 @@ const router = (
         {/*
           <Route path=":id" element={<UserPage/>}/>*/}
       </Route>
+    
     </Route>
 
     <Route path="admin">

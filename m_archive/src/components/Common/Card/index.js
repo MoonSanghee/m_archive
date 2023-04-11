@@ -6,7 +6,7 @@ import cx from 'classnames';
 import { createLike, deleteLike } from '../../../api/Movies';
 import LikeButton from '../LikeButton';
 
-const Card = ({ item, onClick, type, idx, callback }) => {
+const Card = ({ item, onClick, type, idx, callback ,className}) => {
   const movie = item;
   const [genres, setGenres] = useState('');
   //NOTE: isLiked state를 useEffect를 통해 movie.isLiked로  초기화 하고나서 setIsLiked로 관리
@@ -50,7 +50,7 @@ const Card = ({ item, onClick, type, idx, callback }) => {
     <div
       className={cx(styles.cardWrapper, {
         [styles.top10First]: type === 'top10' && idx === 0,
-      })}
+      },className)}
     >
       <div className={styles.card_inner}>
         <div className={styles.card_front}>

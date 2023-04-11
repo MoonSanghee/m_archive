@@ -43,3 +43,5 @@ export {ReactComponent as CommentIcon} from "./comment-icon.svg";
 // 페이지네이션 아이콘
 export {ReactComponent as First} from "./First.svg";
 export {ReactComponent as Last} from "./Last.svg";
+//자물쇠 아이콘
+export {ReactComponent as LockIcon} from "./lock.svg";

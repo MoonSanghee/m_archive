@@ -5,6 +5,11 @@ import { getTokens } from '../../utils/';
 export const getMovieReviews = (id) => {
   return apiClient.get(`/reviews/movie/${id}`);
 };
+
+export const getUserReviews = (userId) => {
+  return apiClient.get(`/reviews/users/${userId}`);
+};
+
 export const getMovieMyReview = (id) => {
   return apiClient.get(`/reviews/movie/${id}/me`);
 };

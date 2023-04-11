@@ -48,3 +48,8 @@ export const getLikes = () =>{
 export const countMovies = () => {
   return apiClient.get(`movies/count`);
 }
+
+//MEMO : 다른사람이 좋아요한 영홥 불러오기 -CMS,SERVICE
+export const getUserLikes = (id) =>{
+  return apiClient.get(`/movies/users/${id}/likes`);
+}
