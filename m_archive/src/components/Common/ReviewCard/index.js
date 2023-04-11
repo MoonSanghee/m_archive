@@ -10,12 +10,13 @@ import cx from 'classnames';
 import StarRate from '../StarRate';
 import dayjs from 'dayjs';
 import ProfileIcon from '../ProfileIcon';
-
+import { useNavigate } from 'react-router-dom';
 const diff = (date) => {
   const now = dayjs();
   return `${now.diff(date, 'day')}일 전`;
 };
 const ReviewCard = ({ item, onClick, ...props }) => {
+  const navigate = useNavigate();
   const [blind, setBlind] = useState(false);
 
   const onClickBlind = () => {
@@ -27,6 +28,9 @@ const ReviewCard = ({ item, onClick, ...props }) => {
     if (!!result) return item['user'][attr];
     else return false;
   };
+  const onClickNavigate = ()=>{
+    navigate(`/movies/user/${item?.user?.id}`);
+  }
 
   return (
     <section className={styles.wrapper}>
@@ -34,7 +38,7 @@ const ReviewCard = ({ item, onClick, ...props }) => {
       <div className={cx(styles.cardWrapper)}>
         <div className={styles.infoWrapper}>
           <span className={styles.profileIcon}>
-            <ProfileIcon user={item?.user}/>
+            <ProfileIcon user={item?.user} onClick={onClickNavigate}/>
           </span>
           <div className={styles.rateNicknameWrapper}>
             <div className={styles.scoreWrapper}>
