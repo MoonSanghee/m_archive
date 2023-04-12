@@ -20,7 +20,7 @@ const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [movie, setMovie] = useState({});
 
-  const [modalOption, showModal] = useModal();
+  const [modalOption, showModal,onClose] = useModal();
 
   const onGetReviews = async (id) => {
     const response = await getMovieReviews(id);
@@ -42,17 +42,13 @@ const Reviews = () => {
         true,
         '',
         null,
-        () => onGetReviews(params.id),
+        onGetReviews(params.id),
         <ReviewDetailModal
           thisReview={review}
           movieId={params.id}
           onClose={() => {
             //NOTE: 생성/수정/삭제와 같이 데이터를 변경하는 API를 사용한다면 -> API 요청 완료 후에 재요청을 해야한다~
-            modalOption.onClose();
-            if (!params.id) {
-              return;
-            }
-            //onGetMovie(params.id);
+            onClose();
           }}
         />,
       );
