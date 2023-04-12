@@ -1,8 +1,8 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback } from 'react';
 
 const OPTION = {
   show: false,
-  title: "",
+  title: '',
   onSubmit: () => {},
   onClose: () => {},
   element: null,
@@ -29,10 +29,14 @@ const useModal = () => {
         element,
       }));
     },
-    [modalOption]
+    [modalOption],
   );
-
-  return [modalOption, showModal];
+  //NOTE: onClose와 같은 함수는 state에 잘 넣지 않습니다.
+  const onClose = (callback) => {
+    if (callback) callback();
+    setModalOption((prev) => ({ ...prev, show: false }));
+  };
+  return [modalOption, showModal, onClose];
 };
 
 export default useModal;

@@ -9,7 +9,7 @@ import {
 } from '../../../components';
 import Movies from '../../../components/Common/TableElements/movies';
 import styles from './manage.module.scss';
-import movieStyle from "../../../components/Common/TableElements/tableElements.module.scss"
+import movieStyle from '../../../components/Common/TableElements/tableElements.module.scss';
 import { getMovies } from '../../../api/Movies';
 import { countMovies } from '../../../api/Movies';
 import Pagination from '../../../components/Common/PageNation';
@@ -29,21 +29,24 @@ const ManageMoviesPage = () => {
   const [isChecked, setIsChecked] = useState(false);
 
   const onClick = () => {
-    setIsChecked(!isChecked)
-  }
+    setIsChecked(!isChecked);
+  };
 
-  const handleSubmit = async (event) => {
-    const response = await getMovies(1, 10, event.target.value)
+  //NOTE: 기능에 맞는 네이밍
+  //NOTE: 타이핑을 "할 때마다" fetch를 하는 상태
+  //NOTE: throttle을 사용 (lodash -> lodash-es)
+  const onChangeSearch = async (event) => {
+    const response = await getMovies(1, 10, event.target.value);
     if (response.status === 200) {
       const items = [...response.data.data];
       setMovies(items);
       setTotalPages(Math.ceil(items.length / pageLimit));
-      setCurrentPage(1)
+      setCurrentPage(1);
     }
-    if (event.target.value === "") {
+    if (event.target.value === '') {
       // 검색어가 비어있는 경우
       setTotalPages(response.length / pageLimit);
-      setCurrentPage(1)
+      setCurrentPage(1);
       return;
     }
   };
@@ -91,9 +94,7 @@ const ManageMoviesPage = () => {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
-    setIsChecked(false);
   };
-
 
   const fetchData = async () => {
     const response = await getMovies(currentPage, pageLimit);
@@ -101,6 +102,11 @@ const ManageMoviesPage = () => {
 
     if (response.status === 200) {
       const items = [...response.data.data];
+
+      //NOTE: 전체 선택을 해제하는 함수 호출을 fetch 이후에 다른 state 동시에 처리를 해주면 된다.
+      setIsChecked(false);
+      setSelectedMovies([]);
+
       setTotalPages(Math.ceil(count.data.count / pageLimit));
       setMovies(items);
     }
@@ -133,7 +139,8 @@ const ManageMoviesPage = () => {
             <SearchBox
               className={styles.searchBox}
               placeholder="제목, 배우, 감독"
-              onChange={handleSubmit}
+              onChange={onChangeSearch}
+              // onSubmit={onChangeSearch}
             />
           </span>
         </p>
@@ -144,7 +151,7 @@ const ManageMoviesPage = () => {
           <div>
             <table className={movieStyle.movies}>
               {movies.map((movie, idx) => {
-                const createdAt = movie.createdAt
+                const createdAt = movie.createdAt;
                 return (
                   <tb key={idx} className={movieStyle.elements}>
                     <CheckBox
@@ -162,8 +169,8 @@ const ManageMoviesPage = () => {
                     <span></span>
                     <span className={movieStyle.block}>
                       {movie.staffs.map((staff) => {
-                        if (staff.role === "감독") {
-                          return <span key={staff.id}>{staff.name}</span>
+                        if (staff.role === '감독') {
+                          return <span key={staff.id}>{staff.name}</span>;
                         }
                       })}
                     </span>

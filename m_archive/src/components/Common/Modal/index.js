@@ -1,7 +1,7 @@
-import React from "react";
-import cx from "classnames";
-import styles from "./modal.module.scss";
-import { CloseIcon } from "../../../assets/icon";
+import React from 'react';
+import cx from 'classnames';
+import styles from './modal.module.scss';
+import { CloseIcon } from '../../../assets/icon';
 //TODO: 재사용 가능한 모달 컴포넌트 만들기
 /**
  * 모달을 사용할 페이지에 밑에 옵션을 항상 넣어주쇼
@@ -16,9 +16,9 @@ import { CloseIcon } from "../../../assets/icon";
     const [modalOption, setModalOption] = useState(OPTION)
  */
 
-const Modal = ({ modalOption, modalSize,className }) => {
+const Modal = ({ modalOption, modalSize, className }) => {
   return (
-    <main >
+    <main>
       {modalOption?.show && (
         <section className={cx(styles.wrapper)}>
           <div
@@ -26,7 +26,9 @@ const Modal = ({ modalOption, modalSize,className }) => {
             onClick={() => modalOption.onClose()}
           />
 
-          <div className={cx(styles.modalWrapper, styles[modalSize],className)}>
+          <div
+            className={cx(styles.modalWrapper, styles[modalSize], className)}
+          >
             <div className={styles.closeButtonWrapper}>
               <CloseIcon onClick={() => modalOption.onClose()} />
             </div>
