@@ -27,7 +27,7 @@ const Header = () => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    //event.preventDefault();
     handleClick();
   };
 
