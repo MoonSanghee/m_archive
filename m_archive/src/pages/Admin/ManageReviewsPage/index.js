@@ -99,20 +99,18 @@ const ManageReviewsPage = () => {
   };
 
   const onClickOpenModal = useCallback(
-    (item, type) => {
+    (id, type) => {
+      const item= reviews?.filter((item)=>item.id === id)[0]
       showModal(
         true,
         '',
         null,
-        onGetReviews,
+        null,
         <EditModal
           item={item}
           type={type}
           onClose={() => {
-            // modalOption.onClose();
-            //NOTE: 생성/수정/삭제와 같이 데이터를 변경하는 API를 사용한다면 -> API 요청 완료 후에 재요청을 해야한다~
             onClose(onGetReviews);
-            //onGetReviews();
           }}
         />,
       );
@@ -163,6 +161,14 @@ const ManageReviewsPage = () => {
             <Button width={'long'} color={'secondary'} onClick={onDeleteReview}>
               선택 삭제
             </Button>
+            <Button
+            className={styles.editBtn}
+            width={'long'}
+            color={'secondary'}
+            onClick={() => {
+              if(selectedReviews.length ===1 ) onClickOpenModal(selectedReviews[0], 'review');}
+            }
+            >수정</Button>
             <SearchBox
               className={styles.SearchBox}
               placeholder="영화제목, 작성자"
@@ -191,16 +197,6 @@ const ManageReviewsPage = () => {
                     <span>
                       {dayjs(createdAt).format('YYYY-MM-DD HH:mm:ss')}
                     </span>
-                    {selectedReviews.includes(review?.id) && (
-                      <Button
-                        className={styles.editBtn}
-                        children="수정"
-                        width={'short'}
-                        color={'secondary'}
-                        onClick={() => onClickOpenModal(review, 'review')}
-                        // onClick={onEditReviews(review)}
-                      ></Button>
-                    )}
                   </td>
                 );
               })}

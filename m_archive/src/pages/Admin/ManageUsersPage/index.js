@@ -28,7 +28,7 @@ const ManageUsersPage = () => {
   const [pageLimit, setPageLimit] = useState(10);
   const [totalPages, setTotalPages] = useState(1);
 
-  const [modalOption, showModal] = useModal();
+  const [modalOption, showModal,onClose] = useModal();
 
   const [isChecked, setIsChecked] = useState(false);
 
@@ -101,19 +101,18 @@ const ManageUsersPage = () => {
   };
 
   const onClickOpenModal = useCallback(
-    (item, type) => {
+    (id, type) => {
+      const item=users?.filter((item)=>item.id === id)[0];
       showModal(
         true,
         '',
         null,
-        onGetUsers,
+        null,
         <EditModal
           item={item}
           type={type}
           onClose={() => {
-            //NOTE: 생성/수정/삭제와 같이 데이터를 변경하는 API를 사용한다면 -> API 요청 완료 후에 재요청을 해야한다~
-            modalOption.onClose();
-            //onGetReviews();
+            onClose(onGetUsers);
           }}
         />,
       );
@@ -162,6 +161,14 @@ const ManageUsersPage = () => {
             <Button width={'long'} color={'secondary'} onClick={onDeleteUser}>
               선택 삭제
             </Button>
+            <Button
+            className={styles.editBtn}
+            width={'long'}
+            color={'secondary'}
+            onClick={() => {
+              if(selectedUsers.length ===1 ) onClickOpenModal(selectedUsers[0], 'user');}
+            }
+            >수정</Button>
             <SearchBox
               className={styles.searchBox}
               placeholder="이름, 닉네임, 이메일"
@@ -189,16 +196,6 @@ const ManageUsersPage = () => {
                       {user.name ?? '-'} ({user.nickname ?? '-'})
                     </span>
                     <span>{dayjs(time).format('YYYY-MM-DD HH:mm:ss')}</span>
-                    {selectedUsers.includes(user?.id) && (
-                      // NOTE: 수정 버튼은 오른쪽 끝에 위치하거나, 삭제 버튼 옆에 두면 좋다.
-                      <Button
-                        className={styles.editBtn}
-                        children="수정"
-                        width={'short'}
-                        color={'secondary'}
-                        onClick={() => onClickOpenModal(user, 'user')}
-                      ></Button>
-                    )}
                   </td>
                 );
               })}

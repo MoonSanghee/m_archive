@@ -35,7 +35,7 @@ const Profile = () => {
   const [me,setMe] = useRecoilState(meState);
   const [pick, setPick] = useState(genre);
   const [select, setSelect] = useState([]);
-  const [modalOption, showModal] = useModal();
+  const [modalOption, showModal,onClose] = useModal();
   const [form, setForm] = useState({
     nickname: '',
     description: '',
@@ -117,7 +117,7 @@ const Profile = () => {
       null,
       <IconModal
         getProfileImage={getProfileImage}
-        onClose={() => modalOption.onClose()}
+        onClose={onClose}
       />,
     );
   }, [modalOption, getProfileImage]);

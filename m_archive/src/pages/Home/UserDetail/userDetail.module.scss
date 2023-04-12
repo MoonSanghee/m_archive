@@ -104,9 +104,11 @@
             column-gap: 8px;
             row-gap: 16px;
             .movie{
+                border-radius: 4px;
                 width: 124px;
                 height: 152px;
-                pointer-events: none;
+                cursor: pointer;
+                //pointer-events: none;
             }
         }
         .reviewsWrapper{
@@ -118,6 +120,7 @@
                 width: 100%;
                 padding: 8px 12px;
                 border-bottom: 1px solid c.$C_WHITE;
+                cursor: pointer;
                 > img{
                     border-radius: 4px;
                     width: 102px;

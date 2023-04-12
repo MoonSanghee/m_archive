@@ -8,6 +8,7 @@ import { Tag, Card, ReviewCard, StarRate } from '../../../components/Common';
 import { CommentLikeIcon, LockIcon, CommentIcon } from '../../../assets/icon';
 import { getUserLikes } from '../../../api/Movies';
 import { getUserReviews } from '../../../api/Reviews';
+import { useNavigate } from 'react-router-dom';
 
 import dayjs from 'dayjs';
 
@@ -18,6 +19,7 @@ const diff = (date) => {
 
 const UserDetail = () => {
   const params = useParams();
+  const navigate = useNavigate();
   const [user, setUser] = useState({});
   const [likes, setLikes] = useState([]);
   const [reviews, setReviews] = useState([]);
@@ -41,11 +43,16 @@ const UserDetail = () => {
     }
   };
   const onNavigateDetail = (id) => {
-    return () => {
-      //MEMO: navigate를 할 때는 /가 있어야 함
+    return()=>{
       navigate(`/movies/detail/${id}`);
-    };
+    }
+      //MEMO: navigate를 할 때는 /가 있어야 함
   };
+  const onNavigateReviews = (id)=>{
+    return()=>{
+      navigate(`/movies/detail/${id}/reviews`);
+    }
+  }
 
   useMount(() => {
     onGetUser();
@@ -91,11 +98,13 @@ const UserDetail = () => {
           {user?.isLikeView ? (
             <div className={styles.likesWrapper}>
               {likes?.map((item) => (
-                <Card
+                <img
                   key={item.id}
                   item={item}
                   onClick={onNavigateDetail(item.id)}
                   className={styles.movie}
+                  src={item?.postImage}
+                  alt={item?.title}
                   // NOTE: callback은 좋아요 삭제 혹은 생성 시에 실행되는 함수
                   //callback={onGetMovies}
                 />
@@ -108,13 +117,13 @@ const UserDetail = () => {
           )}
         </article>
       </section>
-      <section className={styles.sectionWrapper}>
+      <section className={styles.sectionWrapper} >
         <h1>{`${user?.nickname || user?.name} 님이 남긴 리뷰`}</h1>
         <article>
           {user?.isReviewView ? (
             <div className={styles.reviewsWrapper}>
               {reviews?.map((item) => (
-                <div className={styles.reviewInfo} key={item.id}>
+                <div className={styles.reviewInfo} key={item.id} onClick ={onNavigateReviews(item?.movie?.id)}>
                   <img src={item?.movie?.postImage} alt={item?.movie?.title} />
                   <div className={styles.review}>
                     <div className={styles.header}>

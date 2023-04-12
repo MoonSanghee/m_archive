@@ -27,7 +27,7 @@ const MovieDetailPage = () => {
   //해당 영화-나의 리뷰
   const [myReview, setMyReview] = useState({});
   //모달
-  const [modalOption, showModal] = useModal();
+  const [modalOption, showModal,onClose] = useModal();
 
   // NOTE: curring이 필요없는 함수
   const onClick = () => {
@@ -102,12 +102,14 @@ const MovieDetailPage = () => {
         myReview={myReview}
         onClose={() => {
           //NOTE: 생성/수정/삭제와 같이 데이터를 변경하는 API를 사용한다면 -> API 요청 완료 후에 재요청을 해야한다~
-          modalOption.onClose();
-          if (!params.id) {
-            return;
-          }
-          onGetMovie(params.id);
-          onGetReviews(params.id);
+          onClose(()=>{
+            if (!params.id) {
+              return;
+            }
+            onGetMovie(params.id);
+            onGetReviews(params.id);
+          })
+         
         }}
       />,
     );
