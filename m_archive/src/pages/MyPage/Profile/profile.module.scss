@@ -96,9 +96,17 @@
             color: c.$C_WHITE;
           }
           > input{
-            border-radius: 8px;
+            width: 440px;
+            border-radius: 4px;
             color: c.$C_BLACK;
             font-family: 'Courier New', Courier, monospace;
+            background-color:c.$C_WHITE ;
+          }
+        }
+        .input:nth-of-type(2){
+          pointer-events: none;
+          > input{
+            background-color:c.$C_DARKGRAY ;
           }
         }
       }

@@ -4,9 +4,12 @@ import styles from './lnb.module.scss';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import myPageExamples from './myPageExamples';
+import { useLocation } from 'react-router-dom';
+
 
 const ServiceLNB = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const onClick = (item) => {
     return () => {
@@ -22,7 +25,7 @@ const ServiceLNB = () => {
           {myPageExamples.map((item) => {
             return (
               <li
-                className={styles.example}
+                className={cx(styles.example,{[styles.current]:location.pathname === item.path})}
                 onClick={onClick(item)}
                 key={item.id}
               >

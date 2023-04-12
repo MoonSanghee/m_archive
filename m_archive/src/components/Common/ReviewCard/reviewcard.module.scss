@@ -80,6 +80,9 @@
       padding:8px;
      height: 53%;
      color:c.$C_CARD_BG;
+     > p{
+      overflow: hidden; 
+     }
     }
     .detailsWrapper{
       @include m.flex(space-between);

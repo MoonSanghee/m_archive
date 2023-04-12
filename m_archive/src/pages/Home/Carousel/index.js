@@ -62,13 +62,6 @@ const Carousel = ({ movies, type }) => {
                     transition: '0.5s ease',
                   }}
                 >
-                {type === 'top10' && (
-                  <p 
-                  className={cx(styles.rankingWrapper, 
-                  { [styles.first]: idx === 0 })}>
-                    {idx + 1}
-                  </p>
-                )}
               <Card
                 id={`Card-${movie.id}`}
                 item={movie}

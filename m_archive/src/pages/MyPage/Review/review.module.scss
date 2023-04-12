@@ -69,12 +69,12 @@
   flex-direction: row;
   color: white;
   width: 1300px;
-  height: 38vh;
+  height: 37vh;
   overflow: scroll;
   flex-wrap: wrap;
 }
 .commentCards {
-  
+  overflow: hidden;
   width: 630px;
   margin: 10px;
   padding: 8px 4px;
@@ -91,8 +91,10 @@
 }
 
 .contents {
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+  // /row-gap: 12px;
   flex-grow: 2;
   > div {
     margin-left: 8px;
@@ -136,16 +138,26 @@
   }
 
   .review {
+    height: 80px;
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
+    column-gap: 12px;
     margin-top: 4px;
     span {
       font-size: 12px;
+       width: 10%;
+    }
+    overflow: hidden;
+    > p{
+      height: 56px;
+      width: 90%;
+      overflow: hidden;
     }
   }
 
   .commentbox {
-    margin-top: 28px;
+    //margin-top: 28px;
     height: 40px;
     background: c.$C_GRAY;
     color: c.$C_BLACK;
