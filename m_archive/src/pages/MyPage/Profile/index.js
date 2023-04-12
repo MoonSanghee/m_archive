@@ -211,6 +211,7 @@ const Profile = () => {
               className={styles.input}
               //autoComplete="off"
               label="이메일"
+              //disabled={true}
             />
             <Input
               name="password"

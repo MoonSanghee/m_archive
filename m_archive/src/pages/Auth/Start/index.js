@@ -38,8 +38,15 @@ const Start = () => {
   return (
     <main className={styles.wrapper}>
       <div className={styles.backGround}>
-        <img src={video}/>
+      <img src={video}/>
+        {/*
+          <video>
+          <source/>
+      </video>
+        */}
+    
       </div>
+
       <section className={styles.sectionWrapper}>
         <h1 className={styles.header}>M - archive</h1>
         <div className={styles.section}>

@@ -1,5 +1,15 @@
 @use '../../../styles/constants/colors' as c;
 
+@keyframes fadeout {
+  /* 효과를 동작시간 동안 0 ~ 1까지 */
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+}
+
 .cardWrapper {
   width: 252px;
   height: 360px;
@@ -7,10 +17,33 @@
   color: c.$C_WHITE;
   border-radius: 5px;
   overflow: hidden;
-
-  // 호버 시 뒤집기
+  .rankingWrapper {
+      position: absolute;
+      z-index: 10;
+      top: 176px;
+      left: -70px;
+      font-size: 212px;
+      color: c.$C_WHITE_50;
+      pointer-events: none;
+      opacity: 1;
+    
+    }
+  .first{
+      top: 180px;
+      left: -70px;
+      font-size: 260px;
+      opacity: 1;
+  }
+  
+    // 호버 시 뒤집기
   &:hover .card_inner {
     transform: rotateY(180deg);
+  }
+  &:hover:not(.card_inner){
+    .rankingWrapper,.first{
+      animation: fadeout 1s;
+      opacity: 0;
+    }
   }
   &.top10First {
     width: 300px;

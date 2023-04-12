@@ -52,6 +52,13 @@ const Card = ({ item, onClick, type, idx, callback ,className}) => {
         [styles.top10First]: type === 'top10' && idx === 0,
       },className)}
     >
+            {type === 'top10' && (
+                  <p 
+                  className={cx(styles.rankingWrapper, 
+                  { [styles.first]: idx === 0 })}>
+                    {idx + 1}
+                  </p>
+                  )}
       <div className={styles.card_inner}>
         <div className={styles.card_front}>
           <img src={item?.postImage} alt={item?.title} />

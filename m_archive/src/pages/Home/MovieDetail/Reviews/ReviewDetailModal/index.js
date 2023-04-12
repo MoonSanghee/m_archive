@@ -37,7 +37,6 @@ const ReviewDetailModal = ({ thisReview,movieId }) => {
   const [comment, setComment] = useState('');
   const [review, setReview] = useState({});
   const [isLiked, setIsLiked] = useState(false);
-
 const isExists = (attr, item) => {
     const result = item?.['user']?.[attr];
     if (!!result) return item['user'][attr];
@@ -109,7 +108,7 @@ const isMyComment = (item) => {
 
   return (
     <section className={styles.wrapper}>
-      <div className={styles.reviewWrapper}>
+      <div className={cx(styles.reviewWrapper)}>
         <div className={styles.infoWrapper}>
           <span className={styles.profileIcon}>
             <ProfileIcon user={review?.user}/>
@@ -168,7 +167,7 @@ const isMyComment = (item) => {
             review.comments?.map((item) => {
               return (
                 <li key={`${item.id}`} className={styles.li}>
-                  <ProfileIcon user={item.user}/>
+                  <ProfileIcon user={item.user} className={styles.profileIcon}/>
                   <div>
                     <span>
                       {isExists('nickname',item) || isExists('name',item) }
@@ -195,8 +194,10 @@ const isMyComment = (item) => {
               );
             })}
         </ul>
-        <li className={cx(styles.li, styles.me)}>
-          <ProfileIcon user={me}/>
+  
+      </div>
+      <li className={cx(styles.li, styles.me)}>
+          <ProfileIcon user={me} className={styles.profileIcon}/>
           <div>
             <span>{me?.nickname || me?.name}</span>
             <span className={styles.comment}>
@@ -223,7 +224,6 @@ const isMyComment = (item) => {
             </Button>
           </p>
         </li>
-      </div>
     </section>
   );
 };

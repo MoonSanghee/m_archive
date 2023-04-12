@@ -12,6 +12,7 @@ import { getMovie } from '../../../../api/Movies';
 import ReviewDetailModal from './ReviewDetailModal';
 import { useRef } from 'react';
 import { useLocation } from 'react-router-dom';
+import cx from "classnames";
 
 const Reviews = () => {
   const ref = useRef();
@@ -21,7 +22,7 @@ const Reviews = () => {
   const [movie, setMovie] = useState({});
 
   const [modalOption, showModal,onClose] = useModal();
-
+  //const [isOpen,setIsOpen] = useState(false);
   const onGetReviews = async (id) => {
     const response = await getMovieReviews(id);
     if (response.status === 200) {
@@ -42,13 +43,14 @@ const Reviews = () => {
         true,
         '',
         null,
-        onGetReviews(params.id),
+        ()=>onGetReviews(params.id),
         <ReviewDetailModal
           thisReview={review}
           movieId={params.id}
           onClose={() => {
             //NOTE: 생성/수정/삭제와 같이 데이터를 변경하는 API를 사용한다면 -> API 요청 완료 후에 재요청을 해야한다~
             onClose();
+            //setIsOpen(false);
           }}
         />,
       );
@@ -71,14 +73,16 @@ const Reviews = () => {
     onGetReviews(params.id);
   });
   return (
-    <main ref={ref} className={styles.wrapper}>
+    <main ref={ref} className={cx(styles.wrapper)}>
       <h1>{movie?.title} </h1>
-      <section className={styles.reviewsWrapper}>
+      <section className={cx(styles.reviewsWrapper)}>
         {reviews.map((review) => {
           return (
             <ReviewCard
               onClick={() => {
+                //setIsOpen(true);
                 onClickOpenModal({ review });
+                
               }}
               key={review.id}
               item={review}

@@ -38,7 +38,7 @@
     transform: scale(0);
     transform-origin: top right;
     transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
-
+    border-radius: 12px;
     &.isOpen {
       visibility: visible;
       transform: scale(1);
@@ -50,8 +50,8 @@
       padding: 12px;
       cursor: pointer;
       background-color: c.$C_PRIMARY;
-      border-left: 1px solid c.$C_WHITE;
-      border-right: 1px solid c.$C_WHITE;
+      //border-left: 1px solid c.$C_WHITE;
+      //border-right: 1px solid c.$C_WHITE;
       border-bottom: 1px solid c.$C_WHITE;
       color: c.$C_WHITE;
       &:hover {
@@ -61,6 +61,14 @@
           fill: c.$C_PRIMARY;
         }
       }
+      &:first-of-type{
+        border-radius: 4px 4px 0 0;
+        border-top: 1px solid c.$C_WHITE;
+      }
+      &:last-of-type{
+        border-radius: 0 0 4px 4px;
+      }
+
     }
   }
 }
