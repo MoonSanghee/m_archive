@@ -84,7 +84,10 @@ const Home = () => {
     result = result.filter(item => {
       return !reviewedMovies.some(other => other.id === item.id)
     })
-    setMArchiveMovies(result);   
+    result.sort(function (a, b) {
+        return b.averageScore - a.averageScore;
+    });
+    setMArchiveMovies(result);  
   }
 
   const onGetTop10Movies = async () => {
