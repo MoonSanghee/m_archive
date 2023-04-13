@@ -104,18 +104,20 @@ const ManageReviewsPage = () => {
   };
 
   const onClickOpenModal = useCallback(
-    (id, type) => {
-      const item= reviews?.filter((item)=>item.id === id)[0]
+    (item, type) => {
+      // const item= reviews?.filter((item)=>item.id === id)[0]
       showModal(
         true,
         '',
         null,
-        null,
+        // null,
+        onGetReviews,
         <EditModal
           item={item}
           type={type}
           onClose={() => {
-            onClose(onGetReviews);
+            // onClose(onGetReviews);
+            modalOption.onClose();
           }}
         />,
       );
@@ -165,16 +167,16 @@ const ManageReviewsPage = () => {
           </span>
           <span className={styles.menuRight}>
             <Button width={'long'} color={'secondary'} onClick={onDeleteReview}>
-              선택 삭제
+              삭제
             </Button>
-            <Button
+            {/* <Button
             className={styles.editBtn}
             width={'long'}
             color={'secondary'}
             onClick={() => {
               if(selectedReviews.length ===1 ) onClickOpenModal(selectedReviews[0], 'review');}
             }
-            >수정</Button>
+            >수정</Button> */}
             <SearchBox
               className={styles.SearchBox}
               placeholder="영화제목, 작성자"
@@ -203,6 +205,14 @@ const ManageReviewsPage = () => {
                     <span>
                       {dayjs(createdAt).format('YYYY-MM-DD HH:mm:ss')}
                     </span>
+                    <Button 
+                      className={styles.ediBtn}
+                      children="수정"
+                      width={"short"}
+                      color={"secondary"}
+                      onClick={()=>onClickOpenModal(review,"review")}
+                    >                  
+                    </Button>
                   </td>
                 );
               })}
