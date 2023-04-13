@@ -15,6 +15,7 @@
         row-gap: 8px;
         .header{
             @include m.flex(flex-end,center,row);
+            width: 100%;
         }
         .topMenu {
             background-color: c.$C_CARD_MENU;
