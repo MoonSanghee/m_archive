@@ -21,15 +21,14 @@ const ManageMoviesPage = () => {
   const navigate = useNavigate();
   const [selectedMovies, setSelectedMovies] = useState([]);
   const [movies, setMovies] = useState([]);
-  const isAllChecked = selectedMovies.length === movies.length;
-
   const [currentPage, setCurrentPage] = useState(1);
   const [pageLimit, setPageLimit] = useState(10);
   const [totalPages, setTotalPages] = useState(1);
-
-  const [keyword, setKeyword] = useState();
-
   const [isChecked, setIsChecked] = useState(false);
+  const [isReversed, setIsReversed] = useState('asc');
+  const [isOrderBy, setIsOrderBy] = useState('NAME');
+  
+  const isAllChecked = selectedMovies.length === movies.length;
 
   const onClick = () => {
     setIsChecked(!isChecked);
@@ -58,7 +57,7 @@ const ManageMoviesPage = () => {
   };
 
   const onGetMovies = async () => {
-    const response = await getMovies(1, 10);
+    const response = await getMovies(1, 10, '', isOrderBy, isReversed);
     if (response.status === 200) {
       const items = [...response.data.data];
       setMovies(items);
@@ -103,7 +102,7 @@ const ManageMoviesPage = () => {
   };
 
   const fetchData = async () => {
-    const response = await getMovies(currentPage, pageLimit);
+    const response = await getMovies(currentPage, pageLimit, '', isOrderBy, isReversed);
     const count = await countMovies();
 
     if (response.status === 200) {
@@ -117,6 +116,22 @@ const ManageMoviesPage = () => {
       setMovies(items);
     }
   };
+
+
+  
+  const orderBy = async (item) => {
+    setIsOrderBy(item.id);
+    setIsReversed((prev) => (prev === 'asc' ? 'desc' : 'asc'));
+  };
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await getMovies(1, pageLimit, '', isOrderBy, isReversed);
+      setMovies(response.data.data);
+      setCurrentPage(1);
+    }
+    fetchData();
+  }, [isOrderBy, isReversed]);
 
   useEffect(() => {
     fetchData();
@@ -156,7 +171,10 @@ const ManageMoviesPage = () => {
           </span>
         </p>
         <p className={styles.secondMenu}>
-          <TableMenu tableName="movieInfo" />
+          <TableMenu 
+          info={movies} 
+          tableName="movieInfo" 
+          onClick={orderBy}/>
         </p>
         <p className={styles.table}>
           <div>

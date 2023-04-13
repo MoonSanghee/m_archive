@@ -132,7 +132,6 @@ const [modalOption, showModal] = useModal();
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
-    setIsChecked(false);
   };
 
   const fetchData = async () => {
@@ -140,6 +139,8 @@ const [modalOption, showModal] = useModal();
     const count = await countUsers();
     if (response.status === 200) {
       const items = [...response.data.data];
+      setIsChecked(false);
+      setSelectedUsers([]);
       setTotalPages(Math.ceil(count.data.count / pageLimit));
       setUsers(items);
     }

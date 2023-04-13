@@ -1,12 +1,14 @@
 import apiClient from '../apiClient';
 
 //MEMO: 영화 여러개(리스트) page - ? , limit - 한번에 받아오는 영화개수(추측)
-export const getMovies = (page, limit, title) => {
+export const getMovies = (page, limit, title, orderBy, sortBy) => {
   return apiClient.get(`/movies`, {
     params: {
       page,
       limit,
       title,
+      orderBy,
+      sortBy
     },
   });
 };
