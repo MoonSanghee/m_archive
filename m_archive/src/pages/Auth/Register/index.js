@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styles from './register.module.scss';
 import { Button, Input } from '../../../components';
 import { useNavigate } from 'react-router-dom';
 import { saveTokens } from '../../../utils/';
 import { register } from '../../../api/Auth';
+import bg from '../Start/cloud.mp4';
+
 import {
   validateName,
   validateNickname,
@@ -13,6 +15,11 @@ import {
 } from './utils';
 
 const Register = () => {
+  const videoRef = useRef();
+  const setPlayBackRate = () => {
+    videoRef.current.playbackRate = 0.5;
+  };
+
   //기능
   const [form, setForm] = useState({
     name: '',
@@ -102,6 +109,16 @@ const Register = () => {
 
   return (
     <main className={styles.wrapper}>
+      <video
+        muted
+        autoPlay
+        loop
+        ref={videoRef}
+        onCanPlay={() => setPlayBackRate()}
+      >
+        <source src={bg} />
+        {/* <strong>Your browser does not support the video tag.</strong> */}
+      </video>
       <section>
         <div className={styles.overlayContainer}>
           <h1>

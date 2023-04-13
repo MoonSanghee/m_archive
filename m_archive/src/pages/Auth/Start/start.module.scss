@@ -1,56 +1,47 @@
-@use "../../../styles/constants/colors" as c;
-@use "../../../styles/mixins/" as m;
+@use '../../../styles/constants/colors' as c;
+@use '../../../styles/mixins/' as m;
 
 .wrapper {
-    overflow: hidden;
-    width: 100%;
-    height: 100vh;
-    background-color: c.$C_BLACK;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    .backGround{
-        background-color: c.$C_BLACK;
-        margin: 0px auto;
-        width: 100%;
-        height: 100%;
-        img{
-            width: 100%;
-            height: 100%;
-            image-rendering:-webkit-optimize-contrast;
-            transform:translateZ(0);
-            backface-visibility:hidden; 
-        }
-    }
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  background-color: c.$C_BLACK;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 
-    .sectionWrapper{
-        @include  m.flex(center,center,column);
-        position: absolute;
-        //top:-100;
-        width: 100%;
-        height: 100%;
-        row-gap: 40px;
-        > .header {
-            font-size: 80px;
-            padding: 40px 0 0 0 ;
-            color: c.$C_PRIMARY;
-            margin-bottom: 16px;
-        }
-        > .section {
-            @include  m.flex(center,center,column);
-            padding: 12px 0 0 0;
-            font-size: 40px;
-            color: c.$C_WHITE;
-            border-radius: 20px;
-            width: 50%;
-            height: 50%;
-            background-color: c.$C_BLACK_MODAL;
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-            opacity: 0.5;
-        }
+  video {
+    // object-fit: cover;
+    width: 100%;
+  }
+
+  .sectionWrapper {
+    @include m.flex(center, center, column);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    row-gap: 40px;
+    > .header {
+      font-size: 80px;
+      padding: 40px 0 0 0;
+      color: c.$C_PRIMARY;
+      margin-bottom: 16px;
+      text-shadow: rgba(0, 0, 0, 0.4) 2px 2px 6px;
     }
-    
+    > .section {
+      @include m.flex(center, center, column);
+      padding: 12px 0 0 0;
+      font-size: 40px;
+      color: c.$C_WHITE;
+      border-radius: 20px;
+      width: 50%;
+      height: 50%;
+      background-color: c.$C_BLACK_MODAL;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      opacity: 0.5;
+    }
+  }
 }

@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
-import styles from "./start.module.scss";
-import { Button } from "../../../components/Common";
-import { useNavigate } from "react-router-dom";
-import video from "./sky.gif";
-
+import React, { useEffect, useRef, useState } from 'react';
+import styles from './start.module.scss';
+import { Button } from '../../../components/Common';
+import { useNavigate } from 'react-router-dom';
+import bg from './cloud.mp4';
 const Start = () => {
-  const completedTitle = "어서와요 *^^*";
+  const completedTitle = '어서와요 *^^*';
 
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState('');
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -18,7 +17,7 @@ const Start = () => {
 
         if (count >= completedTitle.length) {
           setCount(0);
-          setTitle("");
+          setTitle('');
         }
         return result;
       });
@@ -29,23 +28,29 @@ const Start = () => {
     };
   });
 
+  const videoRef = useRef();
+  const setPlayBackRate = () => {
+    videoRef.current.playbackRate = 0.5;
+  };
+
   const navigate = useNavigate();
 
   const navigateToLogin = () => {
-    navigate("/login");
+    navigate('/login');
   };
 
   return (
     <main className={styles.wrapper}>
-      <div className={styles.backGround}>
-      <img src={video}/>
-        {/*
-          <video>
-          <source/>
+      <video
+        muted
+        autoPlay
+        loop
+        ref={videoRef}
+        onCanPlay={() => setPlayBackRate()}
+      >
+        <source src={bg} />
+        {/* <strong>Your browser does not support the video tag.</strong> */}
       </video>
-        */}
-    
-      </div>
 
       <section className={styles.sectionWrapper}>
         <h1 className={styles.header}>M - archive</h1>
@@ -54,10 +59,11 @@ const Start = () => {
           {title}
         </div>
         <Button
-          width={"big"}
-          type={"submit"}
+          width={'big'}
+          type={'submit'}
           form="loginForm"
           onClick={navigateToLogin}
+          className={styles.button}
         >
           시작하기
         </Button>

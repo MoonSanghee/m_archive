@@ -1,4 +1,4 @@
-@use "../../../styles/constants/" as c;
+@use '../../../styles/constants/' as c;
 
 .wrapper {
   width: 100%;
@@ -8,14 +8,18 @@
   align-items: center;
   justify-content: center;
   background: black; //임시
-
+  video {
+    position: fixed;
+    width: 100%;
+    // object-fit: cover;
+  }
   > section {
+    position: absolute;
     background: c.$C_WHITE;
     display: flex;
     flex-direction: row;
     align-items: start;
     justify-content: space-between;
-
     width: 1040px;
     height: 600px;
     border-radius: 16px;
@@ -31,7 +35,8 @@
       border-radius: 16px 0 0 16px;
       color: c.$C_WHITE;
       padding-top: 100px;
-      
+      z-index: 100;
+
       > h1 {
         font-size: 48px;
         line-height: 1.3;
@@ -68,7 +73,6 @@
         cursor: pointer;
       }
     }
-
   }
 }
 
@@ -84,6 +88,6 @@
     height: 20%;
   }
   .inputWrapper > input {
-    font-family: 'Arial',
+    font-family: 'Arial';
   }
 }

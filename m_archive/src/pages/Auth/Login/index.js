@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styles from './login.module.scss';
 import { Button, Input } from '../../../components';
 import { useNavigate } from 'react-router-dom';
 import { validateEmail, validatePassword } from './utils';
 import { getTokens, saveTokens } from '../../../utils';
 import { login } from '../../../api/Auth';
-import {useSetRecoilState, useRecoilValue} from "recoil";
+import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { meState } from '../../../recoil';
 import { getMe } from '../../../api/Users';
-import video from "../Start/sky.gif"
+import video from '../Start/sky.gif';
+import bg from '../Start/cloud.mp4';
+
 const Login = () => {
   const navigate = useNavigate();
   const setMe = useSetRecoilState(meState);
@@ -18,12 +20,12 @@ const Login = () => {
   });
   const [emailStatus, setEmailStatus] = useState('');
   const [passwordStatus, setPasswordStatus] = useState('');
-  const onGetMe = async()=>{
+  const onGetMe = async () => {
     const response = await getMe();
-    if(response.status===200){
+    if (response.status === 200) {
       setMe(response.data);
     }
-  }
+  };
   const onChange = (e) => {
     const { name, value } = e.currentTarget;
     setForm({ ...form, [name]: value });
@@ -56,14 +58,12 @@ const Login = () => {
     const validatedForm = !validatedEmail && !validatedPassword ? true : false;
 
     if (validatedForm) {
-
       const loginData = {
         email: form.userEmail,
         password: form.password,
       };
 
-      
-      try{
+      try {
         const response = await login(loginData);
         if (response.status === 200) {
           const data = response.data;
@@ -71,19 +71,31 @@ const Login = () => {
           navigate('/movies');
           onGetMe();
         }
-      }catch(err){
-        alert("로그인 실패");
+      } catch (err) {
+        alert('로그인 실패');
       }
     } else {
       console.log('invalid form');
     }
   };
 
+  const videoRef = useRef();
+  const setPlayBackRate = () => {
+    videoRef.current.playbackRate = 0.5; //속도조절
+  };
+
   return (
     <main className={styles.wrapper}>
-      <div className={styles.backGround}>
-        <img src={video}/>
-      </div>
+      <video
+        muted
+        autoPlay
+        loop
+        ref={videoRef}
+        onCanPlay={() => setPlayBackRate()}
+      >
+        <source src={bg} />
+        {/* <strong>Your browser does not support the video tag.</strong> */}
+      </video>
       <section>
         <div className={styles.formContainer}>
           <h1>M-archive</h1>
