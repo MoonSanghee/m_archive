@@ -2,7 +2,13 @@ import React from 'react';
 import styles from './home.module.scss';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { getMovies, getTop10Movies, getGenreMovies,getMArchiveMovies,getLikes } from '../../api/Movies';
+import {
+  getMovies,
+  getTop10Movies,
+  getGenreMovies,
+  getMArchiveMovies,
+  getLikes,
+} from '../../api/Movies';
 import { useState, useEffect, useCallback } from 'react';
 import Carousel from './Carousel';
 import { Card, Dropdown, Tag, ScrollTopButton } from '../../components/Common';
@@ -50,45 +56,45 @@ const Home = () => {
     }
   };
 
-  const onGetMArchiveMovies = async()=>{
+  const onGetMArchiveMovies = async () => {
     //TODO: 영화추천 서비스: 유저 선호하는 장르,(좋아요순으로 검색40개)
     //유저가 이미 좋아요하거나, 리뷰를 매긴(별점,리뷰)영화는 제외
     let result = [];
     let likedMovies = [];
     let reviewedMovies = [];
-   
+
     //1.유저가 좋아요한 영화 가져오기
     let response = await getLikes();
-    if(response.status ===200){
+    if (response.status === 200) {
       likedMovies = [...response.data];
     }
     //2.유저가 리뷰 쓴 영화 가져오기
     response = await getMyReviews();
-    if(response.status === 200){
-      reviewedMovies = [...response.data].map(item=>{
-        return item.movie
-      })
+    if (response.status === 200) {
+      reviewedMovies = [...response.data].map((item) => {
+        return item.movie;
+      });
     }
-     //3.선호장르로 영화검색 (좋아요영화+리뷰쓴영화 개수 * 2배로 검색)
+    //3.선호장르로 영화검색 (좋아요영화+리뷰쓴영화 개수 * 2배로 검색)
     response = await getMArchiveMovies(
-      (likedMovies.length+reviewedMovies.length)*2,
+      (likedMovies.length + reviewedMovies.length) * 2,
       me?.preferredGenres.map((item) => item.id).join(','),
-    )
-    if(response.status === 200){
+    );
+    if (response.status === 200) {
       const items = [...response.data.data];
       result = [...items];
     }
-    result = result.filter(item => {
-      return !likedMovies.some(other => other.id === item.id)
-    })
-    result = result.filter(item => {
-      return !reviewedMovies.some(other => other.id === item.id)
-    })
-    result.sort(function (a, b) {
-        return b.averageScore - a.averageScore;
+    result = result.filter((item) => {
+      return !likedMovies.some((other) => other.id === item.id);
     });
-    setMArchiveMovies(result);  
-  }
+    result = result.filter((item) => {
+      return !reviewedMovies.some((other) => other.id === item.id);
+    });
+    result.sort(function (a, b) {
+      return b.averageScore - a.averageScore;
+    });
+    setMArchiveMovies(result);
+  };
 
   const onGetTop10Movies = async () => {
     const response = await getTop10Movies();
@@ -167,9 +173,10 @@ const Home = () => {
     }
   }, [inView, loading]);
 
- useEffect(()=>{
-    onGetMArchiveMovies(); 
-  },[me]);
+  useEffect(() => {
+    onGetMArchiveMovies();
+  }, [me]);
+
   return (
     <main className={styles.wrapper}>
       <ScrollTopButton />

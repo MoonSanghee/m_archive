@@ -16,7 +16,6 @@ const AdminLogin = () => {
   const [emailStatus, setEmailStatus] = useState('');
   const [passwordStatus, setPasswordStatus] = useState('');
 
-
   const onChange = (e) => {
     const { name, value } = e.currentTarget;
     setForm({ ...form, [name]: value });
@@ -36,37 +35,36 @@ const AdminLogin = () => {
     if (typeof validatedEmail !== Boolean) {
       setEmailStatus(validatedEmail);
       //NOTE: return을 넣어서 다음 코드가 실행되지 않도록 설정
-      
+
       //return;
     }
     if (typeof validatedPassword !== Boolean) {
       setPasswordStatus(validatedPassword);
-      
+
       //return;
     }
 
     //폼 유효성
     const validatedForm = !validatedEmail && !validatedPassword ? true : false;
 
-    if(validatedForm){
+    if (validatedForm) {
       //console.log(form); //확인용
       //console.log(validatedForm); //확인용
-  
+
       const loginData = {
         email: form.userEmail,
         password: form.password,
       };
-  
+
       const response = await adminLogin(loginData);
       if (response.status === 200) {
         const data = response.data;
         saveTokens(data);
         navigate('/admin');
       }
-    }else{
-      console.log("invalid form");
+    } else {
+      console.log('invalid form');
     }
-   
   };
 
   return (
@@ -93,7 +91,12 @@ const AdminLogin = () => {
               errorText={passwordStatus}
             />
           </form>
-          <Button width={'big'} type="submit" form="loginForm" color="secondary">
+          <Button
+            width={'big'}
+            type="submit"
+            form="loginForm"
+            color="secondary"
+          >
             로그인
           </Button>
         </div>

@@ -29,18 +29,18 @@ const ManageUsersPage = () => {
   const [pageLimit, setPageLimit] = useState(10);
   const [totalPages, setTotalPages] = useState(1);
 
-//   const [modalOption, showModal,onClose] = useModal();
-const [modalOption, showModal] = useModal();
+  //   const [modalOption, showModal,onClose] = useModal();
+  const [modalOption, showModal] = useModal();
 
   const [isChecked, setIsChecked] = useState(false);
 
   const onClick = () => {
     setIsChecked(!isChecked);
   };
-  const onClickLogout = ()=>{
+  const onClickLogout = () => {
     localStorage.clear();
-    navigate("/admin/login");
-  }
+    navigate('/admin/login');
+  };
   useEffect(() => {
     if (!users) return;
     setUsers(users);
@@ -105,8 +105,9 @@ const [modalOption, showModal] = useModal();
     }
   };
 
-  const onClickOpenModal = useCallback((item, type) => {
-    //   const item=users?.filter((item)=>item.id === id)[0];
+  const onClickOpenModal = useCallback(
+    (item, type) => {
+      //   const item=users?.filter((item)=>item.id === id)[0];
       showModal(
         true,
         '',
@@ -154,7 +155,14 @@ const [modalOption, showModal] = useModal();
     <main className={styles.wrapper}>
       <AdminLNB />
       <section className={styles.allSection}>
-      <div className={styles.header}><Button color="secondary" width="long" children={"로그아웃"} onClick={onClickLogout}/></div>
+        <div className={styles.header}>
+          <Button
+            color="secondary"
+            width="long"
+            children={'로그아웃'}
+            onClick={onClickLogout}
+          />
+        </div>
         <p className={styles.topMenu}>
           <span className={styles.menuLeft}>
             <CheckBox
@@ -206,14 +214,13 @@ const [modalOption, showModal] = useModal();
                     <span>{dayjs(time).format('YYYY-MM-DD HH:mm:ss')}</span>
                     {/*체크하면 나오고 노체크면 사라지는 코드*/}
                     {/* {selectedUsers.includes(user?.id) &&  */}
-                    <Button 
-                        className={styles.editBtn}
-                        children="수정"
-                        width={"short"}
-                        color={"secondary"}
-                        onClick={()=>onClickOpenModal(user,"user")}
-                    >                    
-                    </Button>
+                    <Button
+                      className={styles.editBtn}
+                      children="수정"
+                      width={'short'}
+                      color={'secondary'}
+                      onClick={() => onClickOpenModal(user, 'user')}
+                    ></Button>
                     {/* } */}
                   </td>
                 );
