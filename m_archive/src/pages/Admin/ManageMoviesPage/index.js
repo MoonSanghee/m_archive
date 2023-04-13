@@ -13,9 +13,12 @@ import movieStyle from '../../../components/Common/TableElements/tableElements.m
 import { getMovies } from '../../../api/Movies';
 import { countMovies } from '../../../api/Movies';
 import Pagination from '../../../components/Common/PageNation';
+import { useNavigate } from 'react-router-dom';
+import { getTokens } from '../../../utils';
+import { useMount } from 'react-use';
 
 const ManageMoviesPage = () => {
-  //   // id로 담는다
+  const navigate = useNavigate();
   const [selectedMovies, setSelectedMovies] = useState([]);
   const [movies, setMovies] = useState([]);
   const isAllChecked = selectedMovies.length === movies.length;
@@ -31,7 +34,10 @@ const ManageMoviesPage = () => {
   const onClick = () => {
     setIsChecked(!isChecked);
   };
-
+  const onClickLogout = ()=>{
+    localStorage.clear();
+    navigate("/admin/login");
+  }
   //NOTE: 기능에 맞는 네이밍
   //NOTE: 타이핑을 "할 때마다" fetch를 하는 상태
   //NOTE: throttle을 사용 (lodash -> lodash-es)
@@ -116,11 +122,16 @@ const ManageMoviesPage = () => {
     fetchData();
   }, [currentPage, pageLimit]);
 
+  useMount(()=>{
+    if(!getTokens().accessToken) navigate("/admin/login");
+  })
+  
   return (
     <main className={styles.wrapper}>
       {/* //TODO: main이랑 AdminLNB는 AdminLayout으로 분리 */}
       <AdminLNB />
       <section className={styles.allSection}>
+        <div className={styles.header}><Button color="secondary" width="long" children={"로그아웃"} onClick={onClickLogout}/></div>
         <p className={styles.topMenu}>
           <span className={styles.menuLeft}>
             <CheckBox
