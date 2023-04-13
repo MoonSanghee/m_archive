@@ -4,7 +4,9 @@ import { Button } from '../../../components/Common';
 import { useNavigate } from 'react-router-dom';
 import bg from './cloud.mp4';
 const Start = () => {
-  const completedTitle = '어서와요 *^^*';
+  const completedTitle = `이제는 감상도 공유하는 시대!     
+   다양한 관점에서 바라보는 새로운 시선과 
+   재미있는 스토리들을 만나보세요~ : )`;
 
   const [title, setTitle] = useState('');
   const [count, setCount] = useState(0);
@@ -21,7 +23,7 @@ const Start = () => {
         }
         return result;
       });
-    }, 300);
+    }, 125);
 
     return () => {
       clearInterval(typingInterval);

@@ -31,7 +31,8 @@
     }
     > .section {
       @include m.flex(center, center, column);
-      padding: 12px 0 0 0;
+      padding: 60px;
+      line-height: 1.5;
       font-size: 40px;
       color: c.$C_WHITE;
       border-radius: 20px;

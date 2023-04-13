@@ -19,7 +19,7 @@ const Home = () => {
 
   const [top10Movies, setTop10Movies] = useState([]);
   const [movies, setMovies] = useState([]);
-  const [mArchiveMovies, setMArchiveMovies] = useState([]);
+  const [mArchiveMovies, setMArchiveMovies] = useState(null);
   //const [searchText, setSearchText] = useState("");
 
   const [genreMovies, setGenreMovies] = useState([]);
