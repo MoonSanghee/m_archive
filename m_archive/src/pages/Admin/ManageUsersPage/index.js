@@ -18,8 +18,9 @@ import cx from 'classnames';
 import useModal from '../../../components/Common/Modal/useModal';
 import { Modal } from '../../../components';
 import EditModal from '../EditModal';
-
+import { useNavigate } from 'react-router-dom';
 const ManageUsersPage = () => {
+  const navigate = useNavigate();
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [users, setUsers] = useState([]);
   const isAllChecked = selectedUsers.length === users.length;
@@ -35,7 +36,10 @@ const ManageUsersPage = () => {
   const onClick = () => {
     setIsChecked(!isChecked);
   };
-
+  const onClickLogout = ()=>{
+    localStorage.clear();
+    navigate("/admin/login");
+  }
   useEffect(() => {
     if (!users) return;
     setUsers(users);
@@ -147,6 +151,7 @@ const ManageUsersPage = () => {
     <main className={styles.wrapper}>
       <AdminLNB />
       <section className={styles.allSection}>
+      <div className={styles.header}><Button color="secondary" width="long" children={"로그아웃"} onClick={onClickLogout}/></div>
         <p className={styles.topMenu}>
           <span className={styles.menuLeft}>
             <CheckBox

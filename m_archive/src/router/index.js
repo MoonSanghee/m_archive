@@ -63,8 +63,6 @@ const router = (
 
     <Route path="movies" element={<Layout />}>
       <Route index element={<HomePage />} />
-      {/*<Route path="movie:id" element={<MovieDetailPage/>}/>
-       */}
       <Route path="detail/:id" element={<MovieDetailPage />} />
       <Route path="search" element={<MovieSearchPage />} />
       <Route path="detail/:id/reviews" element={<ReviewsPage />} />
@@ -74,21 +72,17 @@ const router = (
         <Route path="profile" element={<Profile />} />
         <Route path="like" element={<Like />} />
         <Route path="review" element={<Review />} />
-        {/*
-          <Route path=":id" element={<UserPage/>}/>*/}
       </Route>
     
     </Route>
 
     <Route path="admin">
       <Route index element={<ManageMoviesPage />} />
-      {/* <Route path="addMovie" element={<AddMoviePage/>}/> */}
-      {/* //NOTE: 같은 admin 사용하니까 안으로 넣었습니다~ */}
-      <Route path="login" element={<AdminLoginPage />} />
-      <Route path="register" element={<AdminRegisterPage />} />
       <Route path="manageReviews" element={<ManageReviewsPage />} />
       <Route path="manageUsers" element={<ManageUsersPage />} />
       <Route path="manageFAQs" element={<ManageFAQsPage />} />
+      <Route path="login" element={<AdminLoginPage />} />
+      <Route path="register" element={<AdminRegisterPage />} />
     </Route>
   </Route>
 );

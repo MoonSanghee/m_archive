@@ -9,7 +9,7 @@ import {
 } from '../../../components';
 import styles from './manageReviews.module.scss';
 import { getReviews, deleteReviewAdmin } from '../../../api/Reviews';
-
+import { useNavigate } from 'react-router-dom';
 import reviewStyle from '../../../components/Common/TableElements/tableElements.module.scss';
 import { getReviewsCount } from '../../../api/Reviews';
 import Pagination from '../../../components/Common/PageNation';
@@ -20,7 +20,9 @@ import useModal from '../../../components/Common/Modal/useModal';
 import { Modal } from '../../../components';
 import EditModal from '../EditModal';
 
+
 const ManageReviewsPage = () => {
+  const navigate = useNavigate();
   const [modalOption, showModal, onClose] = useModal();
 
   const [selectedReviews, setSelectedReviews] = useState([]);
@@ -35,7 +37,10 @@ const ManageReviewsPage = () => {
   const onClick = () => {
     setIsChecked(!isChecked);
   };
-
+  const onClickLogout = ()=>{
+    localStorage.clear();
+    navigate("/admin/login");
+  }
   const handleSubmit = async (event) => {
     const response = await getReviews(1, 10, event.target.value);
     if (response.status === 200) {
@@ -146,6 +151,7 @@ const ManageReviewsPage = () => {
     <main className={styles.wrapper}>
       <AdminLNB />
       <section className={styles.allSection}>
+        <div className={styles.header}><Button color="secondary" width="long" children={"로그아웃"} onClick={onClickLogout}/></div>
         <div className={styles.topMenu}>
           <span className={styles.menuLeft}>
             <CheckBox
