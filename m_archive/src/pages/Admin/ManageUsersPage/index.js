@@ -29,7 +29,8 @@ const ManageUsersPage = () => {
   const [pageLimit, setPageLimit] = useState(10);
   const [totalPages, setTotalPages] = useState(1);
 
-  const [modalOption, showModal,onClose] = useModal();
+//   const [modalOption, showModal,onClose] = useModal();
+const [modalOption, showModal] = useModal();
 
   const [isChecked, setIsChecked] = useState(false);
 
@@ -104,19 +105,20 @@ const ManageUsersPage = () => {
     }
   };
 
-  const onClickOpenModal = useCallback(
-    (id, type) => {
-      const item=users?.filter((item)=>item.id === id)[0];
+  const onClickOpenModal = useCallback((item, type) => {
+    //   const item=users?.filter((item)=>item.id === id)[0];
       showModal(
         true,
         '',
         null,
-        null,
+        // null,
+        onGetUsers,
         <EditModal
           item={item}
           type={type}
           onClose={() => {
-            onClose(onGetUsers);
+            // onClose(onGetUsers);
+            modalOption.onClose();
           }}
         />,
       );
@@ -164,16 +166,16 @@ const ManageUsersPage = () => {
           </span>
           <span className={styles.menuRight}>
             <Button width={'long'} color={'secondary'} onClick={onDeleteUser}>
-              선택 삭제
+              삭제
             </Button>
-            <Button
+            {/* <Button
             className={styles.editBtn}
             width={'long'}
             color={'secondary'}
             onClick={() => {
               if(selectedUsers.length ===1 ) onClickOpenModal(selectedUsers[0], 'user');}
             }
-            >수정</Button>
+            >수정</Button> */}
             <SearchBox
               className={styles.searchBox}
               placeholder="이름, 닉네임, 이메일"
@@ -185,7 +187,7 @@ const ManageUsersPage = () => {
           <TableMenu tableName="users" />
         </p>
         <p className={styles.table}>
-          <div>
+          <div className={userStyle}>
             <table className={userStyle.users}>
               {users.map((user, idx) => {
                 const time = user.createdAt;
@@ -201,6 +203,17 @@ const ManageUsersPage = () => {
                       {user.name ?? '-'} ({user.nickname ?? '-'})
                     </span>
                     <span>{dayjs(time).format('YYYY-MM-DD HH:mm:ss')}</span>
+                    {/*체크하면 나오고 노체크면 사라지는 코드*/}
+                    {/* {selectedUsers.includes(user?.id) &&  */}
+                    <Button 
+                        className={styles.editBtn}
+                        children="수정"
+                        width={"short"}
+                        color={"secondary"}
+                        onClick={()=>onClickOpenModal(user,"user")}
+                    >                    
+                    </Button>
+                    {/* } */}
                   </td>
                 );
               })}
