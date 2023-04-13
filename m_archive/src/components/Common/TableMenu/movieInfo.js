@@ -1,11 +1,11 @@
 const movieInfo = [
   {
-    id : 1,
+    id : 'NAME',
     name : '영화명',
     value : 'name',
   },
   {
-    id : 2,
+    id : 'RELEASED_AT',
     name : '개봉일',
     value : 'openingDate',
   },

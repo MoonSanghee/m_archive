@@ -29,6 +29,8 @@ const ManageReviewsPage = () => {
   const [pageLimit, setPageLimit] = useState(10);
   const [totalPages, setTotalPages] = useState(1);
   const [isChecked, setIsChecked] = useState(false);
+  const [isReversed, setIsReversed] = useState('asc');
+  const [isOrderBy, setIsOrderBy] = useState('NAME');
 
   const isAllChecked = selectedReviews.length === reviews.length;
 
@@ -122,19 +124,35 @@ const ManageReviewsPage = () => {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
-    setIsChecked(false);
   };
 
   const fetchData = async () => {
-    const response = await getReviews(currentPage, pageLimit);
+    const response = await getReviews(currentPage, pageLimit, '', isOrderBy, isReversed);
     const count = await getReviewsCount();
     // console.log(response)
     if (response.status === 200) {
       const items = [...response.data.data];
+      setIsChecked(false);
+      setSelectedReviews([]);
       setTotalPages(Math.ceil(count.data.count / pageLimit));
       setReviews(items);
     }
   };
+
+  const orderBy = async (item) => {
+    setIsOrderBy(item.id);
+    setIsReversed((prev) => (prev === 'asc' ? 'desc' : 'asc'));
+    console.log(item)
+  };
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await getReviews(1, pageLimit, '', isOrderBy, isReversed);
+      getReviews(response.data.data);
+      setCurrentPage(1);
+    }
+    fetchData();
+  }, [isOrderBy, isReversed]);
 
   useEffect(() => {
     onGetReviews();
@@ -171,7 +189,8 @@ const ManageReviewsPage = () => {
           </span>
         </div>
         <p className={styles.secondMenu}>
-          <TableMenu tableName="reviews" />
+          <TableMenu tableName="reviews" 
+          onClick={orderBy}/>
         </p>
         <p className={styles.table}>
           <div>

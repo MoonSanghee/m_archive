@@ -1,22 +1,22 @@
 const reviews = [
   {
-    id : 1,
+    id : 'NAME',
     name : '영화명',
     value : 'name',
   },
   {
-    id : 2,
+    id : 'USERNAME',
     name : '작성자',
     value : 'user',
   },
   {
-    id : 3,
+    id : 'LIKE',
     name : '공감순',
     value : 'likes',
   },
   {
-    id : 4,
-    name : '최신순',
+    id : 'CREATED_AT',
+    name : '작성시간',
     value : 'newest',
   }
 ]

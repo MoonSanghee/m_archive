@@ -1,29 +1,29 @@
 const users = [
   {
-    id : 1,
+    id : 'EMAIL',
     name : '이메일',
     value : 'email',
   },
   {
-    id : 2,
+    id : 'NAME',
     name : '유저이름 (닉네임)',
     value : 'user (nickname)',
   },
   {
-    id : 3,
+    id : 'CREATED_AT',
     name : '가입일',
     value : 'joinedDate',
   },
   {
-    id : 4,
-    name : '댓글수',
+    id : 'COMMENT_COUNT',
+    name : '작성한 리뷰',
     value : 'comments',
   },
   {
-    id : 5,
-    name : '신고',
-    value : 'accused'
-  },
+    id : 'LIKE',
+    name : '좋아요',
+    value : 'like',
+  }
 ]
 
 export default users;
