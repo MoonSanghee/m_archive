@@ -33,7 +33,16 @@ export const getGenreMovies = (page, selected, orderBy) => {
     },
   });
 };
-
+export const getMArchiveMovies = (limit,preferredGenres)=>{
+  return apiClient.get(`/movies/genre`, {
+    params: {
+      page:1,
+      limit: limit,
+      genreIds: preferredGenres,
+      orderBy: "LIKE",
+    },
+  });
+}
 //MEMO :영화 좋아요 생성! id - 영화id
 export const createLike = (id) => {
   return apiClient.post(`/movies/${id}/like`);
