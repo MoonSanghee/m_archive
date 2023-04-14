@@ -221,7 +221,7 @@ const ManageUsersPage = () => {
               {users.map((user, idx) => {
                 const time = user.createdAt;
                 return (
-                  <tr key={idx} className={userStyle.elements}>
+                  <li key={idx} className={userStyle.elements}>
                     <CheckBox
                       className={userStyle.check}
                       checked={selectedUsers.includes(user.id)}
@@ -244,7 +244,7 @@ const ManageUsersPage = () => {
                       onClick={() => onClickOpenModal(user, 'user')}
                     ></Button>
                     {/* } */}
-                  </tr>
+                  </li>
                 );
               })}
             </table>
