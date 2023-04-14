@@ -40,7 +40,7 @@ const Header = () => {
   return (
     <header className={styles.wrapper}>
       <div className={styles.logo}>
-        <h1 onClick={onClickLogo}>M-archive</h1>
+        <h1 onClick={onClickLogo} className={styles.milky}>M - archive</h1>
       </div>
       <nav className={styles.navWrapper}>
         {/*<span className={styles.movieButton}>영화</span>*/}

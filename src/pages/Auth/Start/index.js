@@ -58,7 +58,19 @@ const Start = () => {
       </video>
 
       <section className={styles.sectionWrapper}>
-        <h1 className={styles.header}>M - archive</h1>
+        <h1 className={styles.header}>
+         
+         <span>M</span>
+          <span>-</span>
+          <span>a</span>
+          <span>r</span>
+          <span>c</span>
+          <span>h</span>
+          <span>i</span>
+          <span>v</span>
+          <span>e</span>
+
+        </h1>
         <div className={styles.section}>
           {/* 어서와요 *^^* (타이핑 애니메이션) 투명도 opacity 0.5 적용 */}
           {title}
