@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "../../../../components/Common";
 import QuestionDetail from "./questionDetail";
-import styles from "../faq.module.scss";
+import styles from "./faqmodal.module.scss";
 
 const FAQModal = ({ type, onClose }) => {
   const [questions, setQuestions] = useState([
@@ -82,7 +82,7 @@ const FAQModal = ({ type, onClose }) => {
                 {isSubmitted ? ( // 제출 이후 생성되는 화면 ?
           <p>제출이 완료되었습니다. 감사합니다.</p>
         ) : (
-        <form>
+        <form onSubmit={handleSubmit}>
           
           <div className={styles.inputGroup}>
             <label htmlFor="name">이름</label>
