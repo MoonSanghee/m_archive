@@ -28,6 +28,8 @@ const ManageUsersPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageLimit, setPageLimit] = useState(10);
   const [totalPages, setTotalPages] = useState(1);
+  const [isReversed, setIsReversed] = useState('asc');
+  const [isOrderBy, setIsOrderBy] = useState('EMAIL');
 
   //   const [modalOption, showModal,onClose] = useModal();
   const [modalOption, showModal] = useModal();
@@ -63,7 +65,7 @@ const ManageUsersPage = () => {
   };
 
   const onGetUsers = async () => {
-    const response = await getUsers(1, 10);
+    const response = await getUsers(currentPage, pageLimit, '', isOrderBy, isReversed);
     if (response.status === 200) {
       const items = [...response.data.data];
       setUsers(items);
@@ -136,7 +138,7 @@ const ManageUsersPage = () => {
   };
 
   const fetchData = async () => {
-    const response = await getUsers(currentPage, pageLimit);
+    const response = await getUsers(currentPage, pageLimit, '', isOrderBy, isReversed);
     const count = await countUsers();
     if (response.status === 200) {
       const items = [...response.data.data];
@@ -146,6 +148,23 @@ const ManageUsersPage = () => {
       setUsers(items);
     }
   };
+  
+  const orderBy = async (item) => {
+    setIsOrderBy(item.id);
+    setIsReversed((prev) => (prev === 'asc' ? 'desc' : 'asc'));
+    // console.log(item)
+  };
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await getUsers(1, pageLimit, '', isOrderBy, isReversed);
+      setUsers(response.data.data);
+      setCurrentPage(1);
+      console.log(response)
+      console.log(isOrderBy)
+    }
+    fetchData();
+  }, [isOrderBy, isReversed]);
 
   useEffect(() => {
     fetchData();
@@ -193,7 +212,8 @@ const ManageUsersPage = () => {
           </span>
         </p>
         <p className={styles.secondMenu}>
-          <TableMenu tableName="users" />
+          <TableMenu tableName="users" 
+          onClick={orderBy}/>
         </p>
         <p className={styles.table}>
           <div className={userStyle}>
@@ -212,6 +232,8 @@ const ManageUsersPage = () => {
                       {user.name ?? '-'} ({user.nickname ?? '-'})
                     </span>
                     <span>{dayjs(time).format('YYYY-MM-DD HH:mm:ss')}</span>
+                    <span>{user.reviewCount}</span>
+                    <span>{user.likeCount}</span>
                     {/*체크하면 나오고 노체크면 사라지는 코드*/}
                     {/* {selectedUsers.includes(user?.id) &&  */}
                     <Button
