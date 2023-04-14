@@ -1,14 +1,20 @@
-import React, { useCallback, useState } from "react";
-import styles from "./faq.module.scss";
+import React, { useCallback, useState } from 'react';
+import styles from './faq.module.scss';
 
-import { Button, SearchBox, Tag, Modal, ModalButton  } from "../../../components/Common";
-import Accordion from "../../../components/Common/Accordion";
-import faqData from "./faqData";
-import useModal from "../../../components/Common/Modal/useModal";
-import FAQModal from "./FAQModal";
+import {
+  Button,
+  SearchBox,
+  Tag,
+  Modal,
+  ModalButton,
+} from '../../../components/Common';
+import Accordion from '../../../components/Common/Accordion';
+import faqData from './faqData';
+import useModal from '../../../components/Common/Modal/useModal';
+import FAQModal from './FAQModal';
 const FAQ = () => {
-  const [modalOption,showModal] = useModal(); 
-//TODO: 재사용 가능한 모달 컴포넌트 만들기
+  const [modalOption, showModal] = useModal();
+  //TODO: 재사용 가능한 모달 컴포넌트 만들기
 
   /*const handleOpenModal = (showInquiryModal) => {
     if (showInquiryModal) {
@@ -53,44 +59,45 @@ const FAQ = () => {
     }
   };
   */
- const handleOpenModalQuestions= useCallback(()=>{
+  const handleOpenModalQuestions = useCallback(() => {
     showModal(
       true,
       '',
       null,
       null,
       <FAQModal
-        type={"questions"}
+        type={'questions'}
         //onClose={() => modalOption.onClose()}
       />,
-    )
- },[modalOption]);
- const handleOpenModalToAsk= useCallback(()=>{
-  showModal(
-    true,
-    '',
-    null,
-    null,
-    <FAQModal
-      type={"ask"}
-      //onClose={() => modalOption.onClose()}
-    />,
-  )
-},[modalOption]);
+    );
+  }, [modalOption]);
+
+  const handleOpenModalToAsk = useCallback(() => {
+    showModal(
+      true,
+      '',
+      null,
+      null,
+      <FAQModal
+        type={'ask'}
+        //onClose={() => modalOption.onClose()}
+      />,
+    );
+  }, [modalOption]);
 
   const handleCloseModal = () => {
     setModalOption({ ...modalOption, show: false });
   };
 
   const handleSubmitInquiry = () => {
-    console.log("Inquiry submitted");
+    console.log('Inquiry submitted');
     // 모달 닫기 ?
     handleCloseModal();
   };
 
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
 
-  //검색 필터링 기능 
+  //검색 필터링 기능
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   };
@@ -98,7 +105,7 @@ const FAQ = () => {
   const filteredFAQ = faqData.filter(
     (item) =>
       item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.content.toLowerCase().includes(searchTerm.toLowerCase())
+      item.content.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   return (
@@ -106,14 +113,16 @@ const FAQ = () => {
       <h1> FAQ</h1>
       <div className={styles.mainInput}>
         <SearchBox onChange={handleSearch} />
-        <div className={styles.sideButton}>   
-        <Button onClick={handleOpenModalQuestions}>문의 내역</Button>
-        <Button onClick={handleOpenModalToAsk}>문의 하기</Button>
+        <div className={styles.sideButton}>
+          <Button onClick={handleOpenModalQuestions}>문의 내역</Button>
+          <Button onClick={handleOpenModalToAsk}>문의 하기</Button>
         </div>
       </div>
-      <li ><div className={styles.thtitle}>자주 묻는 질문</div></li>
+      <li>
+        <div className={styles.thtitle}>자주 묻는 질문</div>
+      </li>
       <ul className={styles.accordionWrapper}>
-     
+        {/* //NOTE: 열려있는 아코디언은 1개로 유지 */}
         {filteredFAQ.map((item, index) => (
           <li key={index}>
             <Accordion title={item.title} content={item.content} />
@@ -130,4 +139,3 @@ const FAQ = () => {
 };
 
 export default FAQ;
-
