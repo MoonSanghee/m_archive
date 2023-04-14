@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   AdminLNB,
   Button,
@@ -10,12 +10,139 @@ import {
 import styles from './manageFAQ.module.scss';
 import FAQs from '../../../components/Common/TableElements/FAQs';
 import { useNavigate } from 'react-router-dom';
+import { deleteFaqAdmin, getFAQs } from '../../../api/FAQ';
+import { countMovies } from '../../../api/Movies';
+import { useMount } from 'react-use';
+import { getTokens } from '../../../utils';
+import faqStyle from "../../../components/Common/TableElements/tableElements.module.scss";
+import Pagination from '../../../components/Common/PageNation';
+
 const ManageFAQsPage = () => {
   const navigate = useNavigate();
+  const [selectedFaqs, setSelectedFaqs] = useState([]);
+  const [faqs, setFaqs] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageLimit, setPageLimit] = useState(10);
+  const [totalPages, setTotalPages] = useState(1);
+  const [isChecked, setIsChecked] = useState(false);
+  const [isReversed, setIsReversed] = useState("asc");
+  const [isOrderBy, setIsOrderBy] = useState("NAME");
+
+  const isAllChecked = selectedFaqs.length === faqs.length;
+
+  const onClick = () => {
+    setIsChecked(!isChecked);
+  };
+
   const onClickLogout = ()=>{
     localStorage.clear();
     navigate("/admin/login");
   }
+
+  const onChangeSearch = async (event) => {
+    const response = await getFAQs(1, 10, event.target.value);
+    if (response.status === 200) {
+      const items = [...response.data.data];
+      setFaqs(items);
+      setTotalPages(Math.ceil(items.length / pageLimit));
+      setCurrentPage(1);
+    }
+    if (event.target.value === "") {
+      setTotalPages(response.length / pageLimit);
+      setCurrentPage(1);
+      return;
+    }
+  };
+
+  const onGetFaqs = async () => {
+    const response = await getFAQs(1, 10, "", isOrderBy, isReversed);
+    if (response.status === 200) {
+      const items = [...response.data.data];
+      setFaqs(items);
+    }
+  };
+
+  const onCheckFaq = (id) => {
+    return () => {
+      if (selectedFaqs.includes(id)) {
+        setSelectedFaqs(selectedFaqs.filter((faqId) => faqId !== id));
+      } else {
+        setSelectedFaqs([...selectedFaqs, id]);
+      }
+    };
+  };
+
+  const onCheckAll = () => {
+    if (isChecked) {
+      setSelectedFaqs([]);
+    } else {
+      setSelectedFaqs(faqs.map((faq) => faq.id));
+    }
+  };
+
+  const onDeleteFaq = () => {
+    const faqIDs = selectedFaqs;
+    for (const el of faqIDs) {
+      onDelete(el);
+    }
+  };
+
+  const onDelete = async (id) => {
+    // api 맞나 모르겠슴다
+    const response = await deleteFaqAdmin(id);
+    if (response.status === 204) {
+      alert("정상 삭제");
+      onGetFaqs();
+    } else {
+      alert("삭제 오류!");
+    }
+  };
+  
+  useEffect(() => {
+    onGetFaqs();
+  }, []);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const fetchData = async () => {
+    const response = await getFAQs(currentPage, pageLimit, "", isOrderBy, isReversed);
+    const count = await countMovies();
+
+    if (response.status === 200) {
+      const items = [...response.data.data];
+
+      setIsChecked(false);
+      setSelectedFaqs([]);
+
+      setTotalPages(Math.ceil(count.data.count / pageLimit));
+      setFaqs(items);
+    }
+  };
+
+  const orderBy = async (item) => {
+    setIsOrderBy(item.id);
+    setIsReversed((prev) => (prev === "asc" ? "desc" : "asc"));
+  };
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await getFAQs(1, pageLimit, "", isOrderBy, isReversed);
+      setFaqs(response.data.data);
+      setCurrentPage(1);
+    }
+    fetchData();
+  }, [isOrderBy, isReversed]);
+
+  useEffect(() => {
+    fetchData();
+  }, [currentPage, pageLimit]);
+
+  useMount(() => {
+    if(!getTokens().accessToken) navigate("/admin/login");
+  })
+
   return (
     <main className={styles.wrapper}>
       <AdminLNB />
@@ -23,25 +150,59 @@ const ManageFAQsPage = () => {
         <div className={styles.header}><Button color="secondary" width="long" children={"로그아웃"} onClick={onClickLogout}/></div>
         <p className={styles.topMenu}>
           <span className={styles.menuLeft}>
-            <CheckBox className={styles.check} />
+            <CheckBox 
+              className={styles.check} 
+              checked={isChecked}
+              onChange={onCheckAll}
+              onClick={onClick}
+              id="SelectAll"
+            />
             전체선택
           </span>
           <span className={styles.menuRight}>
-            <Button width={'long'} color={'secondary'}>
-              선택 삭제
+            <Button 
+              width={"long"}
+              color={"secondary"}
+              onClick={onDeleteFaq}
+            >
+              삭제
             </Button>
             <SearchBox
               className={styles.searchBox}
-              placeholder="제목, 배우, 감독"
+              placeholder="이름, 닉네임, 이메일"
+              onChange={onChangeSearch}
             />
           </span>
         </p>
         <p className={styles.secondMenu}>
-          <TableMenu tableName="F&Q" />
+          <TableMenu 
+            info={faqs}
+            tableName="F&Q" 
+            onClick={orderBy}/>
         </p>
-        <div className={styles.table}>
-          <FAQs limit={10}/>
-        </div>
+        <p className={styles.table}>
+          <div>
+            <table className={faqStyle.faqs}>
+              {faqs.map((faq, idx) => {
+                const createdAt = faq.createdAt;
+                return (
+                  <tb key={idx} className={faqStyle.elements}>
+                    <CheckBox
+                      className={faqStyle.check}
+                      checked={selectedFaqs.includes(faq.id)}
+                      onChange={onCheckFaq(faq.id)}
+                    />                    
+                  </tb>
+                )
+              })}
+            </table>
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          </div>
+        </p>
       </section>
     </main>
   );
