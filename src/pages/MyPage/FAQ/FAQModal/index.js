@@ -98,22 +98,18 @@ const FAQModal = ({ type, onClose }) => {
           <p>제출이 완료되었습니다. 감사합니다.</p>
         ) : (
           <form>
-            <label>
+            <label className={styles.inputGroup}>
               이름
               <input type="text" name="name" />
             </label>
-            <div className={styles.inputGroup}>
-              <label htmlFor="email">이메일</label>
-              <input type="email" id="email" name="email" />
-            </div>
-            <div className={styles.inputGroup}>
-              <label htmlFor="name">제목</label>
-              <input type="text" id="title" name="title" />
-            </div>
-            <div className={styles.inputGroup}>
-              <label htmlFor="content">내용</label>
+              <label className={styles.inputGroup}>
+              제목
+              <input type="text" name="title" />
+              </label>
+              <label className={styles.inputGroup}>
+                내용
               <textarea id="content" name="content"></textarea>
-            </div>
+              </label>
             <div className={styles.buttonGroup}>
               <Button type="submit">제출</Button>
               <Button type="button" onClick={onClose}>
