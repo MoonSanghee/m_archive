@@ -226,6 +226,7 @@ const ManageReviewsPage = () => {
                     <span>
                       {dayjs(createdAt).format('YYYY-MM-DD HH:mm:ss')}
                     </span>
+                    <span></span>
                     <Button 
                       className={styles.ediBtn}
                       children="수정"
