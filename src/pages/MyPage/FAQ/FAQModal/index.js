@@ -25,6 +25,8 @@ const FAQModal = ({ type, onClose }) => {
     },
   ]);
 
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const handleQuestionClick = (index) => {
     setQuestions((prevQuestions) => {
       const newQuestions = [...prevQuestions];
@@ -32,6 +34,11 @@ const FAQModal = ({ type, onClose }) => {
       return newQuestions;
     });
   };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setIsSubmitted(true);
+  }; 
 
   if (type === "questions") {
     return (
@@ -72,7 +79,11 @@ const FAQModal = ({ type, onClose }) => {
             
             <section>
                 <h2>문의하기</h2>
+                {isSubmitted ? ( // 제출 이후 생성되는 화면 ?
+          <p>제출이 완료되었습니다. 감사합니다.</p>
+        ) : (
         <form>
+          
           <div className={styles.inputGroup}>
             <label htmlFor="name">이름</label>
             <input type="text" id="name" name="name" />
@@ -80,6 +91,10 @@ const FAQModal = ({ type, onClose }) => {
           <div className={styles.inputGroup}>
             <label htmlFor="email">이메일</label>
             <input type="email" id="email" name="email" />
+          </div>
+          <div className={styles.inputGroup}>
+            <label htmlFor="name">제목</label>
+            <input type="text" id="title" name="title" />
           </div>
           <div className={styles.inputGroup}>
             <label htmlFor="question">질문</label>
@@ -92,8 +107,9 @@ const FAQModal = ({ type, onClose }) => {
             </Button>
           </div>
           </form>
+        )}
             </section>
-        )
+        );
     }
-}
+};
 export default FAQModal;
