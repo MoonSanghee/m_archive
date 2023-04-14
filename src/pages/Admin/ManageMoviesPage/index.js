@@ -7,7 +7,7 @@ import {
   TableMenu,
 } from '../../../components';
 import styles from './manage.module.scss';
-import tableStyle from "../tableStyle.module.scss";
+import tableStyle from '../tableStyle.module.scss';
 import { getMovies } from '../../../api/Movies';
 import { countMovies } from '../../../api/Movies';
 import Pagination from '../../../components/Common/PageNation';
@@ -25,16 +25,16 @@ const ManageMoviesPage = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [isReversed, setIsReversed] = useState('asc');
   const [isOrderBy, setIsOrderBy] = useState('NAME');
-  
+
   const isAllChecked = selectedMovies.length === movies.length;
 
   const onClick = () => {
     setIsChecked(!isChecked);
   };
-  const onClickLogout = ()=>{
+  const onClickLogout = () => {
     localStorage.clear();
-    navigate("/admin/login");
-  }
+    navigate('/admin/login');
+  };
   //NOTE: 기능에 맞는 네이밍
   //NOTE: 타이핑을 "할 때마다" fetch를 하는 상태
   //NOTE: throttle을 사용 (lodash -> lodash-es)
@@ -100,7 +100,13 @@ const ManageMoviesPage = () => {
   };
 
   const fetchData = async () => {
-    const response = await getMovies(currentPage, pageLimit, '', isOrderBy, isReversed);
+    const response = await getMovies(
+      currentPage,
+      pageLimit,
+      '',
+      isOrderBy,
+      isReversed,
+    );
     const count = await countMovies();
 
     if (response.status === 200) {
@@ -115,8 +121,6 @@ const ManageMoviesPage = () => {
     }
   };
 
-
-  
   const orderBy = async (item) => {
     setIsOrderBy(item.id);
     setIsReversed((prev) => (prev === 'asc' ? 'desc' : 'asc'));
@@ -135,16 +139,23 @@ const ManageMoviesPage = () => {
     fetchData();
   }, [currentPage, pageLimit]);
 
-  useMount(()=>{
-    if(!getTokens().accessToken) navigate("/admin/login");
-  })
-  
+  useMount(() => {
+    if (!getTokens().accessToken) navigate('/admin/login');
+  });
+
   return (
     <main className={styles.wrapper}>
       {/* //TODO: main이랑 AdminLNB는 AdminLayout으로 분리 */}
       <AdminLNB />
       <section className={styles.allSection}>
-        <div className={styles.header}><Button color="secondary" width="long" children={"로그아웃"} onClick={onClickLogout}/></div>
+        <div className={styles.header}>
+          <Button
+            color="secondary"
+            width="long"
+            children={'로그아웃'}
+            onClick={onClickLogout}
+          />
+        </div>
         <p className={styles.topMenu}>
           <span className={styles.menuLeft}>
             <CheckBox
@@ -169,10 +180,7 @@ const ManageMoviesPage = () => {
           </span>
         </p>
         <p className={styles.secondMenu}>
-          <TableMenu 
-          info={movies} 
-          tableName="movieInfo" 
-          onClick={orderBy}/>
+          <TableMenu info={movies} tableName="movieInfo" onClick={orderBy} />
         </p>
         <p className={styles.table}>
           <div>

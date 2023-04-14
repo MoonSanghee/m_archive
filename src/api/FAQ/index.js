@@ -1,4 +1,4 @@
-import apiClient from "../apiClient";
+import apiClient from '../apiClient';
 
 export const getFAQs = (page, limit) => {
   return apiClient.get('/faqs', {
@@ -10,7 +10,10 @@ export const getFAQs = (page, limit) => {
 };
 
 export const deleteFaqAdmin = (id) => {
-  return apiClient.delete(`/faqs/${id}`)
-}
+  return apiClient.delete(`/faqs/${id}`);
+};
+export const createFaq = (data) => {
+  return apiClient.post('/faqs', data);
+};
 
 // FAQcount 요청드리기

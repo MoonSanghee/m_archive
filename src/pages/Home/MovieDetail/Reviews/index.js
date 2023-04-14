@@ -12,7 +12,7 @@ import { getMovie } from '../../../../api/Movies';
 import ReviewDetailModal from './ReviewDetailModal';
 import { useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import cx from "classnames";
+import cx from 'classnames';
 
 const Reviews = () => {
   const ref = useRef();
@@ -21,7 +21,7 @@ const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [movie, setMovie] = useState({});
 
-  const [modalOption, showModal,onClose] = useModal();
+  const [modalOption, showModal, onClose] = useModal();
   //const [isOpen,setIsOpen] = useState(false);
   const onGetReviews = async (id) => {
     const response = await getMovieReviews(id);
@@ -43,7 +43,7 @@ const Reviews = () => {
         true,
         '',
         null,
-        ()=>onGetReviews(params.id),
+        () => onGetReviews(params.id),
         <ReviewDetailModal
           thisReview={review}
           movieId={params.id}
@@ -67,7 +67,8 @@ const Reviews = () => {
       },
       [pathname],
     );
-  });
+    //NOTE: useEffect 사용 시 deps 항상 확인하기!
+  }, []);
   useMount(() => {
     onGetMovie(params.id);
     onGetReviews(params.id);
@@ -82,7 +83,6 @@ const Reviews = () => {
               onClick={() => {
                 //setIsOpen(true);
                 onClickOpenModal({ review });
-                
               }}
               key={review.id}
               item={review}
