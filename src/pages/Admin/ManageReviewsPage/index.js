@@ -60,7 +60,7 @@ const ManageReviewsPage = () => {
   };
 
   const onGetReviews = async () => {
-    const response = await getReviews(1, 10);
+    const response = await getReviews(currentPage, pageLimit, '', isOrderBy, isReversed);
     if (response.status === 200) {
       const items = [...response.data.data];
       setReviews(items);
@@ -147,14 +147,16 @@ const ManageReviewsPage = () => {
   const orderBy = async (item) => {
     setIsOrderBy(item.id);
     setIsReversed((prev) => (prev === 'asc' ? 'desc' : 'asc'));
-    console.log(item)
+    // console.log(item)
   };
 
   useEffect(() => {
     async function fetchData() {
       const response = await getReviews(1, pageLimit, '', isOrderBy, isReversed);
-      getReviews(response.data.data);
+      setReviews(response.data.data);
       setCurrentPage(1);
+      console.log(response)
+      console.log(isOrderBy)
     }
     fetchData();
   }, [isOrderBy, isReversed]);

@@ -15,12 +15,12 @@ const users = [
     value : 'joinedDate',
   },
   {
-    id : 'COMMENT_COUNT',
+    id : 'REVIEW_COUNT',
     name : '작성한 리뷰',
-    value : 'comments',
+    value : 'reviews',
   },
   {
-    id : 'LIKE',
+    id : 'LIKE_COUNT',
     name : '좋아요',
     value : 'like',
   }
