@@ -199,7 +199,7 @@ const ManageReviewsPage = () => {
             >수정</Button> */}
             <SearchBox
               className={styles.SearchBox}
-              placeholder="영화제목, 작성자"
+              placeholder="작성자"
               onChange={handleSubmit}
             />
           </span>
@@ -214,7 +214,7 @@ const ManageReviewsPage = () => {
               {reviews.map((review, idx) => {
                 const createdAt = review.createdAt;
                 return (
-                  <td key={idx} className={reviewStyle.elements}>
+                  <li key={idx} className={reviewStyle.elements}>
                     <CheckBox
                       className={reviewStyle.check}
                       checked={selectedReviews.includes(review.id)}
@@ -235,7 +235,7 @@ const ManageReviewsPage = () => {
                       onClick={()=>onClickOpenModal(review,"review")}
                     >                  
                     </Button>
-                  </td>
+                  </li>
                 );
               })}
             </table>

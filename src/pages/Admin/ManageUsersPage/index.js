@@ -206,7 +206,7 @@ const ManageUsersPage = () => {
             >수정</Button> */}
             <SearchBox
               className={styles.searchBox}
-              placeholder="이름, 닉네임, 이메일"
+              placeholder="유저이름"
               onChange={handleSubmit}
             />
           </span>
@@ -221,7 +221,7 @@ const ManageUsersPage = () => {
               {users.map((user, idx) => {
                 const time = user.createdAt;
                 return (
-                  <td key={idx} className={userStyle.elements}>
+                  <tr key={idx} className={userStyle.elements}>
                     <CheckBox
                       className={userStyle.check}
                       checked={selectedUsers.includes(user.id)}
@@ -244,7 +244,7 @@ const ManageUsersPage = () => {
                       onClick={() => onClickOpenModal(user, 'user')}
                     ></Button>
                     {/* } */}
-                  </td>
+                  </tr>
                 );
               })}
             </table>

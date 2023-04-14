@@ -12,3 +12,5 @@ export const getFAQs = (page, limit) => {
 export const deleteFaqAdmin = (id) => {
   return apiClient.delete(`/faqs/${id}`)
 }
+
+// FAQcount 요청드리기
