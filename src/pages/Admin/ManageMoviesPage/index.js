@@ -182,7 +182,7 @@ const ManageMoviesPage = () => {
               {movies.map((movie, idx) => {
                 const createdAt = movie.createdAt;
                 return (
-                  <tb key={idx} className={movieStyle.elements}>
+                  <li key={idx} className={movieStyle.elements}>
                     <CheckBox
                       className={movieStyle.check}
                       checked={selectedMovies.includes(movie.id)}
@@ -203,7 +203,7 @@ const ManageMoviesPage = () => {
                         }
                       })}
                     </span>
-                  </tb>
+                  </li>
                 );
               })}
             </table>

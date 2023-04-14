@@ -1,12 +1,12 @@
 const FnQ = [
   {
     id : 1,
-    name : '제목',
+    name : '영화명',
     value : 'title',
   },
   {
     id : 2,
-    name : '유저(이메일)',
+    name : '유저이름 (이메일)',
     value : 'user(email)',
   },
   {

@@ -108,7 +108,9 @@ const ManageFAQsPage = () => {
 
   const fetchData = async () => {
     const response = await getFAQs(currentPage, pageLimit, "", isOrderBy, isReversed);
-    const count = await countMovies();
+
+    // FAQ 카운트 요청드리고나서 수정 
+    // const count = await countMovies();
 
     if (response.status === 200) {
       const items = [...response.data.data];
@@ -169,7 +171,7 @@ const ManageFAQsPage = () => {
             </Button>
             <SearchBox
               className={styles.searchBox}
-              placeholder="이름, 닉네임, 이메일"
+              placeholder="유저이름"
               onChange={onChangeSearch}
             />
           </span>
@@ -186,13 +188,17 @@ const ManageFAQsPage = () => {
               {faqs.map((faq, idx) => {
                 const createdAt = faq.createdAt;
                 return (
-                  <tb key={idx} className={faqStyle.elements}>
+                  <li key={idx} className={faqStyle.elements}>
                     <CheckBox
                       className={faqStyle.check}
                       checked={selectedFaqs.includes(faq.id)}
                       onChange={onCheckFaq(faq.id)}
                     />                    
-                  </tb>
+                    <span>{faq.title}</span>
+                    <span>{faq.user.name ?? "-"}({faq.user.nickname ?? "-"})</span>
+                    <span>{faq.content}</span>
+                    <span>{dayjs(time).format('YYYY-MM-DD HH:mm:ss')}</span>
+                  </li>
                 )
               })}
             </table>
