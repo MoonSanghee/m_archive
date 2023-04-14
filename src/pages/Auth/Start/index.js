@@ -3,13 +3,12 @@ import styles from './start.module.scss';
 import { Button } from '../../../components/Common';
 import { useNavigate } from 'react-router-dom';
 import bg from './cloud.mp4';
+import { LikeIcon } from '../../../assets/icon/index';
 const Start = () => {
-  const completedTitle = `이제는 감상도 공유하는 시대!     
-   다양한 관점에서 바라보는 새로운 시선과 
-   재미있는 스토리들을 만나보세요~ : )`;
-
+  const completedTitle = `이제는 감상도 공유하는 시대!\n다양한 관점에서 바라보는 새로운 시선과\n재미있는 스토리들을 만나보세요~ ☺`;
   const [title, setTitle] = useState('');
   const [count, setCount] = useState(0);
+  const [time, setTime] = useState(125);
 
   useEffect(() => {
     const typingInterval = setInterval(() => {
@@ -17,19 +16,23 @@ const Start = () => {
         let result = prev ? prev + completedTitle[count] : completedTitle[0];
         setCount(count + 1);
 
+        if (count >= completedTitle.length - 1) {
+          setTime(2000);
+        }
+
         if (count >= completedTitle.length) {
+          setTime(125);
           setCount(0);
           setTitle('');
         }
         return result;
       });
-    }, 125);
+    }, time);
 
     return () => {
       clearInterval(typingInterval);
     };
   });
-
   const videoRef = useRef();
   const setPlayBackRate = () => {
     videoRef.current.playbackRate = 0.5;
