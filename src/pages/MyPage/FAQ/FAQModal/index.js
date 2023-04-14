@@ -120,6 +120,7 @@ const FAQModal = ({ type, onClose }) => {
                 닫기
               </Button>
             </div>
+
           </form>
         )}
       </section>
