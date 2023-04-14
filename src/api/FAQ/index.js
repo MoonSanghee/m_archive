@@ -8,3 +8,7 @@ export const getFAQs = (page, limit) => {
     },
   });
 };
+
+export const deleteFaqAdmin = (id) => {
+  return apiClient.delete(`/faqs/${id}`)
+}
