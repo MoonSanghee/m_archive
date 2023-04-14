@@ -11,9 +11,11 @@ import {
 import Accordion from '../../../components/Common/Accordion';
 import faqData from './faqData';
 import useModal from '../../../components/Common/Modal/useModal';
-import FAQModal from './FAQModal';
+import FAQAskModal from './FAQAskModal';
+import FAQListModal from './FAQListModal';
 const FAQ = () => {
-  const [modalOption, showModal] = useModal();
+  const [faqModalOption, faqShowModal,faqOnClose] = useModal();
+  const [toAskModalOption, toAskShowModal,toAskOnClose] = useModal();
   //TODO: 재사용 가능한 모달 컴포넌트 만들기
 
   /*const handleOpenModal = (showInquiryModal) => {
@@ -59,31 +61,29 @@ const FAQ = () => {
     }
   };
   */
-  const handleOpenModalQuestions = useCallback(() => {
-    showModal(
+  const handleOpenModalFAQs= useCallback(() => {
+    faqShowModal(
       true,
       '',
       null,
       null,
-      <FAQModal
-        type={'questions'}
-        //onClose={() => modalOption.onClose()}
+      <FAQListModal
+        onClose={faqOnClose}
       />,
     );
-  }, [modalOption]);
+  }, [faqModalOption]);
 
   const handleOpenModalToAsk = useCallback(() => {
-    showModal(
+    toAskShowModal(
       true,
       '',
       null,
       null,
-      <FAQModal
-        type={'ask'}
-        //onClose={() => modalOption.onClose()}
+      <FAQAskModal
+      onClose={toAskOnClose}
       />,
     );
-  }, [modalOption]);
+  }, [toAskModalOption]);
 
   const handleCloseModal = () => {
     setModalOption({ ...modalOption, show: false });
@@ -114,7 +114,7 @@ const FAQ = () => {
       <div className={styles.mainInput}>
         <SearchBox onChange={handleSearch} />
         <div className={styles.sideButton}>
-          <Button onClick={handleOpenModalQuestions}>문의 내역</Button>
+          <Button onClick={handleOpenModalFAQs}>문의 내역</Button>
           <Button onClick={handleOpenModalToAsk}>문의 하기</Button>
         </div>
       </div>
@@ -130,8 +130,13 @@ const FAQ = () => {
         ))}
       </ul>
       <Modal
-        modalOption={modalOption}
+        modalOption={faqModalOption}
         modalSize="big"
+        //className={styles.iconModal}
+      />
+      <Modal
+        modalOption={toAskModalOption}
+        modalSize="small"
         //className={styles.iconModal}
       />
     </main>

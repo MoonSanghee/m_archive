@@ -1,0 +1,72 @@
+
+
+
+//문의내역 예시 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  
+  
+  th,
+  td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #fff;
+  }
+  
+  th {
+    background-color: #000;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  tr {
+    &:nth-child(even) {
+      background-color: #fff;
+    }
+    
+    &:hover {
+      background-color: #000;
+    }
+  }
+}
+
+
+// FAQModal 관련 SCSS
+.inputGroup {
+  margin-bottom: 1.5rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: bold;
+  }
+
+  input,
+  textarea {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #d9d9d9;
+    border-radius: 0.25rem;
+    outline: none;
+
+    &:focus {
+      border-color: #1890ff;
+      box-shadow: 0 0 0 0.125rem rgba(24, 144, 255, 0.25);
+    }
+  }
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+
+  button {
+    margin-left: 0.5rem;
+  }
+}

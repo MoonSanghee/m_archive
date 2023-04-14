@@ -17,3 +17,11 @@ export const createFaq = (data) => {
 };
 
 // FAQcount 요청드리기
+export const getFAQsMe = (page,limit)=>{
+  return apiClient.get("/faqs/me",{
+    params:{
+      page,
+      limit,
+    }
+  });
+}
