@@ -4,17 +4,15 @@ import {
   Button,
   CheckBox,
   SearchBox,
-  TableElements,
   TableMenu,
 } from '../../../components';
 import styles from './manageFAQ.module.scss';
-import FAQs from '../../../components/Common/TableElements/FAQs';
 import { useNavigate } from 'react-router-dom';
 import { deleteFaqAdmin, getFAQs } from '../../../api/FAQ';
 import { countMovies } from '../../../api/Movies';
 import { useMount } from 'react-use';
 import { getTokens } from '../../../utils';
-import faqStyle from "../../../components/Common/TableElements/tableElements.module.scss";
+import tableStyle from "../tableStyle.module.scss";
 import Pagination from '../../../components/Common/PageNation';
 
 const ManageFAQsPage = () => {
@@ -184,13 +182,13 @@ const ManageFAQsPage = () => {
         </p>
         <p className={styles.table}>
           <div>
-            <table className={faqStyle.faqs}>
+            <table className={tableStyle.faqs}>
               {faqs.map((faq, idx) => {
                 const createdAt = faq.createdAt;
                 return (
-                  <li key={idx} className={faqStyle.elements}>
+                  <li key={idx} className={tableStyle.elements}>
                     <CheckBox
-                      className={faqStyle.check}
+                      className={tableStyle.check}
                       checked={selectedFaqs.includes(faq.id)}
                       onChange={onCheckFaq(faq.id)}
                     />                    

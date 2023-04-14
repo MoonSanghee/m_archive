@@ -4,13 +4,10 @@ import {
   Button,
   CheckBox,
   SearchBox,
-  TableElements,
   TableMenu,
 } from '../../../components';
-
 import styles from './manageUsers.module.scss';
-import Users from '../../../components/Common/TableElements/Users';
-import userStyle from '../../../components/Common/TableElements/tableElements.module.scss';
+import tableStyle from "../tableStyle.module.scss";
 import { countUsers, deleteUserAdmin, getUsers } from '../../../api/Users';
 import dayjs from 'dayjs';
 import Pagination from '../../../components/Common/PageNation';
@@ -216,14 +213,14 @@ const ManageUsersPage = () => {
           onClick={orderBy}/>
         </p>
         <p className={styles.table}>
-          <div className={userStyle}>
-            <table className={userStyle.users}>
+          <div className={tableStyle}>
+            <table className={tableStyle.users}>
               {users.map((user, idx) => {
                 const time = user.createdAt;
                 return (
-                  <li key={idx} className={userStyle.elements}>
+                  <li key={idx} className={tableStyle.elements}>
                     <CheckBox
-                      className={userStyle.check}
+                      className={tableStyle.check}
                       checked={selectedUsers.includes(user.id)}
                       onChange={onCheckUser(user.id)}
                     />

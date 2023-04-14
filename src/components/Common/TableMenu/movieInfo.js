@@ -21,7 +21,7 @@ const movieInfo = [
   },
   {
     id : 5,
-    name : '스탭',
+    name : '감독',
     value : 'staff',
   }
 ]

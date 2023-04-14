@@ -4,12 +4,10 @@ import {
   Button,
   CheckBox,
   SearchBox,
-  TableElements,
   TableMenu,
 } from '../../../components';
-import Movies from '../../../components/Common/TableElements/movies';
 import styles from './manage.module.scss';
-import movieStyle from '../../../components/Common/TableElements/tableElements.module.scss';
+import tableStyle from "../tableStyle.module.scss";
 import { getMovies } from '../../../api/Movies';
 import { countMovies } from '../../../api/Movies';
 import Pagination from '../../../components/Common/PageNation';
@@ -178,13 +176,13 @@ const ManageMoviesPage = () => {
         </p>
         <p className={styles.table}>
           <div>
-            <table className={movieStyle.movies}>
+            <table className={tableStyle.movies}>
               {movies.map((movie, idx) => {
                 const createdAt = movie.createdAt;
                 return (
-                  <li key={idx} className={movieStyle.elements}>
+                  <li key={idx} className={tableStyle.elements}>
                     <CheckBox
-                      className={movieStyle.check}
+                      className={tableStyle.check}
                       checked={selectedMovies.includes(movie.id)}
                       onChange={onCheckMovie(movie.id)}
                     />
@@ -196,7 +194,7 @@ const ManageMoviesPage = () => {
                       ))}
                     </span>
                     <span></span>
-                    <span className={movieStyle.block}>
+                    <span className={tableStyle.block}>
                       {movie.staffs.map((staff) => {
                         if (staff.role === '감독') {
                           return <span key={staff.id}>{staff.name}</span>;
