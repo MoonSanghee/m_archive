@@ -63,17 +63,17 @@ const UserDetail = () => {
   return (
     <main className={styles.wrapper}>
       <section className={styles.sectionWrapper}>
-        <h1>{`${user?.nickname || user?.name} 님의 프로필`}</h1>
+        <h1>{`${user?.nickname || user?.name || "-"} 님의 프로필`}</h1>
         <article className={styles.profileWrapper}>
           <div className={styles.profileInfo}>
             <ProfileIcon className={styles.profileIcon} user={user} />
             <p className={styles.nickname}>{`${
-              user?.nickname || user?.name
+              user?.nickname || user?.name || "-"
             } `}</p>
             <p>{`${user?.description ?? '-'} `}</p>
           </div>
           <div className={styles.preferredGenresInfo}>
-            <p>{`${user?.nickname || user?.name} 님의 취향은?`}</p>
+            <p>{`${user?.nickname || user?.name || "-"} 님의 취향은?`}</p>
             {user?.isPreferenceView ? (
               <div className={styles.preferredGenresWrapper}>
                 {user?.preferredGenres?.map((item) => {
@@ -93,7 +93,7 @@ const UserDetail = () => {
         </article>
       </section>
       <section className={styles.sectionWrapper}>
-        <h1>{`${user?.nickname || user?.name} 님이 좋아하는 영화`}</h1>
+        <h1>{`${user?.nickname || user?.name || "-"} 님이 좋아하는 영화`}</h1>
         <article>
           {user?.isLikeView ? (
             <div className={styles.likesWrapper}>
@@ -118,7 +118,7 @@ const UserDetail = () => {
         </article>
       </section>
       <section className={styles.sectionWrapper} >
-        <h1>{`${user?.nickname || user?.name} 님이 남긴 리뷰`}</h1>
+        <h1>{`${user?.nickname || user?.name || "-"} 님이 남긴 리뷰`}</h1>
         <article>
           {user?.isReviewView ? (
             <div className={styles.reviewsWrapper}>
@@ -130,7 +130,7 @@ const UserDetail = () => {
                       <ProfileIcon user={item?.user} />
                       <div>
                         <StarRate id={`SR-${item.id}`} item={item} />
-                        <p>{item?.user?.nickname || item?.user?.name}</p>
+                        <p>{item?.user?.nickname || item?.user?.name || "-"}</p>
                       </div>
                     </div>
                     <div className={styles.content}>{item?.content}</div>

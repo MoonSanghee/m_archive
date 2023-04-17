@@ -96,7 +96,7 @@ const Review = () => {
       </section>
       <section className={styles.section}>
         <header>
-          <h1>댓글관리</h1>
+          <h1>댓글 관리</h1>
         </header>
         <article>
           <div className={styles.commentsContainer}>

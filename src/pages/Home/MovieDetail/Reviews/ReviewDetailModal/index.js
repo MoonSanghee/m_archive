@@ -126,9 +126,9 @@ const isMyComment = (item) => {
               <span>
                 {!review
                   ? 'none'
-                  : isExists('nickname', review) || isExists('name', review)}
+                  : isExists('nickname', review) || isExists('name', review) || "-"}
               </span>
-              <span> / 칭호</span>
+              <span></span>
             </p>
           </div>
         </div>

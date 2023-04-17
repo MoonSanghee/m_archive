@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { BlockIcon, LikeBlackIcon, LikeRedIcon } from '../../../assets/icon';
+import { BlockIcon, LikeBlackIcon, LikeRedIcon ,StarIcon} from '../../../assets/icon';
 import styles from './card.module.scss';
 import cx from 'classnames';
 // import LikeButton from '../LikeButton';
 import { createLike, deleteLike } from '../../../api/Movies';
 import LikeButton from '../LikeButton';
+import StarRate from "../StarRate";
+
 
 const Card = ({ item, onClick, type, idx, callback ,className}) => {
   const movie = item;
@@ -65,17 +67,24 @@ const Card = ({ item, onClick, type, idx, callback ,className}) => {
         </div>
         <div className={styles.card_back}>
           <div className={styles.card_content} onClick={onClick}>
-            <h2 className={styles.title}>{item?.title}</h2>
+            <h2 className={styles.title}>{item?.title}
+              <span className={styles.starRate}>
+              <StarIcon />
+              {movie?.averageScore?.toFixed(1)}
+                </span>
+              </h2>
             <h3>{genres}</h3>
             <p>{item?.plot}</p>
           </div>
           <div className={styles.menu}>
+            
             <LikeButton
               movieId={movie?.id}
               onClick={onLikeBtn}
               isLiked={isLiked}
             />
-            <BlockIcon className={styles.icon} />
+            {/*<BlockIcon className={styles.icon} />*/}
+            
           </div>
         </div>
       </div>

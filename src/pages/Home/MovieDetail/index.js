@@ -15,6 +15,7 @@ import useModal from '../../../components/Common/Modal/useModal';
 import ReviewModal from './ReviewModal';
 import { useMe } from '../../../hooks';
 import { useMount } from 'react-use';
+import dayjs from 'dayjs';
 
 const MovieDetailPage = () => {
   const navigate = useNavigate();
@@ -146,7 +147,7 @@ const MovieDetailPage = () => {
           <h2>{movie?.title}</h2>
           <div className={styles.movieDetails}>
             <p>
-              {movie?.releasedAt}, {movie?.company}
+              {dayjs(movie?.releasedAt).format("YYYY.MM.DD")}, {movie?.company}
             </p>
             <p>
               장르 :
