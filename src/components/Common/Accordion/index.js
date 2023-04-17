@@ -30,7 +30,10 @@ const Accordion = (props) => {
         <span>{props.title}</span>
         <MypageArrow className={styles.accordionIcon} />
       </div>
-      <div className={styles.accordionContent}>{props.content}</div>
+      <div className={styles.accordionContent}>
+        <span>답변</span>
+        <span>{props.content}</span>
+        </div>
     </div>
   );
 };

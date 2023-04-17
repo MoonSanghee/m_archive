@@ -112,23 +112,26 @@ const FAQ = () => {
     <main className={styles.mainContainer}>
       <h1> FAQ</h1>
       <div className={styles.mainInput}>
-        <SearchBox onChange={handleSearch} />
+        <SearchBox  className={styles.search} onChange={handleSearch} placeholder="무엇을 도와드릴까요?"/>
         <div className={styles.sideButton}>
           <Button onClick={handleOpenModalFAQs}>문의 내역</Button>
           <Button onClick={handleOpenModalToAsk}>문의 하기</Button>
         </div>
       </div>
-      <li>
-        <div className={styles.thtitle}>자주 묻는 질문</div>
-      </li>
-      <ul className={styles.accordionWrapper}>
-        {/* //NOTE: 열려있는 아코디언은 1개로 유지 */}
-        {filteredFAQ.map((item, index) => (
-          <li key={index}>
-            <Accordion title={item.title} content={item.content} />
-          </li>
-        ))}
-      </ul>
+      <div className={styles.tableWrapper}>
+        <li>
+          <div className={styles.thtitle}>자주 묻는 질문</div>
+        </li>
+        <ul className={styles.accordionWrapper}>
+          {/* //NOTE: 열려있는 아코디언은 1개로 유지 */}
+          {filteredFAQ.map((item, index) => (
+            <li key={index}>
+              <Accordion title={item.title} content={item.content} />
+            </li>
+          ))}
+        </ul>
+      </div>
+     
       <Modal
         modalOption={faqModalOption}
         modalSize="big"
