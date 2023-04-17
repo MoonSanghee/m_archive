@@ -59,11 +59,13 @@ const FAQAskModal = ({  onClose }) => {
     console.log(faqData);
     if(faqData.content ==='' || faqData.title ==='' ){
       //경고메세지 
+      alert("제목과 내용을 입력해주세요.")
       return;
     }
     const response = await createFaq(faqData);
     if(response.status ===201){
       alert("문의성공");
+      onClose();
       //여기는 임시
     }else{
       alert("문의실패");
@@ -80,18 +82,12 @@ const FAQAskModal = ({  onClose }) => {
     
   }
 
-    //NOTE: tody scroll 필요
-    //NOTE: API 연동(faq 불러오기 / 생성 / 삭제)
-    //NOTE: 펼침기능 => 드롭다운 형식으로 (추천)
-    //NOTE: 색상
+  
 
     
     return (
       <section>
       <h2 className={styles.faqAskTitle}>문의하기</h2>
-      {isSubmitted ? ( // 제출 이후 생성되는 화면 ?
-        <p>제출이 완료되었습니다. 감사합니다.</p>
-      ) : (
         <form onSubmit={handleSubmit}>
           <label className={styles.inputGroup}>
             이름
@@ -111,9 +107,7 @@ const FAQAskModal = ({  onClose }) => {
               닫기
             </Button>
           </div>
-
         </form>
-      )}
     </section>
      
     );

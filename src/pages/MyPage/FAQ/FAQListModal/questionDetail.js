@@ -4,9 +4,11 @@ import styles from "./faqListModal.module.scss";
 const QuestionDetail = ({ question }) => {
   return (
     <div className={styles.questionDetail}>
-      <div className={styles.questionTitle}>{question.title}</div>
-      <div className={styles.questionStatus}>{question.status}</div>
-      <div className={styles.questionAnswer}>{question.answer}</div>
+      <div>
+      <strong className={styles.questionTitle}>{question.title}</strong>
+      <span className={styles.questionStatus}>{question.status}</span>
+    </div>
+    <div className={styles.answer}>{qustion.answer}</div>
     </div>
   );
 };

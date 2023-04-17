@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Button } from '../../../../components/Common';
 import QuestionDetail from './questionDetail';
 import styles from './faqListModal.module.scss';
@@ -38,6 +38,7 @@ const FAQListModal = ({onClose }) => {
   //   content: '',
   // });
 
+  const tbodyRef = useRef(null);
 
   const handleQuestionClick = (index) => {
     setFAQs((prevQuestions) => {
@@ -75,7 +76,7 @@ const FAQListModal = ({onClose }) => {
             <th>상태</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody ref={tbodyRef} className={styles.faqTableBody}>
           {faqs.map((question, index) => (
             <tr
               key={index}
