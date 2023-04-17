@@ -34,12 +34,21 @@ table {
 
 
 // FAQModal 관련 SCSS
+.faqAskTitle {
+  color: #000;
+  margin: 32px 0 24px 0;
+  
+}
+
 .inputGroup {
-  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.2rem;
+  color: #000;
 
   label {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 2rem;
     font-size: 1.125rem;
     font-weight: bold;
   }

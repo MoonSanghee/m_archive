@@ -88,7 +88,7 @@ const FAQAskModal = ({  onClose }) => {
     
     return (
       <section>
-      <h2>문의하기</h2>
+      <h2 className={styles.faqAskTitle}>문의하기</h2>
       {isSubmitted ? ( // 제출 이후 생성되는 화면 ?
         <p>제출이 완료되었습니다. 감사합니다.</p>
       ) : (

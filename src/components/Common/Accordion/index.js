@@ -11,9 +11,22 @@ import cx from "classnames";
 const Accordion = (props) => {
   const [active, setActive] = useState(false);
 
+  const handleClick = () => {
+    if (active) {
+      setActive(false);
+    } else {
+      // 모든 컴포넌트의 active state를 false로 초기화
+      const accordions = document.querySelectorAll(`.${styles.accordion}`);
+      accordions.forEach((accordion) => {
+        accordion.classList.remove(`${styles.active}`);
+      });
+      setActive(true);
+    }
+  };
+
   return (
     <div className={cx(styles.accordion,{[styles.active]: active})}>
-      <div className={styles.accordionTitle} onClick={() => setActive(!active)}>
+      <div className={styles.accordionTitle} onClick={handleClick}>
         <span>{props.title}</span>
         <MypageArrow className={styles.accordionIcon} />
       </div>
