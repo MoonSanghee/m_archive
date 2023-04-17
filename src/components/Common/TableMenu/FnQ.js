@@ -1,23 +1,23 @@
 const FnQ = [
   {
-    id : 1,
-    name : '영화명',
-    value : 'title',
+    id : 'TITLE',
+    name : '제목',
+    value : 'TITLE',
   },
   {
-    id : 2,
+    id : 'USERNAME',
     name : '유저이름 (이메일)',
-    value : 'user(email)',
+    value : 'USERNAME',
   },
   {
-    id : 3,
+    id : 'CONTENT',
     name : '내용',
-    value : 'detail',
+    value : 'CONTENT',
   },
   {
-    id : 4,
+    id : 'CREATED_AT',
     name : '시간',
-    value : 'date',
+    value : 'CREATED_AT',
   },
 ]
 

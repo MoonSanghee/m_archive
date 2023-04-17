@@ -186,7 +186,8 @@ const ManageMoviesPage = () => {
           <div>
             <table className={tableStyle.movies}>
               {movies.map((movie, idx) => {
-                const createdAt = movie.createdAt;
+                console.log(movie)
+                const actors = movie.actors.slice(0, 3);
                 return (
                   <li key={idx} className={tableStyle.elements}>
                     <CheckBox
@@ -198,14 +199,18 @@ const ManageMoviesPage = () => {
                     <span>{movie.releasedAt}</span>
                     <span className={styles.block}>
                       {movie.genres.map((genre) => (
-                        <span key={genre.id}>{genre.name}</span>
+                        <span key={genre.id} className={styles.data}>{genre.name}</span>
                       ))}
                     </span>
-                    <span></span>
-                    <span className={tableStyle.block}>
+                    <span>
+                      {actors.map((actor) => {
+                        return <span className={styles.data}>{actor.name}</span>
+                      })}
+                    </span>
+                    <span>
                       {movie.staffs.map((staff) => {
                         if (staff.role === '감독') {
-                          return <span key={staff.id}>{staff.name}</span>;
+                          return <span className={styles.data} key={staff.id}>{staff.name}</span>;
                         }
                       })}
                     </span>

@@ -14,6 +14,7 @@ import { useMount } from 'react-use';
 import { getTokens } from '../../../utils';
 import tableStyle from '../tableStyle.module.scss';
 import Pagination from '../../../components/Common/PageNation';
+import dayjs from 'dayjs';
 
 const ManageFAQsPage = () => {
   const navigate = useNavigate();
@@ -23,8 +24,8 @@ const ManageFAQsPage = () => {
   const [pageLimit, setPageLimit] = useState(10);
   const [totalPages, setTotalPages] = useState(1);
   const [isChecked, setIsChecked] = useState(false);
-  const [isReversed, setIsReversed] = useState('asc');
-  const [isOrderBy, setIsOrderBy] = useState('NAME');
+  const [isReversed, setIsReversed] = useState("asc");
+  const [isOrderBy, setIsOrderBy] = useState("USERNAME");
 
   const isAllChecked = selectedFaqs.length === faqs.length;
 
@@ -38,16 +39,16 @@ const ManageFAQsPage = () => {
   };
 
   const onChangeSearch = async (event) => {
-    const response = await getFAQs(1, 10, event.target.value);
+    const response = await getFAQs(1, 10, event.target.value, isOrderBy, isReversed);
     if (response.status === 200) {
       const items = [...response.data.data];
       // NOTE: response.data.paging.total => 총 개수
       setFaqs(items);
-      setTotalPages(Math.ceil(items.length / pageLimit));
+      setTotalPages(response.data.total / pageLimit);
       setCurrentPage(1);
     }
-    if (event.target.value === '') {
-      setTotalPages(response.length / pageLimit);
+    if (event.target.value === "") {
+      setTotalPages(response.data.total / pageLimit);
       setCurrentPage(1);
       return;
     }
@@ -193,7 +194,7 @@ const ManageFAQsPage = () => {
               {faqs.map((faq, idx) => {
                 const createdAt = faq.createdAt;
                 return (
-                  <li key={idx} className={tableStyle.elements}>
+                  <li key={faq.id} className={faqStyle.elements}>
                     <CheckBox
                       className={tableStyle.check}
                       checked={selectedFaqs.includes(faq.id)}
@@ -204,7 +205,7 @@ const ManageFAQsPage = () => {
                       {faq.user.name ?? '-'}({faq.user.nickname ?? '-'})
                     </span>
                     <span>{faq.content}</span>
-                    <span>{dayjs(time).format('YYYY-MM-DD HH:mm:ss')}</span>
+                    <span>{dayjs(faq.createdAt).format('YYYY-MM-DD HH:mm:ss')}</span>
                   </li>
                 );
               })}
