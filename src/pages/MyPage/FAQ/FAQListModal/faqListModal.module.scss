@@ -32,6 +32,18 @@ table {
   }
 }
 
+.faqTableBody {
+  max-height :300px;
+  overflow-y: auto;
+}
+
+.questionRow {
+  cursor: pointer;
+}
+
+.questionDetail {
+  padding: 10px;
+}
 
 // FAQModal 관련 SCSS
 .inputGroup {
