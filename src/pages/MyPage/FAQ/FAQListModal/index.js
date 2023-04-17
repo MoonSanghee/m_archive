@@ -13,18 +13,21 @@ const FAQListModal = ({onClose }) => {
     {
       title: '제목1',
       status: '답변 완료',
+      content: '질문내용',
       answer: '제목1에 대한 답변입니다.',
       isExpanded: false,
     },
     {
       title: '제목2',
       status: '미답변',
+      content: '질문내용',
       answer: '',
       isExpanded: false,
     },
     {
       title: '제목3',
       status: '답변 완료',
+      content: '질문내용',
       answer: '제목3에 대한 답변입니다.',
       isExpanded: false,
     },
@@ -38,6 +41,8 @@ const FAQListModal = ({onClose }) => {
   //   content: '',
   // });
 
+
+  
   const tbodyRef = useRef(null);
 
   const handleQuestionClick = (index) => {
@@ -93,8 +98,13 @@ const FAQListModal = ({onClose }) => {
       </table>
       {faqs.map(
         (question, index) =>
-          question.isExpanded && (
-            <QuestionDetail key={index} question={question} />
+            question.isExpanded && (
+              <tr key={index}>
+                <td colSpan="3">
+                  <QuestionDetail question={question} />
+                </td>
+              </tr>
+            
           ),
       )}
     </section>
