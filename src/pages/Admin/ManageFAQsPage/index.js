@@ -16,6 +16,7 @@ import { useMount } from 'react-use';
 import { getTokens } from '../../../utils';
 import faqStyle from "../../../components/Common/TableElements/tableElements.module.scss";
 import Pagination from '../../../components/Common/PageNation';
+import dayjs from 'dayjs';
 
 const ManageFAQsPage = () => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const ManageFAQsPage = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [isChecked, setIsChecked] = useState(false);
   const [isReversed, setIsReversed] = useState("asc");
-  const [isOrderBy, setIsOrderBy] = useState("NAME");
+  const [isOrderBy, setIsOrderBy] = useState("USERNAME");
 
   const isAllChecked = selectedFaqs.length === faqs.length;
 
@@ -40,15 +41,15 @@ const ManageFAQsPage = () => {
   }
 
   const onChangeSearch = async (event) => {
-    const response = await getFAQs(1, 10, event.target.value);
+    const response = await getFAQs(1, 10, event.target.value, isOrderBy, isReversed);
     if (response.status === 200) {
       const items = [...response.data.data];
       setFaqs(items);
-      setTotalPages(Math.ceil(items.length / pageLimit));
+      setTotalPages(response.data.total / pageLimit);
       setCurrentPage(1);
     }
     if (event.target.value === "") {
-      setTotalPages(response.length / pageLimit);
+      setTotalPages(response.data.total / pageLimit);
       setCurrentPage(1);
       return;
     }
@@ -188,7 +189,7 @@ const ManageFAQsPage = () => {
               {faqs.map((faq, idx) => {
                 const createdAt = faq.createdAt;
                 return (
-                  <li key={idx} className={faqStyle.elements}>
+                  <li key={faq.id} className={faqStyle.elements}>
                     <CheckBox
                       className={faqStyle.check}
                       checked={selectedFaqs.includes(faq.id)}
@@ -197,7 +198,7 @@ const ManageFAQsPage = () => {
                     <span>{faq.title}</span>
                     <span>{faq.user.name ?? "-"}({faq.user.nickname ?? "-"})</span>
                     <span>{faq.content}</span>
-                    <span>{dayjs(time).format('YYYY-MM-DD HH:mm:ss')}</span>
+                    <span>{dayjs(faq.createdAt).format('YYYY-MM-DD HH:mm:ss')}</span>
                   </li>
                 )
               })}

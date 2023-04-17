@@ -1,10 +1,13 @@
 import apiClient from "../apiClient";
 
-export const getFAQs = (page, limit) => {
+export const getFAQs = (page, limit, userName, orderBy, sortBy) => {
   return apiClient.get('/faqs', {
     params: {
       page,
       limit,
+      userName, 
+      orderBy, 
+      sortBy,
     },
   });
 };
