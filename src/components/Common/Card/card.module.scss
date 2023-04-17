@@ -1,4 +1,5 @@
 @use '../../../styles/constants/colors' as c;
+@use '../../../styles/mixins/' as m;
 
 @keyframes fadeout {
   /* 효과를 동작시간 동안 0 ~ 1까지 */
@@ -107,6 +108,23 @@
         -webkit-line-clamp: 6; //줄 수
         -webkit-box-orient: vertical;
       }
+      .title{
+        @include m.flex(space-between);
+        .starRate{
+          @include m.flex(flex-start);
+          column-gap: 4px;
+          width: 80px;
+          
+          color:c.$C_WHITE;
+          font-size: 20px;
+          text-align: center;
+          > svg{
+            width: 28px;
+            height: 24px;
+            fill:c.$C_YELLOW;
+          }
+        }
+      }
     }
 
     .menu {
@@ -117,10 +135,13 @@
       background: c.$C_CARD_MENU;
       height: 50px;
       width: 100%;
-      padding-left: 12px;
+      padding: 12px;
       display: flex;
-      align-items: center;
-
+      
+      justify-content: flex-end;
+      align-items:center;
+      flex-direction: row;
+ 
       .icon {
         width: 32px;
         padding-left: 12px;

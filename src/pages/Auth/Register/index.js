@@ -66,10 +66,11 @@ const Register = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(form);
-    console.log(validatedForm); //true면 api 보내기
+    //console.log(form);
+    //console.log(validatedForm); //true면 api 보내기
     if (!validatedForm) {
       //false면리턴
+      console.log('invalid form');
       return;
     }
     const resgisterData = {
@@ -78,13 +79,18 @@ const Register = () => {
       nickname: form.nickname,
       password: form.password,
     };
-
-    const response = await register(resgisterData);
-    if (response.status === 200) {
-      const data = response.data;
-      saveTokens(data);
-      navigate('/registerGenre');
+    try {
+      const response = await register(resgisterData);
+      if (response.status === 200) {
+        const data = response.data;
+        saveTokens(data);
+        navigate('/registerGenre');
+      }
+    }catch(err){
+      alert('회원가입 실패. 다시 시도하세요!');
     }
+
+   
   };
 
   //메시지

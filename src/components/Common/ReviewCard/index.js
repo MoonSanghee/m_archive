@@ -22,12 +22,7 @@ const ReviewCard = ({ item, onClick, ...props }) => {
   const onClickBlind = () => {
     setBlind(!blind);
   };
-  const isExists = (attr) => {
-    const result = item['user'][attr];
-    //있으면 값, 없으면 false??
-    if (!!result) return item['user'][attr];
-    else return false;
-  };
+
   const onClickNavigate = ()=>{
     navigate(`/movies/user/${item?.user?.id}`);
   }
@@ -50,7 +45,8 @@ const ReviewCard = ({ item, onClick, ...props }) => {
               />
             </div>
             <p className={styles.nickname}>
-              <span>{isExists('nickname') || isExists('name')}</span>
+              
+              <span>{(item?.user?.nickname || item?.user?.name) ??"-"}</span>
               <span></span>
             </p>
           </div>

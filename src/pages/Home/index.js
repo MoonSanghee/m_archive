@@ -76,8 +76,10 @@ const Home = () => {
       });
     }
     //3.선호장르로 영화검색 (좋아요영화+리뷰쓴영화 개수 * 2배로 검색)
+    let recommendMoviesCount =  (likedMovies.length + reviewedMovies.length ) *2 ;
+    recommendMoviesCount = recommendMoviesCount < 40 ? 40 : recommendMoviesCount;
     response = await getMArchiveMovies(
-      (likedMovies.length + reviewedMovies.length) * 2,
+      recommendMoviesCount,
       me?.preferredGenres.map((item) => item.id).join(','),
     );
     if (response.status === 200) {
