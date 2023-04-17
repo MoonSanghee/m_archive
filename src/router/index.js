@@ -4,16 +4,7 @@ import {
   Route,
 } from 'react-router-dom';
 import Layout from '../components/Layout';
-import {
-  TestIm,
-  TestJo,
-  TestMoon,
-  TestKim,
-  TestSeo,
-  TestKim2,
-} from '../pages/Test';
 import { StartPage } from '../pages/Auth';
-import Feedback from '../pages/Test/Feedback';
 import MyPageLayout from '../components/Layout/MyPageLayout';
 import Profile from '../pages/MyPage/Profile';
 import FAQ from '../pages/MyPage/FAQ';
@@ -46,19 +37,9 @@ import Like from '../pages/MyPage/Like';
 const router = (
   <Route path="/">
     <Route index element={<StartPage />} />
-    <Route path="test">
-      <Route path="im" element={<TestIm />} />
-      <Route path="moon" element={<TestMoon />} />
-      <Route path="kim" element={<TestKim />} />
-      <Route path="kim2" element={<TestKim2 />} />
-      <Route path="jo" element={<TestJo />} />
-      <Route path="seo" element={<TestSeo />} />
-      <Route path="feedback" element={<Feedback />} />
-    </Route>
     <Route path="login" element={<LoginPage />} />
     <Route path="register" element={<RegisterPage />} />
     <Route path="registerGenre" element={<RegisterGenrePage />} />
-
     <Route path="logout" element={<LogoutPage />} />
 
     <Route path="movies" element={<Layout />}>

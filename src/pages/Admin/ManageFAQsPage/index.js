@@ -4,17 +4,15 @@ import {
   Button,
   CheckBox,
   SearchBox,
-  TableElements,
   TableMenu,
 } from '../../../components';
 import styles from './manageFAQ.module.scss';
-import FAQs from '../../../components/Common/TableElements/FAQs';
 import { useNavigate } from 'react-router-dom';
 import { deleteFaqAdmin, getFAQs } from '../../../api/FAQ';
 import { countMovies } from '../../../api/Movies';
 import { useMount } from 'react-use';
 import { getTokens } from '../../../utils';
-import faqStyle from "../../../components/Common/TableElements/tableElements.module.scss";
+import tableStyle from '../tableStyle.module.scss';
 import Pagination from '../../../components/Common/PageNation';
 import dayjs from 'dayjs';
 
@@ -35,15 +33,16 @@ const ManageFAQsPage = () => {
     setIsChecked(!isChecked);
   };
 
-  const onClickLogout = ()=>{
+  const onClickLogout = () => {
     localStorage.clear();
-    navigate("/admin/login");
-  }
+    navigate('/admin/login');
+  };
 
   const onChangeSearch = async (event) => {
     const response = await getFAQs(1, 10, event.target.value, isOrderBy, isReversed);
     if (response.status === 200) {
       const items = [...response.data.data];
+      // NOTE: response.data.paging.total => 총 개수
       setFaqs(items);
       setTotalPages(response.data.total / pageLimit);
       setCurrentPage(1);
@@ -56,7 +55,7 @@ const ManageFAQsPage = () => {
   };
 
   const onGetFaqs = async () => {
-    const response = await getFAQs(1, 10, "", isOrderBy, isReversed);
+    const response = await getFAQs(1, 10, '', isOrderBy, isReversed);
     if (response.status === 200) {
       const items = [...response.data.data];
       setFaqs(items);
@@ -92,13 +91,13 @@ const ManageFAQsPage = () => {
     // api 맞나 모르겠슴다
     const response = await deleteFaqAdmin(id);
     if (response.status === 204) {
-      alert("정상 삭제");
+      alert('정상 삭제');
       onGetFaqs();
     } else {
-      alert("삭제 오류!");
+      alert('삭제 오류!');
     }
   };
-  
+
   useEffect(() => {
     onGetFaqs();
   }, []);
@@ -108,9 +107,15 @@ const ManageFAQsPage = () => {
   };
 
   const fetchData = async () => {
-    const response = await getFAQs(currentPage, pageLimit, "", isOrderBy, isReversed);
+    const response = await getFAQs(
+      currentPage,
+      pageLimit,
+      '',
+      isOrderBy,
+      isReversed,
+    );
 
-    // FAQ 카운트 요청드리고나서 수정 
+    // FAQ 카운트 요청드리고나서 수정
     // const count = await countMovies();
 
     if (response.status === 200) {
@@ -126,12 +131,12 @@ const ManageFAQsPage = () => {
 
   const orderBy = async (item) => {
     setIsOrderBy(item.id);
-    setIsReversed((prev) => (prev === "asc" ? "desc" : "asc"));
+    setIsReversed((prev) => (prev === 'asc' ? 'desc' : 'asc'));
   };
 
   useEffect(() => {
     async function fetchData() {
-      const response = await getFAQs(1, pageLimit, "", isOrderBy, isReversed);
+      const response = await getFAQs(1, pageLimit, '', isOrderBy, isReversed);
       setFaqs(response.data.data);
       setCurrentPage(1);
     }
@@ -143,18 +148,25 @@ const ManageFAQsPage = () => {
   }, [currentPage, pageLimit]);
 
   useMount(() => {
-    if(!getTokens().accessToken) navigate("/admin/login");
-  })
+    if (!getTokens().accessToken) navigate('/admin/login');
+  });
 
   return (
     <main className={styles.wrapper}>
       <AdminLNB />
       <section className={styles.allSection}>
-        <div className={styles.header}><Button color="secondary" width="long" children={"로그아웃"} onClick={onClickLogout}/></div>
+        <div className={styles.header}>
+          <Button
+            color="secondary"
+            width="long"
+            children={'로그아웃'}
+            onClick={onClickLogout}
+          />
+        </div>
         <p className={styles.topMenu}>
           <span className={styles.menuLeft}>
-            <CheckBox 
-              className={styles.check} 
+            <CheckBox
+              className={styles.check}
               checked={isChecked}
               onChange={onCheckAll}
               onClick={onClick}
@@ -163,11 +175,7 @@ const ManageFAQsPage = () => {
             전체선택
           </span>
           <span className={styles.menuRight}>
-            <Button 
-              width={"long"}
-              color={"secondary"}
-              onClick={onDeleteFaq}
-            >
+            <Button width={'long'} color={'secondary'} onClick={onDeleteFaq}>
               삭제
             </Button>
             <SearchBox
@@ -178,29 +186,28 @@ const ManageFAQsPage = () => {
           </span>
         </p>
         <p className={styles.secondMenu}>
-          <TableMenu 
-            info={faqs}
-            tableName="F&Q" 
-            onClick={orderBy}/>
+          <TableMenu info={faqs} tableName="F&Q" onClick={orderBy} />
         </p>
         <p className={styles.table}>
           <div>
-            <table className={faqStyle.faqs}>
+            <table className={tableStyle.faqs}>
               {faqs.map((faq, idx) => {
                 const createdAt = faq.createdAt;
                 return (
                   <li key={faq.id} className={faqStyle.elements}>
                     <CheckBox
-                      className={faqStyle.check}
+                      className={tableStyle.check}
                       checked={selectedFaqs.includes(faq.id)}
                       onChange={onCheckFaq(faq.id)}
-                    />                    
+                    />
                     <span>{faq.title}</span>
-                    <span>{faq.user.name ?? "-"}({faq.user.nickname ?? "-"})</span>
+                    <span>
+                      {faq.user.name ?? '-'}({faq.user.nickname ?? '-'})
+                    </span>
                     <span>{faq.content}</span>
                     <span>{dayjs(faq.createdAt).format('YYYY-MM-DD HH:mm:ss')}</span>
                   </li>
-                )
+                );
               })}
             </table>
             <Pagination

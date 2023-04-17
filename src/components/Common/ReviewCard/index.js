@@ -51,7 +51,7 @@ const ReviewCard = ({ item, onClick, ...props }) => {
             </div>
             <p className={styles.nickname}>
               <span>{isExists('nickname') || isExists('name')}</span>
-              <span> / 칭호</span>
+              <span></span>
             </p>
           </div>
           <span className={styles.eyeIcon}>
@@ -87,9 +87,3 @@ const ReviewCard = ({ item, onClick, ...props }) => {
 
 export default ReviewCard;
 
-{
-  /* //NOTE: 1) 시멘틱 요소를 사용하면 좋다. */
-  /* //NOTE: 2) div를 사용한 depth가 너무 깊다. */
-  /* 해당유저 아이콘넣기 */
-  /* 별점 */
-}

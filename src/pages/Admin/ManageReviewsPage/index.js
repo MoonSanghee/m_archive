@@ -5,12 +5,11 @@ import {
   SearchBox,
   Button,
   TableMenu,
-  TableElements,
 } from '../../../components';
 import styles from './manageReviews.module.scss';
 import { getReviews, deleteReviewAdmin } from '../../../api/Reviews';
 import { useNavigate } from 'react-router-dom';
-import reviewStyle from '../../../components/Common/TableElements/tableElements.module.scss';
+import tableStyle from "../tableStyle.module.scss";
 import { getReviewsCount } from '../../../api/Reviews';
 import Pagination from '../../../components/Common/PageNation';
 import dayjs from 'dayjs';
@@ -210,13 +209,13 @@ const ManageReviewsPage = () => {
         </p>
         <p className={styles.table}>
           <div>
-            <table className={reviewStyle.reviews}>
+            <table className={tableStyle.reviews}>
               {reviews.map((review, idx) => {
                 const createdAt = review.createdAt;
                 return (
-                  <li key={idx} className={reviewStyle.elements}>
+                  <li key={idx} className={tableStyle.elements}>
                     <CheckBox
-                      className={reviewStyle.check}
+                      className={tableStyle.check}
                       checked={selectedReviews.includes(review.id)}
                       onChange={onCheckReview(review.id)}
                     />
