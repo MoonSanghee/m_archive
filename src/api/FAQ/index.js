@@ -19,7 +19,6 @@ export const createFaq = (data) => {
   return apiClient.post('/faqs', data);
 };
 
-// FAQcount 요청드리기
 export const getFAQsMe = (page,limit)=>{
   return apiClient.get("/faqs/me",{
     params:{
@@ -28,3 +27,12 @@ export const getFAQsMe = (page,limit)=>{
     }
   });
 }
+
+export const patchFaq = (id, body) => {
+  return apiClient.patch(`/faqs/comments/${id}`, body)
+}
+
+export const createFaqAdmin = (id) => {
+  return apiClient.post(`/faqs/${id}/comments`)
+}
+
