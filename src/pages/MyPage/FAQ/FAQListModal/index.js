@@ -101,7 +101,10 @@ const FAQListModal = ({onClose }) => {
               </tr>
               {selectedQuestionIndex === index && (
                 <tr key={`answer-${index}`}>
-                <td className={styles.Answer}colSpan="3">
+                  <td colSpan="1">
+                       <tr className={styles.faqAnswer}>답변</tr>
+                 </td>
+                 <td className={styles.Answer}colSpan="3">
                   <QuestionDetail question={question} />
                 </td>
                 </tr>)}
