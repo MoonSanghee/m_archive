@@ -33,18 +33,26 @@ const FAQListModal = ({onClose }) => {
       isExpanded: false,
     },*/
   ]);
-
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [selectedQuestionIndex, setSelectedQuestionIndex] = useState(null);
 
   
   const tbodyRef = useRef(null);
 
+  // const handleQuestionClick = (index) => {
+  //   const copyClicks = [...clicks];
+  //   copyClicks[index] = !copyClicks[index];
+  //   setClicks([
+  //    ...copyClicks,
+  //   ])
+  // };
+
   const handleQuestionClick = (index) => {
-    const copyClicks = [...clicks];
-    copyClicks[index] = !copyClicks[index];
-    setClicks([
-     ...copyClicks,
-    ])
+    if (selectedQuestionIndex === index) {
+      // 이미 선택한 질문을 다시 클릭한 경우
+      setSelectedQuestionIndex(null);
+    } else {
+      setSelectedQuestionIndex(index);
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -86,18 +94,17 @@ const FAQListModal = ({onClose }) => {
                 key={index}
                 onClick={() => handleQuestionClick(index)}
                 className={styles.questionRow}
-                style={{ backgroundColor: 'gray' }}
               >
                 <td>{index + 1}</td>
                 <td>{question.title}</td>
                 <td>{question.status}</td>
               </tr>
-              {clicks[index] ? 
-                <tr key={index}>
-                <td colSpan="3">
+              {selectedQuestionIndex === index && (
+                <tr key={`answer-${index}`}>
+                <td className={styles.Answer}colSpan="3">
                   <QuestionDetail question={question} />
                 </td>
-                </tr>:null}
+                </tr>)}
              </>
             ))}
         </tbody>

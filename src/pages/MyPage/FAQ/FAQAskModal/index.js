@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Button } from '../../../../components/Common';
-import QuestionDetail from './questionDetail';
 import styles from './faqAskModal.module.scss';
 import { createFaq } from '../../../../api/FAQ';
 import { useMe } from '../../../../hooks';
@@ -15,28 +14,8 @@ const FAQAskModal = ({  onClose }) => {
     content: '',
  });
 
-  const [questions, setQuestions] = useState([
-    {
-      title: '제목1',
-      status: '답변 완료',
-      answer: '제목1에 대한 답변입니다.',
-      isExpanded: false,
-    },
-    {
-      title: '제목2',
-      status: '미답변',
-      answer: '',
-      isExpanded: false,
-    },
-    {
-      title: '제목3',
-      status: '답변 완료',
-      answer: '제목3에 대한 답변입니다.',
-      isExpanded: false,
-    },
-  ]);
-
-  const [isSubmitted, setIsSubmitted] = useState(false);
+ 
+  
 
   //NOTE: 문의 생성
 

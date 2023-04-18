@@ -14,7 +14,7 @@ table {
   td {
     padding: 12px;
     text-align: left;
-    border: 1px solid #fff;
+    border: 1px solid c.$C_SECONDARY;
   }
   
   th {
@@ -22,30 +22,31 @@ table {
     font-weight: bold;
     font-size: 16px;
   }
-  
+
   tr {
-    &:nth-child(even) {
-      background-color: #fff;
-    }
-    
-    &:hover {
-      background-color: #000;
-    }
-  }
+      background-color: c.$C_WHITE_50; 
+}
 }
 
 .faqTableBody {
   max-height :300px;
   overflow-y: auto;
+  color: #000;
 }
 
 .questionRow {
   cursor: pointer;
+  background-color: c.$C_WHITE_50;
 }
 
+.Answer {
+  color: #000;
+  background-color: c.$C_GRAY;
+}
 .questionDetail {
   padding: 10px;
 }
+
 
 // FAQModal 관련 SCSS
 .faqListTitle {
@@ -88,3 +89,4 @@ table {
     margin-left: 0.5rem;
   }
 }
+
