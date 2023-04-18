@@ -71,6 +71,8 @@ const FAQ = () => {
         onClose={faqOnClose}
       />,
     );
+    // 스크롤 방지 
+    document.body.style.overflow ='hidden';
   }, [faqModalOption]);
 
   const handleOpenModalToAsk = useCallback(() => {
@@ -83,10 +85,14 @@ const FAQ = () => {
       onClose={toAskOnClose}
       />,
     );
+    // 스크롤 방지 
+    document.body.style.overflow='hidden';
   }, [toAskModalOption]);
 
   const handleCloseModal = () => {
     setModalOption({ ...modalOption, show: false });
+    // 스크롤 허용 
+    document.body.style.overflow= 'auto'
   };
 
   const handleSubmitInquiry = () => {
