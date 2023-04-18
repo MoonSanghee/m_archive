@@ -15,6 +15,8 @@ table {
     padding: 12px;
     text-align: left;
     border: 1px solid c.$C_SECONDARY;
+    border-left: none;
+    border-right: none;
   }
   
   th {
@@ -33,19 +35,36 @@ table {
   overflow-y: auto;
   color: #000;
 }
+  
+.faqQuestion {
+  display: block;
+}
+
+.faqAnswer {
+  display: block;
+  margin-top: 36px;
+  display: flex;
+  justify-content: center;
+}
+
+
 
 .questionRow {
   cursor: pointer;
+  margin: 24px;
   background-color: c.$C_WHITE_50;
+  
+  &:hover {
+    background-color: c.$C_GRAY;
+  }
 }
 
 .Answer {
   color: #000;
-  background-color: c.$C_GRAY;
+  background-color: c.$C_WHITE_50;
+  
 }
-.questionDetail {
-  padding: 10px;
-}
+
 
 
 // FAQModal 관련 SCSS
@@ -90,3 +109,8 @@ table {
   }
 }
 
+
+.questionDetail {
+  display: block;
+  line-height: 36px;
+}
