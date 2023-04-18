@@ -7,7 +7,7 @@ const QuestionDetail = ({ question }) => {
       <strong className={styles.questionTitle}>{question.title}</strong>
       <span className={styles.questionStatus}>{question.status}</span>
       <div className={styles.questionContent}>질문내용 : {question.content}</div>
-    <div className={styles.answer}>답변 : {qustion.answer}</div>
+    <div className={styles.answer}>답변 : {question.answer}</div>
 </div>
   );
 };

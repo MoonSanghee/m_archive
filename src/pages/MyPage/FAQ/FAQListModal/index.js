@@ -9,8 +9,9 @@ import { useMount } from 'react-use';
 //NOTE: scss파일은 js파일 하나 당 1개 => 유지보수가 쉬워짐
 const FAQListModal = ({onClose }) => {
   //NOTE: questions => faqs
+  const [clicks,setClicks] = useState([]);
   const [faqs, setFAQs] = useState([
-    {
+    /*{
       title: '제목1',
       status: '답변 완료',
       content: '질문내용',
@@ -30,27 +31,20 @@ const FAQListModal = ({onClose }) => {
       content: '질문내용',
       answer: '제목3에 대한 답변입니다.',
       isExpanded: false,
-    },
+    },*/
   ]);
 
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  //NOTE: 문의 생성
-  // const [form, setForm] = useState({
-  //   title: '',
-  //   content: '',
-  // });
-
 
   
   const tbodyRef = useRef(null);
 
   const handleQuestionClick = (index) => {
-    setFAQs((prevQuestions) => {
-      const newQuestions = [...prevQuestions];
-      newQuestions[index].isExpanded = !newQuestions[index].isExpanded;
-      return newQuestions;
-    });
+    const copyClicks = [...clicks];
+    copyClicks[index] = !copyClicks[index];
+    setClicks([
+     ...copyClicks,
+    ])
   };
 
   const handleSubmit = async (event) => {
@@ -63,12 +57,16 @@ const FAQListModal = ({onClose }) => {
     if(response.status===200){
       const items = [...response.data.data];
       setFAQs(items);
+      const clickedList = new Array(items.length). fill(false);
+      setClicks(clickedList);
+      //console.log(clicks);
     }else{
       console.log("나의 FAQs 불러오기실패");
     }
   }
   useMount(()=>{
     onGetMyFAQs();
+    console.log(faqs);
   })
     return (
       <section>
@@ -82,21 +80,31 @@ const FAQListModal = ({onClose }) => {
           </tr>
         </thead>
         <tbody ref={tbodyRef} className={styles.faqTableBody}>
-          {faqs.map((question, index) => (
-            <tr
-              key={index}
-              onClick={() => handleQuestionClick(index)}
-              className={styles.questionRow}
-              style={{ backgroundColor: 'gray' }}
-            >
-              <td>{index + 1}</td>
-              <td>{question.title}</td>
-              <td>{question.status}</td>
-            </tr>
-          ))}
+          {faqs?.map((question, index) => (
+            <>
+              <tr
+                key={index}
+                onClick={() => handleQuestionClick(index)}
+                className={styles.questionRow}
+                style={{ backgroundColor: 'gray' }}
+              >
+                <td>{index + 1}</td>
+                <td>{question.title}</td>
+                <td>{question.status}</td>
+              </tr>
+              {clicks[index] ? 
+                <tr key={index}>
+                <td colSpan="3">
+                  <QuestionDetail question={question} />
+                </td>
+                </tr>:null}
+             </>
+            ))}
         </tbody>
       </table>
-      {faqs.map(
+      {/** 
+       * 
+       * faqs.map(
         (question, index) =>
             question.isExpanded && (
               <tr key={index}>
@@ -106,6 +114,16 @@ const FAQListModal = ({onClose }) => {
               </tr>
             
           ),
+      )
+      */}
+      {faqs.filter(item => item.isExpanded===true ).map((question,index)=>{
+      return(
+        <tr key={index}>
+           <td colSpan="3">
+            <QuestionDetail question={question} />
+            </td>
+          </tr>
+      )}
       )}
     </section>
     );
