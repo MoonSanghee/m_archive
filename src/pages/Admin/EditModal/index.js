@@ -4,6 +4,7 @@ import styles from './editModal.module.scss';
 import cx from 'classnames';
 import { patchUser } from '../../../api/Users';
 import { patchReview, modifyReview } from '../../../api/Reviews';
+import { getFAQs, patchFaq } from '../../../api/FAQ';
 const EditModal = ({ item, type, onClose }) => {
   // useState변수- 리뷰, 유저-  form 2;
   // onSubmitReview 수정 api 성공 ->  onClose();
@@ -20,6 +21,12 @@ const EditModal = ({ item, type, onClose }) => {
     description: item?.description,
   });
 
+  const [faqForm, setFaqForm] = useState({
+    title: item?.title,
+    content: item?.content,
+    comments: item?.comments,
+  });
+
   const onSubmitUser = async (e) => {
     e.preventDefault();
     await patchUser(item.id, userForm);
@@ -32,6 +39,12 @@ const EditModal = ({ item, type, onClose }) => {
     onClose();
   };
 
+  const onSubmitFaq = async (e) => {
+    e.preventDefault();
+    await patchFaq(item.id, faqForm);
+    onClose();
+  }
+
   const onChangeReview = (e) => {
     const { name, value } = e.currentTarget;
     setReviewForm({
@@ -43,6 +56,13 @@ const EditModal = ({ item, type, onClose }) => {
     const { name, value } = e.currentTarget;
     setUserForm({
       ...userForm,
+      [name]: value,
+    });
+  };
+  const onChangeFaq = (e) => {
+    const { name, value } = e.currentTarget;
+    setFaqForm({
+      ...faqForm,
       [name]: value,
     });
   };
@@ -132,6 +152,42 @@ const EditModal = ({ item, type, onClose }) => {
         </div>
       </section>
     );
+  } else if (type === "faq") {
+    return (
+      <section className={styles.faqWrapper}>
+        <Input
+          name="title"
+          className={styles.faqInput}
+          label={"제목 : "}
+          value={faqForm?.title}
+        />
+        <Input 
+          name="content"
+          className={styles.faqInput}
+          label={"문의내용 :"}
+          value={faqForm?.content}
+        />
+        <div className={styles.faq}>
+          <label for="faq">
+            <p>답변하기 :</p>{' '}
+          </label>
+          <textarea
+            name="comments"
+            id="faq"
+            value={faqForm?.comments}
+            onChange={onChangeFaq}
+          />
+        </div>
+        <div className={styles.button}>
+          <Button 
+            children="답변하기"
+            width={"short"}
+            color={"secondary"}
+            onClick={onSubmitFaq}
+          />
+        </div>
+      </section>
+    )
   }
 };
 export default EditModal;

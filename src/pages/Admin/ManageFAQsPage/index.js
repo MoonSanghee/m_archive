@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   AdminLNB,
   Button,
   CheckBox,
+  Modal,
   SearchBox,
   TableMenu,
 } from '../../../components';
@@ -15,9 +16,12 @@ import { getTokens } from '../../../utils';
 import tableStyle from '../tableStyle.module.scss';
 import Pagination from '../../../components/Common/PageNation';
 import dayjs from 'dayjs';
+import EditModal from '../EditModal';
+import useModal from '../../../components/Common/Modal/useModal';
 
 const ManageFAQsPage = () => {
   const navigate = useNavigate();
+  const [modalOption, showModal] = useModal();
   const [selectedFaqs, setSelectedFaqs] = useState([]);
   const [faqs, setFaqs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -88,7 +92,6 @@ const ManageFAQsPage = () => {
   };
 
   const onDelete = async (id) => {
-    // api 맞나 모르겠슴다
     const response = await deleteFaqAdmin(id);
     if (response.status === 204) {
       alert('정상 삭제');
@@ -97,6 +100,22 @@ const ManageFAQsPage = () => {
       alert('삭제 오류!');
     }
   };
+
+  const onClickOpenModal = useCallback((item, type) => {
+    showModal(
+      true,
+      "",
+      null,
+      onGetFaqs,
+      <EditModal
+        item={item}
+        type={type}
+        onClose={() => {
+          modalOption.onClose();
+        }}
+      />,
+    );
+  }, [modalOption],);
 
   useEffect(() => {
     onGetFaqs();
@@ -107,16 +126,7 @@ const ManageFAQsPage = () => {
   };
 
   const fetchData = async () => {
-    const response = await getFAQs(
-      currentPage,
-      pageLimit,
-      '',
-      isOrderBy,
-      isReversed,
-    );
-
-    // FAQ 카운트 요청드리고나서 수정
-    // const count = await countMovies();
+    const response = await getFAQs(currentPage, pageLimit, '', isOrderBy, isReversed);
 
     if (response.status === 200) {
       const items = [...response.data.data];
@@ -194,7 +204,7 @@ const ManageFAQsPage = () => {
               {faqs.map((faq, idx) => {
                 const createdAt = faq.createdAt;
                 return (
-                  <li key={faq.id} className={faqStyle.elements}>
+                  <li key={faq.id} className={tableStyle.elements}>
                     <CheckBox
                       className={tableStyle.check}
                       checked={selectedFaqs.includes(faq.id)}
@@ -206,6 +216,15 @@ const ManageFAQsPage = () => {
                     </span>
                     <span>{faq.content}</span>
                     <span>{dayjs(faq.createdAt).format('YYYY-MM-DD HH:mm:ss')}</span>
+                    <span></span>
+                    <Button
+                      className={styles.editBtn}
+                      children="답변하기"
+                      width={"short"}
+                      color={"secondary"}
+                      onClick={()=>onClickOpenModal(faq,"faq")}
+                    >
+                    </Button>
                   </li>
                 );
               })}
@@ -218,6 +237,7 @@ const ManageFAQsPage = () => {
           </div>
         </p>
       </section>
+      <Modal modalOption={modalOption} modalSize="small" />
     </main>
   );
 };

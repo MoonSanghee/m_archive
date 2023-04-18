@@ -218,7 +218,7 @@ const ManageUsersPage = () => {
               {users.map((user, idx) => {
                 const time = user.createdAt;
                 return (
-                  <li key={idx} className={userStyle.elements}>
+                  <li key={idx} className={tableStyle.elements}>
                     <CheckBox
                       className={tableStyle.check}
                       checked={selectedUsers.includes(user.id)}
