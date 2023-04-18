@@ -72,7 +72,7 @@ const FAQListModal = ({onClose }) => {
   })
     return (
       <section>
-      <h2>문의 내역</h2>
+      <h2 className={styles.faqListTitle}>문의 내역</h2>
       <table>
         <thead>
           <tr>

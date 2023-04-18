@@ -1,3 +1,5 @@
+@use "../../../../styles/constants/colors" as c;
+@use "../../../../styles/mixins/" as m;
 
 
 
@@ -16,7 +18,7 @@ table {
   }
   
   th {
-    background-color: #000;
+    background-color: c.$C_SECONDARY;
     font-weight: bold;
     font-size: 16px;
   }
@@ -46,6 +48,10 @@ table {
 }
 
 // FAQModal 관련 SCSS
+.faqListTitle {
+  color: #000;
+  margin: 32px 0 24px 0;
+}
 .inputGroup {
   margin-bottom: 1.5rem;
 
