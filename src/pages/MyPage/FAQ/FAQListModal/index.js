@@ -12,7 +12,7 @@ const FAQListModal = ({ onClose }) => {
    
   ]);
   const [selectedQuestionIndex, setSelectedQuestionIndex] = useState(null);
-  const [Comments, setComments] = useState(null);
+  
 
   
 
