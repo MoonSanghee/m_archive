@@ -238,7 +238,8 @@ const ManageFAQsPage = () => {
                       className={styles.editBtn}
                       // children="답변하기"
                       width={'short'}
-                      color={'secondary'}
+                      // color={'secondary'}
+                      color={!faq.faqComment ? "secondary" : "gray"}
                       onClick={() => onClickOpenModal(faq, 'faq')}
                     >
                       {/* {faq.faqComments.length === 0 ? '답변하기' : '답변완료'} */}

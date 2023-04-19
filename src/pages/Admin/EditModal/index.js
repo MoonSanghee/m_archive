@@ -49,16 +49,15 @@ const EditModal = ({ item, type, onClose }) => {
       await createFaqAdmin(item.id, {
         content: faqForm.comments,
       });
-      console.log(item.id)
+      alert("답변을 성공적으로 등록하였습니다.");
     } else {
-      console.log('22')
       //NOTE: (답변이 여러개 가능한 경우) 답변이 있는 경우 => id => item.faqComments[0].id
       //NOTE: (답변이 하나만 가능한 경우) 답변이 있는 경우 => id => item.faqComment.id
       await patchFaq(item.faqComment.id, {
         content: faqForm.comments,
       });
+      alert("답변을 성공적으로 수정하였습니다.");
     }
-
     onClose();
   };
 
