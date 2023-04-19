@@ -114,3 +114,8 @@ table {
   display: block;
   line-height: 36px;
 }
+
+.faqTableBody {
+  max-height: 300px;
+  overflow-y: auto;
+}
