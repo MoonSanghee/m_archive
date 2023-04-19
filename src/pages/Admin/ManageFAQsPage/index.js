@@ -28,8 +28,8 @@ const ManageFAQsPage = () => {
   const [pageLimit, setPageLimit] = useState(10);
   const [totalPages, setTotalPages] = useState(1);
   const [isChecked, setIsChecked] = useState(false);
-  const [isReversed, setIsReversed] = useState("asc");
-  const [isOrderBy, setIsOrderBy] = useState("USERNAME");
+  const [isReversed, setIsReversed] = useState('asc');
+  const [isOrderBy, setIsOrderBy] = useState('USERNAME');
 
   const isAllChecked = selectedFaqs.length === faqs.length;
 
@@ -43,20 +43,27 @@ const ManageFAQsPage = () => {
   };
 
   const onChangeSearch = async (event) => {
-    const response = await getFAQs(1, 10, event.target.value, isOrderBy, isReversed);
+    const response = await getFAQs(
+      1,
+      10,
+      event.target.value,
+      isOrderBy,
+      isReversed,
+    );
     if (response.status === 200) {
       const items = [...response.data.data];
       // NOTE: response.data.paging.total => 총 개수
       setFaqs(items);
-      setTotalPages(response.data.total / pageLimit);
+      setTotalPages(response.data.paging.total / pageLimit);
       setCurrentPage(1);
     }
-    if (event.target.value === "") {
-      setTotalPages(response.data.total / pageLimit);
+    if (event.target.value === '') {
+      setTotalPages(response.data.paging.total / pageLimit);
       setCurrentPage(1);
       return;
     }
   };
+  // console.log({ totalPages, currentPage, faqs });
 
   const onGetFaqs = async () => {
     const response = await getFAQs(1, 10, '', isOrderBy, isReversed);
@@ -101,21 +108,24 @@ const ManageFAQsPage = () => {
     }
   };
 
-  const onClickOpenModal = useCallback((item, type) => {
-    showModal(
-      true,
-      "",
-      null,
-      onGetFaqs,
-      <EditModal
-        item={item}
-        type={type}
-        onClose={() => {
-          modalOption.onClose();
-        }}
-      />,
-    );
-  }, [modalOption],);
+  const onClickOpenModal = useCallback(
+    (item, type) => {
+      showModal(
+        true,
+        '',
+        null,
+        onGetFaqs,
+        <EditModal
+          item={item}
+          type={type}
+          onClose={() => {
+            modalOption.onClose();
+          }}
+        />,
+      );
+    },
+    [modalOption],
+  );
 
   useEffect(() => {
     onGetFaqs();
@@ -126,16 +136,22 @@ const ManageFAQsPage = () => {
   };
 
   const fetchData = async () => {
-    const response = await getFAQs(currentPage, pageLimit, '', isOrderBy, isReversed);
+    const response = await getFAQs(
+      currentPage,
+      pageLimit,
+      '',
+      isOrderBy,
+      isReversed,
+    );
 
     if (response.status === 200) {
       const items = [...response.data.data];
 
       setIsChecked(false);
       setSelectedFaqs([]);
-
-      setTotalPages(Math.ceil(count.data.count / pageLimit));
+      setTotalPages((response.data.paging.total - 1) / pageLimit);
       setFaqs(items);
+      //NOTE: response.data.paging.total === 10 => 나누면 1이 나오는데 1이 되면 2페이지까지 보일 수 있게 설정이 되므로, -1을 해주면 됩니다.
     }
   };
 
@@ -202,7 +218,6 @@ const ManageFAQsPage = () => {
           <div>
             <table className={tableStyle.faqs}>
               {faqs.map((faq, idx) => {
-                const createdAt = faq.createdAt;
                 return (
                   <li key={faq.id} className={tableStyle.elements}>
                     <CheckBox
@@ -215,15 +230,19 @@ const ManageFAQsPage = () => {
                       {faq.user.name ?? '-'}({faq.user.nickname ?? '-'})
                     </span>
                     <span>{faq.content}</span>
-                    <span>{dayjs(faq.createdAt).format('YYYY-MM-DD HH:mm:ss')}</span>
+                    <span>
+                      {dayjs(faq.createdAt).format('YYYY-MM-DD HH:mm:ss')}
+                    </span>
                     <span></span>
                     <Button
                       className={styles.editBtn}
-                      children="답변하기"
-                      width={"short"}
-                      color={"secondary"}
-                      onClick={()=>onClickOpenModal(faq,"faq")}
+                      // children="답변하기"
+                      width={'short'}
+                      color={'secondary'}
+                      onClick={() => onClickOpenModal(faq, 'faq')}
                     >
+                      {faq.faqComments.length === 0 ? '답변하기' : '답변완료'}
+                      {/* {!faq.faqComment ? '답변하기' : '답변완료'} */}
                     </Button>
                   </li>
                 );
@@ -231,7 +250,7 @@ const ManageFAQsPage = () => {
             </table>
             <Pagination
               currentPage={currentPage}
-              totalPages={totalPages}
+              totalPages={totalPages + 1}
               onPageChange={handlePageChange}
             />
           </div>

@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Input } from '../../../components';
 import styles from './editModal.module.scss';
 import cx from 'classnames';
 import { patchUser } from '../../../api/Users';
 import { patchReview, modifyReview } from '../../../api/Reviews';
-import { getFAQs, patchFaq } from '../../../api/FAQ';
+import { createFaqAdmin, getFAQs, patchFaq } from '../../../api/FAQ';
 const EditModal = ({ item, type, onClose }) => {
   // useState변수- 리뷰, 유저-  form 2;
   // onSubmitReview 수정 api 성공 ->  onClose();
   //
+
   const [reviewForm, setReviewForm] = useState({
     score: item?.score,
     content: item?.content,
@@ -24,7 +25,7 @@ const EditModal = ({ item, type, onClose }) => {
   const [faqForm, setFaqForm] = useState({
     title: item?.title,
     content: item?.content,
-    comments: item?.comments,
+    comments: '',
   });
 
   const onSubmitUser = async (e) => {
@@ -41,9 +42,22 @@ const EditModal = ({ item, type, onClose }) => {
 
   const onSubmitFaq = async (e) => {
     e.preventDefault();
-    await patchFaq(item.id, faqForm);
+
+    //NOTE: 답변이 없는 경우
+    if (item.faqComments.length === 0) {
+      await createFaqAdmin(item.id, {
+        content: faqForm.comments,
+      });
+    } else {
+      //NOTE: (답변이 여러개 가능한 경우) 답변이 있는 경우 => id => item.faqComments[0].id
+      //NOTE: (답변이 하나만 가능한 경우) 답변이 있는 경우 => id => item.faqComment.id
+      await patchFaq(item.faqComments[0].id, {
+        content: faqForm.comments,
+      });
+    }
+
     onClose();
-  }
+  };
 
   const onChangeReview = (e) => {
     const { name, value } = e.currentTarget;
@@ -66,6 +80,18 @@ const EditModal = ({ item, type, onClose }) => {
       [name]: value,
     });
   };
+
+  useEffect(() => {
+    //NOTE: 답변이 있는 경우 default 값을 설정
+    if (type === 'faq' && item.faqComments.length !== 0) {
+      //NOTE: 현재 상태 -> item.faqComments.length !== 0
+      //NOTE: 수정 -> item.faqComment
+      setFaqForm({
+        ...faqForm,
+        comments: item.faqComments[0].content,
+      });
+    }
+  }, [type, item]);
 
   if (type === 'review') {
     return (
@@ -152,19 +178,19 @@ const EditModal = ({ item, type, onClose }) => {
         </div>
       </section>
     );
-  } else if (type === "faq") {
+  } else if (type === 'faq') {
     return (
       <section className={styles.faqWrapper}>
         <Input
           name="title"
           className={styles.faqInput}
-          label={"제목 : "}
+          label={'제목 : '}
           value={faqForm?.title}
         />
-        <Input 
+        <Input
           name="content"
           className={styles.faqInput}
-          label={"문의내용 :"}
+          label={'문의내용 :'}
           value={faqForm?.content}
         />
         <div className={styles.faq}>
@@ -179,15 +205,15 @@ const EditModal = ({ item, type, onClose }) => {
           />
         </div>
         <div className={styles.button}>
-          <Button 
+          <Button
             children="답변하기"
-            width={"short"}
-            color={"secondary"}
+            width={'short'}
+            color={'secondary'}
             onClick={onSubmitFaq}
           />
         </div>
       </section>
-    )
+    );
   }
 };
 export default EditModal;

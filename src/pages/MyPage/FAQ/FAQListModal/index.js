@@ -7,9 +7,9 @@ import { useMount } from 'react-use';
 
 //NOTE: "문의하기 모달" 과 "문의내역 모달" 2개는 구분을해서 만드는게 좋다.
 //NOTE: scss파일은 js파일 하나 당 1개 => 유지보수가 쉬워짐
-const FAQListModal = ({onClose }) => {
+const FAQListModal = ({ onClose }) => {
   //NOTE: questions => faqs
-  const [clicks,setClicks] = useState([]);
+  // const [clicks, setClicks] = useState([]);
   const [faqs, setFAQs] = useState([
     /*{
       title: '제목1',
@@ -35,8 +35,7 @@ const FAQListModal = ({onClose }) => {
   ]);
   const [selectedQuestionIndex, setSelectedQuestionIndex] = useState(null);
 
-  
-  const tbodyRef = useRef(null);
+  // const tbodyRef = useRef(null);
 
   // const handleQuestionClick = (index) => {
   //   const copyClicks = [...clicks];
@@ -55,29 +54,29 @@ const FAQListModal = ({onClose }) => {
     }
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    //NOTE: submitted 상태 관리보다는 alert 띄우고 확인 누르면 모달이 꺼지도록
-    // setIsSubmitted(true);
-  };
-  const onGetMyFAQs = async ()=>{
-    const response = await getFAQsMe(1,20);
-    if(response.status===200){
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   //NOTE: submitted 상태 관리보다는 alert 띄우고 확인 누르면 모달이 꺼지도록
+  //   // setIsSubmitted(true);
+  // };
+  const onGetMyFAQs = async () => {
+    const response = await getFAQsMe(1, 20);
+    if (response.status === 200) {
       const items = [...response.data.data];
       setFAQs(items);
-      const clickedList = new Array(items.length). fill(false);
-      setClicks(clickedList);
+      // const clickedList = new Array(items.length).fill(false);
+      // setClicks(clickedList);
       //console.log(clicks);
-    }else{
-      console.log("나의 FAQs 불러오기실패");
+    } else {
+      console.log('나의 FAQs 불러오기실패');
     }
-  }
-  useMount(()=>{
+  };
+  useMount(() => {
     onGetMyFAQs();
     console.log(faqs);
-  })
-    return (
-      <section>
+  });
+  return (
+    <section>
       <h2 className={styles.faqListTitle}>문의 내역</h2>
       <table>
         <thead>
@@ -87,7 +86,7 @@ const FAQListModal = ({onClose }) => {
             <th>상태</th>
           </tr>
         </thead>
-        <tbody ref={tbodyRef} className={styles.faqTableBody}>
+        <tbody className={styles.faqTableBody}>
           {faqs?.map((question, index) => (
             <>
               <tr
@@ -102,14 +101,15 @@ const FAQListModal = ({onClose }) => {
               {selectedQuestionIndex === index && (
                 <tr key={`answer-${index}`}>
                   <td colSpan="1">
-                       <tr className={styles.faqAnswer}>답변</tr>
-                 </td>
-                 <td className={styles.Answer}colSpan="3">
-                  <QuestionDetail question={question} />
-                </td>
-                </tr>)}
-             </>
-            ))}
+                    <tr className={styles.faqAnswer}>답변</tr>
+                  </td>
+                  <td className={styles.Answer} colSpan="3">
+                    <QuestionDetail question={question} />
+                  </td>
+                </tr>
+              )}
+            </>
+          ))}
         </tbody>
       </table>
       {/** 
@@ -126,17 +126,19 @@ const FAQListModal = ({onClose }) => {
           ),
       )
       */}
-      {faqs.filter(item => item.isExpanded===true ).map((question,index)=>{
-      return(
-        <tr key={index}>
-           <td colSpan="3">
-            <QuestionDetail question={question} />
-            </td>
-          </tr>
-      )}
-      )}
+      {faqs
+        .filter((item) => item.isExpanded === true)
+        .map((question, index) => {
+          return (
+            <tr key={index}>
+              <td colSpan="3">
+                <QuestionDetail question={question} />
+              </td>
+            </tr>
+          );
+        })}
     </section>
-    );
-  }
+  );
+};
 
 export default FAQListModal;

@@ -20,22 +20,25 @@ const Modal = ({ modalOption, modalSize, className }) => {
   return (
     <main>
       {modalOption?.show && (
-        <section className={cx(styles.wrapper)}>
+        <>
           <div
             className={cx(styles.overlay)}
             onClick={() => modalOption.onClose()}
           />
+          <section className={cx(styles.wrapper)}>
+            <div
+              className={cx(styles.modalWrapper, styles[modalSize], className)}
+            >
+              <div className={styles.closeButtonWrapper}>
+                <CloseIcon onClick={() => modalOption.onClose()} />
+              </div>
 
-          <div
-            className={cx(styles.modalWrapper, styles[modalSize], className)}
-          >
-            <div className={styles.closeButtonWrapper}>
-              <CloseIcon onClick={() => modalOption.onClose()} />
+              <div className={styles.contentWrapper}>
+                {modalOption?.element}
+              </div>
             </div>
-
-            <div className={styles.contentWrapper}>{modalOption?.element}</div>
-          </div>
-        </section>
+          </section>
+        </>
       )}
     </main>
   );

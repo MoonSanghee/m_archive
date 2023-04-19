@@ -14,8 +14,8 @@ import useModal from '../../../components/Common/Modal/useModal';
 import FAQAskModal from './FAQAskModal';
 import FAQListModal from './FAQListModal';
 const FAQ = () => {
-  const [faqModalOption, faqShowModal,faqOnClose] = useModal();
-  const [toAskModalOption, toAskShowModal,toAskOnClose] = useModal();
+  const [faqModalOption, faqShowModal, faqOnClose] = useModal();
+  const [toAskModalOption, toAskShowModal, toAskOnClose] = useModal();
   //TODO: 재사용 가능한 모달 컴포넌트 만들기
 
   /*const handleOpenModal = (showInquiryModal) => {
@@ -61,18 +61,10 @@ const FAQ = () => {
     }
   };
   */
-  const handleOpenModalFAQs= useCallback(() => {
-    faqShowModal(
-      true,
-      '',
-      null,
-      null,
-      <FAQListModal
-        onClose={faqOnClose}
-      />,
-    );
-    // 스크롤 방지 
-    document.body.style.overflow ='hidden';
+  const handleOpenModalFAQs = useCallback(() => {
+    faqShowModal(true, '', null, null, <FAQListModal onClose={faqOnClose} />);
+    // 스크롤 방지
+    // document.body.style.overflow = 'hidden';
   }, [faqModalOption]);
 
   const handleOpenModalToAsk = useCallback(() => {
@@ -81,25 +73,23 @@ const FAQ = () => {
       '',
       null,
       null,
-      <FAQAskModal
-      onClose={toAskOnClose}
-      />,
+      <FAQAskModal onClose={toAskOnClose} />,
     );
-    // 스크롤 방지 
-    document.body.style.overflow='hidden';
+    // 스크롤 방지
+    // document.body.style.overflow = 'hidden';
   }, [toAskModalOption]);
 
-  const handleCloseModal = () => {
-    setModalOption({ ...modalOption, show: false });
-    // 스크롤 허용 
-    document.body.style.overflow= 'auto'
-  };
+  // const handleCloseModal = () => {
+  //   setModalOption({ ...modalOption, show: false });
+  //   // 스크롤 허용
+  //   // document.body.style.overflow = 'auto';
+  // };
 
-  const handleSubmitInquiry = () => {
-    console.log('Inquiry submitted');
-    // 모달 닫기 ?
-    handleCloseModal();
-  };
+  // const handleSubmitInquiry = () => {
+  //   console.log('Inquiry submitted');
+  //   // 모달 닫기 ?
+  //   handleCloseModal();
+  // };
 
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -118,7 +108,11 @@ const FAQ = () => {
     <main className={styles.mainContainer}>
       <h1> FAQ</h1>
       <div className={styles.mainInput}>
-        <SearchBox  className={styles.search} onChange={handleSearch} placeholder="무엇을 도와드릴까요?"/>
+        <SearchBox
+          className={styles.search}
+          onChange={handleSearch}
+          placeholder="무엇을 도와드릴까요?"
+        />
         <div className={styles.sideButton}>
           <Button onClick={handleOpenModalFAQs}>문의 내역</Button>
           <Button onClick={handleOpenModalToAsk}>문의 하기</Button>
@@ -137,7 +131,7 @@ const FAQ = () => {
           ))}
         </ul>
       </div>
-     
+
       <Modal
         modalOption={faqModalOption}
         modalSize="big"

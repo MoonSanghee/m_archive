@@ -33,7 +33,7 @@ const useModal = () => {
   );
   //NOTE: onClose와 같은 함수는 state에 잘 넣지 않습니다.
   const onClose = (callback) => {
-    if (callback) callback();
+    if (typeof callback === 'function') callback();
     setModalOption((prev) => ({ ...prev, show: false }));
   };
   return [modalOption, showModal, onClose];
