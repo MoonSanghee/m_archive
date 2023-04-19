@@ -18,10 +18,7 @@ const FAQ = () => {
   const [toAskModalOption, toAskShowModal, toAskOnClose] = useModal();
 
   const handleOpenModalFAQs = useCallback(() => {
-    faqShowModal(true, '', null, null, <FAQListModal onClose={faqOnClose} />);
-    //스크롤 방지
-    document.body.style.overflow = 'hidden';
-  }, [faqModalOption]);
+    faqShowModal(true, '', null, null, <FAQListModal onClose={faqOnClose} />)});
 
   const handleOpenModalToAsk = useCallback(() => {
     toAskShowModal(
@@ -31,9 +28,7 @@ const FAQ = () => {
       null,
       <FAQAskModal onClose={toAskOnClose} />,
     );
-    // 스크롤 방지
-    document.body.style.overflow = 'hidden';
-  }, [toAskModalOption]);
+});
 
 
 

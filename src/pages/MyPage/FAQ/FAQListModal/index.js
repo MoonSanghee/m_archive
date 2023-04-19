@@ -65,12 +65,12 @@ const FAQListModal = ({ onClose }) => {
               >
                 <td>{index + 1}</td>
                 <td>{question.title}</td>
-                <td>{question.status}</td>
+                <td>{question.status === '대기중' ? '대기중' : '답변완료'}</td>
               </tr>
               {selectedQuestionIndex === index && (
                 <tr key={`answer-${index}`}>
                   <td colSpan="1">
-                    <tr className={styles.faqAnswer}>답변</tr>
+                    <tr className={styles.faqAnswer}></tr>
                   </td>
                   <td className={styles.Answer} colSpan="3">
                     <QuestionDetail question={question} />
