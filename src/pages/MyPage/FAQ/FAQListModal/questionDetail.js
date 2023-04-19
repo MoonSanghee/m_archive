@@ -16,7 +16,7 @@ const QuestionDetail = ({ question }) => {
       {/* <strong className={styles.questionTitle}>{question.title}</strong>
       <span className={styles.questionStatus}>{question.status}</span>*/}
       <div className={styles.questionContent}>{question.content}</div>
-    <div className={styles.answer}>{question.answer}</div>
+    <div className={styles.answer}>{answer}{question.answer}</div>
 </div>
   );
 };
