@@ -8,7 +8,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
-  
+  overflow: hidden;
   
   th,
   td {
@@ -32,6 +32,7 @@ table {
 
 .faqTableBody {
   max-height :300px;
+  overflow: hidden;
   overflow-y: auto;
   color: #000;
 }
@@ -115,7 +116,3 @@ table {
   line-height: 36px;
 }
 
-.faqTableBody {
-  max-height: 300px;
-  overflow-y: auto;
-}
