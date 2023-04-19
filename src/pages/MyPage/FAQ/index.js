@@ -16,55 +16,11 @@ import FAQListModal from './FAQListModal';
 const FAQ = () => {
   const [faqModalOption, faqShowModal, faqOnClose] = useModal();
   const [toAskModalOption, toAskShowModal, toAskOnClose] = useModal();
-  //TODO: 재사용 가능한 모달 컴포넌트 만들기
 
-  /*const handleOpenModal = (showInquiryModal) => {
-    if (showInquiryModal) {
-      setModalOption({
-        show: true,
-        title: "1:1 문의하기",
-        onSubmit: handleSubmitInquiry,
-        onClose: handleCloseModal,
-        element: (
-          <div>
-            <p>M-archive를 이용하시면서 불편한 사항이나 개선 의견이 있다면 문의해주세요</p>
-            <txextara rows={1} />
-            <textarea rows={5} />
-            <div>
-              <Button onClick={handleSubmitInquiry}>문의하기</Button>
-              <Button onClick={handleCloseModal}>취소</Button>
-            </div>
-          </div>
-        ),
-      });
-    } else {
-      // API에서 사용자 문의를 가져와 userInquires로 설정 하는 코드 (?)
-      const userInquiries = [];
-  
-      setModalOption({
-        show: true,
-        title: "문의 내역",
-        onClose: handleCloseModal,
-        element: (
-          <div>
-            <ul>
-              {userInquiries.map((inquiry, index) => (
-                <li key={index}>
-                  <h3>{inquiry.title}</h3>
-                  <p>{inquiry.content}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ),
-      });
-    }
-  };
-  */
   const handleOpenModalFAQs = useCallback(() => {
     faqShowModal(true, '', null, null, <FAQListModal onClose={faqOnClose} />);
-    // 스크롤 방지
-    // document.body.style.overflow = 'hidden';
+    //스크롤 방지
+    document.body.style.overflow = 'hidden';
   }, [faqModalOption]);
 
   const handleOpenModalToAsk = useCallback(() => {
@@ -76,20 +32,11 @@ const FAQ = () => {
       <FAQAskModal onClose={toAskOnClose} />,
     );
     // 스크롤 방지
-    // document.body.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
   }, [toAskModalOption]);
 
-  // const handleCloseModal = () => {
-  //   setModalOption({ ...modalOption, show: false });
-  //   // 스크롤 허용
-  //   // document.body.style.overflow = 'auto';
-  // };
 
-  // const handleSubmitInquiry = () => {
-  //   console.log('Inquiry submitted');
-  //   // 모달 닫기 ?
-  //   handleCloseModal();
-  // };
+
 
   const [searchTerm, setSearchTerm] = useState('');
 
