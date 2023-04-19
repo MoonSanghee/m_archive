@@ -241,8 +241,8 @@ const ManageFAQsPage = () => {
                       color={'secondary'}
                       onClick={() => onClickOpenModal(faq, 'faq')}
                     >
-                      {faq.faqComments.length === 0 ? '답변하기' : '답변완료'}
-                      {/* {!faq.faqComment ? '답변하기' : '답변완료'} */}
+                      {/* {faq.faqComments.length === 0 ? '답변하기' : '답변완료'} */}
+                      {!faq.faqComment ? '답변하기' : '답변완료'}
                     </Button>
                   </li>
                 );
