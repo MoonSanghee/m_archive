@@ -44,14 +44,17 @@ const EditModal = ({ item, type, onClose }) => {
     e.preventDefault();
 
     //NOTE: 답변이 없는 경우
-    if (item.faqComments.length === 0) {
+    // if (item.faqComments.length === 0) {
+      if (!item.faqComment) {   
       await createFaqAdmin(item.id, {
         content: faqForm.comments,
       });
+      console.log(item.id)
     } else {
+      console.log('22')
       //NOTE: (답변이 여러개 가능한 경우) 답변이 있는 경우 => id => item.faqComments[0].id
       //NOTE: (답변이 하나만 가능한 경우) 답변이 있는 경우 => id => item.faqComment.id
-      await patchFaq(item.faqComments[0].id, {
+      await patchFaq(item.faqComment.id, {
         content: faqForm.comments,
       });
     }
@@ -83,12 +86,13 @@ const EditModal = ({ item, type, onClose }) => {
 
   useEffect(() => {
     //NOTE: 답변이 있는 경우 default 값을 설정
-    if (type === 'faq' && item.faqComments.length !== 0) {
+    if (type === 'faq' && item.faqComment) {
       //NOTE: 현재 상태 -> item.faqComments.length !== 0
       //NOTE: 수정 -> item.faqComment
       setFaqForm({
         ...faqForm,
-        comments: item.faqComments[0].content,
+        // comments: item.faqComments[0].content,
+        comments: item.faqComment.content,
       });
     }
   }, [type, item]);
