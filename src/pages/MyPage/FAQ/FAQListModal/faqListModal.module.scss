@@ -6,6 +6,7 @@
 //문의내역 예시 
 table {
   width: 100%;
+  max-width: 1080px;
   border-collapse: collapse;
   border-spacing: 0;
   overflow: hidden;
@@ -15,7 +16,7 @@ table {
   td {
     padding: 12px;
     text-align: left;
-    
+    max-width: 320px;
     border-left: none;
     border-right: none;
   }
