@@ -16,7 +16,7 @@ const TableMenu = ({ onClick, tableName, ...props }) => {
 
   return (
     <table className={styles.header}>
-      <CheckBox className={styles.check} />
+      
       {table[tableName].map((item) => {
         return (
           <li 

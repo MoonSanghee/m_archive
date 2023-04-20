@@ -18,8 +18,9 @@ import cx from 'classnames';
 import useModal from '../../../components/Common/Modal/useModal';
 import { Modal } from '../../../components';
 import EditModal from '../EditModal';
-
+import { useLocation } from 'react-router-dom';
 const ManageReviewsPage = () => {
+  const path=useLocation();
   const navigate = useNavigate();
   const [modalOption, showModal, onClose] = useModal();
 
@@ -71,7 +72,23 @@ const ManageReviewsPage = () => {
       setReviews(items);
     }
   };
-
+  const fetchData = async () => {
+    const response = await getReviews(
+      currentPage,
+      pageLimit,
+      '',
+      isOrderBy,
+      isReversed,
+    );
+    const count = await getReviewsCount();
+    if (response.status === 200) {
+      const items = [...response.data.data];
+      setIsChecked(false);
+      setSelectedReviews([]);
+      setTotalPages(Math.ceil(count.data.count / pageLimit));
+      setReviews(items);
+    }
+  };
   const onCheckReview = (id) => {
     return () => {
       if (selectedReviews.includes(id)) {
@@ -117,43 +134,25 @@ const ManageReviewsPage = () => {
         true,
         '',
         null,
-        // null,
-        onGetReviews,
+        fetchData,
         <EditModal
           item={item}
           type={type}
-          onClose={() => {
-            // onClose(onGetReviews);
+          onClose={()=>{
             modalOption.onClose();
           }}
         />,
       );
     },
     //NOTE: onGetReviews가 deps에 없으면 초기 state를 가지고 있는 함수만 적용이 됩니다.
-    [modalOption, onGetReviews],
+    [modalOption, ],
   );
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 
-  const fetchData = async () => {
-    const response = await getReviews(
-      currentPage,
-      pageLimit,
-      '',
-      isOrderBy,
-      isReversed,
-    );
-    const count = await getReviewsCount();
-    if (response.status === 200) {
-      const items = [...response.data.data];
-      setIsChecked(false);
-      setSelectedReviews([]);
-      setTotalPages(Math.ceil(count.data.count / pageLimit));
-      setReviews(items);
-    }
-  };
+  
 
   const orderBy = async (item) => {
     setIsOrderBy(item.id);
@@ -185,7 +184,7 @@ const ManageReviewsPage = () => {
 
   return (
     <main className={styles.wrapper}>
-      <AdminLNB />
+      <AdminLNB path={path.pathname} />
       <section className={styles.allSection}>
         <div className={styles.header}>
           <Button
@@ -210,14 +209,7 @@ const ManageReviewsPage = () => {
             <Button width={'long'} color={'secondary'} onClick={onDeleteReview}>
               삭제
             </Button>
-            {/* <Button
-            className={styles.editBtn}
-            width={'long'}
-            color={'secondary'}
-            onClick={() => {
-              if(selectedReviews.length ===1 ) onClickOpenModal(selectedReviews[0], 'review');}
-            }
-            >수정</Button> */}
+
             <SearchBox
               className={styles.SearchBox}
               placeholder="작성자"

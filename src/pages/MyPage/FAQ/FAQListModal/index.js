@@ -29,15 +29,15 @@ const FAQListModal = ({ onClose }) => {
   useMount(() => {
     onGetMyFAQs();
     // 모달 열릴 때 body 스크롤 방지 스타일 적용
-    document.body.style.overflow = 'hidden';
+    //document.body.style.overflow = 'hidden';
   });
 
-  useEffect(() => {
+  /*useEffect(() => {
     // 모달이 닫힐 때 body 스크롤 방지 스타일 제거
     return () => {
       document.body.style.overflow = 'auto';
     };
-  }, []);
+  }, []);*/
 
   const onGetMyFAQs = async () => {
     const response = await getFAQsMe(1, 20);
@@ -55,17 +55,17 @@ const FAQListModal = ({ onClose }) => {
 
   useMount(() => {
     onGetMyFAQs();
-    console.log(faqs);
+    //console.log(faqs);
   });
   return (
     <section className={styles.sectionFaq}>
       <h2 className={styles.faqListTitle}>문의 내역</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>번호</th>
-            <th>제목</th>
-            <th>상태</th>
+      <table className={styles.tableWrapper}>
+        <thead className={styles.tableHeader}>
+          <tr className={styles.tableRow}>
+            <th className={styles.tableth}>번호</th>
+            <th className={styles.tableth}>제목</th>
+            <th className={styles.tableth}>상태</th>
           </tr>
         </thead>
         <tbody className={styles.faqTableBody}>
@@ -76,29 +76,29 @@ const FAQListModal = ({ onClose }) => {
                 onClick={() => handleQuestionClick(index)}
                 className={styles.questionRow}
               >
-                <td className={styles.tableNum}>{index + 1}</td>
-                <td>{question.title}</td>
-                <td><span className={cx(styles.waiting, {[styles.replied] : question.faqComment})}>
+                <td className={cx(styles.tableNum, styles.questionTd)}>{index + 1}</td>
+                <td className={styles.questionTd}> {question.title}</td>
+                <td  className={styles.questionTd}><span className={cx(styles.waiting, {[styles.replied] : question.faqComment})}>
                   {question.faqComment ? "답변완료" : "대기중"
                 }</span> </td>
               </tr>
               {selectedQuestionIndex === index && (
                 <>
                 <tr key={`answer-${index}`} className={styles.tableAnswer}>
-                  <td colSpan="1">
+                  <td colSpan="1" className={styles.questionTd}>
                     <tr className={styles.faqAnswer}>질문</tr>
                   </td>
                   <td className={styles.Answer} colSpan="2">
                     <QuestionDetail question={question} />
                   </td>
                 </tr>
-                <td colSpan="3">
+                <td colSpan="3"  className={styles.questionTd}>
                   <hr className={styles.tableHr}/> 
                   {/* 구분선 요소 */}
                 </td>
                 <tr className={styles.tableAAnswer}>
 
-                  <td colSpan="1">
+                  <td colSpan="1"  className={styles.questionTd}>
                   <tr className={styles.faqAnswer}>답변</tr>
                   </td>
                   <td className={styles.Answer} colSpan="2">

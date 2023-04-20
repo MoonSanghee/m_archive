@@ -18,10 +18,12 @@ import Pagination from '../../../components/Common/PageNation';
 import dayjs from 'dayjs';
 import EditModal from '../EditModal';
 import useModal from '../../../components/Common/Modal/useModal';
+import { useLocation } from 'react-router-dom';
 
 const ManageFAQsPage = () => {
+  const path = useLocation();
   const navigate = useNavigate();
-  const [modalOption, showModal] = useModal();
+  const [modalOption, showModal,onClose] = useModal();
   const [selectedFaqs, setSelectedFaqs] = useState([]);
   const [faqs, setFaqs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -117,17 +119,16 @@ const ManageFAQsPage = () => {
         <EditModal
           item={item}
           type={type}
-          onClose={() => {
-            modalOption.onClose();
-          }}
+          onClose={onClose}
         />,
       );
     },
-    [modalOption],
+    [modalOption,onGetFaqs],
   );
 
   useEffect(() => {
     onGetFaqs();
+    console.log(path);
   }, []);
 
   const handlePageChange = (page) => {
@@ -178,7 +179,7 @@ const ManageFAQsPage = () => {
 
   return (
     <main className={styles.wrapper}>
-      <AdminLNB />
+      <AdminLNB path={path.pathname}/>
       <section className={styles.allSection}>
         <div className={styles.header}>
           <Button
