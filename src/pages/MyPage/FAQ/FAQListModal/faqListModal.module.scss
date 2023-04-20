@@ -10,11 +10,12 @@ table {
   border-spacing: 0;
   overflow: hidden;
   
+  
   th,
   td {
     padding: 12px;
     text-align: left;
-    border: 1px solid c.$C_SECONDARY;
+    
     border-left: none;
     border-right: none;
   }
@@ -27,6 +28,7 @@ table {
 
   tr {
       background-color: c.$C_WHITE_50; 
+      
 }
 }
 
@@ -35,6 +37,8 @@ table {
   overflow: hidden;
   overflow-y: auto;
   color: #000;
+  border: 1px solid c.$C_SECONDARY;
+  
 }
   
 .faqQuestion {
@@ -43,7 +47,7 @@ table {
 
 .faqAnswer {
   display: block;
-  margin-top: 36px;
+  margin-top: 16px;
   display: flex;
   justify-content: center;
 }
@@ -54,6 +58,7 @@ table {
   cursor: pointer;
   margin: 24px;
   background-color: c.$C_WHITE_50;
+  border: 1.2px solid c.$C_SECONDARY;
   
   &:hover {
     background-color: c.$C_GRAY;
@@ -64,9 +69,17 @@ table {
   color: #000;
   background-color: c.$C_WHITE_50;
   
+  
 }
 
 
+
+.tableHr {
+  border-top: 1px dotted c.$C_SECONDARY;
+  width: 90%;
+  align-content: center;
+  margin-left: 5%;
+}
 
 // FAQModal 관련 SCSS
 .faqListTitle {

@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { Button } from '../../../../components/Common';
 import QuestionDetail from './questionDetail';
+import QuestionAsk from './questionAsk';
 import styles from './faqListModal.module.scss';
 import { getFAQsMe } from '../../../../api/FAQ';
 import { useMount } from 'react-use';
@@ -25,6 +26,19 @@ const FAQListModal = ({ onClose }) => {
     }
   };
 
+  useMount(() => {
+    onGetMyFAQs();
+    console.log(faqs);
+    // 모달 열릴 때 body 스크롤 방지 스타일 적용
+    document.body.style.overflow = 'hidden';
+  });
+
+  useEffect(() => {
+    // 모달이 닫힐 때 body 스크롤 방지 스타일 제거
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
 
   const onGetMyFAQs = async () => {
     const response = await getFAQsMe(1, 20);
@@ -45,7 +59,7 @@ const FAQListModal = ({ onClose }) => {
     console.log(faqs);
   });
   return (
-    <section>
+    <section style={{ overflowY: 'auto' }}>
       <h2 className={styles.faqListTitle}>문의 내역</h2>
       <table>
         <thead>
@@ -68,14 +82,34 @@ const FAQListModal = ({ onClose }) => {
                 <td>{question.status === '대기중' ? '대기중' : '답변완료'}</td>
               </tr>
               {selectedQuestionIndex === index && (
-                <tr key={`answer-${index}`}>
+                <>
+                <tr key={`answer-${index}`} className={styles.tableAnswer}>
                   <td colSpan="1">
-                    <tr className={styles.faqAnswer}></tr>
+                    <tr className={styles.faqAnswer}>질문내용</tr>
                   </td>
-                  <td className={styles.Answer} colSpan="3">
+                  <td className={styles.Answer} colSpan="2">
                     <QuestionDetail question={question} />
                   </td>
                 </tr>
+
+                <td colSpan="3">
+                  <hr className={styles.tableHr}/> 
+                  {/* 구분선 요소 */}
+                </td>
+
+
+
+                <tr className={styles.tableAAnswer}>
+
+                  <td colSpan="1">
+                  <tr className={styles.faqAnswer}>답변</tr>
+                  </td>
+                  <td className={styles.Answer} colSpan="2">
+                    <QuestionAsk question={question} />
+                  </td>
+                </tr>
+                
+              </>
               )}
             </>
           ))}
