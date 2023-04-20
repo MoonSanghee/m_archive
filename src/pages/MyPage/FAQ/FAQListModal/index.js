@@ -77,7 +77,7 @@ const FAQListModal = ({ onClose }) => {
                 onClick={() => handleQuestionClick(index)}
                 className={styles.questionRow}
               >
-                <td>{index + 1}</td>
+                <td className={styles.tableNum}>{index + 1}</td>
                 <td>{question.title}</td>
                 <td><span className={cx(styles.waiting, {[styles.replied] : question.faqComment})}>
                   {question.faqComment ? "답변완료" : "대기중"
