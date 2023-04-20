@@ -133,7 +133,6 @@ const ManageReviewsPage = () => {
   const fetchData = async () => {
     const response = await getReviews(currentPage, pageLimit, '', isOrderBy, isReversed);
     const count = await getReviewsCount();
-    // console.log(response)
     if (response.status === 200) {
       const items = [...response.data.data];
       setIsChecked(false);
@@ -146,7 +145,6 @@ const ManageReviewsPage = () => {
   const orderBy = async (item) => {
     setIsOrderBy(item.id);
     setIsReversed((prev) => (prev === 'asc' ? 'desc' : 'asc'));
-    // console.log(item)
   };
 
   useEffect(() => {
@@ -154,8 +152,6 @@ const ManageReviewsPage = () => {
       const response = await getReviews(1, pageLimit, '', isOrderBy, isReversed);
       setReviews(response.data.data);
       setCurrentPage(1);
-      console.log(response)
-      console.log(isOrderBy)
     }
     fetchData();
   }, [isOrderBy, isReversed]);
@@ -209,7 +205,7 @@ const ManageReviewsPage = () => {
         </p>
         <p className={styles.table}>
           <div>
-            <table className={tableStyle.reviews}>
+            <table className={tableStyle.table}>
               {reviews.map((review, idx) => {
                 const createdAt = review.createdAt;
                 return (

@@ -63,7 +63,6 @@ const ManageFAQsPage = () => {
       return;
     }
   };
-  // console.log({ totalPages, currentPage, faqs });
 
   const onGetFaqs = async () => {
     const response = await getFAQs(1, 10, '', isOrderBy, isReversed);
@@ -149,7 +148,7 @@ const ManageFAQsPage = () => {
 
       setIsChecked(false);
       setSelectedFaqs([]);
-      setTotalPages((response.data.paging.total - 1) / pageLimit);
+      setTotalPages(Math.ceil(response.data.paging.total / pageLimit));
       setFaqs(items);
       //NOTE: response.data.paging.total === 10 => 나누면 1이 나오는데 1이 되면 2페이지까지 보일 수 있게 설정이 되므로, -1을 해주면 됩니다.
     }
@@ -162,9 +161,9 @@ const ManageFAQsPage = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await getFAQs(1, pageLimit, '', isOrderBy, isReversed);
+      const response = await getFAQs(currentPage, pageLimit, '', isOrderBy, isReversed);
       setFaqs(response.data.data);
-      setCurrentPage(1);
+      setCurrentPage(currentPage);
     }
     fetchData();
   }, [isOrderBy, isReversed]);
@@ -216,7 +215,7 @@ const ManageFAQsPage = () => {
         </p>
         <p className={styles.table}>
           <div>
-            <table className={tableStyle.faqs}>
+            <table className={tableStyle.table}>
               {faqs.map((faq, idx) => {
                 return (
                   <li key={faq.id} className={tableStyle.elements}>
@@ -251,7 +250,7 @@ const ManageFAQsPage = () => {
             </table>
             <Pagination
               currentPage={currentPage}
-              totalPages={totalPages + 1}
+              totalPages={totalPages}
               onPageChange={handlePageChange}
             />
           </div>

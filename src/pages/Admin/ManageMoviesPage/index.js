@@ -184,9 +184,8 @@ const ManageMoviesPage = () => {
         </p>
         <p className={styles.table}>
           <div>
-            <table className={tableStyle.movies}>
+            <table className={tableStyle.table}>
               {movies.map((movie, idx) => {
-                console.log(movie)
                 const actors = movie.actors.slice(0, 3);
                 return (
                   <li key={idx} className={tableStyle.elements}>
