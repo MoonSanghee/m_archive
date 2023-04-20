@@ -59,7 +59,7 @@ const FAQListModal = ({ onClose }) => {
     console.log(faqs);
   });
   return (
-    <section style={{ overflowY: 'auto' }}>
+    <section className={styles.sectionFaq}>
       <h2 className={styles.faqListTitle}>문의 내역</h2>
       <table>
         <thead>
