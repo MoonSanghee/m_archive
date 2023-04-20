@@ -85,7 +85,7 @@ const FAQListModal = ({ onClose }) => {
                 <>
                 <tr key={`answer-${index}`} className={styles.tableAnswer}>
                   <td colSpan="1">
-                    <tr className={styles.faqAnswer}>질문내용</tr>
+                    <tr className={styles.faqAnswer}>질문</tr>
                   </td>
                   <td className={styles.Answer} colSpan="2">
                     <QuestionDetail question={question} />
