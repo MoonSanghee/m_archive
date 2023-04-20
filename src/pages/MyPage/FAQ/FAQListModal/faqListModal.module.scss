@@ -14,7 +14,8 @@ table {
   
   th,
   td {
-    padding: 12px;
+    
+    padding: 10px;
     text-align: left;
     max-width: 320px;
     border-left: none;
@@ -32,7 +33,10 @@ table {
       
 }
 }
-
+.tableNum{
+  width: 20%;
+  max-width: 100%;
+}
 .faqTableBody {
   max-height :300px;
   overflow: hidden;
@@ -69,6 +73,7 @@ table {
 
 .questionRow {
   cursor: pointer;
+
   margin: 24px;
   background-color: c.$C_WHITE_50;
   border: 1.2px solid c.$C_SECONDARY;
