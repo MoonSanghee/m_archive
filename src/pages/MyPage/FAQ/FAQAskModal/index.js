@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '../../../../components/Common';
 import styles from './faqAskModal.module.scss';
 import { createFaq } from '../../../../api/FAQ';
@@ -12,6 +12,16 @@ const FAQAskModal = ({ onClose }) => {
     title: '',
     content: '',
   });
+
+  useEffect(() => {
+    // 모달 열릴 때 body 스크롤 방지 스타일 적용
+    document.body.style.overflow = 'hidden';
+    
+    return () => {
+      // 모달이 닫힐 때 body 스크롤 방지 스타일 제거
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
 
 
   const handleSubmit = async (event) => {
