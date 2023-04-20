@@ -21,6 +21,7 @@ import { getMyReviews } from '../../api/Reviews';
 const Home = () => {
   const me = useMe();
   const navigate = useNavigate();
+  //NOTE: intersection-observer 공부
   const [ref, inView] = useInView();
 
   const [top10Movies, setTop10Movies] = useState([]);
@@ -76,8 +77,9 @@ const Home = () => {
       });
     }
     //3.선호장르로 영화검색 (좋아요영화+리뷰쓴영화 개수 * 2배로 검색)
-    let recommendMoviesCount =  (likedMovies.length + reviewedMovies.length ) *2 ;
-    recommendMoviesCount = recommendMoviesCount < 40 ? 40 : recommendMoviesCount;
+    let recommendMoviesCount = (likedMovies.length + reviewedMovies.length) * 2;
+    recommendMoviesCount =
+      recommendMoviesCount < 40 ? 40 : recommendMoviesCount;
     response = await getMArchiveMovies(
       recommendMoviesCount,
       me?.preferredGenres.map((item) => item.id).join(','),
