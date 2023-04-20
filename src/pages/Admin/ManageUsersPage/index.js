@@ -149,7 +149,6 @@ const ManageUsersPage = () => {
   const orderBy = async (item) => {
     setIsOrderBy(item.id);
     setIsReversed((prev) => (prev === 'asc' ? 'desc' : 'asc'));
-    // console.log(item)
   };
 
   useEffect(() => {
@@ -157,8 +156,6 @@ const ManageUsersPage = () => {
       const response = await getUsers(1, pageLimit, '', isOrderBy, isReversed);
       setUsers(response.data.data);
       setCurrentPage(1);
-      console.log(response)
-      console.log(isOrderBy)
     }
     fetchData();
   }, [isOrderBy, isReversed]);
@@ -214,7 +211,7 @@ const ManageUsersPage = () => {
         </p>
         <p className={styles.table}>
           <div className={tableStyle}>
-            <table className={tableStyle.users}>
+            <table className={tableStyle.table}>
               {users.map((user, idx) => {
                 const time = user.createdAt;
                 return (

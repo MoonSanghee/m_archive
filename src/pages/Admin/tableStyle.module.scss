@@ -36,6 +36,10 @@
     width: 240px;
     margin: 12px;
     border-radius: 4px;
+    height: 16px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
   }
 
   .block {
@@ -44,4 +48,8 @@
     grid-template-columns: repeat(2, minmax(120px, auto));
     align-content: center;
   }
+}
+
+.table {
+  height: 640px;
 }
