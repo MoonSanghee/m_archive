@@ -16,7 +16,9 @@ import useModal from '../../../components/Common/Modal/useModal';
 import { Modal } from '../../../components';
 import EditModal from '../EditModal';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 const ManageUsersPage = () => {
+  const path=useLocation();
   const navigate = useNavigate();
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [users, setUsers] = useState([]);
@@ -166,7 +168,7 @@ const ManageUsersPage = () => {
 
   return (
     <main className={styles.wrapper}>
-      <AdminLNB />
+      <AdminLNB path={path.pathname}/>
       <section className={styles.allSection}>
         <div className={styles.header}>
           <Button

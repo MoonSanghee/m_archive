@@ -1,5 +1,5 @@
 import cx from 'classnames';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { CloseIcon } from '../../../assets/icon';
 import styles from './modal.module.scss';
 //TODO: 재사용 가능한 모달 컴포넌트 만들기
@@ -16,7 +16,15 @@ import styles from './modal.module.scss';
     const [modalOption, setModalOption] = useState(OPTION)
  */
 
+    
 const Modal = ({ modalOption, modalSize, className }) => {
+  useEffect(()=>{
+    if(modalOption?.show){
+      document.body.style.overflow = 'hidden';
+    }else{
+      document.body.style.overflow = 'auto';
+    }
+  },[modalOption])
   return (
     <main>
       {modalOption?.show && (
@@ -45,14 +53,3 @@ const Modal = ({ modalOption, modalSize, className }) => {
 };
 export default Modal;
 
-{
-  /**
-                             *  <h2>{modalOption?.title}</h2>
-                            <div>
-                                <button onClick={() => modalOption.onSubmit()}>확인</button>                         
-                                <button onClick={() => modalOption.onClose()}>닫기</button>
-                            </div>
-                             
-                    
-                             */
-}

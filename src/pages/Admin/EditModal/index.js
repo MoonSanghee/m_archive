@@ -30,13 +30,23 @@ const EditModal = ({ item, type, onClose }) => {
 
   const onSubmitUser = async (e) => {
     e.preventDefault();
-    await patchUser(item.id, userForm);
+    const response = await patchUser(item.id, userForm);
+    if(response.status ===204){
+      alert("유저를 성공적으로 수정하였습니다.");
+    }else{
+      alert("유저 수정을 실패하였습니다.");
+    }
     onClose();
   };
 
   const onSubmitReview = async (e) => {
     e.preventDefault();
-    await patchReview(item.id, reviewForm);
+    const response = await patchReview(item.id, reviewForm);
+    if(response.status ===204){
+      alert("리뷰를 성공적으로 수정하였습니다.");
+    }else{
+      alert("리뷰 수정을 실패하였습니다.");
+    }
     onClose();
   };
 

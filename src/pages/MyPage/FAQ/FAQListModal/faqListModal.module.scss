@@ -4,34 +4,35 @@
 
 
 //문의내역 예시 
-table {
+.tableWrapper {
   width: 100%;
   max-width: 1080px;
   border-collapse: collapse;
   border-spacing: 0;
   overflow: hidden;
   
-  
-  th,
-  td {
-    
+  .tableHeader{
+    border: 1px solid c.$C_SECONDARY;
+  }
+  .tableth,
+  .questionTd {
     padding: 10px;
     text-align: left;
     max-width: 320px;
     border-left: none;
     border-right: none;
   }
-  
-  th {
+ 
+  .tableth {
     background-color: c.$C_SECONDARY;
     font-weight: bold;
     font-size: 16px;
   }
 
-  tr {
+  .tableRow {
       background-color: c.$C_WHITE_50; 
       
-}
+  }
 }
 .tableNum{
   width: 20%;

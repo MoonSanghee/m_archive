@@ -14,8 +14,10 @@ import Pagination from '../../../components/Common/PageNation';
 import { useNavigate } from 'react-router-dom';
 import { getTokens } from '../../../utils';
 import { useMount } from 'react-use';
+import { useLocation } from 'react-router-dom';
 
 const ManageMoviesPage = () => {
+  const path=useLocation();
   const navigate = useNavigate();
   const [selectedMovies, setSelectedMovies] = useState([]);
   const [movies, setMovies] = useState([]);
@@ -146,7 +148,7 @@ const ManageMoviesPage = () => {
   return (
     <main className={styles.wrapper}>
       {/* //TODO: main이랑 AdminLNB는 AdminLayout으로 분리 */}
-      <AdminLNB />
+      <AdminLNB path={path.pathname}/>
       <section className={styles.allSection}>
         <div className={styles.header}>
           <Button
