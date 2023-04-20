@@ -38,3 +38,7 @@ export const patchFaq = (id, body) => {
 export const createFaqAdmin = (id, body) => {
   return apiClient.post(`/faqs/${id}/comments`, body);
 };
+
+/*export const getFaqDetail = (id)=>{
+  return apiClient.get(`/faqs/${id}/detail`);
+}*/

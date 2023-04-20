@@ -221,9 +221,10 @@ const MovieDetailPage = () => {
           <section className={styles.reviews}>
             <ReviewCarousel reviews={reviews} />
           </section>
-          <Modal modalOption={modalOption} modalSize="small" />
+          
         </section>
       </section>
+      <Modal modalOption={modalOption} modalSize="small" />
     </main>
   );
 };

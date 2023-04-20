@@ -3,7 +3,7 @@ import { Button } from '../../../../components/Common';
 import styles from './faqAskModal.module.scss';
 import { createFaq } from '../../../../api/FAQ';
 import { useMe } from '../../../../hooks';
-
+import cx from "classnames";
 
 const FAQAskModal = ({ onClose }) => {
 
@@ -43,7 +43,7 @@ const FAQAskModal = ({ onClose }) => {
     } else {
       alert('문의실패');
     }
- 
+    onClose();
   };
 
   const onChange = (e) => {
@@ -60,11 +60,14 @@ const FAQAskModal = ({ onClose }) => {
       <form onSubmit={handleSubmit}>
         <label className={styles.inputGroup}>
           이름
-          <input type="text" name="name" value={me?.name} />
+          <input 
+          className={styles.input}
+          type="text" name="name" value={me?.name} />
         </label>
         <label className={styles.inputGroup}>
           제목
           <input
+          className={styles.input}
             type="text"
             name="title"
             value={form?.title}
@@ -74,6 +77,7 @@ const FAQAskModal = ({ onClose }) => {
         <label className={styles.inputGroup}>
           내용
           <textarea
+          className={cx(styles.textarea,styles.input)}
             id="content"
             name="content"
             value={form?.content}
@@ -81,10 +85,7 @@ const FAQAskModal = ({ onClose }) => {
           ></textarea>
         </label>
         <div className={styles.buttonGroup}>
-          <Button type="submit">제출</Button>
-          <Button type="button" onClick={onClose}>
-            닫기
-          </Button>
+          <Button type="submit" color={"secondary"} className={styles.btn}>제출</Button>
         </div>
       </form>
     </section>

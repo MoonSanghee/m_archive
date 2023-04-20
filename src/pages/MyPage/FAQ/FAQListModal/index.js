@@ -5,7 +5,7 @@ import QuestionAsk from './questionAsk';
 import styles from './faqListModal.module.scss';
 import { getFAQsMe } from '../../../../api/FAQ';
 import { useMount } from 'react-use';
-
+import cx from "classnames";
 
 const FAQListModal = ({ onClose }) => {
   
@@ -79,7 +79,9 @@ const FAQListModal = ({ onClose }) => {
               >
                 <td>{index + 1}</td>
                 <td>{question.title}</td>
-                <td>{question.status === '대기중' ? '대기중' : '답변완료'}</td>
+                <td><span className={cx(styles.waiting, {[styles.replied] : question.faqComment})}>
+                  {question.faqComment ? "답변완료" : "대기중"
+                }</span> </td>
               </tr>
               {selectedQuestionIndex === index && (
                 <>
