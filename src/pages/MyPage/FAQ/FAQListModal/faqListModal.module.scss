@@ -41,6 +41,12 @@ table {
   
 }
   
+
+.sectionFaq {
+  overflow-y: auto;
+  height: 600px;
+}
+
 .faqQuestion {
   display: block;
 }
@@ -75,7 +81,7 @@ table {
 
 
 .tableHr {
-  border-top: 1px dotted c.$C_SECONDARY;
+  border-top: 2px dashed c.$C_SECONDARY;
   width: 90%;
   align-content: center;
   margin-left: 5%;
