@@ -46,11 +46,10 @@ const ReviewModal = ({ title, isEmptyReview, movieId, myReview, onClose }) => {
     onClose();
   };
   //NOTE: GET -> 200, POST -> 201, PATCH -> 204, DELETE -> 204
-  const onDelete = async() => {
+  const onDelete = async () => {
     const response = await deleteReview(myReview.id);
-    checkResponse(response.status,'삭제',204);
+    checkResponse(response.status, '삭제', 204);
     onClose();
-    
   };
 
   const onChange = (e) => {
@@ -89,7 +88,7 @@ const ReviewModal = ({ title, isEmptyReview, movieId, myReview, onClose }) => {
 
         {/* //NOTE: position fixed */}
         <div className={styles.btnWrapper}>
-        <Button color={'secondary'} type="submit" form="reviewForm">
+          <Button color={'secondary'} type="submit" form="reviewForm">
             {!isModified ? '저장' : '수정'}
           </Button>
           {isModified && (
@@ -102,8 +101,6 @@ const ReviewModal = ({ title, isEmptyReview, movieId, myReview, onClose }) => {
               삭제
             </Button>
           )}
-       
-             
         </div>
       </form>
     </section>

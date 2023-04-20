@@ -6,9 +6,12 @@ import styles from './header.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { useMe } from '../../../hooks';
 import { getMovies } from '../../../api/Movies';
+import { useMount } from 'react-use';
 
 const Header = () => {
   const navigate = useNavigate();
+
+  const [state, setState] = useState({ keyword: '', results: [] });
 
   const onClick = (item) => {
     return () => {
@@ -17,10 +20,9 @@ const Header = () => {
   };
 
   const onClickLogo = () => {
-    return navigate('/movies');
+    setState({ keyword: '', results: [] });
+    navigate('/movies');
   };
-
-  const [state, setState] = useState({ keyword: '', results: [] });
 
   const handleChange = (event) => {
     setState({ ...state, keyword: event.target.value });
@@ -40,13 +42,15 @@ const Header = () => {
   return (
     <header className={styles.wrapper}>
       <div className={styles.logo}>
-        <h1 onClick={onClickLogo} className={styles.milky}>M - archive</h1>
+        <h1 onClick={onClickLogo} className={styles.milky}>
+          M - archive
+        </h1>
       </div>
       <nav className={styles.navWrapper}>
         {/*<span className={styles.movieButton}>영화</span>*/}
         <span className={styles.searchBox}>
           <SearchBox
-            className={styles.search}
+            wrapperClassName={styles.search}
             value={state.keyword}
             onChange={handleChange}
             placeholder="제목, 배우, 감독"

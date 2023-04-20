@@ -9,7 +9,7 @@ import {
 import styles from './manageReviews.module.scss';
 import { getReviews, deleteReviewAdmin } from '../../../api/Reviews';
 import { useNavigate } from 'react-router-dom';
-import tableStyle from "../tableStyle.module.scss";
+import tableStyle from '../tableStyle.module.scss';
 import { getReviewsCount } from '../../../api/Reviews';
 import Pagination from '../../../components/Common/PageNation';
 import dayjs from 'dayjs';
@@ -18,7 +18,6 @@ import cx from 'classnames';
 import useModal from '../../../components/Common/Modal/useModal';
 import { Modal } from '../../../components';
 import EditModal from '../EditModal';
-
 
 const ManageReviewsPage = () => {
   const navigate = useNavigate();
@@ -38,10 +37,10 @@ const ManageReviewsPage = () => {
   const onClick = () => {
     setIsChecked(!isChecked);
   };
-  const onClickLogout = ()=>{
+  const onClickLogout = () => {
     localStorage.clear();
-    navigate("/admin/login");
-  }
+    navigate('/admin/login');
+  };
   const handleSubmit = async (event) => {
     const response = await getReviews(1, 10, event.target.value);
     if (response.status === 200) {
@@ -59,7 +58,14 @@ const ManageReviewsPage = () => {
   };
 
   const onGetReviews = async () => {
-    const response = await getReviews(currentPage, pageLimit, '', isOrderBy, isReversed);
+    const response = await getReviews(
+      currentPage,
+      pageLimit,
+      '',
+      isOrderBy,
+      isReversed,
+    );
+
     if (response.status === 200) {
       const items = [...response.data.data];
       setReviews(items);
@@ -123,7 +129,8 @@ const ManageReviewsPage = () => {
         />,
       );
     },
-    [modalOption],
+    //NOTE: onGetReviews가 deps에 없으면 초기 state를 가지고 있는 함수만 적용이 됩니다.
+    [modalOption, onGetReviews],
   );
 
   const handlePageChange = (page) => {
@@ -131,7 +138,13 @@ const ManageReviewsPage = () => {
   };
 
   const fetchData = async () => {
-    const response = await getReviews(currentPage, pageLimit, '', isOrderBy, isReversed);
+    const response = await getReviews(
+      currentPage,
+      pageLimit,
+      '',
+      isOrderBy,
+      isReversed,
+    );
     const count = await getReviewsCount();
     if (response.status === 200) {
       const items = [...response.data.data];
@@ -149,7 +162,13 @@ const ManageReviewsPage = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await getReviews(1, pageLimit, '', isOrderBy, isReversed);
+      const response = await getReviews(
+        1,
+        pageLimit,
+        '',
+        isOrderBy,
+        isReversed,
+      );
       setReviews(response.data.data);
       setCurrentPage(1);
     }
@@ -168,7 +187,14 @@ const ManageReviewsPage = () => {
     <main className={styles.wrapper}>
       <AdminLNB />
       <section className={styles.allSection}>
-        <div className={styles.header}><Button color="secondary" width="long" children={"로그아웃"} onClick={onClickLogout}/></div>
+        <div className={styles.header}>
+          <Button
+            color="secondary"
+            width="long"
+            children={'로그아웃'}
+            onClick={onClickLogout}
+          />
+        </div>
         <div className={styles.topMenu}>
           <span className={styles.menuLeft}>
             <CheckBox
@@ -200,8 +226,7 @@ const ManageReviewsPage = () => {
           </span>
         </div>
         <p className={styles.secondMenu}>
-          <TableMenu tableName="reviews" 
-          onClick={orderBy}/>
+          <TableMenu tableName="reviews" onClick={orderBy} />
         </p>
         <p className={styles.table}>
           <div>
@@ -222,14 +247,13 @@ const ManageReviewsPage = () => {
                       {dayjs(createdAt).format('YYYY-MM-DD HH:mm:ss')}
                     </span>
                     <span></span>
-                    <Button 
+                    <Button
                       className={styles.ediBtn}
                       children="수정"
-                      width={"short"}
-                      color={"secondary"}
-                      onClick={()=>onClickOpenModal(review,"review")}
-                    >                  
-                    </Button>
+                      width={'short'}
+                      color={'secondary'}
+                      onClick={() => onClickOpenModal(review, 'review')}
+                    ></Button>
                   </li>
                 );
               })}
