@@ -28,7 +28,6 @@ const FAQListModal = ({ onClose }) => {
 
   useMount(() => {
     onGetMyFAQs();
-    console.log(faqs);
     // 모달 열릴 때 body 스크롤 방지 스타일 적용
     document.body.style.overflow = 'hidden';
   });
@@ -93,14 +92,10 @@ const FAQListModal = ({ onClose }) => {
                     <QuestionDetail question={question} />
                   </td>
                 </tr>
-
                 <td colSpan="3">
                   <hr className={styles.tableHr}/> 
                   {/* 구분선 요소 */}
                 </td>
-
-
-
                 <tr className={styles.tableAAnswer}>
 
                   <td colSpan="1">
