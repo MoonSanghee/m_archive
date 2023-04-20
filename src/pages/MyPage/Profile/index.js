@@ -55,12 +55,11 @@ const Profile = () => {
     const { name } = e.target;
     setTouched({ ...touched, [name]: true });
   };
-  //select.map((item) => item.id)
   const onClickBtn = (item) => {
     return () => {
-      !select.includes(item)
+      !select.some((genre) => genre.id === item.id)
         ? setSelect((select) => [...select, item])
-        : setSelect(select.filter((button) => button !== item));
+        : setSelect(select.filter((genre) => genre.id !== item.id));
     };
   };
 
@@ -92,7 +91,7 @@ const Profile = () => {
     if(touched.password){
       userData.password = form?.password;
     }
-  
+
     const response = await modifyUser(userData);
     if (response.status === 204) {
       console.log('프로필 정상 수정!');
