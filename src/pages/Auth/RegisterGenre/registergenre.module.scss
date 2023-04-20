@@ -11,16 +11,22 @@
   background: black; //임시
 
   > section {
+    position: absolute;
     background: c.$C_WHITE;
     display: flex;
     flex-direction: row;
     align-items: start;
     justify-content: space-between;
-
     width: 1040px;
     height: 600px;
     border-radius: 16px;
     box-shadow: c.$C_SHADOW;
+
+    video {
+      position: fixed;
+      width: 100%;
+      // object-fit: cover;
+    }
   }
 }
 
