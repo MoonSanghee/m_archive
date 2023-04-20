@@ -14,7 +14,7 @@ const QuestionAsk = ({ question }) => {
   return (
     <div className={styles.questionDetail}>
      
-      <div className={styles.answer}>-{answer}</div>
+      <div className={styles.answer}>{answer}</div>
     </div>
   );
 };

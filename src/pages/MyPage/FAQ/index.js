@@ -77,6 +77,7 @@ const FAQ = () => {
       <Modal
         modalOption={faqModalOption}
         modalSize="big"
+        onClose= {faqOnClose}
         //className={styles.iconModal}
       />
       <Modal

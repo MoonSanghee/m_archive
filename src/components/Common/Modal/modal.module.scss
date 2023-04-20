@@ -1,16 +1,18 @@
 @use '../../../styles/constants/' as c;
 @use '../../../styles/mixins/' as m;
 .overlay {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
-  z-index: 10;
+  z-index: c.$Z_OVERLAY;
+  overflow: hidden;
   //NOTE: z-index : -1 => 양수로 바꾸면 body부분에 scroll을 방지할 수 있다.
   width: 100vw;
   height: 100vh;
   background-color: c.$C_BLACK_MODAL;
 }
 .wrapper {
+
   position: fixed;
   left: 0;
   top: 0;
