@@ -1,11 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './registergenre.module.scss';
 import { Button, Input, Tag } from '../../../components';
 import { useNavigate } from 'react-router-dom';
 import genre from '../../Home/Genre/genre';
 import { getMe, modifyUser } from '../../../api/Users';
+import bg from '../Start/cloud.mp4';
 
 const RegisterGenre = () => {
+  const videoRef = useRef();
+  const setPlayBackRate = () => {
+    videoRef.current.playbackRate = 0.5;
+  };
+
   const navigate = useNavigate();
   const [state, setState] = useState(false);
   const [genreMovies, setGenreMovies] = useState([]);
@@ -46,9 +52,8 @@ const RegisterGenre = () => {
     if (response.status === 204) {
       console.log('정상');
     } else {
-     console.log('에러');
+      console.log('에러');
     }
-    
   };
 
   const onClickSubmit = () => {
@@ -66,6 +71,16 @@ const RegisterGenre = () => {
 
   return (
     <main className={styles.wrapper}>
+      <video
+        muted
+        autoPlay
+        loop
+        ref={videoRef}
+        onCanPlay={() => setPlayBackRate()}
+      >
+        <source src={bg} />
+        {/* <strong>Your browser does not support the video tag.</strong> */}
+      </video>
       <section>
         <div className={styles.overlayContainer}>
           <h1>

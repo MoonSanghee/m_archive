@@ -8,11 +8,7 @@
   align-items: center;
   justify-content: center;
   background: black; //임시
-  video {
-    position: fixed;
-    width: 100%;
-    // object-fit: cover;
-  }
+
   > section {
     position: absolute;
     background: c.$C_WHITE;
@@ -24,6 +20,12 @@
     height: 600px;
     border-radius: 16px;
     box-shadow: c.$C_SHADOW;
+
+    video {
+      position: fixed;
+      width: 100%;
+      // object-fit: cover;
+    }
 
     .overlayContainer {
       display: flex;
