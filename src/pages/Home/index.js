@@ -80,12 +80,17 @@ const Home = () => {
     let recommendMoviesCount = (likedMovies.length + reviewedMovies.length) * 2;
     recommendMoviesCount =
       recommendMoviesCount < 40 ? 40 : recommendMoviesCount;
+    const genreIds =  me?.preferredGenres.map((item) => item.id).join(',');
     response = await getMArchiveMovies(
       recommendMoviesCount,
-      me?.preferredGenres.map((item) => item.id).join(','),
+      genreIds,
     );
+    //console.log("preferGenres");
+    //console.log( `${me?.preferredGenres.map((item) => item.id).join(',')}`);
+
     if (response.status === 200) {
       const items = [...response.data.data];
+      console.log(response);
       result = [...items];
     }
     result = result.filter((item) => {
