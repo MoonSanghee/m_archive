@@ -95,7 +95,7 @@
 |                      **Start Page**                      |                     **Login Page**                     |
 | <img alt='start-page' width="100%" src="https://user-images.githubusercontent.com/118954745/233765310-95fe4089-f6eb-4d8b-898a-740e0bf003f4.gif"/> | <img alt='login-page' width="100%" src="https://velog.velcdn.com/images/front_yeong/post/393a0b84-3ecd-4299-a992-d563988fb1ce/image.png"/> |
 |                    **Register Page**                     |                     **Register Genre Page**                     |
-| <img alt='register-page' width="100%" src="https://velog.velcdn.com/images/front_yeong/post/2ea6a7d3-130e-4309-a2ba-2035a348e41f/image.gif"/> | <img alt='register genre-page' width="100%" src="https://user-images.githubusercontent.com/118954745/233765338-18ec61fd-d163-435b-8a9f-515b7f69f09e.gif"/> |
+| <img alt='register-page' width="100%" src="https://user-images.githubusercontent.com/118954745/233766980-21710612-5145-4a35-bfb3-78db8ff1c5f4.gif"/> | <img alt='register genre-page' width="100%" src="https://user-images.githubusercontent.com/118954745/233765338-18ec61fd-d163-435b-8a9f-515b7f69f09e.gif"/> |
 |                          **HomePage-Top10,영화추천**                          |                     **HomePage-장르**                      |
 | <img alt='home-page' width="100%" src="https://user-images.githubusercontent.com/118954745/233765347-e5d4b3d7-4ecb-42c3-a31d-9470f40e7f9d.gif"/> | <img alt='movie-detail-page'  width="100%" src="https://user-images.githubusercontent.com/118954745/233765673-701a393f-8b6d-42a3-8f17-913a90abb482.gif"/> |
 |                   **Movie Detail Page**                    |                **Movie Search Page**                |
