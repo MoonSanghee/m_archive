@@ -107,7 +107,7 @@
 |                    **Review & Comments Page**                     |                **FAQ Page**                      |
 | <img alt='set-nickname-page' width="100%" src="https://velog.velcdn.com/images/front_yeong/post/4709491e-b0ce-43a1-a143-0487d273d067/image.png"/> | <img alt='account-recovery-page' width="100%" src="https://velog.velcdn.com/images/front_yeong/post/a1628f88-759c-4c87-954c-ee1dfccaed01/image.png"/> |
 |                    **Admin Login Page**                     |                **Admin Register Page**                      |
-| <img alt='admin-login-page' width="100%" src="https://user-images.githubusercontent.com/100519505/233776164-74689728-4bbf-4907-baf3-3cd2f585ae50.gif"/> | <img alt='admin- register-page' width="100%" src="https://user-images.githubusercontent.com/100519505/233776350-e3a0ed7a-0b75-430e-bcb5-444a402d30b8.gif" /> |
+| <img alt='admin-login-page' width="100%" src="https://user-images.githubusercontent.com/100519505/233776164-74689728-4bbf-4907-baf3-3cd2f585ae50.gif"/> | <img alt='admin- register-page' width="100%" src="https://user-images.githubusercontent.com/100519505/233777528-3d4b319c-a8dc-4420-81c1-3c272f86e991.gif" /> |
 |                    **Movie Manage Page**                     |                **Review Manage Page**                      |
 | <img alt='admin-movie-page' width="100%" src="https://user-images.githubusercontent.com/100519505/233776503-716a98d4-0523-4267-9575-402253e6dad8.gif"/> | <img alt='admin- review-page' width="100%" src="https://user-images.githubusercontent.com/100519505/233776531-e84c9f5e-8de0-4bb9-a29a-e871cd775c16.gif" /> |
 |                    **User Manage Page**                     |                **F&Q Manage Page**                      |
