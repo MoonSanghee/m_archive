@@ -5,10 +5,9 @@ import {
   SearchBox,
   Modal,
 } from '../../../components/Common';
-import {Accordion} from "./_shared";
+import {Accordion,FAQListModal,FAQAskModal} from "./_shared";
 import faqData from './faqData';
 import useModal from '../../../components/Common/Modal/useModal';
-import {FAQAskModal,FAQListModal} from './_shared';
 
 const FAQ = () => {
   const [faqModalOption, faqShowModal, faqOnClose] = useModal();
