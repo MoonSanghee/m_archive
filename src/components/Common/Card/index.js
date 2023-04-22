@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { BlockIcon, LikeBlackIcon, LikeRedIcon ,StarIcon} from '../../../assets/icon';
+import { StarIcon} from '../../../assets/icon';
 import styles from './card.module.scss';
 import cx from 'classnames';
-// import LikeButton from '../LikeButton';
 import { createLike, deleteLike } from '../../../api/Movies';
 import LikeButton from '../LikeButton';
-import StarRate from "../StarRate";
-
+import { useMe } from '../../../hooks';
 
 const Card = ({ item, onClick, type, idx, callback ,className}) => {
+  const me = useMe();
   const movie = item;
   const [genres, setGenres] = useState('');
   //NOTE: isLiked state를 useEffect를 통해 movie.isLiked로  초기화 하고나서 setIsLiked로 관리
@@ -35,6 +34,10 @@ const Card = ({ item, onClick, type, idx, callback ,className}) => {
   };
 
   const onLikeBtn = () => {
+    if(!me){
+      alert("로그인이 필요한 서비스입니다.");
+      return;
+    }
     isLiked === false ? onCreateLike() : onDeleteLike();
   };
 
@@ -83,7 +86,6 @@ const Card = ({ item, onClick, type, idx, callback ,className}) => {
               onClick={onLikeBtn}
               isLiked={isLiked}
             />
-            {/*<BlockIcon className={styles.icon} />*/}
             
           </div>
         </div>

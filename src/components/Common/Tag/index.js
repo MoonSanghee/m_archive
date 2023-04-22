@@ -4,8 +4,6 @@ import styles from "./tag.module.scss";
 
 
 const Tag = ({ className, children, width, border, color,isGenre, ...props }) => {
-
-
   return (
     <button
       className={cx(

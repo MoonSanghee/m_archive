@@ -3,7 +3,6 @@ import styles from "./toggle.module.scss";
 import cx from "classnames";
 
 const Toggle = ( {className,checked, onChange,...props}) => {
-
     const [isChecked, setIsChecked] = useState(false);
     useEffect(()=>{
         setIsChecked(checked);

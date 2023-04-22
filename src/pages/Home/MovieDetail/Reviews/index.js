@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useMount } from 'react-use';
 import { getMovieReviews } from '../../../../api/Reviews';
-import { ReviewCard } from '../../../../components/Common';
+import {ReviewCard} from '../_shared';
 import useModal from '../../../../components/Common/Modal/useModal';
 import { Modal } from '../../../../components/Common';
 import { useCallback } from 'react';

@@ -6,12 +6,17 @@ import cx from 'classnames';
 import { modifyReview, createReview } from '../../../../../api/Reviews';
 import { useMount } from 'react-use';
 
-const StarRateButton = ({ myReview, movieId, isModified, reload }) => {
+const StarRateButton = ({ myReview, movieId, isModified, reload,me }) => {
   //TODO: 리뷰생성 코드작성.
   const [hoveredStarIndex, setHoveredStarIndex] = useState(0);
   const [clickedStarIndex, setClickedStarIndex] = useState(0);
 
   const setScore = async (score) => {
+    if(!me){
+      alert("로그인이 필요한 서비스입니다.");
+      setClickedStarIndex(0);
+      return;
+    }
     //e.preventDefault();
     //e.stopPropagation();
     const reviewData = {

@@ -7,7 +7,6 @@ const STAR_WIDTH = 38;
 const StarRate = ({ item }) => {
   const RATE = item.score;
   const ID = item.name + item.id;
-  //console.log(item);
 
   const STAR_IDX_ARR = ['first', 'second', 'third', 'fourth', 'last'];
   const [ratesResArr, setRatesResArr] = useState([0, 0, 0, 0, 0]);
@@ -26,7 +25,6 @@ const StarRate = ({ item }) => {
 
   useEffect(() => {
     setRatesResArr(calcStarRates);
-    //NOTE: useEffect에 item이 없다~
   }, [item]);
 
   return (

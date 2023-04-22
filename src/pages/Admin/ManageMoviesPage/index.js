@@ -4,7 +4,6 @@ import {
   Button,
   CheckBox,
   SearchBox,
-  TableMenu,
 } from '../../../components';
 import styles from './manage.module.scss';
 import tableStyle from '../tableStyle.module.scss';
@@ -15,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import { getTokens } from '../../../utils';
 import { useMount } from 'react-use';
 import { useLocation } from 'react-router-dom';
+import {TableMenu} from "../_shared";
 
 const ManageMoviesPage = () => {
   const path=useLocation();
