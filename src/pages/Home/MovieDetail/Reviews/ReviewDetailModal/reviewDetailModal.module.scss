@@ -8,7 +8,7 @@
     height: 100%;
     //padding: 16px;
     color:c.$C_BLACK;
-
+  
     .reviewWrapper{
         @include m.flex(center,center,column);
         padding:0;
@@ -27,6 +27,7 @@
             height: 30%;
             .profileIcon{
               @include m.flex(flex-start,center,column);
+              cursor: pointer;
               width: 10%;
               height: 100%;
             }
@@ -143,6 +144,7 @@
         @include m.flex(center,center,column);
         width: 60px;
         height: 60px;
+        cursor: pointer;
     }
     > svg{
         width: 5%;

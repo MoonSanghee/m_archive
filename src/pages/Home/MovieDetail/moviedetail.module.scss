@@ -52,9 +52,12 @@
       width: 60%;
       justify-content: space-between;
       //margin-bottom: 32px;
-
+      .starButton{
+        min-width: 240px;
+      }
       .buttonPlace {
-        @include m.flex(center, center)
+        @include m.flex(center, center);
+        min-width: 120px;
       }
     }
 

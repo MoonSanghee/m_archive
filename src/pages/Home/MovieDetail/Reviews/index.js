@@ -13,16 +13,19 @@ import ReviewDetailModal from './ReviewDetailModal';
 import { useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import cx from 'classnames';
-
+import { useNavigate } from 'react-router-dom';
 const Reviews = () => {
+  const navigate = useNavigate();
   const ref = useRef();
   const pathname = useLocation().pathname;
   const params = useParams();
   const [reviews, setReviews] = useState([]);
   const [movie, setMovie] = useState({});
-
   const [modalOption, showModal, onClose] = useModal();
   //const [isOpen,setIsOpen] = useState(false);
+  const onNavigate = ()=>{
+    navigate(`/movies/detail/${params.id}`);
+  }
   const onGetReviews = async (id) => {
     const response = await getMovieReviews(id);
     if (response.status === 200) {
@@ -75,7 +78,7 @@ const Reviews = () => {
   });
   return (
     <main ref={ref} className={cx(styles.wrapper)}>
-      <h1>{movie?.title} </h1>
+      <h1 onClick={onNavigate} className={styles.title}>{movie?.title} </h1>
       <section className={cx(styles.reviewsWrapper)}>
         {reviews.map((review) => {
           return (
