@@ -125,7 +125,7 @@ const ManageUsersPage = () => {
         />,
       );
     },
-    [modalOption],
+    [modalOption, onGetUsers],
   );
 
   useEffect(() => {
