@@ -169,13 +169,17 @@ const MovieDetailPage = () => {
           </div>
 
           <div className={styles.buttons}>
-            <StarRateButton
-              myReview={!isEmptyObject(myReview) ? myReview : null}
-              movieId={movie?.id}
-              isModified={!isEmptyObject(myReview)}
-              reload={onClickStar}
-              me={me}
-            />
+            <span className={styles.starButton}>
+              <StarRateButton
+                myReview={!isEmptyObject(myReview) ? myReview : null}
+                movieId={movie?.id}
+                isModified={!isEmptyObject(myReview)}
+                reload={onClickStar}
+                me={me}
+                
+              />
+            </span>
+            
             <span className={styles.buttonPlace}>
               <ReviewButton
                 onClick={onClickOpenModal}

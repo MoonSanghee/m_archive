@@ -17,6 +17,7 @@ import styles from './reviewDetailModal.module.scss';
 import { useLocation } from 'react-router-dom';
 import { getTokens } from '../../../../../utils';
 import { useMount } from 'react-use';
+import { useNavigate } from 'react-router-dom';
 
 
 const diff = (date) => {
@@ -33,7 +34,8 @@ const checkResponse = (status, text, code) => {
 
 const ReviewDetailModal = ({ thisReview,movieId }) => {
   const me = useMe();
-  const location = useLocation();
+  const location = useLocation();  
+  const navigate = useNavigate();
   const [comment, setComment] = useState('');
   const [review, setReview] = useState({});
   const [isLiked, setIsLiked] = useState(false);
@@ -43,6 +45,9 @@ const isExists = (attr, item) => {
     else return false;
 };
 
+const onClickNavigate = (id)=>{
+  return ()=>{navigate(`/movies/user/${id}`);}
+}
 
 const isMyComment = (item) => {
     //해당 영화리뷰의 코멘트(댓글) 목록중 내가 쓴 목록이 있으면 commentId 리턴
@@ -111,7 +116,7 @@ const isMyComment = (item) => {
       <div className={cx(styles.reviewWrapper)}>
         <div className={styles.infoWrapper}>
           <span className={styles.profileIcon}>
-            <ProfileIcon user={review?.user}/>
+            <ProfileIcon  user={review?.user} onClick={onClickNavigate(review?.user?.id)}/>
           </span>
           <div className={styles.rateNicknameWrapper}>
             <div className={styles.scoreWrapper}>
@@ -167,7 +172,7 @@ const isMyComment = (item) => {
             review.comments?.map((item) => {
               return (
                 <li key={`${item.id}`} className={styles.li}>
-                  <ProfileIcon user={item.user} className={styles.profileIcon}/>
+                  <ProfileIcon  user={item.user} className={styles.profileIcon} onClick={onClickNavigate(item?.user?.id)}/>
                   <div>
                     <span>
                       {isExists('nickname',item) || isExists('name',item) }
@@ -197,7 +202,7 @@ const isMyComment = (item) => {
   
       </div>
       <li className={cx(styles.li, styles.me)}>
-          <ProfileIcon user={me} className={styles.profileIcon}/>
+          <ProfileIcon user={me} className={styles.profileIcon} onClick={onClickNavigate(me?.id)}/>
           <div>
             <span>{me?.nickname || me?.name}</span>
             <span className={styles.comment}>

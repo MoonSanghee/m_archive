@@ -5,7 +5,9 @@
     min-height: 100vh;
     padding: 48px 60px;
     //overflow-y: scroll;
-    
+    .title{
+        cursor: pointer;
+    }
     > h1{
         width: 100%;
         height: 8%;
