@@ -59,8 +59,6 @@ const AdminRegister = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(form);
-    console.log(validatedForm); //true면 api 보내기
     if (!validatedForm) {
       //false면리턴
       return;
@@ -76,7 +74,7 @@ const AdminRegister = () => {
     if (response.status === 200) {
       const data = response.data;
       saveTokens(data);
-      navigate('/movies');
+      navigate('/admin');
     }
   };
 

@@ -1,18 +1,15 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { createLike, deleteLike, getMovie } from '../../../api/Movies';
-import { ReviewButton, StarRateButton } from './_shared';
+import { ReviewButton, StarRateButton,ReviewCarousel,ReviewModal } from './_shared';
 import styles from './moviedetail.module.scss';
 import {
-  ReviewCard,
   ShareButton,
   LikeButton,
   Modal,
 } from '../../../components/Common';
-import ReviewCarousel from './ReviewCarousel';
 import { getMovieReviews, getMovieMyReview } from '../../../api/Reviews';
 import useModal from '../../../components/Common/Modal/useModal';
-import ReviewModal from './ReviewModal';
 import { useMe } from '../../../hooks';
 import { useMount } from 'react-use';
 import dayjs from 'dayjs';
@@ -32,6 +29,10 @@ const MovieDetailPage = () => {
 
   // NOTE: curring이 필요없는 함수
   const onClick = () => {
+    if(!me){
+      alert("로그인이 필요한 서비스입니다.");
+      return;
+    }
     const move = location.pathname + '/reviews';
     navigate(move);
   };
@@ -63,6 +64,10 @@ const MovieDetailPage = () => {
   };
 
   const onLikeBtn = () => {
+    if(!me){
+      alert("로그인이 필요한 서비스입니다.");
+      return;
+    }
     if (!movie) {
       return;
     }
@@ -78,7 +83,7 @@ const MovieDetailPage = () => {
   const onGetMyReview = async (id) => {
     //해당 영화의 리뷰 목록중 내가 쓴 목록이 있으면 reviewID 리턴
     //리뷰쓴 userId와 내 userId 비교 -> 내 리뷰가 있으면 내리뷰리턴
-    if (!me) {
+    if (me === null) {
       //console.log("로그아웃상태, 로그인바람");
       return;
     }
@@ -86,11 +91,17 @@ const MovieDetailPage = () => {
     const response = await getMovieMyReview(id);
     if (response.status === 200) {
       if (response.data) setMyReview(response.data);
-      //else setMyReview({});
+      else{
+        setMyReview({});
+      }
     }
   };
 
   const onClickOpenModal = useCallback(() => {
+    if(!me){
+      alert("로그인이 필요한 서비스입니다.");
+      return;
+    }
     showModal(
       true,
       '',
@@ -109,6 +120,7 @@ const MovieDetailPage = () => {
             }
             onGetMovie(params.id);
             onGetReviews(params.id);
+            onGetMyReview(params.id);
           })
          
         }}
@@ -120,10 +132,6 @@ const MovieDetailPage = () => {
     return Object.keys(param).length === 0 && param.constructor === Object;
   };
 
-  useEffect(() => {
-    onGetMyReview(params.id);
-  }, [reviews]);
-
   useMount(() => {
     if (!params.id) {
       console.log(params.id, '없음');
@@ -131,6 +139,7 @@ const MovieDetailPage = () => {
     }
     onGetMovie(params.id);
     onGetReviews(params.id);
+    onGetMyReview(params.id);
     //if (reviews.length > 0) findMyReview(reviews);
   });
 
@@ -165,6 +174,7 @@ const MovieDetailPage = () => {
               movieId={movie?.id}
               isModified={!isEmptyObject(myReview)}
               reload={onClickStar}
+              me={me}
             />
             <span className={styles.buttonPlace}>
               <ReviewButton

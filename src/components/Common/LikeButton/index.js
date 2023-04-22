@@ -1,8 +1,6 @@
 import React, { memo, useEffect, useState } from 'react';
 import { LikeRedIcon, LikeBlackIcon, LikeIcon } from '../../../assets/icon';
 import styles from './likebutton.module.scss';
-import { createLike, deleteLike, getMovie } from '../../../api/Movies';
-import { useMount } from 'react-use';
 
 const LikeButton = ({ label, isLiked, onClick }) => {
   const [like, setLike] = useState(false);

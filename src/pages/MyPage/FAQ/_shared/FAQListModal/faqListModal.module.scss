@@ -1,0 +1,136 @@
+@use "../../../../../styles/constants/colors" as c;
+@use "../../../../../styles/mixins/" as m;
+
+
+
+//문의내역 예시 
+.tableWrapper {
+  width: 100%;
+  max-width: 1080px;
+  border-collapse: collapse;
+  border-spacing: 0;
+  overflow: hidden;
+  
+  .tableHeader{
+    border: 1px solid c.$C_SECONDARY;
+  }
+  .tableth,
+  .questionTd {
+    padding: 10px;
+    text-align: left;
+    max-width: 320px;
+    border-left: none;
+    border-right: none;
+  }
+ 
+  .tableth {
+    background-color: c.$C_SECONDARY;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .tableRow {
+      background-color: c.$C_WHITE_50; 
+      
+  }
+}
+.tableNum{
+  width: 20%;
+  max-width: 100%;
+}
+.faqTableBody {
+  max-height :300px;
+  overflow: hidden;
+  overflow-y: auto;
+  color: c.$C_BLACK;
+  border: 1px solid c.$C_SECONDARY;
+  
+}
+  
+
+.sectionFaq {
+  overflow-y: auto;
+  height: 600px;
+  .waiting{
+    color:c.$C_BLACK;
+  }
+  .replied{
+    color:c.$C_DARKGRAY;
+  }
+}
+
+.faqQuestion {
+  display: block;
+}
+
+.faqAnswer {
+  display: block;
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+.questionRow {
+  cursor: pointer;
+
+  margin: 24px;
+  background-color: c.$C_WHITE_50;
+  border: 1.2px solid c.$C_SECONDARY;
+  
+  &:hover {
+    background-color: c.$C_GRAY;
+  }
+}
+
+.Answer {
+  color: c.$C_BLACK;
+  background-color: c.$C_WHITE_50;
+  
+  
+}
+
+
+
+.tableHr {
+  border-top: 2px dashed c.$C_SECONDARY;
+  width: 90%;
+  align-content: center;
+  margin-left: 5%;
+}
+
+// FAQModal 관련 SCSS
+.faqListTitle {
+  color: c.$C_SECONDARY;
+  margin: 32px 0 24px 0;
+}
+.inputGroup {
+  margin-bottom: 1.5rem;
+
+  > label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: bold;
+  }
+
+  
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+
+  button {
+    margin-left: 0.5rem;
+  }
+}
+
+
+.questionDetail {
+  display: block;
+  line-height: 36px;
+}
+

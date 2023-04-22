@@ -14,7 +14,7 @@ import {
   AlienIcon,
   FairyIcon,
   DefaultIcon,
-} from '../../../assets/profileIcon';
+} from '../../../assets/profileIcons';
 import cx from 'classnames';
 
 const icon = (item) => {

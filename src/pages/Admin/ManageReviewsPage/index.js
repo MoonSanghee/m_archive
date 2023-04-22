@@ -4,7 +4,6 @@ import {
   CheckBox,
   SearchBox,
   Button,
-  TableMenu,
 } from '../../../components';
 import styles from './manageReviews.module.scss';
 import { getReviews, deleteReviewAdmin } from '../../../api/Reviews';
@@ -17,7 +16,7 @@ import cx from 'classnames';
 //MEMO: modal에 필요한 것들
 import useModal from '../../../components/Common/Modal/useModal';
 import { Modal } from '../../../components';
-import EditModal from '../EditModal';
+import {EditModal,TableMenu} from '../_shared';
 import { useLocation } from 'react-router-dom';
 const ManageReviewsPage = () => {
   const path=useLocation();

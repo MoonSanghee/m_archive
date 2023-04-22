@@ -1,18 +1,15 @@
 import React, { useCallback, useState } from 'react';
 import styles from './faq.module.scss';
-
 import {
   Button,
   SearchBox,
-  Tag,
   Modal,
-  ModalButton,
 } from '../../../components/Common';
-import Accordion from '../../../components/Common/Accordion';
+import {Accordion} from "./_shared";
 import faqData from './faqData';
 import useModal from '../../../components/Common/Modal/useModal';
-import FAQAskModal from './FAQAskModal';
-import FAQListModal from './FAQListModal';
+import {FAQAskModal,FAQListModal} from './_shared';
+
 const FAQ = () => {
   const [faqModalOption, faqShowModal, faqOnClose] = useModal();
   const [toAskModalOption, toAskShowModal, toAskOnClose] = useModal();

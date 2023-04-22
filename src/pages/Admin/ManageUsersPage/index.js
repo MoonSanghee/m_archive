@@ -4,7 +4,7 @@ import {
   Button,
   CheckBox,
   SearchBox,
-  TableMenu,
+  
 } from '../../../components';
 import styles from './manageUsers.module.scss';
 import tableStyle from "../tableStyle.module.scss";
@@ -14,7 +14,7 @@ import Pagination from '../../../components/Common/PageNation';
 import cx from 'classnames';
 import useModal from '../../../components/Common/Modal/useModal';
 import { Modal } from '../../../components';
-import EditModal from '../EditModal';
+import {EditModal,TableMenu} from '../_shared';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 const ManageUsersPage = () => {

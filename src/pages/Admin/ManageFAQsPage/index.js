@@ -5,7 +5,6 @@ import {
   CheckBox,
   Modal,
   SearchBox,
-  TableMenu,
 } from '../../../components';
 import styles from './manageFAQ.module.scss';
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +15,7 @@ import { getTokens } from '../../../utils';
 import tableStyle from '../tableStyle.module.scss';
 import Pagination from '../../../components/Common/PageNation';
 import dayjs from 'dayjs';
-import EditModal from '../EditModal';
+import {EditModal,TableMenu} from "../_shared"
 import useModal from '../../../components/Common/Modal/useModal';
 import { useLocation } from 'react-router-dom';
 

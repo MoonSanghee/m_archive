@@ -10,7 +10,7 @@ import {
   getLikes,
 } from '../../api/Movies';
 import { useState, useEffect, useCallback } from 'react';
-import Carousel from './Carousel';
+import {Carousel} from './_shared';
 import { Card, Dropdown, Tag, ScrollTopButton } from '../../components/Common';
 import genre from './Genre/genre';
 import { sortItems } from './Genre/sortItems';
@@ -90,7 +90,6 @@ const Home = () => {
 
     if (response.status === 200) {
       const items = [...response.data.data];
-      console.log(response);
       result = [...items];
     }
     result = result.filter((item) => {
@@ -114,12 +113,6 @@ const Home = () => {
   };
 
   const onGetGenreMovies = async () => {
-    //NOTE: map 이전
-    //[{id : "id1"}, {id : "id2"}]
-    //NOTE: map 이후
-    //["id1", "id2"]
-    //NOTE: join 이후
-    //"id1,id2"
     const response = await getGenreMovies(
       page,
       select.map((item) => item.id).join(','),

@@ -12,7 +12,7 @@ import {
     AlienIcon,
     FairyIcon,
     DefaultIcon,
-  } from '../../../../assets/profileIcon';
+  } from '../../../../assets/profileIcons';
 
 export const icons = [
     {

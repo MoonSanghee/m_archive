@@ -7,7 +7,6 @@ import {
   Toggle,
   Button,
 } from '../../../components/Common';
-//import { ProfileIcon } from "../../../assets/icon";
 import axios from 'axios';
 import genre from '../../Home/Genre/genre';
 import { useMe } from '../../../hooks';

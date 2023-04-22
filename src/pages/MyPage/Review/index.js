@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { ReviewCards, Toggle } from '../../../components';
+import { Toggle } from '../../../components';
+import { ReviewCards } from './_shared';
 import styles from './review.module.scss';
 import { useRecoilState } from 'recoil';
 import { meState } from '../../../recoil';
@@ -44,7 +45,6 @@ const Review = () => {
   const onGetMyReviews = async () => {
     const response = await getMyReviews();
     if (response.status === 200) {
-      console.log(response.data);
       setReviews(response.data);
     }
   };
