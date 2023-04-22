@@ -109,9 +109,9 @@
 |                    **Admin Login Page**                     |                **Admin Register Page**                      |
 | <img alt='admin-login-page' width="100%" src="https://user-images.githubusercontent.com/100519505/233776164-74689728-4bbf-4907-baf3-3cd2f585ae50.gif"/> | <img alt='admin- register-page' width="100%" src="https://user-images.githubusercontent.com/100519505/233776350-e3a0ed7a-0b75-430e-bcb5-444a402d30b8.gif" /> |
 |                    **Movie Manage Page**                     |                **Review Manage Page**                      |
-| <img alt='admin-movie-page' width="100%" src="https://velog.velcdn.com/images/front_yeong/post/f1a554c4-a41a-493c-ba4e-dc17833e8061/image.png"/> | <img alt='admin- review-page' width="100%" src="https://velog.velcdn.com/images/front_yeong/post/8dc72d71-fb4f-4bf8-a324-aaf07dd5fd39/image.png" /> |
+| <img alt='admin-movie-page' width="100%" src="https://user-images.githubusercontent.com/100519505/233776503-716a98d4-0523-4267-9575-402253e6dad8.gif"/> | <img alt='admin- review-page' width="100%" src="https://user-images.githubusercontent.com/100519505/233776531-e84c9f5e-8de0-4bb9-a29a-e871cd775c16.gif" /> |
 |                    **User Manage Page**                     |                **F&Q Manage Page**                      |
-| <img alt='admin-user-page' width="100%" src="https://velog.velcdn.com/images/front_yeong/post/22dfe259-5410-4ee0-95ab-b8babd580a1e/image.png"/> | <img alt='dmin- faq-page' width="100%" src="https://velog.velcdn.com/images/front_yeong/post/6e5206dd-a68c-48fc-be28-957d257d3e1c/image.png" /> |
+| <img alt='admin-user-page' width="100%" src="https://user-images.githubusercontent.com/100519505/233776569-2a379418-871b-4472-b029-25410fa1fc4e.gif"/> | <img alt='dmin- faq-page' width="100%" src="https://user-images.githubusercontent.com/100519505/233776721-e571999a-3473-4b23-8a25-5d30241570ea.gif" /> |
 
 
 <br/>
