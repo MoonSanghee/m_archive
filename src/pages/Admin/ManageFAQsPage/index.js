@@ -119,7 +119,10 @@ const ManageFAQsPage = () => {
         <EditModal
           item={item}
           type={type}
-          onClose={onClose}
+          // onClose={onClose}
+          onClose={() => {
+            modalOption.onClose();
+          }}
         />,
       );
     },
@@ -128,7 +131,6 @@ const ManageFAQsPage = () => {
 
   useEffect(() => {
     onGetFaqs();
-    console.log(path);
   }, []);
 
   const handlePageChange = (page) => {
