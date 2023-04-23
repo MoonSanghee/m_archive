@@ -37,7 +37,6 @@ export const validatePassword = (password) => {
   }
 
   if (password.match(passwordRegEx) === null) {
-    // return '올바른 비밀번호를 입력하세요.';
     return '숫자, 영문자, 특수문자(!@#$%^&*())를 포함해야 합니다.';
   }
 
