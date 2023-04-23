@@ -3,12 +3,12 @@
 
 @keyframes fadeout {
   /* 효과를 동작시간 동안 0 ~ 1까지 */
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 .cardWrapper {
@@ -19,29 +19,29 @@
   border-radius: 5px;
   overflow: hidden;
   .rankingWrapper {
-      position: absolute;
-      z-index: 10;
-      top: 176px;
-      left: -70px;
-      font-size: 212px;
-      color: c.$C_WHITE_50;
-      pointer-events: none;
-      opacity: 1;
-    
-    }
-  .first{
-      top: 180px;
-      left: -70px;
-      font-size: 260px;
-      opacity: 1;
+    position: absolute;
+    z-index: 10;
+    top: 176px;
+    left: -70px;
+    font-size: 212px;
+    color: c.$C_WHITE_50;
+    pointer-events: none;
+    opacity: 1;
   }
-  
-    // 호버 시 뒤집기
+  .first {
+    top: 180px;
+    left: -70px;
+    font-size: 260px;
+    opacity: 1;
+  }
+
+  // 호버 시 뒤집기
   &:hover .card_inner {
     transform: rotateY(180deg);
   }
-  &:hover:not(.card_inner){
-    .rankingWrapper,.first{
+  &:hover:not(.card_inner) {
+    .rankingWrapper,
+    .first {
       animation: fadeout 1s;
       opacity: 0;
     }
@@ -66,7 +66,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    backface-visibility: hidden; //뒷모습 숨겨둠
+    // backface-visibility: hidden; //뒷모습 숨겨둠
   }
 
   .card_front {
@@ -80,9 +80,11 @@
   .card_back {
     transform: rotateY(180deg);
     padding: 12px;
-    position: relative;
+    // position: relative;
 
     .card_content {
+      width: 100%;
+      height: 100%;
       > h2 {
         font-size: 20px;
         padding: 10px 0;
@@ -108,20 +110,20 @@
         -webkit-line-clamp: 6; //줄 수
         -webkit-box-orient: vertical;
       }
-      .title{
+      .title {
         @include m.flex(space-between);
-        .starRate{
+        .starRate {
           @include m.flex(flex-start);
           column-gap: 4px;
           width: 80px;
-          
-          color:c.$C_WHITE;
+
+          color: c.$C_WHITE;
           font-size: 20px;
           text-align: center;
-          > svg{
+          > svg {
             width: 28px;
             height: 24px;
-            fill:c.$C_YELLOW;
+            fill: c.$C_YELLOW;
           }
         }
       }
@@ -135,16 +137,14 @@
       background: c.$C_CARD_MENU;
       height: 50px;
       width: 100%;
-      padding: 12px;
+      padding: 0 12px;
       display: flex;
-      
       justify-content: flex-end;
-      align-items:center;
+      align-items: center;
       flex-direction: row;
- 
-      .icon {
-        width: 32px;
-        padding-left: 12px;
+      > div {
+        width: 100%;
+        height: 100%;
       }
       .heart {
         animation-duration: 0.5s;
