@@ -29,7 +29,10 @@ const Reviews = () => {
   const onGetReviews = async (id) => {
     const response = await getMovieReviews(id);
     if (response.status === 200) {
-      setReviews(response.data);
+      const sorted = response.data.sort(function(a, b) {
+        return new Date(a.createdAt) - new Date(b.createdAt)
+      }).reverse()
+      setReviews(sorted);
     }
   };
 
