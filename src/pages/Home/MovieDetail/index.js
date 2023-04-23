@@ -78,7 +78,10 @@ const MovieDetailPage = () => {
   const onGetReviews = async (id) => {
     const response = await getMovieReviews(id);
     if (response.status === 200) {
-      setReviews(response.data);
+      const sorted = response.data.sort(function(a, b) {
+        return a.likeCount - b.likeCount
+      }).reverse()
+      setReviews(sorted);
     }
   };
   const onGetMyReview = async (id) => {
