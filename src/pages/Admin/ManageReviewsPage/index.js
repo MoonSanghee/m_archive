@@ -31,6 +31,7 @@ const ManageReviewsPage = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [isReversed, setIsReversed] = useState('asc');
   const [isOrderBy, setIsOrderBy] = useState('NAME');
+  const [keyword, setKeyword] = useState('');
 
   const isAllChecked = selectedReviews.length === reviews.length;
 
@@ -43,15 +44,16 @@ const ManageReviewsPage = () => {
   };
   const handleSubmit = async (event) => {
     const response = await getReviews(1, 10, event.target.value);
+    setKeyword(event.target.value);
     if (response.status === 200) {
       const items = [...response.data.data];
       setReviews(items);
-      setTotalPages(Math.ceil(items.length / pageLimit));
+      setTotalPages(Math.ceil(response.data.paging.total / pageLimit));
       setCurrentPage(1);
     }
     if (event.target.value === '') {
       // 검색어가 비어있는 경우
-      setTotalPages(response.length / pageLimit);
+      setTotalPages(Math.ceil(response.data.paging.total / pageLimit));
       setCurrentPage(1);
       return;
     }
@@ -61,7 +63,7 @@ const ManageReviewsPage = () => {
     const response = await getReviews(
       currentPage,
       pageLimit,
-      '',
+      keyword,
       isOrderBy,
       isReversed,
     );
@@ -75,7 +77,7 @@ const ManageReviewsPage = () => {
     const response = await getReviews(
       currentPage,
       pageLimit,
-      '',
+      keyword,
       isOrderBy,
       isReversed,
     );
@@ -84,7 +86,7 @@ const ManageReviewsPage = () => {
       const items = [...response.data.data];
       setIsChecked(false);
       setSelectedReviews([]);
-      setTotalPages(Math.ceil(count.data.count / pageLimit));
+      setTotalPages(Math.ceil(response.data.paging.total / pageLimit));
       setReviews(items);
     }
   };
@@ -161,14 +163,14 @@ const ManageReviewsPage = () => {
   useEffect(() => {
     async function fetchData() {
       const response = await getReviews(
-        1,
+        currentPage,
         pageLimit,
-        '',
+        keyword,
         isOrderBy,
         isReversed,
       );
       setReviews(response.data.data);
-      setCurrentPage(1);
+      setCurrentPage(currentPage);
     }
     fetchData();
   }, [isOrderBy, isReversed]);
