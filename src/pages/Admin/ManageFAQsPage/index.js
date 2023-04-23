@@ -31,6 +31,7 @@ const ManageFAQsPage = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [isReversed, setIsReversed] = useState('asc');
   const [isOrderBy, setIsOrderBy] = useState('USERNAME');
+  const [keyword, setKeyword] = useState('')
 
   const isAllChecked = selectedFaqs.length === faqs.length;
 
@@ -44,6 +45,7 @@ const ManageFAQsPage = () => {
   };
 
   const onChangeSearch = async (event) => {
+    setKeyword(event.target.value)
     const response = await getFAQs(
       1,
       10,
@@ -55,18 +57,18 @@ const ManageFAQsPage = () => {
       const items = [...response.data.data];
       // NOTE: response.data.paging.total => 총 개수
       setFaqs(items);
-      setTotalPages(response.data.paging.total / pageLimit);
+      setTotalPages(Math.ceil(response.data.paging.total / pageLimit));
       setCurrentPage(1);
     }
     if (event.target.value === '') {
-      setTotalPages(response.data.paging.total / pageLimit);
+      setTotalPages(Math.ceil(response.data.paging.total / pageLimit));
       setCurrentPage(1);
       return;
     }
   };
 
   const onGetFaqs = async () => {
-    const response = await getFAQs(1, 10, '', isOrderBy, isReversed);
+    const response = await getFAQs(currentPage, 10, keyword, isOrderBy, isReversed);
     if (response.status === 200) {
       const items = [...response.data.data];
       setFaqs(items);
@@ -128,10 +130,6 @@ const ManageFAQsPage = () => {
     [modalOption,onGetFaqs],
   );
 
-  useEffect(() => {
-    onGetFaqs();
-  }, []);
-
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
@@ -140,7 +138,7 @@ const ManageFAQsPage = () => {
     const response = await getFAQs(
       currentPage,
       pageLimit,
-      '',
+      keyword,
       isOrderBy,
       isReversed,
     );
@@ -162,8 +160,12 @@ const ManageFAQsPage = () => {
   };
 
   useEffect(() => {
+    onGetFaqs();
+  }, []);
+  
+  useEffect(() => {
     async function fetchData() {
-      const response = await getFAQs(currentPage, pageLimit, '', isOrderBy, isReversed);
+      const response = await getFAQs(currentPage, pageLimit, keyword, isOrderBy, isReversed);
       setFaqs(response.data.data);
       setCurrentPage(currentPage);
     }

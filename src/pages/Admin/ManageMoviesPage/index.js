@@ -27,6 +27,7 @@ const ManageMoviesPage = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [isReversed, setIsReversed] = useState('asc');
   const [isOrderBy, setIsOrderBy] = useState('NAME');
+  const [keyword, setKeyword] = useState('');
 
   const isAllChecked = selectedMovies.length === movies.length;
 
@@ -42,22 +43,23 @@ const ManageMoviesPage = () => {
   //NOTE: throttle을 사용 (lodash -> lodash-es)
   const onChangeSearch = async (event) => {
     const response = await getMovies(1, 10, event.target.value);
+    setKeyword(event.target.value);
     if (response.status === 200) {
       const items = [...response.data.data];
       setMovies(items);
-      setTotalPages(Math.ceil(items.length / pageLimit));
+      setTotalPages(Math.ceil(response.data.paging.total / pageLimit));
       setCurrentPage(1);
     }
     if (event.target.value === '') {
       // 검색어가 비어있는 경우
-      setTotalPages(response.length / pageLimit);
+      setTotalPages(Math.ceil(response.data.paging.total / pageLimit));
       setCurrentPage(1);
       return;
     }
   };
 
   const onGetMovies = async () => {
-    const response = await getMovies(1, 10, '', isOrderBy, isReversed);
+    const response = await getMovies(1, 10, keyword, isOrderBy, isReversed);
     if (response.status === 200) {
       const items = [...response.data.data];
       setMovies(items);
@@ -105,20 +107,18 @@ const ManageMoviesPage = () => {
     const response = await getMovies(
       currentPage,
       pageLimit,
-      '',
+      keyword,
       isOrderBy,
       isReversed,
     );
     const count = await countMovies();
-
     if (response.status === 200) {
       const items = [...response.data.data];
 
       //NOTE: 전체 선택을 해제하는 함수 호출을 fetch 이후에 다른 state 동시에 처리를 해주면 된다.
       setIsChecked(false);
       setSelectedMovies([]);
-
-      setTotalPages(Math.ceil(count.data.count / pageLimit));
+      setTotalPages(Math.ceil(response.data.paging.total / pageLimit));
       setMovies(items);
     }
   };
@@ -130,7 +130,7 @@ const ManageMoviesPage = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await getMovies(1, pageLimit, '', isOrderBy, isReversed);
+      const response = await getMovies(1, pageLimit, keyword, isOrderBy, isReversed);
       setMovies(response.data.data);
       setCurrentPage(1);
     }

@@ -52,6 +52,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   }
 
   const handlePageChange = (page) => {
+    console.log(page)
     if (onPageChange) {
       onPageChange(page);
     }

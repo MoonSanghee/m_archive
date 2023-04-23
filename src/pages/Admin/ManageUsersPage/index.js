@@ -29,6 +29,7 @@ const ManageUsersPage = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [isReversed, setIsReversed] = useState('asc');
   const [isOrderBy, setIsOrderBy] = useState('EMAIL');
+  const [keyword, setKeyword] = useState('');
 
   //   const [modalOption, showModal,onClose] = useModal();
   const [modalOption, showModal] = useModal();
@@ -49,22 +50,23 @@ const ManageUsersPage = () => {
 
   const handleSubmit = async (event) => {
     const response = await getUsers(1, 10, event.target.value);
+    setKeyword(event.target.value)
     if (response.status === 200) {
       const items = [...response.data.data];
       setUsers(items);
-      setTotalPages(Math.ceil(items.length / pageLimit));
+      setTotalPages(Math.ceil(response.data.paging.total / pageLimit));
       setCurrentPage(1);
     }
     if (event.target.value === '') {
       // 검색어가 비어있는 경우
-      setTotalPages(response.length / pageLimit);
+      setTotalPages(Math.ceil(response.data.paging.total / pageLimit));
       setCurrentPage(1);
       return;
     }
   };
 
   const onGetUsers = async () => {
-    const response = await getUsers(currentPage, pageLimit, '', isOrderBy, isReversed);
+    const response = await getUsers(currentPage, pageLimit, keyword, isOrderBy, isReversed);
     if (response.status === 200) {
       const items = [...response.data.data];
       setUsers(items);
@@ -137,13 +139,13 @@ const ManageUsersPage = () => {
   };
 
   const fetchData = async () => {
-    const response = await getUsers(currentPage, pageLimit, '', isOrderBy, isReversed);
+    const response = await getUsers(currentPage, pageLimit, keyword, isOrderBy, isReversed);
     const count = await countUsers();
     if (response.status === 200) {
       const items = [...response.data.data];
       setIsChecked(false);
       setSelectedUsers([]);
-      setTotalPages(Math.ceil(count.data.count / pageLimit));
+      setTotalPages(Math.ceil(response.data.paging.total / pageLimit));
       setUsers(items);
     }
   };
@@ -155,7 +157,7 @@ const ManageUsersPage = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await getUsers(1, pageLimit, '', isOrderBy, isReversed);
+      const response = await getUsers(1, pageLimit, keyword, isOrderBy, isReversed);
       setUsers(response.data.data);
       setCurrentPage(1);
     }
