@@ -10,14 +10,15 @@ import {
 } from '../../../components/Common';
 import { getMovieReviews, getMovieMyReview } from '../../../api/Reviews';
 import useModal from '../../../components/Common/Modal/useModal';
-import { useMe } from '../../../hooks';
 import { useMount } from 'react-use';
 import dayjs from 'dayjs';
+import {useRecoilValue} from "recoil";
+import {meState} from "../../../recoil";
 
 const MovieDetailPage = () => {
   const navigate = useNavigate();
   const params = useParams();
-  const me = useMe();
+  const me = useRecoilValue(meState);
   //해당 영화-정보
   const [movie, setMovie] = useState({});
   //해당 영화-리뷰들

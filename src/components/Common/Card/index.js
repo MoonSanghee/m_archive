@@ -5,9 +5,11 @@ import cx from 'classnames';
 import { createLike, deleteLike } from '../../../api/Movies';
 import LikeButton from '../LikeButton';
 import { useMe } from '../../../hooks';
+import {useRecoilValue} from "recoil";
+import { meState } from '../../../recoil';
 
 const Card = ({ item, onClick, type, idx, callback ,className}) => {
-  const me = useMe();
+  const me = useRecoilValue(meState);
   const movie = item;
   const [genres, setGenres] = useState('');
   //NOTE: isLiked state를 useEffect를 통해 movie.isLiked로  초기화 하고나서 setIsLiked로 관리
