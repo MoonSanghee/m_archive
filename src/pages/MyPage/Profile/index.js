@@ -7,9 +7,7 @@ import {
   Toggle,
   Button,
 } from '../../../components/Common';
-import axios from 'axios';
 import genre from '../../Home/Genre/genre';
-import { useMe } from '../../../hooks';
 import { useAsync, useMount } from 'react-use';
 import { Modal } from '../../../components/Common';
 import useModal from '../../../components/Common/Modal/useModal';
@@ -27,6 +25,7 @@ import { useLocation } from 'react-router-dom';
 import {useRecoilState, } from "recoil";
 import { meState} from '../../../recoil';
 import { getMe } from "../../../api/Users";
+import swal from 'sweetalert2';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -74,33 +73,50 @@ const Profile = () => {
 
   // 저장 버튼 클릭 시 API 호출
   //NOTE: 수정하고 나서 getMe 호출
+  const onSave = ()=>{
+    swal.fire({
+      text: '프로필이 정상적으로 변경되었습니다.',
+      position: 'bottom-left',
+      showClass: {
+        popup: styles.popup,
+      },
+      timer: 500,
+      showConfirmButton: false,
+      padding: '0',
+      width: 320,
+    });
+  }
   const onSubmit = async (e) => {
     e.preventDefault();
-    if ((touched.password || touched.checkpassword) && !validatedForm) {
+    /*if ((touched.password || touched.checkpassword) && !validatedForm) {
       console.log("not submit");
       return;
+    }*/
+    if (!validatedForm) {
+      console.log("invalid form");
+      return;
     }
-
     const userData = {
       nickname: form?.nickname,
       description: form?.description,
       profileImage: form?.profileImage,
       preferredGenres: select.map((item) => item.id), //select는 선택한 태그
     };
-    if(touched.password){
+    if( touched.password && touched.checkpassword && validatePwd){
       userData.password = form?.password;
     }
 
     const response = await modifyUser(userData);
     if (response.status === 204) {
-      console.log('프로필 정상 수정!');
       onGetMe();
+      onSave();
+      
     } else {
-      console.log('프로필 수정 에러!');
+      alert("프로필 수정 에러");
     }
     
   };
-
+  
   const getProfileImage = (name) => {
     setForm({
       ...form,
@@ -143,6 +159,11 @@ const Profile = () => {
     me?.preferredGenres?.forEach((item) => {
       setSelect((select) => [...select, item]);
     });
+    setTouched({
+      nickname: false,
+      password: false,
+      checkpassword: false,
+    })
   }, [me]);
   
 
@@ -164,10 +185,14 @@ const Profile = () => {
     form?.checkpassword,
     form?.password,
   );
-  const validatedForm =
+  /*const validatedForm =
     !validatedNickname && !validatedPassword && !validatedCheckpassword
       ? true
-      : false;
+      : false;*/
+  const validatedForm =  !validatedNickname ? true : false;
+  const validatePwd =!validatedPassword && !validatedCheckpassword
+  ? true
+  : false;
   return (
     <main className={styles.wrapper}>
       <section className={styles.profileContainer}>

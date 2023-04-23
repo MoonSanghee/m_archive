@@ -103,10 +103,13 @@
             }
         }
         .shareButton{
-            > span {color:c.$C_DARKGRAY;}
-            > svg {
-                fill:c.$C_DARKGRAY;
+            span{
+                color:c.$C_DARKGRAY;
+                > svg {
+                    fill:c.$C_DARKGRAY;
+                }
             }
+     
         }
         .likeButton{
             cursor: pointer;

@@ -33,6 +33,17 @@
     justify-items: center;
     row-gap: 20px;
   }
+  >.offering{
+    @include m.flex(center,center,column);
+    width: 100%;
+    height: 90%;
+    font-size: 32px;
+    row-gap: 40px;
+    > svg{
+      width: 100px;
+      height: 100px;
+    }
+  }
 }
 .scrollButton {
   left: 500px;

@@ -7,6 +7,7 @@ import { meState} from '../../../recoil';
 import { useNavigate } from 'react-router-dom';
 import { getMe,modifyUser } from '../../../api/Users';
 import { useMount } from 'react-use';
+import { LikeIcon } from '../../../assets/icon';
 
 const Like = () => {
   const navigate = useNavigate();
@@ -65,7 +66,13 @@ const Like = () => {
         <Toggle checked={me?.isLikeView} onChange={onClickToggle}/>
       </header>
       <section className={styles.cardContainer}>
+      {movies?.length === 0 &&  
+          <p className={styles.offering}>
+            <LikeIcon/>
+            No likes created
+          </p>} 
         <div className={styles.container}>
+
           {movies.map((item) => (
             <Card
               key={item.id}

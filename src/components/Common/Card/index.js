@@ -72,8 +72,8 @@ const Card = ({ item, onClick, type, idx, callback, className }) => {
         <div className={styles.card_front}>
           <img src={item?.postImage} alt={item?.title} />
         </div>
-        <div className={styles.card_back}>
-          <div className={styles.card_content} onClick={onClick}>
+        <div className={styles.card_back} > 
+          <div className={styles.card_content}  onClick={onClick}>
             <h2 className={styles.title}>
               {item?.title}
               <span className={styles.starRate}>
@@ -90,7 +90,7 @@ const Card = ({ item, onClick, type, idx, callback, className }) => {
               onClick={onLikeBtn}
               isLiked={isLiked}
             />
-            <div onClick={onClick}></div>
+           
           </div>
         </div>
       </div>

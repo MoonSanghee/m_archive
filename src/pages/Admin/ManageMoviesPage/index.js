@@ -15,8 +15,11 @@ import { getTokens } from '../../../utils';
 import { useMount } from 'react-use';
 import { useLocation } from 'react-router-dom';
 import {TableMenu} from "../_shared";
-
+//import {useRecoilValue} from "recoil";
+//import { meState } from '../../../recoil';
+import { useMe } from '../../../hooks';
 const ManageMoviesPage = () => {
+  const me = useMe();
   const path=useLocation();
   const navigate = useNavigate();
   const [selectedMovies, setSelectedMovies] = useState([]);
@@ -141,6 +144,13 @@ const ManageMoviesPage = () => {
     fetchData();
   }, [currentPage, pageLimit]);
 
+  useEffect(()=>{
+    console.log(me);
+    if(me!==null){
+      alert("권한 없음");
+      //onClickLogout();
+    }
+  },[me]);
   useMount(() => {
     if (!getTokens().accessToken) navigate('/admin/login');
   });

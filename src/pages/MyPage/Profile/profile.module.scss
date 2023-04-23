@@ -99,7 +99,7 @@
             width: 440px;
             border-radius: 4px;
             color: c.$C_BLACK;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: "Margun Gothic";
             background-color:c.$C_WHITE ;
           }
         }
@@ -136,3 +136,12 @@
 }
 
 
+.popup {
+  height: 52px;
+  // width: 360px;
+  background-color: c.$C_GRAY;
+  
+  > div {
+    font-size: 16px;
+  }
+}

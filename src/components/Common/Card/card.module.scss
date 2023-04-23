@@ -66,7 +66,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    // backface-visibility: hidden; //뒷모습 숨겨둠
+    backface-visibility: hidden; //뒷모습 숨겨둠
   }
 
   .card_front {
@@ -80,7 +80,7 @@
   .card_back {
     transform: rotateY(180deg);
     padding: 12px;
-    // position: relative;
+    position: relative;
 
     .card_content {
       width: 100%;

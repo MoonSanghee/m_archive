@@ -14,6 +14,8 @@ import { useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import cx from 'classnames';
 import { useNavigate } from 'react-router-dom';
+
+const curUrl = window.location.href;
 const Reviews = () => {
   const navigate = useNavigate();
   const ref = useRef();
@@ -48,6 +50,7 @@ const Reviews = () => {
         null,
         () => onGetReviews(params.id),
         <ReviewDetailModal
+          url={curUrl}
           thisReview={review}
           movieId={params.id}
           onClose={() => {

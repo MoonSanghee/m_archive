@@ -8,11 +8,11 @@ import { useNavigate } from 'react-router-dom';
 import { getMe, modifyUser } from '../../../api/Users';
 import { getMyReviews } from '../../../api/Reviews';
 import { useMount } from 'react-use';
-
 import { ProfileIcon, StarRate } from '../../../components';
 import { CommentIcon, CommentLikeIcon } from '../../../assets/icon';
-
 import dayjs from 'dayjs';
+import { ReviewWriteIcon } from '../../../assets/icon';
+
 const diff = (date) => {
   const now = dayjs();
   return `${now.diff(date, 'day')}일 전`;
@@ -22,6 +22,7 @@ const Review = () => {
   const navigate = useNavigate();
   const [me, setMe] = useRecoilState(meState);
   const [reviews, setReviews] = useState([]);
+  const [comments,setComments] = useState(0);
 
   const onClickToggle = async () => {
     const userData = {
@@ -47,6 +48,12 @@ const Review = () => {
     if (response.status === 200) {
       setReviews(response.data);
     }
+    let commentNum = 0;
+    response.data?.forEach((item)=>{
+      commentNum += item.comments.length;
+    })
+    console.log(commentNum);
+    setComments(commentNum);
   };
 
   const onNavigateDetail = (id) => {
@@ -82,6 +89,11 @@ const Review = () => {
           <Toggle checked={me?.isReviewView} onChange={onClickToggle} />
         </header>
         <section className={styles.cardContainer}>
+        {reviews?.length === 0 &&  
+          <p className={styles.offering}>
+            <ReviewWriteIcon/>
+            No reviews created
+          </p>} 
           <div className={styles.container}>
             {reviews.map((item) => (
               <ReviewCards
@@ -99,6 +111,11 @@ const Review = () => {
           <h1>댓글 관리</h1>
         </header>
         <article>
+        {comments === 0 &&  
+          <p className={styles.offering}>
+            <CommentIcon/>
+            No comments created
+          </p>} 
           <div className={styles.commentsContainer}>
             {reviews?.map((item) =>
               item.comments?.map((comment) => (
@@ -136,6 +153,7 @@ const Review = () => {
                 </div>
               )),
             )}
+
           </div>
         </article>
       </section>
