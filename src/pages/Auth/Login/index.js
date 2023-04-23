@@ -8,7 +8,6 @@ import { login } from '../../../api/Auth';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { meState } from '../../../recoil';
 import { getMe } from '../../../api/Users';
-import video from '../Start/sky.gif';
 import bg from '../Start/cloud.mp4';
 
 const Login = () => {

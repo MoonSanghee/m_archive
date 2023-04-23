@@ -10,7 +10,7 @@ const curUrl = window.location.href;
 const ShareButton = ({ label, className, url }) => {
   const location = useLocation();
   //NOTE: host url도 같이 복사
- 
+
   const currentUrl = url ? url : curUrl;
   
   const onShareBtnClick = () => {
@@ -30,13 +30,15 @@ const ShareButton = ({ label, className, url }) => {
 
   return (
     <section
-      className={cx(styles.wrapper, className)}
-      onClick={onShareBtnClick}
+      className={cx(styles.wrapper, className)} 
     >
       <CopyToClipboard text={currentUrl}>
-        <ShareIcon />
+        <span className={styles.label} onClick={onShareBtnClick}>
+          <ShareIcon/>  
+          {label ? `${label}` : "" }
+        </span>
       </CopyToClipboard>
-      {label && <span className={styles.label}>{label}</span>}
+      
     </section>
   );
 };

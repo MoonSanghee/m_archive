@@ -3,11 +3,10 @@
 
 
 .wrapper {
-  @include m.flex();
-  width: 68px;
-  cursor: pointer;
-  column-gap: 8px;
+  width: 68px;  
   .label {
+    @include m.flex(flex-start);
+    column-gap: 8px;
     color: c.$C_WHITE;
     font-size: 16px;
     letter-spacing: 1px;

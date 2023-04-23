@@ -32,7 +32,7 @@ const checkResponse = (status, text, code) => {
   }
 };
 
-const ReviewDetailModal = ({ thisReview,movieId }) => {
+const ReviewDetailModal = ({ thisReview,movieId ,url}) => {
   const me = useMe();
   const location = useLocation();  
   const navigate = useNavigate();
@@ -148,7 +148,11 @@ const isMyComment = (item) => {
             {review?.comments?.length}
           </span>
           <span className={styles.dateWrapper}>
-            {`${dayjs(review?.updatedAt).format('YYYY-MM-DD')}에 수정됨`}
+            {
+            review?.updatedAt === review?.createdAt ?
+            `${dayjs(review?.createdAt).format('YYYY-MM-DD')}에 작성됨`
+            : 
+            `${dayjs(review?.updatedAt).format('YYYY-MM-DD')}에 수정됨`}
           </span>
         </div>
       </div>
@@ -163,7 +167,7 @@ const isMyComment = (item) => {
           {'댓글'}
         </span>
         <span>
-          <ShareButton label="공유" className={styles.shareButton} url={location.pathname}/>
+          <ShareButton label="공유" className={styles.shareButton} url={url}/>
         </span>
       </div>
       <div className={styles.commentsWrapper}>
