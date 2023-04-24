@@ -17,7 +17,9 @@ import { Modal } from '../../../components';
 import {EditModal,TableMenu} from '../_shared';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import {useMe} from "../../../hooks";
 const ManageUsersPage = () => {
+  const me = useMe();
   const path=useLocation();
   const navigate = useNavigate();
   const [selectedUsers, setSelectedUsers] = useState([]);
@@ -96,12 +98,12 @@ const ManageUsersPage = () => {
     for (const el of userID) {
       onDelete(el);
     }
+    alert("삭제 성공!");
   };
 
   const onDelete = async (id) => {
     const response = await deleteUserAdmin(id);
     if (response.status === 204) {
-      alert('정상 삭제');
       onGetUsers();
     } else {
       alert('삭제 오류!');
@@ -168,6 +170,12 @@ const ManageUsersPage = () => {
     fetchData();
   }, [currentPage, pageLimit]);
 
+  useEffect(()=>{
+    if(me?.userType === "USER"){
+      alert("권한 없음");
+      onClickLogout();
+    }
+  },[me]);
   return (
     <main className={styles.wrapper}>
       <AdminLNB path={path.pathname}/>

@@ -145,10 +145,9 @@ const ManageMoviesPage = () => {
   }, [currentPage, pageLimit]);
 
   useEffect(()=>{
-    console.log(me);
-    if(me!==null){
+    if(me?.userType === "USER"){
       alert("권한 없음");
-      //onClickLogout();
+      onClickLogout();
     }
   },[me]);
   useMount(() => {

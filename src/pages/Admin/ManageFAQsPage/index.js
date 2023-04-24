@@ -18,8 +18,10 @@ import dayjs from 'dayjs';
 import {EditModal,TableMenu} from "../_shared"
 import useModal from '../../../components/Common/Modal/useModal';
 import { useLocation } from 'react-router-dom';
+import {useMe} from "../../../hooks";
 
 const ManageFAQsPage = () => {
+  const me = useMe();
   const path = useLocation();
   const navigate = useNavigate();
   const [modalOption, showModal,onClose] = useModal();
@@ -98,16 +100,17 @@ const ManageFAQsPage = () => {
     for (const el of faqIDs) {
       onDelete(el);
     }
+    alert("삭제 성공!");
   };
 
   const onDelete = async (id) => {
     const response = await deleteFaqAdmin(id);
     if (response.status === 204) {
-      alert('정상 삭제');
       onGetFaqs();
     } else {
       alert('삭제 오류!');
     }
+
   };
 
   const onClickOpenModal = useCallback(
@@ -175,7 +178,12 @@ const ManageFAQsPage = () => {
   useEffect(() => {
     fetchData();
   }, [currentPage, pageLimit]);
-
+  useEffect(()=>{
+    if(me?.userType === "USER"){
+      alert("권한 없음");
+      onClickLogout();
+    }
+  },[me]);
   useMount(() => {
     if (!getTokens().accessToken) navigate('/admin/login');
   });
