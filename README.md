@@ -4,7 +4,7 @@
 - **`Team name` :** M-archive
 - **`Project` :** 이제는 감상도 공유하는시대! 다양한 관점에서 바라보고 소통하는 국내 영화 리뷰 사이트. “M-archive” 
 - **`Project duration` :** 2023.03.13 - 2023.04.28
-- **`Team members` :** 김희환, 문상희, 서진주, 임신영, 조상우
+- **`Team members` :** 김희환, 문상희, 서진주(팀장), 임신영, 조상우
 - **`Link` :** [🌐 M-archive](http://abc-lab-fe-sjj.s3-website.ap-northeast-2.amazonaws.com/)<br/> [**서비스유저 계정:** Email: , PW:  ][**관리자 계정:** Email: , PW:  ] 
 - **`Service overview`:** [서비스 메뉴얼]()
 - **`User Interface`:** [화면정의서](https://docs.google.com/document/d/1KiknPTQb4U65ZTueSHgYdMp8q3AiNVd2OD0QydXdkVY/edit?usp=sharing)
