@@ -41,6 +41,7 @@ const MovieDetailPage = () => {
   const onClickStar = () => {
     onGetReviews(params.id);
     onGetMovie(params.id);
+    onGetMyReview(params.id);
     // setStarCliked(!starClicked);
   };
 
