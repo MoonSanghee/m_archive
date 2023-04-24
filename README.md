@@ -1,4 +1,4 @@
-![https://media.discordapp.net/attachments/1080464895268638743/1090148265946787850/logo.jpg?width=715&height=150](C:\Users\a4756\Desktop\ABC_FRONT\스크린샷 2023-04-24 111518.png)
+![https://media.discordapp.net/attachments/1080464895268638743/1090148265946787850/logo.jpg?width=715&height=150](https://github.com/MoonSanghee/m_archive/blob/devlop/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-04-24%20111518.png)
 
 - **`Team name` :** M-archive
 - **`Project` :이제는 감상도 공유하는시대! 다양한 관점에서 바라보고 소통하는 국내 영화 리뷰 사이트. “M-archive” 
@@ -60,7 +60,7 @@
 <br/>
 
 ## 🔖 DB Diagram
-<br/>![ERD](C:\Users\a4756\Desktop\ABC_FRONT\ERD.png)
+<br/>![ERD](https://github.com/MoonSanghee/m_archive/blob/devlop/ERD.png)
 
 <br/>
 
