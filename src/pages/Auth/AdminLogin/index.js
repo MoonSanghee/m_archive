@@ -55,12 +55,15 @@ const AdminLogin = () => {
         email: form.userEmail,
         password: form.password,
       };
-
-      const response = await adminLogin(loginData);
-      if (response.status === 200) {
-        const data = response.data;
-        saveTokens(data);
-        navigate('/admin');
+      try{
+        const response = await adminLogin(loginData);
+        if (response.status === 200) {
+          const data = response.data;
+          saveTokens(data);
+          navigate('/admin');
+        }
+      }catch(err){
+        alert("계정 정보를 확인해주세요.");
       }
     } else {
       console.log('invalid form');

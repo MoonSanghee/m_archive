@@ -69,13 +69,17 @@ const AdminRegister = () => {
       nickname: form.nickname,
       password: form.password,
     };
-
-    const response = await adminRegister(resgisterData);
-    if (response.status === 200) {
-      const data = response.data;
-      saveTokens(data);
-      navigate('/admin');
+    try{
+      const response = await adminRegister(resgisterData);
+      if (response.status === 200) {
+        const data = response.data;
+        saveTokens(data);
+        navigate('/admin');
+      }
+    }catch(err){
+      alert('회원가입 실패. 다시 시도하세요!');
     }
+    
   };
 
   //메시지

@@ -71,7 +71,7 @@ const Login = () => {
           onGetMe();
         }
       } catch (err) {
-        alert('로그인 실패');
+        alert('계정 정보를 확인해주세요.');
       }
     } else {
       console.log('invalid form');
