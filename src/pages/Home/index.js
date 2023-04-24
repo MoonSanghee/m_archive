@@ -81,14 +81,10 @@ const Home = () => {
     recommendMoviesCount =
       recommendMoviesCount < 40 ? 40 : recommendMoviesCount;
     const genreIds =  me?.preferredGenres.map((item) => item.id).join(',');
-    console.log(typeof genreIds);
     response = await getMArchiveMovies(
       recommendMoviesCount,
       genreIds,
     );
-    console.log(response);
-    //console.log("preferGenres");
-    //console.log( `${me?.preferredGenres.map((item) => item.id).join(',')}`);
 
     if (response.status === 200) {
       const items = [...response.data.data];
