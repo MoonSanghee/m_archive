@@ -1,14 +1,16 @@
-![https://media.discordapp.net/attachments/1080464895268638743/1090148265946787850/logo.jpg?width=715&height=150](https://github.com/MoonSanghee/m_archive/blob/devlop/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-04-24%20111518.png)
+![MarchiveTitle](https://user-images.githubusercontent.com/45915619/233890982-116f2c83-c70a-4c90-830f-72c9919d7f24.png)
+
 
 - **`Team name` :** M-archive
-- **`Project` :이제는 감상도 공유하는시대! 다양한 관점에서 바라보고 소통하는 국내 영화 리뷰 사이트. “M-archive” 
+- **`Project` :** 이제는 감상도 공유하는시대! 다양한 관점에서 바라보고 소통하는 국내 영화 리뷰 사이트. “M-archive” 
 - **`Project duration` :** 2023.03.13 - 2023.04.28
 - **`Team members` :** 김희환, 문상희, 서진주, 임신영, 조상우
-- **`Link` :** [🌐 M-archive](http://hp5234-dragonmoney-front.s3-website.ap-northeast-2.amazonaws.com/) [**관리자 계정:** Email: , PW:  ]
+- **`Link` :** [🌐 M-archive](http://abc-lab-fe-sjj.s3-website.ap-northeast-2.amazonaws.com/)<br/> [**서비스유저 계정:** Email: , PW:  ][**관리자 계정:** Email: , PW:  ] 
 - **`Service overview`:** [서비스 메뉴얼]()
 - **`User Interface`:** [화면정의서](https://docs.google.com/document/d/1KiknPTQb4U65ZTueSHgYdMp8q3AiNVd2OD0QydXdkVY/edit?usp=sharing)
 - **`Functional Requirement`:** [사용자 요구사항 정의서](https://docs.google.com/spreadsheets/d/1bSM0evXpkQAwD7WvOuqQE-BzTLvrOhWVQt3aHylrouw/edit?usp=sharing)
-- **`API Specification`:** [API 명세서]()
+- **`API Specification`:** [API 명세서](http://ec2-3-39-25-160.ap-northeast-2.compute.amazonaws.com/api-docs#/)
+- **`Tech Presentaion`:** [기술 발표]()
 <br/>
 
 ### 관리자로 로그인할 수 있는 구글계정 — email: , PW: 
@@ -27,7 +29,7 @@
 
 ## <span style=""> ⚙️ **Tools** </span>
 
-**`기술발표영상`:** [기술발표영상]()
+
 
 ### 🖥 **Communication** </span>
 
@@ -45,6 +47,12 @@
 
 <br/>
 
+### 🖥 **Deployment** </span>
+
+|                            AWS S3                            |                           Github Actions                            |                       
+| :----------------------------------------------------------: | :----------------------------------------------------------: | 
+| <img alt="AWS s3" src="https://cdn.iconscout.com/icon/free/png-256/free-amazon-s3-2968702-2464706.png" height="65" width="65"> | <img alt="Discord logo" src="https://user-images.githubusercontent.com/45915619/233895718-764af4a7-c46e-41c8-a111-7e627bf0d511.png" height="65" width="65"> |
+<br/>
 
 <br/>
 
