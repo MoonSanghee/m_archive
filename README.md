@@ -60,7 +60,7 @@
 ## 🌲Git Branch
 
 `main` : 서비스 운영 브랜치 </br>
-`배포전 릴리즈브랜치?` : 메인 브랜치 배포전 릴리즈 브랜치  </br>
+`release` : 메인 브랜치 배포전 릴리즈 브랜치  </br>
 `devlop` : FE 개발 환경 브랜치 </br>
 `feature/개발명` : 기능 개발 브랜치 ex) feature/Login  </br>
 `bugfix/개발명` : 작은 변경 & 버그 수정 브랜치 ex) bugfix/Login  </br>
@@ -69,10 +69,7 @@
 <br/>
 
 ## 🔖 DB Diagram
-
-[https://dbdiagram.io/d/6405a3e8296d97641d85ab35](https://dbdiagram.io/d/6405a3e8296d97641d85ab35)
 ![ERD](https://user-images.githubusercontent.com/113220012/228779394-cfdbf7b3-c620-44d4-8407-2d524380aa02.png)
-
 
 <br/>
 
