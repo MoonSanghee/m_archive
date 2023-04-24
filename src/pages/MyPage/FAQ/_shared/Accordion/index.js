@@ -16,7 +16,7 @@ const Accordion = (props) => {
       setActive(false);
     } else {
       // 모든 컴포넌트의 active state를 false로 초기화
-      const accordions = document.querySelectorAll(`styles.accordion`);
+      const accordions = document.querySelectorAll(`.${styles.accordion}`);
       accordions.forEach((accordion) => {
         accordion.classList.remove(`${styles.active}`);
       });
