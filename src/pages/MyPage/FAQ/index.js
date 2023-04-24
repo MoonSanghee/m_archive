@@ -8,10 +8,12 @@ import {
 import {Accordion,FAQListModal,FAQAskModal} from "./_shared";
 import faqData from './faqData';
 import useModal from '../../../components/Common/Modal/useModal';
-
+import { useMount } from 'react-use';
+import { scrollTop } from '../../../utils';
 const FAQ = () => {
   const [faqModalOption, faqShowModal, faqOnClose] = useModal();
   const [toAskModalOption, toAskShowModal, toAskOnClose] = useModal();
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleOpenModalFAQs = useCallback(() => {
     faqShowModal(true, '', null, null, <FAQListModal onClose={faqOnClose} />)});
@@ -27,10 +29,6 @@ const FAQ = () => {
 });
 
 
-
-
-  const [searchTerm, setSearchTerm] = useState('');
-
   //검색 필터링 기능
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
@@ -41,7 +39,10 @@ const FAQ = () => {
       item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.content.toLowerCase().includes(searchTerm.toLowerCase()),
   );
-
+  
+  useMount(()=>{
+    scrollTop();
+  })
   return (
     <main className={styles.mainContainer}>
       <h1> FAQ</h1>

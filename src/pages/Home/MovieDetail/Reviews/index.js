@@ -10,21 +10,21 @@ import { Modal } from '../../../../components/Common';
 import { useCallback } from 'react';
 import { getMovie } from '../../../../api/Movies';
 import ReviewDetailModal from './ReviewDetailModal';
-import { useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import cx from 'classnames';
 import { useNavigate } from 'react-router-dom';
+import { scrollTop } from '../../../../utils';
 
 const curUrl = window.location.href;
 const Reviews = () => {
   const navigate = useNavigate();
-  const ref = useRef();
   const pathname = useLocation().pathname;
   const params = useParams();
   const [reviews, setReviews] = useState([]);
   const [movie, setMovie] = useState({});
   const [modalOption, showModal, onClose] = useModal();
   //const [isOpen,setIsOpen] = useState(false);
+
   const onNavigate = ()=>{
     navigate(`/movies/detail/${params.id}`);
   }
@@ -66,24 +66,13 @@ const Reviews = () => {
     },
     [params.id, modalOption],
   );
-  useEffect(() => {
-    if (!ref.current) return;
-    ref.current.scrollIntoView(
-      {
-        behavior: 'smooth',
-        block: 'start',
-        inline: 'nearest',
-      },
-      [pathname],
-    );
-    //NOTE: useEffect 사용 시 deps 항상 확인하기!
-  }, []);
   useMount(() => {
+    scrollTop();
     onGetMovie(params.id);
     onGetReviews(params.id);
   });
   return (
-    <main ref={ref} className={cx(styles.wrapper)}>
+    <main className={cx(styles.wrapper)}>
       <h1 onClick={onNavigate} className={styles.title}>{movie?.title} </h1>
       <section className={cx(styles.reviewsWrapper)}>
         {reviews.map((review) => {

@@ -26,7 +26,7 @@ import {useRecoilState, } from "recoil";
 import { meState} from '../../../recoil';
 import { getMe } from "../../../api/Users";
 import swal from 'sweetalert2';
-
+import { scrollTop } from '../../../utils';
 const Profile = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -176,6 +176,7 @@ const Profile = () => {
 
 
   useMount(()=>{
+    scrollTop();
     onGetMe();
   })
  

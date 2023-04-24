@@ -14,6 +14,7 @@ import { useMount } from 'react-use';
 import dayjs from 'dayjs';
 import {useRecoilValue} from "recoil";
 import {meState} from "../../../recoil";
+import { scrollTop } from '../../../utils';
 
 const MovieDetailPage = () => {
   const navigate = useNavigate();
@@ -137,6 +138,7 @@ const MovieDetailPage = () => {
   };
 
   useMount(() => {
+    scrollTop();
     if (!params.id) {
       console.log(params.id, '없음');
       return;

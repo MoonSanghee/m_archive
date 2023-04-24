@@ -9,7 +9,7 @@ import { CommentLikeIcon, LockIcon, CommentIcon } from '../../../assets/icon';
 import { getUserLikes } from '../../../api/Movies';
 import { getUserReviews } from '../../../api/Reviews';
 import { useNavigate } from 'react-router-dom';
-
+import { scrollTop } from '../../../utils';
 import dayjs from 'dayjs';
 
 const diff = (date) => {
@@ -55,6 +55,7 @@ const UserDetail = () => {
   }
 
   useMount(() => {
+    scrollTop();
     onGetUser();
     onGetLikes();
     onGetReviews();

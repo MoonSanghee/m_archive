@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { getMe,modifyUser } from '../../../api/Users';
 import { useMount } from 'react-use';
 import { LikeIcon } from '../../../assets/icon';
+import { scrollTop } from '../../../utils';
 
 const Like = () => {
   const navigate = useNavigate();
@@ -35,14 +36,10 @@ const Like = () => {
   const onGetMovies = async () => {
     const response = await getLikes();
     if (response.status === 200) {
-      // console.log(response.data);
       const items = [...response.data];
-      //console.log("items",items);
       setMovies(items);
     }
   };
-
-  // console.log(movies);
 
   const onNavigateDetail = (id) => {
     return () => {
@@ -51,12 +48,12 @@ const Like = () => {
     };
   };
 
-  useEffect(() => {
-    onGetMovies();
-  }, []);
 
   useMount(()=>{
+    scrollTop();
     onGetMe();
+    onGetMovies();
+
   })
  
   return (

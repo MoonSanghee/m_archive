@@ -12,6 +12,7 @@ import { ProfileIcon, StarRate } from '../../../components';
 import { CommentIcon, CommentLikeIcon } from '../../../assets/icon';
 import dayjs from 'dayjs';
 import { ReviewWriteIcon } from '../../../assets/icon';
+import {scrollTop} from "../../../utils";
 
 const diff = (date) => {
   const now = dayjs();
@@ -25,7 +26,7 @@ const Review = () => {
   const [comments,setComments] = useState(0);
 
   const onClickToggle = async () => {
-    const userData = {
+    const userData = {  
       isReviewView: !me?.isReviewView,
     };
     const response = await modifyUser(userData);
@@ -52,7 +53,6 @@ const Review = () => {
     response.data?.forEach((item)=>{
       commentNum += item.comments.length;
     })
-    console.log(commentNum);
     setComments(commentNum);
   };
 
@@ -73,12 +73,11 @@ const Review = () => {
       navigate(`/movies/detail/${id}/reviews`);
     };
   };
-  useEffect(() => {
-    onGetMyReviews();
-  }, []);
 
   useMount(() => {
+    scrollTop();
     onGetMe();
+    onGetMyReviews();
   });
 
   return (

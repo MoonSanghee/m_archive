@@ -5,6 +5,8 @@ import { getMovies } from '../../../api/Movies';
 import { Card } from '../../../components/Common';
 import { WarningIcon } from '../../../assets/icon';
 import { useNavigate } from 'react-router-dom';
+import { scrollTop } from '../../../utils';
+import { useMount } from 'react-use';
 
 const MovieSearch = () => {
   const navigate = useNavigate();
@@ -33,6 +35,9 @@ const MovieSearch = () => {
     onGetMovies();
   }, [searchText]);
 
+  useMount(()=>{
+    scrollTop();
+  })
   return (
     <main className={styles.body}>
       {searchText !== '' && movies.length !== 0 && (
