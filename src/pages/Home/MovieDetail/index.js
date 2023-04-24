@@ -172,7 +172,7 @@ const MovieDetailPage = () => {
               })}
             </p>
             {/* //NOTE: toFixed(1) => 소수점 1자리까지 출력 */}
-            <p>평균 : {movie?.averageScore?.toFixed(1)}</p>
+            <p>평균 : {reviews?.length === 0 ? '-': movie?.averageScore?.toFixed(1)}</p>
           </div>
 
           <div className={styles.buttons}>
