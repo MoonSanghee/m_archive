@@ -1,4 +1,4 @@
-![https://media.discordapp.net/attachments/1080464895268638743/1090148265946787850/logo.jpg?width=715&height=150](https://media.discordapp.net/attachments/1080464895268638743/1090148265946787850/logo.jpg?width=715&height=150)
+![https://media.discordapp.net/attachments/1080464895268638743/1090148265946787850/logo.jpg?width=715&height=150](C:\Users\a4756\Desktop\ABC_FRONT\스크린샷 2023-04-24 111518.png)
 
 - **`Team name` :** M-archive
 - **`Project` :이제는 감상도 공유하는시대! 다양한 관점에서 바라보고 소통하는 국내 영화 리뷰 사이트. “M-archive” 
@@ -15,10 +15,10 @@
 
 ## 🍿 Team
 
-|                  김희환<br>(FE)                   |                        문상희<br>(FE)                        |                        서진주<br>(FE)                        |                   임신영<br>(FE)                    |                        조상우<br>(FE)                        |
+|                        김희환<br>(FE)                        |                        문상희<br>(FE)                        |                        서진주<br>(FE)                        |                        임신영<br>(FE)                        |                        조상우<br>(FE)                        |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | <img src="https://cdn.discordapp.com/attachments/1090912771551539210/1090913577608679474/image.png" height="100" width="100"> | <img src="https://media.discordapp.net/attachments/1090912771551539210/1090913106621894677/image.png?width=800&height=785" height="100" width="100"> | <img src="https://media.discordapp.net/attachments/1090912771551539210/1090912798348943460/image.png?width=870&height=842" height="100" width="100"> | <img src="https://media.discordapp.net/attachments/1090912771551539210/1090913004033421372/image.png?width=642&height=595" height="100" width="100"> | <img src="https://user-images.githubusercontent.com/100519505/233776909-0b83528c-ee8e-452a-824c-dbe5f05dd220.jpeg?width=817&height=810" height="100" width="100"> |
-| <p align="left">**Pages**<br/>- 마이페이지 고객센터<br/><br/>**Features**<br/>- Google OAuth login<br/>- 멤버 CD<br/>- 신고 글, 댓글, 답글 RD<br/></p> | <p align="left">**Pages**<br/>- 영화상세 페이지<br/>- 영화관리 페이지<br/>- 리뷰관리 페이지<br/>- 유저관리 페이지<br/>- FAQ 페이지<br/></br>**Features**<br/>- 게시글 CRUD<br/>- 댓글 CRUD<br/>- 답글 CRUD<br/>- 좋아요, 싫어요 RCD<br/>- 북마크 CRD<br/>- 태그 CRD</p> | <p align="left">**Pages**<br/>- 메인페이지<br/>- 마이페이지(프로필)<br/>- 영화 상세 페이지<br/>- 리뷰 목록 페이지<br/><br/>**Features**<br/>- 프로필 설정<br/>- 퍼블릭 설정<br/>- 리뷰,별점 CRUD<br/>- 댓글 CRUD<br/>- api 연동<br/>- 라우터 설계<br/> </p> | <p align="left">**Pages**<br/>- 메인페이지<br/>- 로그인,로그아웃 페이지<br/>- 검색페이지<br/>- 마이페이지 <br/>(좋아요,리뷰,댓글)<br/><br/>**Features**<br/>- Jwt 인증 Login<br/>- 무한스크롤<br />- 영화 검색 기능<br/>- 장르별 검색,정렬<br/>- 장르 태그<br/></p> | <p align="left">**Pages**<br/>- 시작 페이지<br/>- 관리자 페이지<br/>- 영화관리 페이지<br/>- 리뷰관리 페이지<br/>- 유저관리 페이지<br/>- FAQ 페이지<br/><br/>**Features**<br/>- 토글<br/>- 체크박스 <br />- 좋아요버튼<br/>- 공유버튼<br/></p> |
+| <p align="left">**Pages**<br/>- 마이페이지 고객센터<br/><br/>**Features**<br/>- Google OAuth login<br/>- 멤버 CD<br/>- 신고 글, 댓글, 답글 RD<br/></p> | <p align="left">**Pages**<br/>- 영화상세 페이지<br/>- 서비스LNB<br/>- 어드민LNB<br/>- 검색창<br/>- 테이블 메뉴 구성<br/></br>**Features**<br/>- 페이지네이션<br/>- 테이블 메뉴별 정렬<br/> | <p align="left">**Pages**<br/>- 메인페이지<br/>- 마이페이지(프로필)<br/>- 영화 상세 페이지<br/>- 리뷰 목록 페이지<br/><br/>**Features**<br/>- 프로필 설정<br/>- 퍼블릭 설정<br/>- 리뷰,별점 CRUD<br/>- 댓글 CRUD<br/>- api 연동<br/>- 라우터 설계<br/> </p> | <p align="left">**Pages**<br/>- 메인페이지<br/>- 로그인,로그아웃 페이지<br/>- 검색페이지<br/>- 마이페이지 <br/>(좋아요,리뷰,댓글)<br/><br/>**Features**<br/>- Jwt 인증 Login<br/>- 무한스크롤<br />- 영화 검색 기능<br/>- 장르별 검색,정렬<br/>- 장르 태그<br/></p> | <p align="left">**Pages**<br/>- 시작 페이지<br/>- 관리자 페이지<br/>- 영화관리 페이지<br/>- 리뷰관리 페이지<br/>- 유저관리 페이지<br/>- FAQ 페이지<br/><br/>**Features**<br/>- 토글<br/>- 체크박스 <br />- 좋아요버튼<br/>- 공유버튼<br/></p> |
 
 <br/>
 
@@ -60,9 +60,7 @@
 <br/>
 
 ## 🔖 DB Diagram
-![https://user-images.githubusercontent.com/113220012/228779394-cfdbf7b3-c620-44d4-8407-2d524380aa02.png](https://www.notion.so/ERD-e26aa879656b49e98b834bcf8a4bc070?pvs=4#922fb15197d240da88708f65a03aadb3)
-
-<br/>
+<br/>![ERD](C:\Users\a4756\Desktop\ABC_FRONT\ERD.png)
 
 <br/>
 
