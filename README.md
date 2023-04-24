@@ -10,7 +10,8 @@
 - **`User Interface`:** [화면정의서](https://docs.google.com/document/d/1KiknPTQb4U65ZTueSHgYdMp8q3AiNVd2OD0QydXdkVY/edit?usp=sharing)
 - **`Functional Requirement`:** [사용자 요구사항 정의서](https://docs.google.com/spreadsheets/d/1bSM0evXpkQAwD7WvOuqQE-BzTLvrOhWVQt3aHylrouw/edit?usp=sharing)
 - **`API Specification`:** [API 명세서](http://ec2-3-39-25-160.ap-northeast-2.compute.amazonaws.com/api-docs#/)
-- **`Tech Presentaion`:** [기술 발표]()
+- **`Tech Presentaion`:** [기술 발표](https://docs.google.com/presentation/d/10Ms0CCVN6-gXCoRjEOqlTA9UQJ0KzsAr-LiUj_sdb84/edit?usp=share_link)
+- **`Testing Documentaion`:** [테스트 문서]()
 <br/>
 
 
