@@ -69,7 +69,7 @@
 <br/>
 
 ## 🔖 DB Diagram
-![ERD](https://user-images.githubusercontent.com/113220012/228779394-cfdbf7b3-c620-44d4-8407-2d524380aa02.png)
+![https://user-images.githubusercontent.com/113220012/228779394-cfdbf7b3-c620-44d4-8407-2d524380aa02.png](https://www.notion.so/ERD-e26aa879656b49e98b834bcf8a4bc070?pvs=4#922fb15197d240da88708f65a03aadb3)
 
 <br/>
 
