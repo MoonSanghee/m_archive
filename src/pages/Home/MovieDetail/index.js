@@ -90,7 +90,6 @@ const MovieDetailPage = () => {
     //해당 영화의 리뷰 목록중 내가 쓴 목록이 있으면 reviewID 리턴
     //리뷰쓴 userId와 내 userId 비교 -> 내 리뷰가 있으면 내리뷰리턴
     if (me === null) {
-      //console.log("로그아웃상태, 로그인바람");
       return;
     }
 
@@ -127,6 +126,7 @@ const MovieDetailPage = () => {
             onGetMovie(params.id);
             onGetReviews(params.id);
             onGetMyReview(params.id);
+            
           })
          
         }}

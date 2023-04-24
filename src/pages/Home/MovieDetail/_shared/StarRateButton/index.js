@@ -58,6 +58,8 @@ const StarRateButton = ({ myReview, movieId, isModified, reload,me }) => {
     if (myReview) {
       //console.log('리뷰존재');
       setClickedStarIndex(myReview.score);
+    }else{
+      setClickedStarIndex(0);
     }
     //NOTE: deps에 myReview를 넣어야 합니다~ (state로 관리되는 객체이기 때문)
   }, [myReview]);
