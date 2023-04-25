@@ -221,6 +221,7 @@ const isMyComment = (item) => {
                   value={comment}
                   type="text"
                   size="140"
+                  maxLength={100}
                   className={styles.commentInput}
                   placeholder="댓글을 입력하세요"
                 />
