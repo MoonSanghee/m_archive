@@ -80,6 +80,7 @@ const ReviewModal = ({ title, isEmptyReview, movieId, myReview, onClose }) => {
           className={cx(styles.reviewContent)}
           value={content}
           onChange={onChange}
+          maxLength={300}
         />
 
         {/* //NOTE: position fixed */}
