@@ -26,9 +26,9 @@ const Home = () => {
 
   const [top10Movies, setTop10Movies] = useState([]);
   const [movies, setMovies] = useState([]);
-  const [mArchiveMovies, setMArchiveMovies] = useState(null);
+  const [mArchiveMovies, setMArchiveMovies] = useState([]);
   //const [searchText, setSearchText] = useState("");
-
+  
   const [genreMovies, setGenreMovies] = useState([]);
   const [pick, setPick] = useState(genre);
   const [select, setSelect] = useState([]); //선택한 tag 배열
@@ -54,6 +54,8 @@ const Home = () => {
       const items = [...response.data.data];
       //console.log("items",items);
       setMovies(items);
+      //setMArchiveMovies(items);
+      
     }
   };
 
@@ -174,7 +176,7 @@ const Home = () => {
   }, [inView, loading]);
 
   useEffect(() => {
-    onGetMArchiveMovies();
+    if(me) onGetMArchiveMovies();
   }, [me]);
 
   return (
@@ -186,7 +188,8 @@ const Home = () => {
       </section>
       <section className={styles.rcmdWrapper}>
         <h1 className={styles.header}>M-archive 영화 추천</h1>
-        <Carousel movies={mArchiveMovies || movies} type="recommend" />
+        <Carousel movies={mArchiveMovies.length ===0 ? movies: mArchiveMovies } type="recommend" callback={onGetMArchiveMovies}/>
+        {/*<Carousel movies={mArchiveMovies} type="recommend" callback={onGetMArchiveMovies} />*/}
       </section>
       <section className={styles.genreWrapper}>
         <h1 className={styles.header}>장르</h1>
