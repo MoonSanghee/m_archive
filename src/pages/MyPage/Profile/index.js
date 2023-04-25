@@ -214,7 +214,9 @@ const Profile = () => {
               name="description"
               value={form?.description}
               onChange={onChange}
-              placeholder="소개글"
+              placeholder={`소개글
+(최대 200자까지 작성가능)`}
+              maxLength={200}
             ></textarea>
           </div>
           <div className={styles.inputsWrapper}>
@@ -231,11 +233,8 @@ const Profile = () => {
             <Input
               name="email"
               value={me?.email}
-              //onChange={onChange}
               className={styles.input}
-              //autoComplete="off"
               label="이메일"
-              //disabled={true}
             />
             <Input
               name="password"

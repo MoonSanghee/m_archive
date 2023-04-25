@@ -15,8 +15,9 @@ import cx from 'classnames';
 import { useNavigate } from 'react-router-dom';
 import { scrollTop } from '../../../../utils';
 
-const curUrl = window.location.href;
+
 const Reviews = () => {
+  const curUrl = window.location.href;
   const navigate = useNavigate();
   const pathname = useLocation().pathname;
   const params = useParams();
