@@ -12,7 +12,7 @@ import cx from "classnames";
 
 //NOTE: hook -> state -> 함수 -> useEffect
 
-const Carousel = ({ movies, type }) => {
+const Carousel = ({ movies, type ,callback}) => {
   const navigate = useNavigate();
 
   const [slidePx, setSlidePx] = useState(0);
@@ -68,6 +68,7 @@ const Carousel = ({ movies, type }) => {
                 onClick={onNavigateDetail(movie.id)}
                 type={type}
                 idx={idx}
+                callback={callback}
               />
             </li>
           );
