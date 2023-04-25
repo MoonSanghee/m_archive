@@ -1,0 +1,12 @@
+feed back : 
+< service test login >
+id: sjj@naver.com
+pwd: 12345678
+
+/admin/login
+< admin test login >
+id: msh1002@naver.com
+pwd: 11223344
+
+-  공유버튼눌러봤는데 앞에 헤더까지는 들어오는데 뒤에 패스들이 복사가 될때도있고 안될때도 있습니다.
+-  디비업데이트후, /movies/genre api가 안됩니당.

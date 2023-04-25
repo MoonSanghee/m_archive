@@ -1,0 +1,195 @@
+@use '../../../styles/mixins/' as m;
+@use '../../../styles/constants/' as c;
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 12px 0px;
+  row-gap: 20px;
+  padding-left: 28px; //임시
+  box-sizing: border-box;
+  @include m.flex(center,center,column);
+  
+
+  .section {
+    @include m.flex(flex-start, flex-start, column);
+    row-gap: 20px;
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+    padding: 0 0 16px 0;
+    &:first-child {
+      border-bottom: 3px solid c.$C_PRIMARY;
+    }
+
+    > header {
+      padding: 0 4px;
+      padding: 32px 0 8px 0;
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      font-size: 24px;
+    }
+    > p {
+      text-align: right;
+      font-size: 16px;
+      padding: 4px 0 12px;
+    }
+  }
+}
+.cardContainer {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  .container::-webkit-scrollbar {
+    display: block;
+  }
+  .container::-webkit-scrollbar-thumb {
+    background-color: c.$C_WHITE;
+    border-radius: 30px;
+  }
+  > .container {
+    width: 100%;
+    display: flex;
+    column-gap: 20px;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    cursor: pointer;
+
+    > div {
+      flex: 0 0 auto;
+    }
+  }
+}
+// ------------------------------
+.commentsContainer {
+  
+  display: flex;
+  flex-direction: row;
+  color: white;
+  width: 1300px;
+  height: 37vh;
+  overflow: scroll;
+  flex-wrap: wrap;
+}
+.commentCards {
+  overflow: hidden;
+  width: 630px;
+  margin: 10px;
+  padding: 8px 4px;
+  border-bottom: 1px solid white;
+  height: 152px;
+  display: flex;
+  cursor: pointer;
+  > img {
+    
+    border-radius: 5px;
+    padding-right: 12px;
+    height: 120px;
+  }
+}
+
+.contents {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  // /row-gap: 12px;
+  flex-grow: 2;
+  > div {
+    margin-left: 8px;
+  }
+
+  .info {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    > div {
+      height: 30px;
+    }
+
+    .user {
+      display: flex;
+      align-items: center;
+      height: 30px;
+      p {
+        padding-right: 8px;
+      }
+      svg {
+        margin-top: 2px;
+        height: 20px;
+        width: 16px;
+      }
+    }
+
+    .function {
+      span {
+        display: flex;
+        column-gap: 4px;
+      }
+      svg {
+        height: 16px;
+        fill: c.$C_WHITE;
+        padding-bottom: 2px;
+      }
+    }
+  }
+
+  .review {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    column-gap: 12px;
+    margin-top: 4px;
+    span {
+      font-size: 12px;
+       width: 10%;
+    }
+    overflow: hidden;
+    > p{
+      height: 56px;
+      width: 90%;
+      overflow: hidden;
+    }
+  }
+
+  .commentbox {
+    //margin-top: 28px;
+    height: 40px;
+    background: c.$C_GRAY;
+    color: c.$C_BLACK;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4px;
+    border-radius: 4px;
+    p {
+      width: 360px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    span {
+      font-size: 12px;
+      color: c.$C_DARKGRAY;
+    }
+  }
+}
+
+.offering{
+  @include m.flex(flex-start,center,column);
+  width: 100%;
+  height: 90%;
+  font-size: 28px;
+  row-gap: 40px;
+  padding-top: 40px;
+  > svg{
+    width: 60px;
+    height: 60px;
+    fill: c.$C_WHITE;
+  }
+}

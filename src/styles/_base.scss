@@ -1,0 +1,74 @@
+*,
+*:after,
+*:before {
+  font-family: 'KIMM_Bold', 'KIMM_Light';
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  font-size: 16px;
+  height: 100%;
+  //overflow: hidden;
+}
+
+body,
+textarea,
+button {
+  font-family: 'KIMM_Bold', 'KIMM_Light', KIMM_Light JP,
+    -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, 'Helvetica Neue',
+    Helvetica, Arial, sans-serif;
+  padding: 0;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s;
+  //-webkit-text-fill-color: #fff !important;
+}
+
+*:focus {
+  outline: none;
+}
+
+a {
+  text-decoration: underline;
+  font-family: 'KIMM_Bold', 'KIMM_Light';
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ol {
+  margin-top: 0;
+}
+
+pre {
+  font-family: 'KIMM_Bold', 'KIMM_Light';
+}
+
+textarea {
+  resize: none;
+  height: 76px;
+  font-family: 'KIMM_Bold', 'KIMM_Light', KIMM_Light JP,
+    -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, 'Helvetica Neue',
+    Helvetica, Arial, sans-serif;
+}

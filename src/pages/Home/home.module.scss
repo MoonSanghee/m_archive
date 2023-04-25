@@ -1,0 +1,81 @@
+@use '../../styles/constants/' as c;
+@use '../../styles/mixins/' as m;
+
+.wrapper {
+  @include m.flex(flex-start, center, column);
+  width: 100%;
+  //height: 100%;
+  padding: 48px;
+  row-gap: 36px;
+  overflow-y: auto;
+
+  .top10Wrapper {
+    @include m.flex(flex-start, flex-start, column);
+    width: 100%;
+    height: 460px;
+    //padding:10px 0;
+  }
+  .rcmdWrapper {
+    @include m.flex(flex-start, flex-start, column);
+    width: 100%;
+    height: 460px;
+    //padding:10px 0;
+  }
+  .genreWrapper {
+    width: 100%;
+    min-height: 460px;
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 20px 0 15px;
+
+      button {
+        margin: 0 20px 0 0;
+      }
+    }
+  }
+  .header {
+    font-size: 40px;
+  }
+}
+
+.genreMovies {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  align-content: space-around;
+  justify-items: center;
+  row-gap: 20px;
+}
+
+.alert {
+  position: fixed;
+  left: 8px;
+  bottom: 8px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  border-radius: 4px;
+  height: 52px;
+  background: c.$C_WHITE;
+  color: c.$C_BLACK;
+  animation: fadein 3s;
+  opacity: 0;
+
+  @keyframes fadein {
+    /* 효과를 동작시간 동안 0 ~ 1까지 */
+    0% {
+      opacity: 0;
+    }
+    30% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+}

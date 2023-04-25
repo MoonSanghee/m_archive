@@ -1,0 +1,56 @@
+@use '../../../styles/constants/' as c;
+@use '../../../styles/mixins' as m;
+
+.lnb {
+  position: sticky;
+  left: 140px;
+  top: 0;
+  width: 280px;
+  background-color: c.$C_PRIMARYLIGHT;
+  color: c.$C_WHITE;
+  height:calc(100vh - 80px);
+  
+  //overflow: hidden;
+  .menu {
+    //overflow: hidden; 
+    @include m.flex(center, end, column);
+    position: sticky;
+    top: 0;
+    padding: 40px;
+    row-gap: 40px;
+    font-size: 24px;
+    height: 100%;
+    .pageInfo {
+      font-size: 32px;
+      cursor: pointer;
+    }
+    
+    .example {
+      display: flex;
+      justify-content: end;
+      padding: 32px 0px;
+      width: 100%;
+      color: c.$C_WHITE;
+      > span {
+        cursor: pointer;
+        &:hover {
+          color: c.$C_PRIMARY;
+          transition: transform .3s;
+        }
+      }
+    }
+    .current{
+      color: c.$C_SECONDARY;
+    }
+  }
+
+  .logout {
+    //position: fixed;
+    //bottom: 40px;
+    margin-top: 200px;
+    height: 30px;
+    cursor: pointer;
+    color: c.$C_BLACK;
+  }
+}
+

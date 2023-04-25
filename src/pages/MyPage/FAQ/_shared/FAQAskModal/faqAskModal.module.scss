@@ -1,0 +1,48 @@
+@use "../../../../../styles/constants/" as c;
+
+
+// FAQModal 관련 SCSS
+.faqAskTitle {
+  color: c.$C_SECONDARY;
+  margin: 32px 0 24px 0;
+  
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.2rem;
+  color: c.$C_BLACK;;
+
+  > label {
+    display: block;
+    margin-bottom: 2rem;
+    font-size: 1.125rem;
+    font-weight: bold;
+  }
+  .textarea{
+    height: 120px;
+  }
+  .input{
+    margin-top: 8px;
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid c.$C_DARKGRAY;
+    border-radius: 0.25rem;
+    outline: none;
+
+    &:focus {
+      box-shadow: 0 0 0 0.125rem c.$C_SECONDARY;
+    }
+  }
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+
+
+}

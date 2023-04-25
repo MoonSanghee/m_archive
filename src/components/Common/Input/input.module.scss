@@ -1,0 +1,33 @@
+@use '../../../styles/constants/' as c;
+@use  '../../../styles/mixins/' as m;
+
+.label{
+  .labelText {
+    font-size: 20px;
+    color: c.$C_BLACK;
+  }
+
+  .errorText {
+    font-size: 16px;
+    color: c.$C_RED;
+  }
+
+  &.error {
+    .input {
+      color: c.$C_RED;
+      border-bottom: 4px solid c.$C_RED;
+    }
+  }
+}
+
+.input {
+  border: none;
+  font-size: 20px;
+  background-color: c.$C_GRAY;
+  width: 520px;
+  display: flex;
+  align-items : center;
+  padding: 16px 12px;
+  margin: 8px 0px;
+  font-family: KIMM_Light;
+}

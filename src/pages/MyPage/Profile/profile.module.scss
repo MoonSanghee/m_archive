@@ -1,0 +1,147 @@
+@use "../../../styles/mixins/" as m;
+@use "../../../styles/constants/" as c;
+
+.wrapper {
+  @include m.flex(flex-start,flex-start,column);  
+  width: 100%;
+  padding: 24px 0px;
+  row-gap: 20px;
+  > span{
+    @include m.flex(flex-end,flex-end,row); 
+    width: 85%;
+    height: 15%; 
+  }
+  .profileContainer,.genreContainer{
+    padding: 24px 48px;
+    width: 85%;
+    //width: 1000px;
+    background-color:transparent;
+    border-radius: 8px;
+    > h1{
+      width: 100%;
+      font-size: 24px;
+    }
+    
+  }
+  .profileContainer {
+    @include m.flex(flex-start,flex-start,column); 
+    row-gap: 0px;
+    border: 2px solid c.$C_PRIMARY;
+    height: 460px;
+    .profileInfo{
+      @include m.flex(center,center,row);
+      width: 90%;
+      height: 80%;
+      column-gap: 60px;
+      .profileWrapper{
+        @include m.flex(center,center,column);
+        width: 45%;
+        height: 100%;
+        row-gap: 32px;
+          .iconsWrapper{
+        
+            .profileIcon{
+              cursor: pointer;
+              > svg{
+              width: 140px;
+              height: 140px;
+              }
+               &:hover{
+                > svg {
+                  //fill:c.$C_BLACK_MODAL;  
+                  > path{
+                    fill:c.$C_BLACK_MODAL;
+                  }
+                  > circle{
+                    fill:c.$C_BLACK_MODAL;  
+                  }
+                  }
+              }
+            }
+            .modifyIcon{
+              cursor: pointer;
+              z-index: 20;
+              position:relative;  
+              top:-60px;
+              right: 80px;
+              pointer-events: none;
+              fill:transparent;
+              > svg{
+                width: 100px;
+                height: 100px;
+              }
+            }
+            .profileIcon:hover+.modifyIcon{
+              fill: c.$C_WHITE;
+            }
+          }
+ 
+          > textarea{
+            width: 340px;
+            height: 160px;
+            font-size: 20px;
+            padding: 16px;
+            border-radius: 8px;
+          }
+      }
+      .inputsWrapper{
+        @include m.flex(center,center,column);
+        width: 45%;
+        height: 100%;
+        padding-top: 36px;
+        row-gap: 8px;
+        .input {
+          
+          > p:first-of-type{
+            color: c.$C_WHITE;
+          }
+          > input{
+            width: 440px;
+            border-radius: 4px;
+            color: c.$C_BLACK;
+            font-family: "Margun Gothic";
+            background-color:c.$C_WHITE ;
+          }
+        }
+        .input:nth-of-type(2){
+          pointer-events: none;
+          > input{
+            background-color:c.$C_DARKGRAY ;
+          }
+        }
+      }
+    }
+    
+  }
+  .genreContainer {
+    border: 2px solid c.$C_WHITE;  
+    height: 260px;  
+    > h1{
+      @include m.flex(space-between);
+    }
+    .tagsWrapper{
+      width: 90%;
+      padding: 32px 0;
+      display: grid;
+      grid-template-columns: repeat(6,1fr);
+      row-gap: 16px;
+    }
+  }
+  .iconModal{
+    background-color:c.$C_BLACK_MODAL;
+    box-shadow: 0px 0px 15px 5px c.$C_WHITE_50;
+    
+    
+  }
+}
+
+
+.popup {
+  height: 52px;
+  // width: 360px;
+  background-color: c.$C_GRAY;
+  
+  > div {
+    font-size: 16px;
+  }
+}

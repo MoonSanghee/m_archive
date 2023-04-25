@@ -1,0 +1,34 @@
+@use "../../../../../styles/mixins" as m;
+@use "../../../../../styles/constants/" as c;
+.wrapper{
+    @include m.flex(center,center,column);
+    width: 100%;
+    row-gap: 16px;
+    .titleWrapper{
+        width:100%;
+        > h1 {
+            font-size: 24px;
+            color: c.$C_SECONDARY;
+        }
+    }
+    .formWrapper{
+        @include m.flex(center,center,column);
+        row-gap: 4px;
+        width: 100%;
+        .reviewContent{
+            width: 100%;
+            min-height: 348px;
+            font-size: 16px;
+            border: none;
+            font-family: "KIMM_Light";
+            color:c.$C_BLACK;
+            letter-spacing: 1px;
+        }
+        .btnWrapper{
+            @include m.flex(space-between,flex-end,row-reverse);
+            width: 100%;
+            height:20% ;
+
+        }
+    }
+}
