@@ -5,13 +5,13 @@
 - **`Project` :** 이제는 감상도 공유하는시대! 다양한 관점에서 바라보고 소통하는 국내 영화 리뷰 사이트. “M-archive” 
 - **`Project duration` :** 2023.03.13 - 2023.04.28
 - **`Team members` :** 김희환, 문상희, 서진주(팀장), 임신영, 조상우
-- **`Link` :** [🌐 M-archive](http://abc-lab-fe-sjj.s3-website.ap-northeast-2.amazonaws.com/)<br/> [**서비스유저 계정:** Email: , PW:  ][**관리자 계정:** Email: , PW:  ] 
-- **`Service overview`:** [서비스 메뉴얼]()
+- **`Link` :** [🌐 M-archive](http://abc-lab-fe-sjj.s3-website.ap-northeast-2.amazonaws.com/)<br/> [**서비스유저 계정:** Email:kajer102@gmail.com , PW:jsw1022!  ][**관리자 계정:** Email:admintest@codestates.com , PW: admintest ] 
+- **`Service overview`:** [서비스 메뉴얼](https://docs.google.com/presentation/d/1Y-aiX1iDLvulxh_bIVKzPllycnhZKUjw0Adt_DYdFKI/edit#slide=id.g2397dc2ffc7_11_53)
 - **`User Interface`:** [화면정의서](https://docs.google.com/document/d/1KiknPTQb4U65ZTueSHgYdMp8q3AiNVd2OD0QydXdkVY/edit?usp=sharing)
 - **`Functional Requirement`:** [사용자 요구사항 정의서](https://docs.google.com/spreadsheets/d/1bSM0evXpkQAwD7WvOuqQE-BzTLvrOhWVQt3aHylrouw/edit?usp=sharing)
 - **`API Specification`:** [API 명세서](http://ec2-3-39-25-160.ap-northeast-2.compute.amazonaws.com/api-docs#/)
-- **`Tech Presentaion`:** [기술 발표](https://docs.google.com/presentation/d/10Ms0CCVN6-gXCoRjEOqlTA9UQJ0KzsAr-LiUj_sdb84/edit?usp=share_link)
-- **`Testing Documentaion`:** [테스트 문서]()
+- **`Tech Docs`:** [기술 문서](https://docs.google.com/presentation/d/10Ms0CCVN6-gXCoRjEOqlTA9UQJ0KzsAr-LiUj_sdb84/edit?usp=share_link)
+- **`Testing Documentaion`:** [테스트 문서](https://docs.google.com/spreadsheets/d/1rZT5lOQLu2oPr4nKBx4snEjAPL9KV7t8KOynDC5e4CE/edit#gid=0)
 <br/>
 
 
