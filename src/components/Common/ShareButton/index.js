@@ -1,18 +1,14 @@
+import cx from 'classnames';
 import React, { memo } from 'react';
-import { ShareIcon } from '../../../assets/icon';
-import styles from './sharebutton.module.scss';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import swal from 'sweetalert2';
-import cx from 'classnames';
-import { useLocation } from 'react-router-dom';
+import { ShareIcon } from '../../../assets/icon';
+import styles from './sharebutton.module.scss';
 
-const curUrl = window.location.href;
 const ShareButton = ({ label, className, url }) => {
-  const location = useLocation();
   //NOTE: host url도 같이 복사
+  const currentUrl = url ? url : window.location.href;
 
-  const currentUrl = url ? url : curUrl;
-  
   const onShareBtnClick = () => {
     //NOTE: position 으로 조절하거나, showClass로 조절
     swal.fire({
@@ -29,16 +25,13 @@ const ShareButton = ({ label, className, url }) => {
   };
 
   return (
-    <section
-      className={cx(styles.wrapper, className)} 
-    >
+    <section className={cx(styles.wrapper, className)}>
       <CopyToClipboard text={currentUrl}>
         <span className={styles.label} onClick={onShareBtnClick}>
-          <ShareIcon/>  
-          {label ? `${label}` : "" }
+          <ShareIcon />
+          {label ? `${label}` : ''}
         </span>
       </CopyToClipboard>
-      
     </section>
   );
 };
