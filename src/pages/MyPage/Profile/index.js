@@ -275,7 +275,7 @@ const Profile = () => {
           />{' '}
           <div className={cx(styles.toggleText,{[styles.show]:toggleHovered})}>
              <p>{`🎬 On/Off : 
-              다른 유저에게 나의 선호 장르 보이기 😃 / 숨기기 😌`}</p>      
+              다른 유저에게 나의 선호 장르 보이기 / 숨기기 `}</p>      
           </div>
         </h1>
         <div className={styles.tagsWrapper}>

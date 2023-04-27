@@ -93,7 +93,7 @@ const Review = () => {
           />
           <div className={cx(styles.toggleText,{[styles.show]:toggleHovered})}>
              <p>{`💬 On/Off : 
-              다른 유저에게 나의 리뷰 보이기 😃 / 숨기기 😌`}</p>      
+              다른 유저에게 나의 리뷰 보이기 / 숨기기`}</p>      
           </div>
         </header>
         <section className={styles.cardContainer}>
