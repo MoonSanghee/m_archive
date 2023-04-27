@@ -245,7 +245,7 @@ const MovieDetailPage = () => {
           
         </section>
       </section>
-      <Modal modalOption={modalOption} modalSize="small" />
+      <Modal modalOption={modalOption} modalSize="small" onClose={onClose} />
     </main>
   );
 };

@@ -17,23 +17,23 @@ import styles from './modal.module.scss';
  */
 
     
-const Modal = ({ modalOption, modalSize, className }) => {
+const Modal = ({ modalOption, modalSize, className ,onClose}) => {
   useEffect(()=>{
     if(modalOption?.show){
       document.body.style.overflow = 'hidden';
     }else{
       document.body.style.overflow = 'auto';
     }
-  },[modalOption])
+  },[modalOption]);
   return (
     <main>
       {modalOption?.show && (
         <>
           <div
             className={cx(styles.overlay)}
-            onClick={() => modalOption.onClose()}
+            onClick={onClose}
           />
-          <section className={cx(styles.wrapper)}>
+          <section className={cx(styles.wrapper)} >
             <div
               className={cx(styles.modalWrapper, styles[modalSize], className)}
             >
