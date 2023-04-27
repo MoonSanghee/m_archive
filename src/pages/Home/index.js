@@ -191,8 +191,8 @@ const Home = () => {
       </section>
       <section className={styles.rcmdWrapper}>
       <h1 className={styles.header}>M-archive 영화 추천
-        <div className={cx(styles.description,styles.show)}><span>{`\ ${me?.nickname || me?.name}님 취향에 맞춰 영화를 추천해드려요~`}</span>
-        <p>이미 보신 영화는 목록에서 제외됩니다😉</p>
+        <div className={cx(styles.description,styles.show)}><span>{`"${me?.nickname || me?.name}님 취향에 맞춰 영화를 추천해드려요~`}</span>
+        <p>이미 보신 영화는 목록에서 제외됩니다💙"</p>
         </div>
       </h1>
         <article className={styles.carouselWrapper}>
