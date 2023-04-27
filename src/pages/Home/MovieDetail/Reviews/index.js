@@ -89,7 +89,7 @@ const Reviews = () => {
           );
         })}
       </section>
-      <Modal modalOption={modalOption} modalSize="big" />
+      <Modal modalOption={modalOption} modalSize="big" onClose={onClose} />
     </main>
   );
 };

@@ -305,6 +305,7 @@ const Profile = () => {
         modalOption={modalOption}
         modalSize="small"
         className={styles.iconModal}
+        onClose={onClose}
       />
     </main>
   );
