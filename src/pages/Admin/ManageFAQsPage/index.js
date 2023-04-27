@@ -119,13 +119,14 @@ const ManageFAQsPage = () => {
         true,
         '',
         null,
-        onGetFaqs,
+        null,
         <EditModal
           item={item}
           type={type}
-          // onClose={onClose}
           onClose={() => {
-            modalOption.onClose();
+            onClose(()=>{
+              onGetFaqs();
+            })
           }}
         />,
       );
@@ -193,9 +194,10 @@ const ManageFAQsPage = () => {
       <AdminLNB path={path.pathname}/>
       <section className={styles.allSection}>
         <div className={styles.header}>
+        <span className={styles.adminInfo}>{me ? `관리자 : ${me?.name} 님` : ""}</span>
           <Button
             color="secondary"
-            width="long"
+            width="short"
             children={'로그아웃'}
             onClick={onClickLogout}
           />

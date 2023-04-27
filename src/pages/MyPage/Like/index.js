@@ -9,9 +9,11 @@ import { getMe,modifyUser } from '../../../api/Users';
 import { useMount } from 'react-use';
 import { LikeIcon } from '../../../assets/icon';
 import { scrollTop } from '../../../utils';
+import cx from "classnames";
 
 const Like = () => {
   const navigate = useNavigate();
+  const [toggleHovered,setToggleHovered] = useState(false);
   const [movies, setMovies] = useState([]);  
   const [me,setMe] = useRecoilState(meState);
 
@@ -60,7 +62,14 @@ const Like = () => {
     <div className={styles.wrapper}>
       <header>
         <h1>좋아요 관리</h1>
-        <Toggle checked={me?.isLikeView} onChange={onClickToggle}/>
+        <Toggle checked={me?.isLikeView} onChange={onClickToggle}
+            onMouseOver={() => setToggleHovered(true)}
+            onMouseOut={() => setToggleHovered(false)}
+        />
+        <div className={cx(styles.toggleText,{[styles.show]:toggleHovered})}>
+             <p>{`❤️ On/Off : 
+              다른 유저에게 나의 좋아요 보이기 😃 / 숨기기 😌`}</p>      
+          </div>
       </header>
       <section className={styles.cardContainer}>
       {movies?.length === 0 &&  

@@ -14,8 +14,13 @@
         flex-direction: column;
         row-gap: 8px;
         .header{
-            @include m.flex(flex-end,center,row);
+            @include m.flex(flex-end, center,row);
+            column-gap: 8px;
             width: 100%;
+            .adminInfo{
+                font-size: 20px;
+                font-family: 'KIMM_Light';
+            }
         }
         .topMenu {
             background-color: c.$C_CARD_MENU;

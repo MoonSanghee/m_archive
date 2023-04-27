@@ -27,9 +27,11 @@ import { meState} from '../../../recoil';
 import { getMe } from "../../../api/Users";
 import swal from 'sweetalert2';
 import { scrollTop } from '../../../utils';
+import cx from "classnames";
 const Profile = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
+  //const navigate = useNavigate();
+  //const location = useLocation();
+  const [toggleHovered,setToggleHovered] = useState(false);
   const [me,setMe] = useRecoilState(meState);
   const [pick, setPick] = useState(genre);
   const [select, setSelect] = useState([]);
@@ -86,6 +88,8 @@ const Profile = () => {
       width: 320,
     });
   }
+  
+  
   const onSubmit = async (e) => {
     e.preventDefault();
     /*if ((touched.password || touched.checkpassword) && !validatedForm) {
@@ -212,7 +216,7 @@ const Profile = () => {
 
             <textarea
               name="description"
-              value={form?.description}
+              value={form?.description ||''}
               onChange={onChange}
               placeholder={`소개글
 (최대 200자까지 작성가능)`}
@@ -222,7 +226,7 @@ const Profile = () => {
           <div className={styles.inputsWrapper}>
             <Input
               name="nickname"
-              value={form?.nickname}
+              value={form?.nickname || ''}
               onChange={onChange}
               onBlur={onBlur}
               className={styles.input}
@@ -232,13 +236,14 @@ const Profile = () => {
             />
             <Input
               name="email"
-              value={me?.email}
+              value={me?.email || ''}
               className={styles.input}
               label="이메일"
+              readOnly
             />
             <Input
               name="password"
-              value={form?.password}
+              value={form?.password || '' }
               onChange={onChange}
               onBlur={onBlur}
               type="password"
@@ -249,7 +254,7 @@ const Profile = () => {
             />
             <Input
               name="checkpassword"
-              value={form?.checkpassword}
+              value={form?.checkpassword || '' }
               onChange={onChange}
               onBlur={onBlur}
               type="password"
@@ -264,7 +269,14 @@ const Profile = () => {
       <section className={styles.genreContainer}>
         <h1>
           {'선호 장르'}
-          <Toggle checked={me?.isPreferenceView} onChange={onClickToggle}/>{' '}
+          <Toggle checked={me?.isPreferenceView} onChange={onClickToggle}
+          onMouseOver={() => setToggleHovered(true)}
+          onMouseOut={() => setToggleHovered(false)}
+          />{' '}
+          <div className={cx(styles.toggleText,{[styles.show]:toggleHovered})}>
+             <p>{`🎬 On/Off : 
+              다른 유저에게 나의 선호 장르 보이기 😃 / 숨기기 😌`}</p>      
+          </div>
         </h1>
         <div className={styles.tagsWrapper}>
           {pick.map((item) => {

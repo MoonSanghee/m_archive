@@ -137,12 +137,14 @@ const ManageReviewsPage = () => {
         true,
         '',
         null,
-        fetchData,
+        null,
         <EditModal
           item={item}
           type={type}
           onClose={()=>{
-            modalOption.onClose();
+            onClose(()=>{
+              fetchData();
+            })
           }}
         />,
       );
@@ -195,9 +197,10 @@ const ManageReviewsPage = () => {
       <AdminLNB path={path.pathname} />
       <section className={styles.allSection}>
         <div className={styles.header}>
+        <span className={styles.adminInfo}>{me ? `관리자 : ${me?.name} 님` : ""}</span>
           <Button
             color="secondary"
-            width="long"
+            width="short"
             children={'로그아웃'}
             onClick={onClickLogout}
           />
