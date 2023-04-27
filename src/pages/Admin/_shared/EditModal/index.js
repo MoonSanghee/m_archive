@@ -114,17 +114,17 @@ const EditModal = ({ item, type, onClose }) => {
           type="number"
           className={cx(styles.score)}
           label={'별점 : '}
-          value={reviewForm?.score}
+          value={reviewForm?.score || 0}
           onChange={onChangeReview}
         />
         <div className={styles.review}>
-          <label for="review">
+          <label htmlFor="review">
             <p>리뷰 :</p>{' '}
           </label>
           <textarea
             name="content"
             id="review"
-            value={reviewForm?.content}
+            value={reviewForm?.content || ""}
             onChange={onChangeReview}
           />
         </div>
@@ -145,39 +145,39 @@ const EditModal = ({ item, type, onClose }) => {
           name="email"
           className={styles.userInput}
           label={'이메일 : '}
-          value={userForm?.email}
+          value={userForm?.email || ""}
           onChange={onChangeUser}
         />
         <Input
           name="password"
           className={styles.userInput}
           label={'비밀번호 : '}
-          value={userForm?.password}
+          value={userForm?.password || ""}
           onChange={onChangeUser}
         />
         <Input
           name="name"
           className={styles.userInput}
           label={'이름 : '}
-          value={userForm?.name}
+          value={userForm?.name || ""}
           onChange={onChangeUser}
         />
         <Input
           name="nickname"
           className={styles.userInput}
           label={'닉네임 : '}
-          value={userForm?.nickname}
+          value={userForm?.nickname || ""}
           onChange={onChangeUser}
         />
         {/* <Input name="description" className={styles.userInput} label={"소개글 : "} value={userForm?.description} onChange={onChangeUser}/> */}
         <div className={styles.user}>
-          <label for="user">
+          <label htmlFor="user">
             <p>소개글 :</p>{' '}
           </label>
           <textarea
             name="description"
             id="user"
-            value={userForm?.description}
+            value={userForm?.description || ""}
             onChange={onChangeUser}
           />
         </div>
@@ -198,22 +198,22 @@ const EditModal = ({ item, type, onClose }) => {
           name="title"
           className={styles.faqInput}
           label={'제목 : '}
-          value={faqForm?.title}
+          value={faqForm?.title || ""}
         />
         <Input
           name="content"
           className={styles.faqInput}
           label={'문의내용 :'}
-          value={faqForm?.content}
+          value={faqForm?.content || ""}
         />
         <div className={styles.faq}>
-          <label for="faq">
+          <label htmlFor="faq">
             <p>답변하기 :</p>{' '}
           </label>
           <textarea
             name="comments"
             id="faq"
-            value={faqForm?.comments}
+            value={faqForm?.comments || ""}
             onChange={onChangeFaq}
           />
         </div>

@@ -23,11 +23,13 @@
   width: 100vw;
   height: 100vh;
   //NOTE: header보다 높은 z-index
-  z-index: c.$Z_MODAL;
+  z-index: c.$Z_OVERLAY;
+  pointer-events: none;
 
   .modalWrapper {
+    pointer-events: auto;
     @include m.flex(center, center, column);
-
+    z-index: c.$Z_MODAL;
     padding: 24px;
     background-color: c.$C_WHITE;
     border-radius: 12px;

@@ -80,6 +80,7 @@ const FAQ = () => {
       <Modal
         modalOption={toAskModalOption}
         modalSize="small"
+        onClose={toAskOnClose}
         //className={styles.iconModal}
       />
     </main>
