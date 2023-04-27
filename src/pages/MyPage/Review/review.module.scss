@@ -29,6 +29,29 @@
       width: 100%;
       justify-content: space-between;
       font-size: 24px;
+      > .toggleText{
+        position: absolute;
+        background-color: c.$C_WHITE;
+        width: 240px;
+        height: 56px;
+        top: 10vh;
+        right: 10vw;
+        opacity: 0;
+        z-index: 2;
+        color: c.$C_BLACK;
+        font-size: 16px;
+        letter-spacing: 1.4;
+        padding: 8px;
+        font-family: 'KIMM_Light';
+        border-radius: 4px;
+        line-height: 1.2;
+        transition:  opacity 0.3s ease-in-out;
+  
+      }
+      >.show{
+        opacity: 1;
+        transition:  opacity 0.3s ease-in-out;
+      }
     }
     > p {
       text-align: right;

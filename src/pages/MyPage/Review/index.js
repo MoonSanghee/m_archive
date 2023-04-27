@@ -13,6 +13,7 @@ import { CommentIcon, CommentLikeIcon } from '../../../assets/icon';
 import dayjs from 'dayjs';
 import { ReviewWriteIcon } from '../../../assets/icon';
 import {scrollTop} from "../../../utils";
+import cx from "classnames";
 
 const diff = (date) => {
   const now = dayjs();
@@ -21,6 +22,7 @@ const diff = (date) => {
 
 const Review = () => {
   const navigate = useNavigate();
+  const [toggleHovered,setToggleHovered] = useState(false);
   const [me, setMe] = useRecoilState(meState);
   const [reviews, setReviews] = useState([]);
   const [comments,setComments] = useState(0);
@@ -85,7 +87,14 @@ const Review = () => {
       <section className={styles.section}>
         <header>
           <h1>리뷰 관리</h1>
-          <Toggle checked={me?.isReviewView} onChange={onClickToggle} />
+          <Toggle checked={me?.isReviewView} onChange={onClickToggle}
+          onMouseOver={() => setToggleHovered(true)}
+          onMouseOut={() => setToggleHovered(false)}
+          />
+          <div className={cx(styles.toggleText,{[styles.show]:toggleHovered})}>
+             <p>{`💬 On/Off : 
+              다른 유저에게 나의 리뷰 보이기 😃 / 숨기기 😌`}</p>      
+          </div>
         </header>
         <section className={styles.cardContainer}>
         {reviews?.length === 0 &&  

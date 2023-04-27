@@ -18,6 +18,7 @@ import { sortItems } from './Genre/sortItems';
 import { useInView } from 'react-intersection-observer';
 import { useMe } from '../../hooks';
 import { getMyReviews } from '../../api/Reviews';
+import cx from "classnames";
 const Home = () => {
   const me = useMe();
   const navigate = useNavigate();
@@ -184,15 +185,31 @@ const Home = () => {
       <ScrollTopButton />
       <section className={styles.top10Wrapper}>
         <h1 className={styles.header}>Top 10</h1>
-        <Carousel movies={top10Movies} type="top10" />
+        <article className={styles.carouselWrapper}>
+          <Carousel movies={top10Movies} type="top10" />
+        </article>
       </section>
       <section className={styles.rcmdWrapper}>
-        <h1 className={styles.header}>M-archive 영화 추천</h1>
-        <Carousel movies={mArchiveMovies.length ===0 ? movies: mArchiveMovies } type="recommend" callback={onGetMArchiveMovies}/>
+      <h1 className={styles.header}>M-archive 영화 추천
+        <div className={cx(styles.description,styles.show)}><span>{`\ ${me?.nickname || me?.name}님 취향에 맞춰 영화를 추천해드려요~`}</span>
+        <p>이미 보신 영화는 목록에서 제외됩니다😉</p>
+        </div>
+      </h1>
+        <article className={styles.carouselWrapper}>
+          <Carousel movies={mArchiveMovies.length ===0 ? movies: mArchiveMovies } type="recommend" callback={onGetMArchiveMovies}/>
+        </article>
+      
         {/*<Carousel movies={mArchiveMovies} type="recommend" callback={onGetMArchiveMovies} />*/}
       </section>
       <section className={styles.genreWrapper}>
-        <h1 className={styles.header}>장르</h1>
+        <h1 className={styles.header}>장르
+        <Dropdown
+            items={dropdownSortItems}
+            valueKey="name"
+            value={selectedSort?.name}
+            onClick={onClickSortDropdown}
+          />
+        </h1>
         <nav className={styles.nav}>
           {/* genre tag */}
           <div className={styles.tag}>
@@ -209,12 +226,7 @@ const Home = () => {
               );
             })}
           </div>
-          <Dropdown
-            items={dropdownSortItems}
-            valueKey="name"
-            value={selectedSort?.name}
-            onClick={onClickSortDropdown}
-          />
+         
         </nav>
 
         <div className={styles.genreMovies}>

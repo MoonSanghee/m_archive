@@ -34,7 +34,7 @@ const ManageUsersPage = () => {
   const [keyword, setKeyword] = useState('');
 
   //   const [modalOption, showModal,onClose] = useModal();
-  const [modalOption, showModal] = useModal();
+  const [modalOption, showModal,onClose] = useModal();
 
   const [isChecked, setIsChecked] = useState(false);
 
@@ -117,14 +117,14 @@ const ManageUsersPage = () => {
         true,
         '',
         null,
-        // null,
-        onGetUsers,
+        null,
         <EditModal
           item={item}
           type={type}
           onClose={() => {
-            // onClose(onGetUsers);
-            modalOption.onClose();
+            onClose(()=>{
+              onGetUsers();
+            })
           }}
         />,
       );
@@ -181,9 +181,10 @@ const ManageUsersPage = () => {
       <AdminLNB path={path.pathname}/>
       <section className={styles.allSection}>
         <div className={styles.header}>
+          <span className={styles.adminInfo}>{me ? `관리자 : ${me?.name} 님` : ""}</span>
           <Button
             color="secondary"
-            width="long"
+            width="short"
             children={'로그아웃'}
             onClick={onClickLogout}
           />
