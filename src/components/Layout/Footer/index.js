@@ -13,8 +13,7 @@ const Footer = () => {
           취업하고 싶다 .{" "}
         </li>
         <li className={styles.li}>
-          문상희 | 깃헙주소 | 일하고 싶다.... |교육서비스 제공자 : 코드스테이츠
-          ABC - Lab 프론트엔드 개발자 양성 부트 캠프
+          문상희 | 깃헙주소 https://github.com/MoonSanghee | 일하고 싶다.... 
         </li>
         <li className={styles.li}>
           임신영 | 깃헙주소 https://github.com/ImSinYeong | 하루 하루 행복하게

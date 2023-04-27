@@ -118,6 +118,28 @@
     height: 260px;  
     > h1{
       @include m.flex(space-between);
+      > .toggleText{
+        position: absolute;
+        background-color: c.$C_WHITE;
+        width: 240px;
+        height: 56px;
+        top: 60vh;
+        right: 2vw;
+        opacity: 0;
+        color: c.$C_BLACK;
+        font-size: 16px;
+        letter-spacing: 1.4;
+        padding: 8px;
+        font-family: 'KIMM_Light';
+        border-radius: 4px;
+        line-height: 1.2;
+        transition:  opacity 0.3s ease-in-out;
+
+      }
+      >.show{
+        opacity: 1;
+        transition:  opacity 0.3s ease-in-out;
+      }
     }
     .tagsWrapper{
       width: 90%;
